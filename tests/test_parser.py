@@ -99,6 +99,84 @@ class TestParseCase:
         case = parse_case(p)
         assert [u.type for u in case.units] == ["interview", "interview", "interview"]
 
+    def test_header_with_trailing_whitespace_normalizes(self, tmp_path: Path) -> None:
+        # "## Interview  " with trailing spaces/tab should still parse to type "interview".
+        p = write(
+            tmp_path / "acme.md",
+            "## Interview  \nA.\n\n## Interview\t\nB.\n",
+        )
+        case = parse_case(p)
+        assert [u.type for u in case.units] == ["interview", "interview"]
+        assert [u.raw_header for u in case.units] == ["Interview", "Interview"]
+
+    def test_empty_section_produces_unit_with_empty_content(self, tmp_path: Path) -> None:
+        # Back-to-back headers: first unit has empty body.
+        p = write(
+            tmp_path / "acme.md",
+            "## Interview\n## Gate Rule\nRule body.\n",
+        )
+        case = parse_case(p)
+        assert len(case.units) == 2
+        assert case.units[0].type == "interview"
+        assert case.units[0].content == ""
+        assert case.units[1].type == "gate_rule"
+        assert case.units[1].content == "Rule body."
+
+    def test_section_with_only_blank_lines_has_empty_content(self, tmp_path: Path) -> None:
+        # A header followed only by blank lines before the next header.
+        p = write(
+            tmp_path / "acme.md",
+            "## Interview\n\n\n\n## Gate Rule\nRule.\n",
+        )
+        case = parse_case(p)
+        assert case.units[0].content == ""
+        assert case.units[1].content == "Rule."
+
+    def test_multi_paragraph_unit_content_preserved(self, tmp_path: Path) -> None:
+        p = write(
+            tmp_path / "acme.md",
+            (
+                "## Interview\n"
+                "Paragraph one.\n"
+                "\n"
+                "Paragraph two.\n"
+                "\n"
+                "Paragraph three.\n"
+                "\n"
+                "## Gate Rule\n"
+                "Rule.\n"
+            ),
+        )
+        case = parse_case(p)
+        assert len(case.units) == 2
+        interview_content = case.units[0].content
+        assert "Paragraph one." in interview_content
+        assert "Paragraph two." in interview_content
+        assert "Paragraph three." in interview_content
+        # Paragraph structure (blank-line separation) is preserved inside the body.
+        assert "\n\n" in interview_content
+
+    def test_extra_blank_lines_between_sections_do_not_leak(self, tmp_path: Path) -> None:
+        # Multiple blank lines between sections shouldn't be captured in unit content.
+        p = write(
+            tmp_path / "acme.md",
+            "## Interview\nA.\n\n\n\n\n## Gate Rule\nB.\n\n\n",
+        )
+        case = parse_case(p)
+        assert case.units[0].content == "A."
+        assert case.units[1].content == "B."
+
+    def test_trailing_whitespace_on_content_lines_is_stripped(self, tmp_path: Path) -> None:
+        # Trailing whitespace at the very end of a unit's body block should be stripped.
+        p = write(
+            tmp_path / "acme.md",
+            "## Interview\nA.   \n\n## Gate Rule\nB.\t\t\n",
+        )
+        case = parse_case(p)
+        # End-of-body trailing whitespace removed by the strip() in parse_case.
+        assert case.units[0].content.rstrip() == case.units[0].content
+        assert case.units[1].content.rstrip() == case.units[1].content
+
     def test_preserves_raw_header_for_rerender(self, tmp_path: Path) -> None:
         p = write(tmp_path / "acme.md", "## Gate Rule\nBody.\n")
         case = parse_case(p)
