@@ -123,6 +123,11 @@ Everything lands under `./kelvin/`:
 | `kelvin init` wizard | 🔜 Upcoming |
 | CI/CD integration | 🔜 Upcoming |
 
+## Research
+
+The formal treatment of Kelvin's paired metamorphic diagnostics is in [docs/whitepaper.md](docs/whitepaper.md).
+
+
 ## License
 
 Apache 2.0. See [LICENSE](LICENSE).
