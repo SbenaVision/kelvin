@@ -23,6 +23,7 @@ under `./kelvin/` to review signal.
 from __future__ import annotations
 
 import json
+import time
 from dataclasses import asdict
 from pathlib import Path
 from typing import Any
@@ -34,6 +35,9 @@ from kelvin.perturbations import PerturbationGenerator
 from kelvin.perturbations.pad import PadGenerator
 from kelvin.perturbations.reorder import ReorderGenerator
 from kelvin.perturbations.swap import SwapGenerator
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+from kelvin.reporters.terminal import render as render_terminal
 from kelvin.runner import invoke
 from kelvin.scorer import (
     DecisionFieldTypeError,
@@ -85,6 +89,7 @@ def run_check(
         CheckError  — config / case-discovery problems before any pipeline run.
         AbortRun    — bad decision field on the first successful baseline.
     """
+    _start = time.monotonic()
     cfg = _load_config(cwd)
     effective_seed = seed_override if seed_override is not None else cfg.seed
 
@@ -154,6 +159,11 @@ def run_check(
         run_caps=[],
     )
     _write_run_report(run_scores, cwd, cfg, only=only)
+    render_terminal(
+        run_scores,
+        elapsed_s=time.monotonic() - _start,
+        decision_field=cfg.decision_field,
+    )
     return run_scores
 
 
@@ -194,7 +204,7 @@ def _run_baselines(
             render_case(case.preamble, case.units), encoding="utf-8"
         )
 
-        result = invoke(cfg.run, input_path, output_path, cfg.decision_field)
+        result = invoke(cfg.run, input_path, output_path, cfg.decision_field, timeout_s=60)
 
         if not result.ok:
             # If the pipeline produced a valid JSON object that simply doesn't
@@ -247,6 +257,7 @@ def _run_perturbations_for_case(
     scorer: Scorer,
     echo: Any,
 ) -> None:
+    work_items: list[tuple[Any, Path, Path]] = []
     for gen in generators:
         batch: PerturbationBatch = gen.generate(
             case=case,
@@ -262,8 +273,19 @@ def _run_perturbations_for_case(
             input_path = vdir / "input.md"
             output_path = vdir / "output.json"
             input_path.write_text(perturbation.rendered_markdown, encoding="utf-8")
+            work_items.append((perturbation, input_path, output_path))
 
-            result = invoke(cfg.run, input_path, output_path, cfg.decision_field)
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        future_map = {
+            executor.submit(
+                invoke, cfg.run, inp, outp, cfg.decision_field, timeout_s=60
+            ): pert
+            for pert, inp, outp in work_items
+        }
+
+        for future in as_completed(future_map):
+            perturbation = future_map[future]
+            result = future.result()
             distance = _maybe_distance(result, scores.baseline_decision, scorer)
 
             sp = ScoredPerturbation(

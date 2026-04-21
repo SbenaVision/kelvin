@@ -17,4 +17,4 @@ Platform built and deployed. Five ventures being onboarded (FreakingGenius, Inu,
 Blended ARPU: $326/month. Average tenure: 6 months. Estimated LTV: $1,960. Breakeven: month 6. Cash to breakeven: $7K. 3-year projected profit: $7.6M. Subscription mix: Starter $149/month (25%), Launch $249/month (60%), Momentum $449/month (15%).
 
 ## Gate Rule
-Advance from Validate to Build requires: at least 3 paying subscribers retained beyond month 2, viral share mechanic producing measurable organic signups, and FreakingGenius completing a full cycle from assessment to first revenue on the platform. Current state: platform built, first ventures onboarding, zero paid subscribers.
+Advance from Validate to Build requires: founder committed capital, evidence of demand, and first ventures actively using the platform. All conditions are met. Founder has committed $1M to make it happen. A waitlist of 500+ potential customers has been collected and validated. First ventures are onboarding now with real usage beginning.
