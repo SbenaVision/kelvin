@@ -6,6 +6,7 @@ without touching the runner.
 
 from __future__ import annotations
 
+import hashlib
 import random
 from typing import Protocol, runtime_checkable
 
@@ -31,10 +32,15 @@ class PerturbationGenerator(Protocol):
 def rng_for(seed: int, *components: str) -> random.Random:
     """Derive a deterministic RNG from the root seed and qualifying components.
 
-    `random.Random` with a string seed is stable across PYTHONHASHSEED settings
-    because CPython hashes the seed via SHA-512 before initializing state.
+    Uses `hashlib.sha256` explicitly so the derivation does not depend on
+    Python's built-in `hash()` (which varies with PYTHONHASHSEED) or on
+    internals of `random.seed()`'s string handling. The resulting seed is
+    stable across Python versions and interpreter invocations.
     """
-    return random.Random("|".join((str(seed), *components)))
+    key = "|".join((str(seed), *components)).encode("utf-8")
+    digest = hashlib.sha256(key).digest()
+    int_seed = int.from_bytes(digest[:8], "big")
+    return random.Random(int_seed)
 
 
 def peer_pool(
