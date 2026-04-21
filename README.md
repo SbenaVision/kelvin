@@ -14,7 +14,7 @@ Existing tools measure whether outputs *look* right. Kelvin measures something s
 
 ## How it works
 
-Kelvin applies structure-derived metamorphic perturbations to the context a pipeline receives — reordering retrieved units, padding with known-irrelevant units, duplicating or dropping non-essential units, swapping governing units for different valid ones from the same corpus.
+Kelvin applies structure-derived metamorphic perturbations to the context a pipeline receives — reordering retrieved units, padding with known-irrelevant units, and swapping governing units for different valid ones from the same corpus.
 
 Because these transformations are defined over the unit boundaries the corpus already provides, fact-preservation is guaranteed by construction. The facts don't move, so the output shouldn't either.
 
@@ -116,7 +116,8 @@ Everything lands under `./kelvin/`:
 | Component | Status |
 |-----------|--------|
 | Core perturbations (reorder, pad, swap) | ✅ Done |
-| Scorer + stage decomposition | ✅ Done |
+| Scorer | ✅ Done |
+| Stage decomposition (retrieval / reranking / generation) | 🔜 v2 |
 | CLI (`kelvin check`) | ✅ Done |
 | Terminal / HTML reports | 🔜 PR 3 |
 | `kelvin init` wizard | 🔜 Upcoming |
