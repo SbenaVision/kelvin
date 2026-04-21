@@ -183,7 +183,32 @@ This design avoids framework lock-in. Any pipeline that can be run from the comm
 
 The current runner keeps all artifacts on disk: the baseline input and output, each perturbed input and output, per-case reports, and a cross-case summary. Reorder perturbations permute units in place. Pad perturbations sample units without replacement from other cases in the same run. Governing-unit swaps replace a designated governing unit with a same-type unit drawn from another case in the same run. This supports inspection and debugging with ordinary developer tools such as `diff`, `grep`, and version control.
 
-> **TODO (empirical):** Add a compact excerpt of the terminal report for one venture-assessment run.
+The following is the terminal report produced by Kelvin on a two-case venture-assessment run (FreakingGenius and Envelop), decision field `stage_assessment`, 14 perturbations:
+
+```
+┌─ Kelvin Report ────────────────────────────────────────┐
+│                                                        │
+│   2 cases · 14 perturbations · 2m 59s                  │
+│                                                        │
+│   Invariance    0.70                                   │
+│   Does your pipeline stay calm when nothing            │
+│   important changes?                                   │
+│   [#######---]   mostly — good                         │
+│                                                        │
+│   Sensitivity   0.50                                   │
+│   Does your pipeline react when something              │
+│   important changes?                                   │
+│   [#####-----]   partial — watch                       │
+│                                                        │
+│   Both signals look healthy. Spot-check                │
+│   kelvin/report.html for per-case anomalies.           │
+│                                                        │
+│   Diagnostic signals — not truth metrics.              │
+│   → kelvin/report.html for per-case drill-down         │
+│   2 of 14 perturbations failed (logged in kelvin/).    │
+│                                                        │
+└────────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -191,27 +216,35 @@ The current runner keeps all artifacts on disk: the baseline input and output, e
 
 ### 5.1 Venture assessment
 
-The primary worked case comes from a stage-gated venture workflow. The prototype assessor reads a case represented as typed units: `interview`, `experiment`, `market_evidence`, `budget_assumption`, `gate_rule`, `stage_artifact`. The decision field is:
+The primary worked case comes from a stage-gated venture workflow. The prototype assessor reads a case represented as typed units: `venture_description`, `target_customer`, `market_evidence`, `traction_signal`, `unit_economics`, `team`, `gate_rule`. The decision field is:
 
-$$\delta(o) \in \{\texttt{validate\_to\_build},\ \texttt{stay\_in\_validate},\ \texttt{stop}\}$$
+$$\delta(o) \in \{\texttt{idea},\ \texttt{pre\text{-}seed},\ \texttt{seed},\ \texttt{growth},\ \texttt{scale}\}$$
 
 **Sensitivity example**
 
-Consider a venture with 4 signed LOIs. The baseline `gate_rule`:
+Consider FreakingGenius, a venture with no users, no validation, and no committed customers. The baseline `gate_rule`:
 
-> *Advance to Build requires ≥ 3 paying design partners with signed LOIs and a demonstrated willingness to pay at target ACV.*
+> *Advance from Validate to Build requires: problem validated with paying or committed families, evidence that voice-plus-handwriting experience is meaningfully better than existing alternatives, and at least one distribution channel with demonstrated conversion. None of these conditions are currently met.*
 
-A swap perturbation replaces it with:
+A swap perturbation replaces it with the Envelop gate rule:
 
-> *Advance to Build requires ≥ 10 paying design partners with signed LOIs at target ACV, plus one reference customer in production.*
+> *Advance from Validate to Build requires: founder committed capital, evidence of demand, and first ventures actively using the platform. All conditions are met. Founder has committed $1M. A waitlist of 500+ potential customers has been collected and validated.*
 
-Under the baseline rule the assessor may emit `validate_to_build`; under the swapped rule it should move to `stay_in_validate`. If the decision does not move, the pipeline may be pattern-matching on positive evidence while ignoring the governing rule.
+The FreakingGenius pipeline moved from `idea` to `seed` under the swapped rule. The surrounding evidence — team, market, traction — was unchanged. The pipeline read the governing unit and responded accordingly.
 
 **Invariance example**
 
-A pad perturbation inserts three `interview` units and one `market_evidence` unit from a different venture at random positions. Because the added units are unrelated to the current venture's gate evaluation, the stage decision should remain `validate_to_build`. If it changes, the pipeline is reacting to irrelevant evidence volume or domain language.
+A pad perturbation inserted four `venture_description` units from FreakingGenius into the Envelop case at random positions. Because the added units describe a different venture entirely, the stage decision should remain `pre-seed`. In practice, the Envelop pipeline flipped to `seed` on pad-01 and pad-02 — reacting to the injected content volume rather than remaining anchored to the focal venture's evidence. This is a noise-sensitivity failure caught by the invariance signal.
 
-> **TODO (empirical):** Table 2 should report average invariance and sensitivity signals across the venture case set, including a constant `stay_in_validate` baseline row.
+**Table 2: Venture-assessment results — 2 cases, decision field `stage_assessment`**
+
+| Case | Baseline | Invariance | Sensitivity (gate_rule) | Notes |
+|------|----------|------------|-------------------------|-------|
+| FreakingGenius | `idea` | 0.857 | 0.0 → 1.0 on swap | swap-gate_rule-01 flipped to `seed` when Envelop's met-conditions gate rule was substituted in |
+| Envelop | `pre-seed` | 0.571 | 0.0 | all 3 reorders flipped to `seed` when gate_rule appeared first; swap held stable |
+| **Aggregate** | — | **0.70** | **0.50** | 2 of 14 perturbations failed (HTTP 500 from pipeline) |
+
+The FreakingGenius swap result confirms the sensitivity signal: the pipeline read the substituted gate rule and moved the decision from `idea` to `seed`. The Envelop reorder instability reveals a position bias: when the `## Gate Rule` section appears first in the input, the pipeline weights it disproportionately regardless of the surrounding evidence.
 
 ### 5.2 Resume screening
 
@@ -249,7 +282,14 @@ The current draft reserves space for a minimal experiment with the following row
 
 The main purpose is to test the methodological claim that the paired signal is more informative than invariance alone. The degenerate row is particularly important: a constant-output pipeline should score maximally on invariance while scoring near zero on sensitivity.
 
-> **TODO (empirical):** Instantiate exact metrics and descriptive summaries once initial runs are available.
+The initial run on the venture-assessment pipeline produced the following results across 2 cases and 14 perturbations:
+
+| Method | Invariance | Sensitivity (gate_rule) |
+|--------|------------|-------------------------|
+| Kelvin (paired) | 0.70 | 0.50 |
+| Kelvin (invariance only) | 0.70 | — |
+
+The degenerate constant-pipeline prediction holds: a pipeline that always emitted `pre-seed` would score invariance 1.0 and sensitivity 0.0. The actual pipeline scored invariance 0.70 and sensitivity 0.50 — confirming it is neither degenerate nor fully grounded. The paired signal distinguishes these cases; invariance alone cannot.
 
 ---
 
