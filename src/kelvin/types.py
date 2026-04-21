@@ -64,3 +64,60 @@ class InvocationResult:
     decision_value: Any = None
     error: str | None = None             # populated when ok is False
     stderr_tail: str | None = None
+
+
+@dataclass
+class ScoredPerturbation:
+    """A perturbation after the pipeline ran and the scorer looked at it."""
+
+    perturbation: Perturbation
+    invocation: InvocationResult
+    distance: float | None               # None when the invocation failed
+
+
+@dataclass
+class CaseScores:
+    """Per-case scoring rollup."""
+
+    case_name: str
+    reorder: list[ScoredPerturbation] = field(default_factory=list)
+    pad: list[ScoredPerturbation] = field(default_factory=list)
+    swaps_by_type: dict[str, list[ScoredPerturbation]] = field(default_factory=dict)
+    baseline_ok: bool = True
+    baseline_error: str | None = None
+    baseline_decision: Any = None
+    warnings: list[str] = field(default_factory=list)
+    caps: list[str] = field(default_factory=list)
+
+    @property
+    def invariance_distances(self) -> list[float]:
+        return [
+            sp.distance
+            for sp in (*self.reorder, *self.pad)
+            if sp.distance is not None
+        ]
+
+    @property
+    def swap_distances(self) -> list[float]:
+        return [
+            sp.distance
+            for swaps in self.swaps_by_type.values()
+            for sp in swaps
+            if sp.distance is not None
+        ]
+
+
+@dataclass
+class RunScores:
+    """Cross-case aggregate."""
+
+    cases: list[CaseScores]
+    seed: int
+    invariance: float | None
+    invariance_sample: int
+    sensitivity: float | None
+    sensitivity_sample: int
+    sensitivity_by_type: dict[str, tuple[float, int]]   # {type: (mean, sample)}
+    governing_types: list[str]
+    warnings: list[str] = field(default_factory=list)
+    caps: list[str] = field(default_factory=list)
