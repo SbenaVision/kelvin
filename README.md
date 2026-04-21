@@ -38,7 +38,7 @@ Kelvin targets RAG pipelines whose inputs are discrete, identifiable units: docu
 ## Install
 
 ```bash
-pip install kelvin
+pip install kelvin-eval
 ```
 
 Or from source:
