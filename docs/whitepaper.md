@@ -76,9 +76,7 @@ Let $q$ denote a query or task prompt, and let
 
 $$o = P(q, C)$$
 
-be the output of a RAG pipeline $P$ operating over query $q$ and corpus $C$. Kelvin evaluates not the full output in general, but a designated decision field extracted from $o$, denoted $\delta(o)$. For example, in the venture-assessment case the decision field is
-
-$$\delta(o) \in \{\texttt{validate\_to\_build},\ \texttt{stay\_in\_validate},\ \texttt{stop}\}$$
+be the output of a RAG pipeline $P$ operating over query $q$ and corpus $C$. Kelvin evaluates not the full output in general, but a designated decision field extracted from $o$, denoted $\delta(o)$. For example, in the venture-assessment case $\delta(o)$ takes one of the values `validate_to_build`, `stay_in_validate`, or `stop`.
 
 Let $\mathcal{C}$ denote the space of admissible corpora. A perturbation is a transformation $\tau: \mathcal{C} \to \mathcal{C}$, $C' = \tau(C)$. Each perturbation belongs to a class with an expected effect on the decision field. Kelvin uses two classes: invariance relations, where $\delta(P(q, C'))$ is expected to remain unchanged, and sensitivity relations, where it is expected to change because a governing unit has been substituted.
 
@@ -141,11 +139,7 @@ If the venture has 4 LOIs, then the baseline case may support `validate_to_build
 
 ### 3.4 Why the pair matters
 
-Invariance alone is a known trap. A degenerate pipeline
-
-$$\delta(P_\text{const}(q, C)) = \texttt{stay\_in\_validate}$$
-
-for all $(q, C)$ will satisfy every reorder and pad test perfectly. That does not make it evidence-sensitive. Conversely, a pipeline that changes its output under every perturbation may look highly responsive while actually being noise-reactive.
+Invariance alone is a known trap. A degenerate pipeline $P_\text{const}$ whose decision field $\delta(P_\text{const}(q, C))$ is constant — say, always `stay_in_validate` — for all $(q, C)$ will satisfy every reorder and pad test perfectly. That does not make it evidence-sensitive. Conversely, a pipeline that changes its output under every perturbation may look highly responsive while actually being noise-reactive.
 
 Kelvin therefore treats the two measurements jointly:
 
@@ -225,9 +219,7 @@ The following is the terminal report produced by Kelvin on a two-case venture-as
 
 ### 5.1 Venture assessment
 
-The primary worked case comes from a stage-gated venture workflow. The prototype assessor reads a case represented as typed units: `venture_description`, `target_customer`, `market_evidence`, `traction_signal`, `unit_economics`, `team`, `gate_rule`. The decision field is:
-
-$$\delta(o) \in \{\texttt{idea},\ \texttt{pre\text{-}seed},\ \texttt{seed},\ \texttt{growth},\ \texttt{scale}\}$$
+The primary worked case comes from a stage-gated venture workflow. The prototype assessor reads a case represented as typed units: `venture_description`, `target_customer`, `market_evidence`, `traction_signal`, `unit_economics`, `team`, `gate_rule`. The decision field $\delta(o)$ takes one of the values `idea`, `pre-seed`, `seed`, `growth`, or `scale`.
 
 **Sensitivity example**
 
@@ -259,9 +251,7 @@ The FreakingGenius swap result confirms the sensitivity signal: the pipeline rea
 
 ### 5.2 Resume screening
 
-The secondary example uses a resume-screening assessor with typed units: `job_requirement`, `screening_rule`, `work_history`, `education`, `candidate_summary`. The decision field is:
-
-$$\delta(o) \in \{\texttt{advance},\ \texttt{manual\_review},\ \texttt{reject}\}$$
+The secondary example uses a resume-screening assessor with typed units: `job_requirement`, `screening_rule`, `work_history`, `education`, `candidate_summary`. The decision field $\delta(o)$ takes one of the values `advance`, `manual_review`, or `reject`.
 
 **Sensitivity example**
 
