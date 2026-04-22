@@ -140,7 +140,9 @@ Everything lands under `./kelvin/`:
 | CLI (`kelvin check`) | ✅ Done |
 | Terminal reporter | ✅ Done |
 | Kelvin score `K` (formalized, emitted) | ✅ Done |
-| Grounded-vs-degenerate empirical table | 🔜 v0.2 |
+| Grounded-vs-degenerate empirical table (Table 3) | ✅ Done |
+| Corpus scaled to n=6 realistic cases | ✅ Done |
+| Envelop harness — exponential backoff on transient 5xx | ✅ Done |
 | Pad split (`pad_length` / `pad_content`) | ✅ Done |
 | Footgun warnings (governing-type validation, type discovery, single-case banner, cost preamble) | ✅ Done |
 | On-disk invocation cache | 🔜 v0.2 |

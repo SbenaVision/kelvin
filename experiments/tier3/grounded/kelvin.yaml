@@ -1,0 +1,5 @@
+run: python3 ../pipelines/grounded.py --input {input} --output {output}
+cases: ../../../cases
+decision_field: stage_assessment
+governing_types: [gate_rule]
+seed: 0
