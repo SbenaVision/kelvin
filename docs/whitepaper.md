@@ -6,7 +6,7 @@
 
 ## Abstract
 
-Retrieval-augmented generation (RAG) systems are often evaluated either with labeled test sets, which are expensive to build and quickly become stale as prompts, retrievers, or models change, or with reference-free judge models, which introduce their own biases and circularity. This paper describes Kelvin, a measurement framework for RAG pipelines that uses structurally typed corpus units to derive paired metamorphic diagnostics: invariance under irrelevant perturbations and sensitivity under governing-unit substitution. The central idea is that when a corpus is organized into discrete typed units, some transformations are intended to preserve the decision-relevant content while others are intended to alter it in decision-relevant ways. Observing whether a pipeline responds accordingly yields an unsupervised signal of whether outputs track evidence rather than presentation. The current implementation uses user-declared markdown section headers as a lightweight proxy for corpus-schema typing, enabling a practical v1 runner across frameworks via a shell-command interface. The paper formalizes the method, positions it relative to metamorphic testing and RAG evaluation, and presents two worked examples with placeholders for minimal empirical results.
+Retrieval-augmented generation (RAG) systems are often evaluated either with labeled test sets, which are expensive to build and quickly become stale as prompts, retrievers, or models change, or with reference-free judge models, which introduce their own biases and circularity. This paper describes Kelvin, a measurement framework for RAG pipelines that uses typed corpus units to derive paired metamorphic diagnostics: invariance under irrelevant perturbations and sensitivity under governing-unit substitution. The central idea is that when a corpus is organized into discrete typed units, some transformations are intended to preserve the decision-relevant content while others are intended to alter it in decision-relevant ways. Observing whether a pipeline responds accordingly yields an evidence-tracking diagnostic — a signal of whether outputs move with the evidence that should govern them, not a truth metric. The framework targets structured-decision RAG, where the pipeline output is a categorical or scalar decision rather than free prose. In v1, typing is user-asserted via markdown section headers; this is a deliberate simplification — the structural-oracle argument in §2–§3 reduces in the current implementation to the user's assertion about which headers identify governing units, and full schema-derived typing is the load-bearing piece deferred to v2. The paper formalizes the method, positions it relative to metamorphic testing and RAG evaluation, presents two worked examples, and reports the current empirical results honestly as pilot-scale.
 
 ---
 
@@ -18,13 +18,13 @@ This leaves a practical gap. A team may know that a pipeline appears unstable or
 
 Kelvin addresses this gap with a narrow claim:
 
-> *Kelvin uses structurally typed corpus units to derive paired metamorphic diagnostics — invariance under irrelevant perturbations and sensitivity under governing-unit substitution — providing an unsupervised signal of whether a RAG pipeline's outputs track evidence rather than presentation.*
+> *Kelvin uses typed corpus units to derive paired metamorphic diagnostics — invariance under irrelevant perturbations and sensitivity under governing-unit substitution — providing an evidence-tracking signal of whether a RAG pipeline's outputs move with the evidence that should govern them rather than with its presentation. In v1, typing is user-asserted; the full structural-oracle claim depends on schema-inferred typing, which is deferred to v2 and named explicitly in the limitations.*
 
 The contribution is not a new benchmark or an accuracy metric. Kelvin is a diagnostic. It does not determine whether an output is true in the strong sense. Instead, it tests whether a pipeline behaves as expected under controlled perturbations of a typed corpus. This design draws on metamorphic testing, where expected relations between multiple executions can alleviate the oracle problem when a ground-truth answer is unavailable (Segura et al., 2016). The bridge to RAG is structural: if the corpus is organized into discrete units with stable roles, then some transformations can be treated as expected-preserving while others can be treated as expected-changing.
 
 A single invariant signal is not enough. Behavioral testing in NLP has long shown that perturbation-based tests can reveal brittle behavior that held-out accuracy misses (Ribeiro et al., 2020). But invariance alone is maximally satisfied by degenerate pipelines that always return the same answer. A constant-output pipeline that always emits `stay_in_validate`, for example, would appear perfectly stable under reorder and pad perturbations while being operationally useless. Kelvin therefore couples invariance with sensitivity. The pair, rather than either component alone, is the core methodological claim.
 
-The current implementation is intentionally modest. In v1, Kelvin uses user-declared markdown section headers as a lightweight proxy for corpus-schema typing. This is a deliberate simplification: the structural-oracle argument holds in full generality when types are schema-derived, and section headers approximate that story well enough to produce the paired diagnostics this paper evaluates, while deferring schema inference and semantic validity to future work. The implementation exposes a minimal shell-command contract so that any pipeline capable of reading a perturbed input file and writing a JSON output file can be evaluated without framework-specific instrumentation.
+The current implementation is intentionally modest. In v1, Kelvin uses user-declared markdown section headers as a proxy for corpus-schema typing. This is an explicit simplification with a real cost: the structural-oracle argument holds in full generality only when types are schema-derived, and in v1 the argument reduces to the user's assertion that certain section headers identify governing units. Section headers approximate schema-derived typing well enough to produce the paired diagnostics this paper evaluates — and well enough to catch concrete failures like the position bias observed on the Envelop case in §5 — but schema inference remains the single most load-bearing direction for v2 and is the first item listed in future work. Semantic validity of individual perturbations is a separate limitation, treated explicitly in §3.3 and §6. The implementation exposes a minimal shell-command contract so that any pipeline capable of reading a perturbed input file and writing a JSON output file can be evaluated without framework-specific instrumentation.
 
 The rest of the paper proceeds as follows. Section 2 situates Kelvin relative to metamorphic testing, behavioral NLP testing, self-consistency, and RAG evaluation. Section 3 formalizes the paired diagnostics. Section 4 describes the implementation. Section 5 presents two worked examples: a venture-assessment prototype assessor and a resume-screening assessor. Sections 6 and 7 discuss limitations and future work.
 
@@ -70,7 +70,7 @@ Let a corpus be a finite sequence of typed units
 
 $$C = (u_1, \ldots, u_n), \quad u_i = (t_i, x_i)$$
 
-where $t_i \in \mathcal{T}$ is a unit type and $x_i$ is the unit content. Examples of types include `interview`, `gate_rule`, `experiment`, `job_requirement`, and `screening_rule`. In v1, these types are declared by markdown section headers rather than inferred from a schema.
+where $t_i \in \mathcal{T}$ is a unit type and $x_i$ is the unit content. Examples of types include `interview`, `gate_rule`, `experiment`, `job_requirement`, and `screening_rule`. In v1, these types are declared by markdown section headers rather than inferred from a schema, so the structural oracle developed in this section reduces to the user's assertion about which headers matter. Schema inference is deferred to v2; see §6 and §7.
 
 Let $q$ denote a query or task prompt, and let
 
@@ -100,7 +100,12 @@ Let $\mathcal{C}$ denote the space of admissible corpora. A perturbation is a tr
 An invariance relation is a perturbation $\tau_\text{inv}$ such that the decision-relevant content is intended to remain unchanged. Operationally, Kelvin v1 implements two invariance-style perturbations:
 
 1. **Reorder:** permute units of one or more types without changing their content.
-2. **Pad:** insert additional units sampled without replacement from other cases in the same run. In v1 this is a crude proxy for known-irrelevant material, not a verified non-essentiality check.
+2. **Pad:** insert additional units sampled without replacement from other cases in the same run. The v1 implementation ships a single `pad` operator that conflates two distinct invariance properties that should be measured separately:
+
+   - *Pad-length invariance:* the decision should not drift with input length alone. Probed by adding length-matched neutral filler.
+   - *Pad-content invariance:* the decision should not drift when the added units describe different entities or scenarios. Probed by adding peer units from other cases.
+
+   As of v0.2, Kelvin ships both `pad_length` and `pad_content` as distinct perturbation kinds. `pad_length` inserts neutral administrative filler (`## Reference Note` sections drawn from a fixed, decision-neutral bank) and runs even in single-case corpora; `pad_content` inserts typed units from peer cases and requires peers. Before the split, a single `pad` operator added peer units and therefore perturbed both properties simultaneously — aggregate pad distance was a lower bound on each individual property, and "invariant to pad" conflated "robust to distractors" with "robust to presentation length." Current aggregate invariance is the mean over reorder, `pad_length`, and `pad_content` distances; per-kind breakdowns are available in the per-case reports.
 
 Formally, for an invariance perturbation $\tau_\text{inv} \in \mathcal{L}$, the expected relation is that
 
@@ -118,7 +123,11 @@ $$d\bigl(\delta(P(q, C)),\ \delta(P(q, \tau_\text{sens}(C)))\bigr)$$
 
 is typically larger, on average, than under invariance perturbations.
 
-In v1, Kelvin approximates this through governing-unit substitution: a unit of a designated governing type is replaced by a same-type unit sampled from another case in the run. The approximation is intentionally crude. Type matching is enforced; semantic validity is not fully verified. This is sufficient for a first diagnostic, but it does not guarantee that every swap is semantically well-formed in context.
+In v1, Kelvin approximates this through governing-unit substitution: a unit of a designated governing type is replaced by a same-type unit sampled from another case in the run. The approximation is intentionally crude and has a specific failure mode worth naming explicitly.
+
+**Content leakage in raw swap: type-matched is not counterfactual-controlled.** A v1 swap substitutes an *entire* governing unit, including any factual assertions embedded inside it. Consider the venture-assessment example below, where FreakingGenius's baseline `gate_rule` is replaced with Envelop's. The substituted text does not only change the advancement criteria — it also introduces claims like "founder has committed $1M" and "a waitlist of 500+ potential customers has been collected and validated." The pipeline's response to the swap therefore reflects *both* the rule change and these injected factual assertions. Type-matched is not the same as counterfactual-controlled. A more defensible design swaps only the *condition clauses* of a rule while holding the focal case's asserted state constant; this is targeted for v0.3 as a distinct perturbation kind, `swap_condition`, with the current raw swap retained as `swap_content`. See §6 and §7.
+
+For v1, raw swap sensitivity should therefore be read as an *upper bound* on rule-tracking behavior: non-zero sensitivity is informative evidence that the pipeline is reading the governing unit, but calibrated magnitudes and clean counterfactual interpretation are not claimed. The paired-signal claim in §3.4 rests on invariance and sensitivity pointing in different directions across the same suite and on the contrast with a degenerate constant-output pipeline, not on the absolute magnitude of either measurement.
 
 The venture-assessment example makes this concrete. Consider a case whose baseline `gate_rule` states:
 
@@ -230,11 +239,13 @@ A swap perturbation replaces it with the Envelop gate rule:
 
 > *Advance from Validate to Build requires: founder committed capital, evidence of demand, and first ventures actively using the platform. All conditions are met. Founder has committed $1M. A waitlist of 500+ potential customers has been collected and validated.*
 
-The FreakingGenius pipeline moved from `idea` to `seed` under the swapped rule. The surrounding evidence — team, market, traction — was unchanged. The pipeline read the governing unit and responded accordingly.
+*Method note.* This swap is a raw substitution, not a counterfactual-controlled one. The replacement rule embeds factual assertions ("founder has committed $1M," "500+ waitlist validated") that did not appear in the focal case. The pipeline's response to the swap therefore reflects both the rule change and these injected facts. Per §3.3, v1 swap sensitivity is interpreted as an upper bound on rule-tracking behavior; `swap_condition` (v0.3) will swap condition clauses while holding the focal case's asserted state constant, producing a cleaner counterfactual.
+
+On the FreakingGenius case, the prototype assessor moved from `idea` to `seed` under the swapped rule. The surrounding evidence — team, market, traction — was unchanged. The assessor read the governing unit and responded accordingly, subject to the content-leakage caveat above.
 
 **Invariance example**
 
-A pad perturbation inserted four `venture_description` units from FreakingGenius into the Envelop case at random positions. Because the added units describe a different venture entirely, the stage decision should remain `pre-seed`. In practice, the Envelop pipeline flipped to `seed` on pad-01 and pad-02 — reacting to the injected content volume rather than remaining anchored to the focal venture's evidence. This is a noise-sensitivity failure caught by the invariance signal.
+A pad perturbation inserted four `venture_description` units from FreakingGenius into the Envelop case at random positions. Because the added units describe a different venture entirely, the stage decision should remain `pre-seed`. In practice, the prototype assessor flipped to `seed` on the Envelop case for pad-01 and pad-02 — reacting to the injected content volume rather than remaining anchored to the focal venture's evidence. This is a noise-sensitivity failure caught by the invariance signal.
 
 **Table 2: Venture-assessment results — 2 cases, decision field `stage_assessment`**
 
@@ -289,39 +300,55 @@ The initial run on the venture-assessment pipeline produced the following result
 | Kelvin (paired) | 0.70 | 0.50 |
 | Kelvin (invariance only) | 0.70 | — |
 
-The degenerate constant-pipeline prediction holds: a pipeline that always emitted `pre-seed` would score invariance 1.0 and sensitivity 0.0. The actual pipeline scored invariance 0.70 and sensitivity 0.50 — confirming it is neither degenerate nor fully grounded. The paired signal distinguishes these cases; invariance alone cannot.
+The degenerate row in the table above has **not yet been executed end-to-end against the same suite**; its predicted value is analytical (a constant-output pipeline scores invariance 1.0 and sensitivity 0.0 by construction). The actual pipeline scored invariance 0.70 and sensitivity 0.50 on 12 successful perturbations across 2 cases, with 2 of 14 perturbations failing due to HTTP 500 errors from the pipeline backend (flagged in §4 and addressed in v0.2 infrastructure work).
+
+These numbers are **pilot-scale pre-empirical results**, not a methodological validation. The central claim — that the paired signal separates grounded from degenerate pipelines on a common suite — is argued analytically in §3.4 and sketched by the observations here, but not yet demonstrated empirically. The load-bearing experiment is to execute both the live structured-decision pipeline and a matched constant-output pipeline against the same perturbation suite and report them side-by-side as Table 3. That experiment is targeted for v0.2 and is the single highest-priority empirical work item.
 
 ---
 
 ## 6. Limitations
 
-**User-declared types rather than inferred schema.** In v1, types come from user-declared markdown section headers. This makes the approach practical but weakens the claim from schema-derived oracles to a lightweight approximation.
+**User-declared types rather than inferred schema (load-bearing gap).** In v1, types come from user-declared markdown section headers. The structural-typing claim in §2 and §3 therefore reduces, in the shipped tool, to the user's assertion about which headers identify governing units. This is the single most load-bearing gap between the methodological argument and the current implementation; closing it requires schema-inferred or schema-validated typing, listed first in §7.
 
-**Type-matched swaps are not semantically validated.** A governing-unit substitution in v1 only guarantees type compatibility, not semantic well-formedness in context. Sensitivity signals should be interpreted as diagnostics, not proofs.
+**Content leakage in raw swap perturbations.** v1 governing-unit substitution replaces an *entire* typed unit, including any factual assertions inside it. Sensitivity signals therefore mix rule-tracking with reactions to injected facts, and type-matched is not counterfactual-controlled. See §3.3 for the worked example and the `swap_condition` mitigation targeted for v0.3.
 
-**Decision-field scoring ignores prose.** Kelvin scores only a designated structured decision field. Free-form rationales are recorded for inspection but do not contribute to the v1 diagnostic score.
+**Pad length vs. pad content (addressed in v0.2).** Earlier versions shipped a single `pad` operator that simultaneously changed input length and introduced peer content, so pad distances were a lower bound on each individual invariance property. v0.2 separates the operators: `pad_length` inserts neutral filler of comparable bulk; `pad_content` inserts peer-case units. Both contribute to aggregate invariance, but the per-kind breakdown in per-case reports lets users distinguish presentation-length drift from distractor-content drift.
+
+**Empirical results are pilot-scale.** Reported numbers reflect 2 cases and 14 perturbations (12 successful, 2 HTTP 500 failures). The grounded-vs-degenerate comparison that tests the central methodological claim — that the paired signal separates evidence-tracking pipelines from constant-output pipelines on the same suite — is planned (see §7) but not yet executed end-to-end.
+
+**Decision-field scoring ignores prose.** Kelvin scores only a designated structured decision field. Free-form rationales are recorded for inspection but do not contribute to the v1 diagnostic score. Kelvin is therefore a fit for structured-decision RAG (stage-gate, screening, routing, underwriting, grading) and not a fit for prose-output RAG (summarization, open QA, chat).
 
 **No claim of truth or task correctness.** Kelvin does not determine that an output is correct. It only asks whether the output tracks evidence in the expected direction under the chosen perturbations.
 
-**Current runner is operationally simple.** The present implementation executes perturbations serially and does not yet include caching, stage decomposition, or component-level attribution.
+**Current runner is operationally simple.** The present implementation executes perturbations serially and does not yet include invocation caching, stage decomposition, or component-level attribution. Every perturbation triggers a full pipeline run, which is cost-prohibitive against expensive pipelines; on-disk invocation caching is targeted for v0.2.
 
 ---
 
 ## 7. Future work
 
-**Schema-inferred typing.** Structural typing can move from manually declared section headers toward schema-inferred or schema-validated types, better aligning the implementation with the motivating argument.
+**(v2, load-bearing) Schema-inferred typing.** The structural-oracle argument in §2 and §3 depends on types being schema-derived rather than user-asserted. v2 should move typing from manually declared section headers toward schema-inferred or schema-validated types, explicitly aligning the shipped tool with the motivating argument. This is the most load-bearing direction for the framework.
 
-**Semantic validity constraints for swaps.** Rather than accepting all type-matched swaps, future versions could require compatibility checks so that sensitivity perturbations more faithfully capture realistic counterfactual evidence changes.
+**(v0.2) Grounded-vs-degenerate empirical comparison (Table 3).** Execute the central methodological claim end-to-end: run the live structured-decision pipeline and a matched constant-output pipeline against the same case suite and the same perturbation suite, and report them side-by-side. Demonstrates empirically that the paired signal separates grounded from degenerate pipelines rather than asserting it analytically.
 
-**Stage decomposition.** The current method evaluates end-to-end behavior. A more granular system could assign perturbation responses to retrieval, reranking, and generation separately.
+**(v0.3, design in progress) Rule-condition swap (`swap_condition`).** Swap only the condition clauses of a governing rule while holding the focal case's asserted state constant. Addresses the content-leakage limitation in §3.3 and §6. A more defensible sensitivity design than raw swap; the two will coexist for a release, with the current raw swap retained as `swap_content` until the condition-level variant is validated. Deferred from v0.2 to v0.3 because clause parsing on real gate-rule text is non-trivial and a first-approximation implementation risks producing awkward swaps that would weaken rather than strengthen the sensitivity signal.
 
-**Kelvin as a training signal.** If the signals are reliable enough, they could serve as selection criteria in prompt optimization or as auxiliary objectives in fine-tuning. This possibility is intentionally deferred. The present paper focuses on Kelvin as an evaluation primitive, not a training method.
+**(v0.2, shipped) Separated pad operators.** `pad_length` inserts neutral filler (tests presentation-length robustness; runs in single-case corpora) and `pad_content` inserts peer-case units (tests distractor-content robustness; requires peers). Addresses the conflation flagged in §3.2 and §6.
+
+**(v0.2, shipped) Kelvin score $K$.** The scorer emits $K = (1 - \text{Invariance}) + (1 - \text{Sensitivity})$ on $[0, 2]$, lower-is-better, as of v0.2. The terminal reporter displays it alongside the two constituent signals, and it appears in `kelvin/report.json`. When either Invariance or Sensitivity is undefined (no contributing perturbations), $K$ is also reported as null rather than substituted with a default.
+
+**(v0.2) On-disk invocation caching.** Cache pipeline outputs keyed by the hash of command plus rendered input plus decision field, so unchanged perturbation runs across iterations avoid re-invocation. Necessary for paid pilots against expensive pipelines.
+
+**(v2) Semantic validity constraints for swaps.** Rather than accepting all type-matched swaps, future versions could require compatibility checks so that sensitivity perturbations more faithfully capture realistic counterfactual evidence changes.
+
+**(v2) Stage decomposition.** The current method evaluates end-to-end behavior. A more granular system could assign perturbation responses to retrieval, reranking, and generation separately.
+
+**(later) Kelvin as a training signal.** If the signals are reliable enough, they could serve as selection criteria in prompt optimization or as auxiliary objectives in fine-tuning. This possibility is intentionally deferred. The present paper focuses on Kelvin as an evaluation primitive, not a training method.
 
 ---
 
 ## 8. Conclusion
 
-Kelvin is a small, deliberately narrow contribution: a paired metamorphic diagnostic for RAG pipelines that uses typed corpus units to test whether outputs remain stable under irrelevant perturbations and change under governing-unit substitution. Its value lies less in producing a universal score than in making a specific failure mode visible: pipelines that appear reasonable on isolated examples may still be responding to presentation rather than evidence. The current implementation is a practical approximation built on user-declared section headers and structured decision-field scoring. That approximation is limited, but sufficient to make the central methodological point testable. If the paired diagnostics prove useful in practice, they offer a path toward more explicit evidence-tracking evaluation for RAG systems without requiring labels or a judge model.
+Kelvin is a small, deliberately narrow contribution: a paired metamorphic diagnostic for structured-decision RAG that uses typed corpus units to test whether outputs remain stable under irrelevant perturbations and change under governing-unit substitution. Its value lies less in producing a universal score than in making two specific failure modes visible — presentation-reactivity on one axis and evidence-blindness on the other — and in showing that neither axis alone distinguishes a grounded pipeline from a degenerate one. The current v1 implementation is a practical approximation: typing is user-asserted via markdown section headers, raw swap sensitivity mixes rule-tracking with content leakage, and the headline empirical results are pilot-scale. The paper names these limits explicitly rather than working around them. v0.2 addresses several of them (separated pad operators, shipped Kelvin score, grounded-vs-degenerate empirical comparison, invocation caching); v0.3 addresses the most attackable methodological point — the content-leakage issue — with a rule-condition swap variant; v2 addresses the structural one (schema-inferred typing). The paired diagnostic is already useful for catching concrete failures — the position bias observed on the Envelop case in §5 is the canonical example — but whether it generalizes into a full evidence-tracking evaluation primitive for structured-decision RAG is what the remaining work is meant to determine.
 
 ---
 

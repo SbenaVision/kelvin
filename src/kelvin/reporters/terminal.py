@@ -103,7 +103,8 @@ def _fmt_elapsed(seconds: float) -> str:
 def _all_sp(case: CaseScores) -> list:
     return [
         *case.reorder,
-        *case.pad,
+        *case.pad_length,
+        *case.pad_content,
         *(sp for sps in case.swaps_by_type.values() for sp in sps),
     ]
 
@@ -167,39 +168,32 @@ def _diagnostic_rows(
 
     # Rule 2 — invariance drifts
     if inv is not None and inv < 0.50:
-        reorder_changed = sum(
-            1 for c in run_scores.cases for sp in c.reorder
-            if sp.distance is not None and sp.distance > 0
-        )
-        reorder_scored = sum(
-            1 for c in run_scores.cases for sp in c.reorder
-            if sp.distance is not None
-        )
-        pad_changed = sum(
-            1 for c in run_scores.cases for sp in c.pad
-            if sp.distance is not None and sp.distance > 0
-        )
-        pad_scored = sum(
-            1 for c in run_scores.cases for sp in c.pad
-            if sp.distance is not None
-        )
-        reorder_rate = reorder_changed / reorder_scored if reorder_scored else 0.0
-        pad_rate     = pad_changed     / pad_scored     if pad_scored     else 0.0
-
-        if pad_rate >= reorder_rate and pad_scored > 0:
-            kind_word   = "pad"
-            change_word = "context"
-            n, m        = pad_changed, pad_scored
-        else:
-            kind_word   = "reorder"
-            change_word = "presentation"
-            n, m        = reorder_changed, reorder_scored
-
-        return [
-            f"{_INDENT}⚠  Output drifts on {kind_word}. The {decision_field}",
-            f"{_INDENT}   changed in {n} of {m} cases when only",
-            f"{_INDENT}   {change_word} changed.",
+        buckets = [
+            ("reorder",     "presentation",  [sp for c in run_scores.cases for sp in c.reorder]),
+            ("pad_length",  "input length",  [sp for c in run_scores.cases for sp in c.pad_length]),
+            ("pad_content", "distractors",   [sp for c in run_scores.cases for sp in c.pad_content]),
         ]
+        rates: list[tuple[str, str, int, int]] = []
+        for kind_word, change_word, sps in buckets:
+            scored = sum(1 for sp in sps if sp.distance is not None)
+            changed = sum(
+                1 for sp in sps
+                if sp.distance is not None and sp.distance > 0
+            )
+            rates.append((kind_word, change_word, changed, scored))
+
+        ranked = sorted(
+            [r for r in rates if r[3] > 0],
+            key=lambda r: (r[2] / r[3] if r[3] else 0.0),
+            reverse=True,
+        )
+        if ranked:
+            kind_word, change_word, n, m = ranked[0]
+            return [
+                f"{_INDENT}\u26a0  Output drifts on {kind_word}. The {decision_field}",
+                f"{_INDENT}   changed in {n} of {m} cases when only",
+                f"{_INDENT}   {change_word} changed.",
+            ]
 
     # Rule 3 — both healthy; check for hidden per-case variance
     if inv is not None:
@@ -248,6 +242,14 @@ def _build(
     rows.append(_top())
     rows.append(_empty())
 
+    # ── Single-case banner (escalated in Tier 2) ─────────────────────────────
+    if run_scores.single_case_run:
+        rows.append(_row(
+            f"{_INDENT}\u26a0  Single-case run — pad_content and swap"
+        ))
+        rows.append(_row(f"{_INDENT}   skipped. Add peer cases for full signal."))
+        rows.append(_empty())
+
     # ── Run line ──────────────────────────────────────────────────────────────
     rows.append(_row(
         f"{_INDENT}{n_ok_cases} cases · {total_perts} perturbations"
@@ -281,6 +283,15 @@ def _build(
         rows.append(_row(
             f"{_INDENT}{_bar(sens, _AMBER, plain)}   {_verdict(sens, 'sensitivity')}"
         ))
+        rows.append(_empty())
+
+    # ── Kelvin score block ────────────────────────────────────────────────────
+    if run_scores.kelvin_score is not None:
+        rows.append(_row(
+            f"{_INDENT}{'Kelvin score':<14}{run_scores.kelvin_score:.2f}"
+        ))
+        rows.append(_row(f"{_INDENT}K = (1 - Inv) + (1 - Sens).  Range [0, 2],"))
+        rows.append(_row(f"{_INDENT}lower = more anchored."))
         rows.append(_empty())
 
     # ── Diagnostic ────────────────────────────────────────────────────────────

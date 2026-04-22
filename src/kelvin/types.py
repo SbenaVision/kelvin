@@ -6,7 +6,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Literal
 
-PerturbationKind = Literal["reorder", "pad", "swap"]
+PerturbationKind = Literal["reorder", "pad_length", "pad_content", "swap"]
 
 
 @dataclass(frozen=True)
@@ -81,7 +81,11 @@ class CaseScores:
 
     case_name: str
     reorder: list[ScoredPerturbation] = field(default_factory=list)
-    pad: list[ScoredPerturbation] = field(default_factory=list)
+    # Pad split (v0.2): pad_length probes presentation-length robustness,
+    # pad_content probes distractor-content robustness. Both count as
+    # invariance perturbations.
+    pad_length: list[ScoredPerturbation] = field(default_factory=list)
+    pad_content: list[ScoredPerturbation] = field(default_factory=list)
     swaps_by_type: dict[str, list[ScoredPerturbation]] = field(default_factory=dict)
     baseline_ok: bool = True
     baseline_error: str | None = None
@@ -93,7 +97,7 @@ class CaseScores:
     def invariance_distances(self) -> list[float]:
         return [
             sp.distance
-            for sp in (*self.reorder, *self.pad)
+            for sp in (*self.reorder, *self.pad_length, *self.pad_content)
             if sp.distance is not None
         ]
 
@@ -117,7 +121,14 @@ class RunScores:
     invariance_sample: int
     sensitivity: float | None
     sensitivity_sample: int
+    # K = (1 - invariance) + (1 - sensitivity), range [0, 2], lower = more anchored.
+    # None if either component is None (no contributing perturbations).
+    kelvin_score: float | None
     sensitivity_by_type: dict[str, tuple[float, int]]   # {type: (mean, sample)}
     governing_types: list[str]
+    # True when the corpus has exactly one case: pad_content and swap cannot
+    # run (no peers). Surfaced in the report and as a terminal banner so
+    # users don't silently get a partial run.
+    single_case_run: bool = False
     warnings: list[str] = field(default_factory=list)
     caps: list[str] = field(default_factory=list)

@@ -74,6 +74,7 @@ def aggregate(
     governing_types: list[str],
     run_warnings: list[str] | None = None,
     run_caps: list[str] | None = None,
+    single_case_run: bool = False,
 ) -> RunScores:
     """Roll up per-case distances into cross-case `RunScores`.
 
@@ -87,6 +88,11 @@ def aggregate(
     invariance_mean = mean(all_invariance) if all_invariance else None
     invariance = (1.0 - invariance_mean) if invariance_mean is not None else None
     sensitivity = mean(all_swap) if all_swap else None
+
+    if invariance is not None and sensitivity is not None:
+        kelvin_score = (1.0 - invariance) + (1.0 - sensitivity)
+    else:
+        kelvin_score = None
 
     by_type: dict[str, list[float]] = {}
     for c in cases:
@@ -114,8 +120,10 @@ def aggregate(
         invariance_sample=len(all_invariance),
         sensitivity=sensitivity,
         sensitivity_sample=len(all_swap),
+        kelvin_score=kelvin_score,
         sensitivity_by_type=sensitivity_by_type,
         governing_types=list(governing_types),
+        single_case_run=single_case_run,
         warnings=warnings,
         caps=caps,
     )
