@@ -85,6 +85,7 @@ seed: 0
 - `cases` — folder of `*.md` case files. One file per case. Sections start with `## Heading` — each heading becomes a typed unit.
 - `decision_field` — the JSON key your pipeline writes. **Must be a top-level key** in the output (no dotted paths — `factsheet.delivery_model` is not supported). If your pipeline produces nested output, flatten it in a thin adapter harness before Kelvin sees it. The value must resolve to a scalar (str / number / bool / null).
 - `governing_types` — unit types used for swap perturbations. Normalize to lowercase+underscores (e.g. `Gate Rule` → `gate_rule`).
+- `cache_dir` — *optional*. Path to an on-disk invocation cache, relative to the working directory. Omit (the default) to disable caching; set to e.g. `.kelvin-cache` to skip pipeline invocations whose `(run_template, rendered_markdown, decision_field)` tuple has been seen before. Only successful invocations are cached; transient failures remain retryable on the next run.
 
 **2. Write a case file (`cases/acme.md`):**
 
@@ -145,7 +146,7 @@ Everything lands under `./kelvin/`:
 | Envelop harness — exponential backoff on transient 5xx | ✅ Done |
 | Pad split (`pad_length` / `pad_content`) | ✅ Done |
 | Footgun warnings (governing-type validation, type discovery, single-case banner, cost preamble) | ✅ Done |
-| On-disk invocation cache | 🔜 v0.2 |
+| On-disk invocation cache (opt-in `cache_dir`) | ✅ Done |
 | Rule-condition swap (`swap_condition`) | 🔜 v0.3 — design in progress |
 | HTML / markdown reporters | 🔜 Upcoming |
 | `kelvin init` wizard | 🔜 Upcoming |

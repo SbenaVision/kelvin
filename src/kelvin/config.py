@@ -23,6 +23,11 @@ class KelvinConfig:
     decision_field: str
     governing_types: list[str] = field(default_factory=list)
     seed: int = 0
+    # Opt-in on-disk invocation cache. Key =
+    # sha256(run + rendered_markdown + decision_field); value =
+    # serialized InvocationResult. Relative paths resolve against cwd.
+    # None (default): disabled.
+    cache_dir: Path | None = None
 
     @classmethod
     def load(cls, path: Path) -> KelvinConfig:
@@ -67,22 +72,36 @@ class KelvinConfig:
         if not isinstance(seed, int):
             raise ConfigError("`seed` must be an integer.")
 
+        cache_raw = raw.get("cache_dir", None)
+        cache_dir: Path | None
+        if cache_raw is None:
+            cache_dir = None
+        elif isinstance(cache_raw, str) and cache_raw.strip():
+            cache_dir = Path(cache_raw)
+        else:
+            raise ConfigError(
+                "`cache_dir` must be a non-empty string path, or omitted to disable."
+            )
+
         return cls(
             run=run,
             cases=Path(cases_value),
             decision_field=decision_field,
             governing_types=list(governing_types),
             seed=seed,
+            cache_dir=cache_dir,
         )
 
     def save(self, path: Path) -> None:
-        data = {
+        data: dict = {
             "run": self.run,
             "cases": str(self.cases),
             "decision_field": self.decision_field,
             "governing_types": list(self.governing_types),
             "seed": self.seed,
         }
+        if self.cache_dir is not None:
+            data["cache_dir"] = str(self.cache_dir)
         path.write_text(
             yaml.safe_dump(data, sort_keys=False, default_flow_style=False),
             encoding="utf-8",

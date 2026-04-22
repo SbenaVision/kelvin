@@ -318,7 +318,7 @@ The grounded pipeline scores `K = 0.48`. Its 0.85 Invariance is not 1.0 because 
 
 **No claim of truth or task correctness.** Kelvin does not determine that an output is correct. It only asks whether the output tracks evidence in the expected direction under the chosen perturbations.
 
-**Current runner is operationally simple.** The present implementation executes perturbations serially and does not yet include invocation caching, stage decomposition, or component-level attribution. Every perturbation triggers a full pipeline run, which is cost-prohibitive against expensive pipelines; on-disk invocation caching is targeted for v0.2.
+**Runner scope.** The v0.2 runner parallelizes perturbation invocations with a small thread pool and ships an opt-in on-disk invocation cache keyed by `sha256(run_template + rendered_markdown + decision_field)`; only successful invocations are cached so transient upstream failures stay retryable. Stage decomposition and component-level attribution remain future work (see §7).
 
 ---
 
@@ -334,7 +334,7 @@ The grounded pipeline scores `K = 0.48`. Its 0.85 Invariance is not 1.0 because 
 
 **(v0.2, shipped) Kelvin score $K$.** The scorer emits $K = (1 - \text{Invariance}) + (1 - \text{Sensitivity})$ on $[0, 2]$, lower-is-better, as of v0.2. The terminal reporter displays it alongside the two constituent signals, and it appears in `kelvin/report.json`. When either Invariance or Sensitivity is undefined (no contributing perturbations), $K$ is also reported as null rather than substituted with a default.
 
-**(v0.2) On-disk invocation caching.** Cache pipeline outputs keyed by the hash of command plus rendered input plus decision field, so unchanged perturbation runs across iterations avoid re-invocation. Necessary for paid pilots against expensive pipelines.
+**(v0.2, shipped) On-disk invocation caching.** Opt-in via `cache_dir` in `kelvin.yaml`. Successful invocations are cached under `sha256(run_template + rendered_markdown + decision_field)`; cache hits skip the subprocess and materialize `output.json` from the cached parsed output so downstream diffs still work. Failed invocations are never cached — transient upstream noise remains retryable on the next run. Intended for paid pilots against expensive pipelines where re-running unchanged perturbations during iteration is cost-prohibitive.
 
 **(v2) Semantic validity constraints for swaps.** Rather than accepting all type-matched swaps, future versions could require compatibility checks so that sensitivity perturbations more faithfully capture realistic counterfactual evidence changes.
 
