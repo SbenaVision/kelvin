@@ -48,11 +48,11 @@ Work on paraphrase robustness is also adjacent. Gan and Ng (2019) show that QA s
 
 ### 2.3 Self-consistency and agreement-based signals
 
-Self-consistency aggregates over multiple sampled reasoning paths and often improves final-answer quality in chain-of-thought settings (Wang et al., 2022). It is relevant here because it provides an unsupervised signal based on internal agreement. However, self-consistency has no necessary external anchor to corpus evidence. A pipeline can agree with itself while still being insensitive to the retrieved material that should determine the outcome. Kelvin therefore treats self-consistency as complementary but insufficient for evidence-tracking diagnostics.
+Self-consistency aggregates over multiple sampled reasoning paths and often improves final-answer quality in chain-of-thought settings (Wang et al., 2022). It is relevant here because it provides an unsupervised signal based on internal agreement. However, self-consistency as described does not provide an external anchor to corpus evidence. A pipeline can agree with itself while still being insensitive to the retrieved material that should determine the outcome. Kelvin therefore treats self-consistency as complementary but insufficient for evidence-tracking diagnostics.
 
 ### 2.4 Judge-based and automated RAG evaluation
 
-Recent RAG evaluation frameworks reduce dependence on manual labels by using automated judges or learned evaluators. RAGAS defines reference-free metrics for dimensions such as answer faithfulness and answer relevance (Es et al., 2024). ARES trains lightweight judges and combines them with prediction-powered inference to evaluate multiple RAG components with limited human annotation (Saad-Falcon et al., 2024). More broadly, LLM-as-judge has become an increasingly common evaluation pattern, while also attracting scrutiny regarding agreement, bias, and calibration (Zheng et al., 2023).
+Recent RAG evaluation frameworks reduce dependence on manual labels by using automated judges or learned evaluators. RAGAs defines reference-free metrics for dimensions such as answer faithfulness and answer relevance (Es et al., 2024). ARES trains lightweight judges and combines them with prediction-powered inference to evaluate multiple RAG components with limited human annotation (Saad-Falcon et al., 2024). More broadly, LLM-as-judge has become an increasingly common evaluation pattern, while also attracting scrutiny regarding agreement with humans and several biases (Zheng et al., 2023).
 
 Kelvin is not intended as a replacement for these methods. It targets a different failure mode. Judge-based frameworks ask whether an answer appears relevant, faithful, or preferable according to a model or learned evaluator. Kelvin asks whether the answer moves only when the evidence-bearing units that should determine it move. In that sense, the methods are complementary. Judge-based metrics can summarize answer quality; Kelvin probes evidence-tracking behavior under controlled perturbations.
 
@@ -352,7 +352,7 @@ Kelvin is a small, deliberately narrow contribution: a paired metamorphic diagno
 
 ## References
 
-Es, Shahul, Jithin James, Luis Espinosa-Anke, and Steven Schockaert. 2024. RAGAS: Automated Evaluation of Retrieval Augmented Generation. *Proceedings of the 18th Conference of the European Chapter of the Association for Computational Linguistics: System Demonstrations.*
+Es, Shahul, Jithin James, Luis Espinosa Anke, and Steven Schockaert. 2024. RAGAs: Automated Evaluation of Retrieval Augmented Generation. *Proceedings of the 18th Conference of the European Chapter of the Association for Computational Linguistics: System Demonstrations.*
 
 Gan, Wee Chung, and Hwee Tou Ng. 2019. Improving the Robustness of Question Answering Systems to Question Paraphrasing. *Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics.*
 
@@ -360,7 +360,7 @@ Lewis, Patrick, et al. 2020. Retrieval-Augmented Generation for Knowledge-Intens
 
 Ribeiro, Marco Tulio, Tongshuang Wu, Carlos Guestrin, and Sameer Singh. 2020. Beyond Accuracy: Behavioral Testing of NLP Models with CheckList. *Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics.*
 
-Saad-Falcon, Jon, Omar Khattab, Christopher Potts, and Matei Zaharia. 2024. ARES: An Automated Evaluation Framework for Retrieval-Augmented Generation Systems. *Proceedings of NAACL-HLT 2024.*
+Saad-Falcon, Jon, Omar Khattab, Christopher Potts, and Matei Zaharia. 2024. ARES: An Automated Evaluation Framework for Retrieval-Augmented Generation Systems. In *Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)*, pages 338–354.
 
 Segura, Sergio, Gordon Fraser, Ana B. Sanchez, and Antonio Ruiz-Cortés. 2016. A Survey on Metamorphic Testing. *IEEE Transactions on Software Engineering* 42(9): 805–824.
 
@@ -368,4 +368,4 @@ Wang, Xuezhi, et al. 2022. Self-Consistency Improves Chain of Thought Reasoning 
 
 Zheng, Lianmin, et al. 2023. Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena. *Thirty-seventh Conference on Neural Information Processing Systems Datasets and Benchmarks Track.*
 
-Zhu, Kaijie, et al. 2024. PromptBench: A Unified Library for Evaluation of Large Language Models. *Journal of Machine Learning Research* 25(254): 1–77.
+Zhu, Kaijie, et al. 2024. PromptBench: A Unified Library for Evaluation of Large Language Models. *Journal of Machine Learning Research* 25(254):1–22, 2024.
