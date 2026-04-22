@@ -130,7 +130,7 @@ class TestAggregate:
         c = CaseScores(
             case_name="a",
             reorder=[_sp("reorder", 0.0), _sp("reorder", 0.0)],
-            pad=[_sp("pad", 0.2)],
+            pad_content=[_sp("pad_content", 0.2)],
         )
         rs = aggregate([c], seed=0, governing_types=[])
         # mean distance = (0+0+0.2)/3 = 0.0667; invariance = 1 - 0.0667 = 0.933
@@ -151,7 +151,7 @@ class TestAggregate:
         c = CaseScores(
             case_name="a",
             reorder=[_sp("reorder", 0.0), _sp("reorder", None)],
-            pad=[_sp("pad", 0.5)],
+            pad_content=[_sp("pad_content", 0.5)],
         )
         rs = aggregate([c], seed=0, governing_types=[])
         assert rs.invariance == pytest.approx(1 - 0.25)  # (0 + 0.5) / 2 = 0.25
@@ -240,7 +240,7 @@ class TestKelvinScore:
         c = CaseScores(
             case_name="a",
             reorder=[_sp("reorder", 0.0), _sp("reorder", 0.0)],
-            pad=[_sp("pad", 0.0)],
+            pad_content=[_sp("pad_content", 0.0)],
             swaps_by_type={"gate_rule": [_sp("swap", 0.0), _sp("swap", 0.0)]},
         )
         rs = aggregate([c], seed=0, governing_types=["gate_rule"])

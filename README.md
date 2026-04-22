@@ -141,7 +141,8 @@ Everything lands under `./kelvin/`:
 | Terminal reporter | ✅ Done |
 | Kelvin score `K` (formalized, emitted) | ✅ Done |
 | Grounded-vs-degenerate empirical table | 🔜 v0.2 |
-| Pad split (`pad_length` / `pad_content`) | 🔜 v0.2 |
+| Pad split (`pad_length` / `pad_content`) | ✅ Done |
+| Footgun warnings (governing-type validation, type discovery, single-case banner, cost preamble) | ✅ Done |
 | On-disk invocation cache | 🔜 v0.2 |
 | Rule-condition swap (`swap_condition`) | 🔜 v0.3 — design in progress |
 | HTML / markdown reporters | 🔜 Upcoming |

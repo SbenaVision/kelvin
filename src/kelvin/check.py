@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import json
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import asdict
 from pathlib import Path
 from typing import Any
@@ -32,11 +33,10 @@ from kelvin import fs
 from kelvin.config import CONFIG_FILENAME, KelvinConfig
 from kelvin.parser import load_cases, render_case
 from kelvin.perturbations import PerturbationGenerator
-from kelvin.perturbations.pad import PadGenerator
+from kelvin.perturbations.pad import PadContentGenerator
+from kelvin.perturbations.pad_length import PadLengthGenerator
 from kelvin.perturbations.reorder import ReorderGenerator
 from kelvin.perturbations.swap import SwapGenerator
-from concurrent.futures import ThreadPoolExecutor, as_completed
-
 from kelvin.reporters.terminal import render as render_terminal
 from kelvin.runner import invoke
 from kelvin.scorer import (
@@ -66,9 +66,21 @@ class AbortRun(Exception):
 
 DEFAULT_GENERATORS: tuple[PerturbationGenerator, ...] = (
     ReorderGenerator(),
-    PadGenerator(),
+    PadLengthGenerator(),
+    PadContentGenerator(),
     SwapGenerator(),
 )
+
+
+# Expected perturbation counts per generator, used for the cost preamble.
+# These match each generator's TARGET_COUNT and are an estimate — actual
+# counts may be lower when caps or peer-pool shortages apply.
+_EST_PER_CASE = {
+    "reorder": 3,
+    "pad_length": 3,
+    "pad_content": 3,
+    "swap_per_type": 3,
+}
 
 
 def run_check(
@@ -100,22 +112,41 @@ def run_check(
             f"No cases found in {cases_dir}. Add one or more `*.md` files."
         )
 
+    # Footgun: declared governing_types must match at least one discovered unit
+    # type, otherwise swap generates nothing silently. Also surface normalized
+    # type discovery so users catch `## Gate Rule` -> gate_rule surprises.
+    _validate_governing_types(all_cases, cfg.governing_types)
+    _echo_discovered_types(all_cases, echo)
+
     cases_to_run = _filter_cases(all_cases, only=only)
 
     run_warnings: list[str] = []
-    if len(all_cases) == 1:
-        run_warnings.append(
-            "Only one case in the run: pad and swap will be skipped (no peers)."
+    single_case_run = len(all_cases) == 1
+    if single_case_run:
+        msg = (
+            "Only one case in the run: pad_content and swap will be skipped "
+            "(no peers). reorder and pad_length still run."
         )
+        run_warnings.append(msg)
+        echo(f"\u26a0  {msg}")
 
     active_scorer: Scorer = scorer or DefaultScorer()
 
     # Phase 1 — baselines
+    phase1_start = time.monotonic()
     case_scores, _decision_validated = _run_baselines(
         cases_to_run=cases_to_run,
         cfg=cfg,
         cwd=cwd,
         echo=echo,
+    )
+    phase1_elapsed_s = time.monotonic() - phase1_start
+
+    # Cost preamble: estimate perturbation count and wall-time based on baseline
+    # elapsed so users can Ctrl-C before burning compute on expensive pipelines.
+    _echo_cost_preamble(
+        case_scores, cfg.governing_types, single_case_run,
+        phase1_elapsed_s=phase1_elapsed_s, echo=echo,
     )
 
     if not any(c.baseline_ok for c in case_scores):
@@ -127,6 +158,7 @@ def run_check(
             governing_types=cfg.governing_types,
             run_warnings=run_warnings,
             run_caps=[],
+            single_case_run=single_case_run,
         )
         _write_run_report(run_scores, cwd, cfg, only=only)
         raise AbortRun(
@@ -157,6 +189,7 @@ def run_check(
         governing_types=cfg.governing_types,
         run_warnings=run_warnings,
         run_caps=[],
+        single_case_run=single_case_run,
     )
     _write_run_report(run_scores, cwd, cfg, only=only)
     render_terminal(
@@ -328,11 +361,84 @@ def _dispatch_scored(sp: ScoredPerturbation, scores: CaseScores) -> None:
     kind = sp.perturbation.kind
     if kind == "reorder":
         scores.reorder.append(sp)
-    elif kind == "pad":
-        scores.pad.append(sp)
+    elif kind == "pad_length":
+        scores.pad_length.append(sp)
+    elif kind == "pad_content":
+        scores.pad_content.append(sp)
     elif kind == "swap":
         gtype = sp.perturbation.notes.get("governing_type", "unknown")
         scores.swaps_by_type.setdefault(gtype, []).append(sp)
+
+
+# ─── Footgun helpers (Tier 2) ───────────────────────────────────────────────
+
+
+def _validate_governing_types(all_cases: list[Case], governing_types: list[str]) -> None:
+    """Raise `CheckError` if a declared governing_type matches zero discovered units.
+
+    Without this, `swap` silently generates nothing for the offending type and
+    the user has no idea their config is wrong. Common cause: the user wrote
+    `Gate Rule` in their yaml without normalizing, or declared a type that
+    doesn't appear in any case file.
+    """
+    if not governing_types:
+        return
+    discovered = {u.type for c in all_cases for u in c.units}
+    unknown = [t for t in governing_types if t not in discovered]
+    if unknown:
+        raise CheckError(
+            f"Declared governing_types not found in any case: {unknown}. "
+            f"Discovered types: {sorted(discovered)}. "
+            f"Did you forget to normalize (e.g. `Gate Rule` -> `gate_rule`)?"
+        )
+
+
+def _echo_discovered_types(all_cases: list[Case], echo: Any) -> None:
+    """One-line summary of normalized unit types across all cases.
+
+    Makes normalization outcomes visible so users spot surprises like
+    `## Gate Rule` -> `gate_rule` before the run proceeds.
+    """
+    counts: dict[str, int] = {}
+    for c in all_cases:
+        for u in c.units:
+            counts[u.type] = counts.get(u.type, 0) + 1
+    if not counts:
+        return
+    summary = ", ".join(f"{t}\u00d7{n}" for t, n in sorted(counts.items()))
+    echo(f"Discovered types across {len(all_cases)} case(s): {summary}")
+
+
+def _echo_cost_preamble(
+    case_scores: list[CaseScores],
+    governing_types: list[str],
+    single_case_run: bool,
+    *,
+    phase1_elapsed_s: float,
+    echo: Any,
+) -> None:
+    """Print estimated perturbation count and wall-time before Phase 2 fires."""
+    n_ok = sum(1 for c in case_scores if c.baseline_ok)
+    if n_ok == 0:
+        return
+
+    per_case = _EST_PER_CASE["reorder"] + _EST_PER_CASE["pad_length"]
+    if not single_case_run:
+        per_case += _EST_PER_CASE["pad_content"]
+        per_case += _EST_PER_CASE["swap_per_type"] * len(governing_types)
+    est_total = per_case * n_ok
+
+    avg_baseline_s = phase1_elapsed_s / n_ok if n_ok else 0.0
+    est_wall_s = est_total * avg_baseline_s
+
+    wall_txt = (
+        f"~{est_wall_s / 60:.1f} min" if est_wall_s >= 60 else f"~{est_wall_s:.0f} s"
+    )
+
+    echo(
+        f"Running ~{est_total} perturbations across {n_ok} case(s) "
+        f"(est. {wall_txt} at baseline speed). Ctrl-C to abort."
+    )
 
 
 # ─── On-disk serialization ──────────────────────────────────────────────────
@@ -363,7 +469,8 @@ def _case_report_dict(scores: CaseScores, *, decision_field: str) -> dict:
             "decision_field": decision_field,
         },
         "perturbations": [
-            _scored_dict(sp) for sp in (*scores.reorder, *scores.pad)
+            _scored_dict(sp)
+            for sp in (*scores.reorder, *scores.pad_length, *scores.pad_content)
         ]
         + [
             _scored_dict(sp)
@@ -430,6 +537,7 @@ def _write_run_report(
         "sensitivity": run_scores.sensitivity,
         "sensitivity_sample": run_scores.sensitivity_sample,
         "kelvin_score": run_scores.kelvin_score,
+        "single_case_run": run_scores.single_case_run,
         "sensitivity_by_type": {
             gtype: {"mean": mean_val, "sample": sample}
             for gtype, (mean_val, sample) in run_scores.sensitivity_by_type.items()
