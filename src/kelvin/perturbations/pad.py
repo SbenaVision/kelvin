@@ -1,9 +1,14 @@
-"""Pad perturbation.
+"""Pad-content perturbation.
 
 Insert 2-4 units drawn from other cases (never self-sampled) into the current
 case at random positions. 3 variants per case. Skipped if the peer pool has
 fewer than 2 units; the per-variant insert count caps at pool size when the
 pool has fewer than 4.
+
+Probes *distractor-content robustness*: does the decision drift when the
+added units describe different entities or scenarios? Paired with
+`PadLengthGenerator`, which probes presentation-length robustness using
+neutral filler that shares no factual content with any case.
 """
 
 from __future__ import annotations
@@ -17,8 +22,8 @@ MIN_INSERT = 2
 MAX_INSERT = 4
 
 
-class PadGenerator:
-    kind = "pad"
+class PadContentGenerator:
+    kind = "pad_content"
 
     def generate(
         self,
@@ -34,19 +39,20 @@ class PadGenerator:
         pool = peer_pool(case, peer_cases)
         if len(pool) < MIN_INSERT:
             warnings.append(
-                f"{case.name}: pad skipped — peer pool has {len(pool)} unit(s), "
-                f"need \u2265{MIN_INSERT}"
+                f"{case.name}: pad_content skipped — peer pool has {len(pool)} "
+                f"unit(s), need \u2265{MIN_INSERT}"
             )
             return PerturbationBatch(perturbations=[], warnings=warnings, caps=caps)
 
         max_insert_for_case = min(MAX_INSERT, len(pool))
         if max_insert_for_case < MAX_INSERT:
             caps.append(
-                f"{case.name}: pad insert count capped at {max_insert_for_case} "
-                f"(peer pool has {len(pool)} unit(s); target up to {MAX_INSERT})"
+                f"{case.name}: pad_content insert count capped at "
+                f"{max_insert_for_case} (peer pool has {len(pool)} unit(s); "
+                f"target up to {MAX_INSERT})"
             )
 
-        rng = rng_for(seed, "pad", case.name)
+        rng = rng_for(seed, "pad_content", case.name)
         perturbations: list[Perturbation] = []
 
         for i in range(TARGET_COUNT):
@@ -66,11 +72,11 @@ class PadGenerator:
                     }
                 )
 
-            variant_id = f"pad-{i + 1:02d}"
+            variant_id = f"pad_content-{i + 1:02d}"
             perturbations.append(
                 Perturbation(
                     case_name=case.name,
-                    kind="pad",
+                    kind="pad_content",
                     variant_id=variant_id,
                     rendered_markdown=render_case(case.preamble, new_units),
                     notes={

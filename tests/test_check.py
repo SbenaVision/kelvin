@@ -317,8 +317,9 @@ class TestFailureHandling:
         # Acme baseline: no 'peer' → ok.
         acme = next(c for c in scores.cases if c.case_name == "acme")
         assert acme.baseline_ok is True
-        # Pad variants for acme include peer units → fail.
-        pad_failures = [sp for sp in acme.pad if sp.distance is None]
+        # pad_content variants for acme include peer units → fail (pad_length
+        # doesn't use peer content, so it stays clean).
+        pad_failures = [sp for sp in acme.pad_content if sp.distance is None]
         assert len(pad_failures) > 0
         # Run still completes (scores calculated on succeeding perturbations).
         assert scores.invariance is not None or scores.invariance_sample == 0
@@ -347,6 +348,81 @@ class TestWarningsAndCaps:
         assert isinstance(outcome, CheckError)
 
 
+# ─── Footguns (Tier 2) ──────────────────────────────────────────────────────
+
+
+class TestFootguns:
+    def test_unknown_governing_type_aborts_with_clear_message(
+        self, tmp_path: Path
+    ) -> None:
+        # `policy_clause` doesn't appear in any case → should be a hard error
+        # so the user doesn't get a silent run with no swap perturbations.
+        cwd = _setup_project(
+            tmp_path,
+            pipeline="always_approve",
+            governing_types=["policy_clause"],
+        )
+        _, outcome = _run(cwd)
+        assert isinstance(outcome, CheckError)
+        assert "policy_clause" in str(outcome)
+        assert "gate_rule" in str(outcome)  # discovered types are listed
+
+    def test_normalized_type_mismatch_caught_before_run(
+        self, tmp_path: Path
+    ) -> None:
+        # User forgot to normalize — declared `Gate Rule` instead of `gate_rule`.
+        cwd = _setup_project(
+            tmp_path,
+            pipeline="always_approve",
+            governing_types=["Gate Rule"],
+        )
+        _, outcome = _run(cwd)
+        assert isinstance(outcome, CheckError)
+        assert "normalize" in str(outcome).lower()
+
+    def test_discovered_types_echoed_before_phase1(self, tmp_path: Path) -> None:
+        cwd = _setup_project(tmp_path, pipeline="always_approve")
+        lines, _ = _run(cwd)
+        echoed = "\n".join(lines)
+        assert "Discovered types" in echoed
+        assert "gate_rule" in echoed
+        assert "interview" in echoed
+
+    def test_single_case_echoes_banner_and_sets_report_flag(
+        self, tmp_path: Path
+    ) -> None:
+        cwd = _setup_project(
+            tmp_path,
+            pipeline="always_approve",
+            cases={"acme": "## Interview\nA.\n\n## Gate Rule\nG.\n"},
+        )
+        lines, scores = _run(cwd)
+        echoed = "\n".join(lines)
+        assert "Only one case" in echoed
+        assert scores.single_case_run is True
+
+        # report.json carries the flag structurally, not just in warnings.
+        run_report = json.loads((cwd / "kelvin" / "report.json").read_text())
+        assert run_report["single_case_run"] is True
+
+    def test_multi_case_run_does_not_set_single_case_flag(
+        self, tmp_path: Path
+    ) -> None:
+        cwd = _setup_project(tmp_path, pipeline="always_approve")
+        _, scores = _run(cwd)
+        assert scores.single_case_run is False
+        run_report = json.loads((cwd / "kelvin" / "report.json").read_text())
+        assert run_report["single_case_run"] is False
+
+    def test_cost_preamble_before_phase2(self, tmp_path: Path) -> None:
+        cwd = _setup_project(tmp_path, pipeline="always_approve")
+        lines, _ = _run(cwd)
+        echoed = "\n".join(lines)
+        assert "Running ~" in echoed
+        assert "perturbations" in echoed
+        assert "Ctrl-C" in echoed
+
+
 # ─── Determinism ────────────────────────────────────────────────────────────
 
 
@@ -361,10 +437,14 @@ class TestDeterminism:
         shutil.rmtree(cwd / "kelvin")
         _run(cwd)
         second = json.loads((cwd / "kelvin" / "acme" / "report.json").read_text())
-        # Perturbation notes should be identical.
-        assert [p["notes"] for p in first["perturbations"]] == [
-            p["notes"] for p in second["perturbations"]
-        ]
+
+        # Compare by (variant_id -> notes): generation is deterministic, but the
+        # order of entries in `perturbations` follows thread-pool completion,
+        # which is not. Key by variant_id to compare content only.
+        def _keyed(perts: list) -> dict:
+            return {p["variant_id"]: p["notes"] for p in perts}
+
+        assert _keyed(first["perturbations"]) == _keyed(second["perturbations"])
 
 
 @pytest.fixture(autouse=True)

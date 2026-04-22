@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from kelvin.perturbations.pad import PadGenerator
+from kelvin.perturbations.pad import PadContentGenerator
 from kelvin.types import Case, Unit
 
 
@@ -32,17 +32,17 @@ def _peers_with_n_units(total: int) -> list[Case]:
     return cases
 
 
-class TestPad:
+class TestPadContent:
     def test_produces_three_variants_with_ample_pool(self) -> None:
         target = _case("acme", [_unit("interview", "A", 0)])
         peers = _peers_with_n_units(10)
-        batch = PadGenerator().generate(
+        batch = PadContentGenerator().generate(
             target, [target, *peers], seed=0, governing_types=[]
         )
         assert len(batch.perturbations) == 3
         for p in batch.perturbations:
-            assert p.kind == "pad"
-            assert p.variant_id.startswith("pad-")
+            assert p.kind == "pad_content"
+            assert p.variant_id.startswith("pad_content-")
             assert 2 <= p.notes["insert_count"] <= 4
 
     def test_does_not_sample_from_self(self) -> None:
@@ -51,7 +51,7 @@ class TestPad:
             [_unit("interview", f"ACME_U{i}", i) for i in range(5)],
         )
         peers = _peers_with_n_units(10)
-        batch = PadGenerator().generate(
+        batch = PadContentGenerator().generate(
             target, [target, *peers], seed=0, governing_types=[]
         )
         for p in batch.perturbations:
@@ -61,21 +61,21 @@ class TestPad:
     def test_deterministic_given_same_seed(self) -> None:
         target = _case("acme", [_unit("interview", "A", 0)])
         peers = _peers_with_n_units(10)
-        a = PadGenerator().generate(target, [target, *peers], seed=7, governing_types=[])
-        b = PadGenerator().generate(target, [target, *peers], seed=7, governing_types=[])
+        a = PadContentGenerator().generate(target, [target, *peers], seed=7, governing_types=[])
+        b = PadContentGenerator().generate(target, [target, *peers], seed=7, governing_types=[])
         assert [p.notes for p in a.perturbations] == [p.notes for p in b.perturbations]
 
     def test_different_seeds_give_different_results(self) -> None:
         target = _case("acme", [_unit("interview", "A", 0)])
         peers = _peers_with_n_units(10)
-        a = PadGenerator().generate(target, [target, *peers], seed=0, governing_types=[])
-        b = PadGenerator().generate(target, [target, *peers], seed=999, governing_types=[])
+        a = PadContentGenerator().generate(target, [target, *peers], seed=0, governing_types=[])
+        b = PadContentGenerator().generate(target, [target, *peers], seed=999, governing_types=[])
         assert [p.notes for p in a.perturbations] != [p.notes for p in b.perturbations]
 
     def test_caps_insert_count_when_pool_below_four(self) -> None:
         target = _case("acme", [_unit("interview", "A", 0)])
         peers = _peers_with_n_units(3)
-        batch = PadGenerator().generate(
+        batch = PadContentGenerator().generate(
             target, [target, *peers], seed=0, governing_types=[]
         )
         assert len(batch.perturbations) == 3
@@ -87,7 +87,7 @@ class TestPad:
     def test_pool_of_two_produces_two_inserts_per_variant(self) -> None:
         target = _case("acme", [_unit("interview", "A", 0)])
         peers = _peers_with_n_units(2)
-        batch = PadGenerator().generate(
+        batch = PadContentGenerator().generate(
             target, [target, *peers], seed=0, governing_types=[]
         )
         assert len(batch.perturbations) == 3
@@ -97,16 +97,16 @@ class TestPad:
     def test_skipped_when_pool_has_less_than_two_units(self) -> None:
         target = _case("acme", [_unit("interview", "A", 0)])
         peers = _peers_with_n_units(1)
-        batch = PadGenerator().generate(
+        batch = PadContentGenerator().generate(
             target, [target, *peers], seed=0, governing_types=[]
         )
         assert batch.perturbations == []
         assert len(batch.warnings) == 1
-        assert "pad skipped" in batch.warnings[0]
+        assert "pad_content skipped" in batch.warnings[0]
 
     def test_skipped_when_only_one_case_in_run(self) -> None:
         target = _case("acme", [_unit("interview", "A", 0), _unit("interview", "B", 1)])
-        batch = PadGenerator().generate(
+        batch = PadContentGenerator().generate(
             target, [target], seed=0, governing_types=[]
         )
         # Pool is empty (no peers). Skipped with warning.
@@ -120,7 +120,7 @@ class TestPad:
             preamble="Acme preamble.",
         )
         peers = _peers_with_n_units(5)
-        batch = PadGenerator().generate(
+        batch = PadContentGenerator().generate(
             target, [target, *peers], seed=0, governing_types=[]
         )
         for p in batch.perturbations:

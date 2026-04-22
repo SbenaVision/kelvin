@@ -74,6 +74,7 @@ def aggregate(
     governing_types: list[str],
     run_warnings: list[str] | None = None,
     run_caps: list[str] | None = None,
+    single_case_run: bool = False,
 ) -> RunScores:
     """Roll up per-case distances into cross-case `RunScores`.
 
@@ -122,6 +123,7 @@ def aggregate(
         kelvin_score=kelvin_score,
         sensitivity_by_type=sensitivity_by_type,
         governing_types=list(governing_types),
+        single_case_run=single_case_run,
         warnings=warnings,
         caps=caps,
     )

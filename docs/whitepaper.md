@@ -105,7 +105,7 @@ An invariance relation is a perturbation $\tau_\text{inv}$ such that the decisio
    - *Pad-length invariance:* the decision should not drift with input length alone. Probed by adding length-matched neutral filler.
    - *Pad-content invariance:* the decision should not drift when the added units describe different entities or scenarios. Probed by adding peer units from other cases.
 
-   Because the current operator adds peer units from other cases, it perturbs both properties simultaneously. Aggregate pad distance is therefore a lower bound on each individual property, and "invariant to pad" conflates "robust to distractors" with "robust to presentation length." Separating the operators into `pad_length` and `pad_content` is targeted for v0.2; see §7.
+   As of v0.2, Kelvin ships both `pad_length` and `pad_content` as distinct perturbation kinds. `pad_length` inserts neutral administrative filler (`## Reference Note` sections drawn from a fixed, decision-neutral bank) and runs even in single-case corpora; `pad_content` inserts typed units from peer cases and requires peers. Before the split, a single `pad` operator added peer units and therefore perturbed both properties simultaneously — aggregate pad distance was a lower bound on each individual property, and "invariant to pad" conflated "robust to distractors" with "robust to presentation length." Current aggregate invariance is the mean over reorder, `pad_length`, and `pad_content` distances; per-kind breakdowns are available in the per-case reports.
 
 Formally, for an invariance perturbation $\tau_\text{inv} \in \mathcal{L}$, the expected relation is that
 
@@ -312,7 +312,7 @@ These numbers are **pilot-scale pre-empirical results**, not a methodological va
 
 **Content leakage in raw swap perturbations.** v1 governing-unit substitution replaces an *entire* typed unit, including any factual assertions inside it. Sensitivity signals therefore mix rule-tracking with reactions to injected facts, and type-matched is not counterfactual-controlled. See §3.3 for the worked example and the `swap_condition` mitigation targeted for v0.3.
 
-**Pad conflates length and content invariance.** The current `pad` operator simultaneously changes input length and introduces peer content. Pad distances are a lower bound on each individual property. Separating `pad_length` and `pad_content` is targeted for v0.2; see §3.2 and §7.
+**Pad length vs. pad content (addressed in v0.2).** Earlier versions shipped a single `pad` operator that simultaneously changed input length and introduced peer content, so pad distances were a lower bound on each individual invariance property. v0.2 separates the operators: `pad_length` inserts neutral filler of comparable bulk; `pad_content` inserts peer-case units. Both contribute to aggregate invariance, but the per-kind breakdown in per-case reports lets users distinguish presentation-length drift from distractor-content drift.
 
 **Empirical results are pilot-scale.** Reported numbers reflect 2 cases and 14 perturbations (12 successful, 2 HTTP 500 failures). The grounded-vs-degenerate comparison that tests the central methodological claim — that the paired signal separates evidence-tracking pipelines from constant-output pipelines on the same suite — is planned (see §7) but not yet executed end-to-end.
 
@@ -332,7 +332,7 @@ These numbers are **pilot-scale pre-empirical results**, not a methodological va
 
 **(v0.3, design in progress) Rule-condition swap (`swap_condition`).** Swap only the condition clauses of a governing rule while holding the focal case's asserted state constant. Addresses the content-leakage limitation in §3.3 and §6. A more defensible sensitivity design than raw swap; the two will coexist for a release, with the current raw swap retained as `swap_content` until the condition-level variant is validated. Deferred from v0.2 to v0.3 because clause parsing on real gate-rule text is non-trivial and a first-approximation implementation risks producing awkward swaps that would weaken rather than strengthen the sensitivity signal.
 
-**(v0.2) Separated pad operators.** Split the current `pad` into `pad_length` (length-matched neutral filler — tests presentation-length robustness) and `pad_content` (peer-unit distractors — tests distractor-content robustness). Addresses the conflation flagged in §3.2 and §6.
+**(v0.2, shipped) Separated pad operators.** `pad_length` inserts neutral filler (tests presentation-length robustness; runs in single-case corpora) and `pad_content` inserts peer-case units (tests distractor-content robustness; requires peers). Addresses the conflation flagged in §3.2 and §6.
 
 **(v0.2, shipped) Kelvin score $K$.** The scorer emits $K = (1 - \text{Invariance}) + (1 - \text{Sensitivity})$ on $[0, 2]$, lower-is-better, as of v0.2. The terminal reporter displays it alongside the two constituent signals, and it appears in `kelvin/report.json`. When either Invariance or Sensitivity is undefined (no contributing perturbations), $K$ is also reported as null rather than substituted with a default.
 
