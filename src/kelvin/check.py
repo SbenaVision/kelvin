@@ -429,6 +429,7 @@ def _write_run_report(
         "invariance_sample": run_scores.invariance_sample,
         "sensitivity": run_scores.sensitivity,
         "sensitivity_sample": run_scores.sensitivity_sample,
+        "kelvin_score": run_scores.kelvin_score,
         "sensitivity_by_type": {
             gtype: {"mean": mean_val, "sample": sample}
             for gtype, (mean_val, sample) in run_scores.sensitivity_by_type.items()

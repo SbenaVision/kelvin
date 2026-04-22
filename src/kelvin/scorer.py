@@ -88,6 +88,11 @@ def aggregate(
     invariance = (1.0 - invariance_mean) if invariance_mean is not None else None
     sensitivity = mean(all_swap) if all_swap else None
 
+    if invariance is not None and sensitivity is not None:
+        kelvin_score = (1.0 - invariance) + (1.0 - sensitivity)
+    else:
+        kelvin_score = None
+
     by_type: dict[str, list[float]] = {}
     for c in cases:
         for gtype, swaps in c.swaps_by_type.items():
@@ -114,6 +119,7 @@ def aggregate(
         invariance_sample=len(all_invariance),
         sensitivity=sensitivity,
         sensitivity_sample=len(all_swap),
+        kelvin_score=kelvin_score,
         sensitivity_by_type=sensitivity_by_type,
         governing_types=list(governing_types),
         warnings=warnings,

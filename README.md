@@ -1,39 +1,59 @@
 # Kelvin
 
-**An unsupervised correctness signal for RAG pipelines.**
+**An evidence-tracking diagnostic for structured-decision RAG.**
 
-*Is your AI understanding your data, or guessing?*
+*Is your pipeline reading the evidence, or reacting to its presentation?*
 
 ---
 
 ## The problem
 
-Every team shipping production RAG hits the same wall: output variance with no reliable way to measure it. Labeled evaluations are expensive to build and stale the moment a prompt or model changes. LLM-as-judge inherits the judge model's blind spots and is structurally circular.
+Production RAG pipelines fail in two directions, and most evals can't tell them apart:
 
-Existing tools measure whether outputs *look* right. Kelvin measures something stricter: whether outputs *depend on the right things*.
+1. **Presentation-reactive** — reorder the retrieved sections and the decision flips, even though the facts are identical.
+2. **Evidence-blind** — swap the governing rule for a different valid one and the decision doesn't move, even though it should.
+
+Labeled evaluations are expensive and go stale the moment a prompt or model changes. LLM-as-judge inherits the judge's blind spots and is structurally circular. Neither catches both failures above reliably.
+
+Kelvin asks something stricter than "does the answer look right?": **does the answer move only when the evidence that should determine it moves?**
 
 ## How it works
 
-Kelvin applies structure-derived metamorphic perturbations to the context a pipeline receives — reordering retrieved units, padding with known-irrelevant units, and swapping governing units for different valid ones from the same corpus.
+Kelvin applies metamorphic perturbations to the context a pipeline receives — reordering retrieved units, padding with peer units from other cases, and swapping governing units for same-type units from other cases.
 
-Because these transformations are defined over the unit boundaries the corpus already provides, fact-preservation is guaranteed by construction. The facts don't move, so the output shouldn't either.
+The unit boundaries come from the corpus itself. In v1, the user asserts the unit typing by writing markdown section headers (e.g. `## Gate Rule`, `## Market Evidence`); automatic schema inference is the load-bearing v2 piece. See the [whitepaper](docs/whitepaper.md) for the formal claim and its current limits.
 
-The core signal is two measurements together:
+The core signal is two measurements, together:
 
-- **Invariance** — reorder, pad, drop non-essentials. The facts haven't changed; the output shouldn't either. Drift here means the system is responding to presentation, not substance.
-- **Sensitivity** — swap a governing unit for a different valid one. A fact has changed; the output should move with it. Insensitivity here means the system isn't reading the facts at all.
+- **Invariance** — reorder or pad. Decision-relevant content hasn't changed; the output shouldn't either. Drift here means the system is responding to presentation, not substance.
+- **Sensitivity** — swap a governing unit for a different valid one. The decision criterion has changed; the output should move with it. Insensitivity here means the system isn't reading the governing evidence at all.
+
+**Why the pair matters.** Invariance alone is trivially gamed by a constant-output pipeline (`return "stay_in_validate"` scores 1.0 on every invariance test while being useless). Sensitivity alone can reward noise-reactivity. Only the pair separates a grounded pipeline from both failure modes. This is the central methodological claim — see whitepaper §3.4.
+
+**A concrete failure the tool caught.** On the Envelop venture-assessment case, Kelvin's reorder perturbations flipped the stage decision from `pre-seed` to `seed` whenever the `## Gate Rule` section was moved to the top of the input — classic retrieval-position bias. The facts were identical across reorderings; only the presentation changed. Exactly what the invariance signal is built to expose.
 
 ### The Kelvin score
 
-Borrowed from the absolute temperature scale: **a Kelvin of zero means the pipeline is perfectly anchored** — invariant where it should be, sensitive where it should be. Higher scores mean more thermal noise.
+$$K = (1 - \text{Invariance}) + (1 - \text{Sensitivity})$$
 
-Kelvin decomposes the score across pipeline stages (retrieval, reranking, generation) so instability can be localized, not only detected.
+Range **[0, 2]**, lower-is-better. **K = 0** means perfectly anchored: invariant where it should be, sensitive where it should be. Higher = more thermal noise, borrowed from the absolute-temperature analogy.
+
+The CLI reports `K` alongside Invariance and Sensitivity in the terminal summary and in `kelvin/report.json`. Per-stage decomposition (retrieval / reranking / generation) is v2.
 
 ## Scope
 
-Kelvin targets RAG pipelines whose inputs are discrete, identifiable units: documents in a folder, rows in a database, chunks in a vector store, clauses in a contract, tickets in a queue. Anywhere retrieval returns distinct objects with identity, the structure of that object set provides the metamorphic relations Kelvin needs.
+**Good fit — structured-decision RAG.** Pipelines whose output is a categorical or scalar decision over a small set of values:
 
-**Out of scope for v1:** perturbations that require rewriting content inside a unit (paraphrasing, synonym swapping). These belong in a later phase once the structural approach is proven.
+- Stage-gate assessors (`idea` / `pre-seed` / `seed` / `growth` / `scale`)
+- Resume screening (`advance` / `manual_review` / `reject`)
+- Underwriting, routing, triage, grading
+- Any decision a human would make from a discrete set after reading typed evidence units
+
+The evidence must arrive as discrete, identifiable units (documents, rows, chunks, clauses, tickets) — that's where the metamorphic relations live.
+
+**Not a fit (v1) — prose-output RAG.** Summarization, open QA, chat. Kelvin scores a designated decision field; free-form rationales are recorded for inspection but ignored by the scorer. Tools like RAGAS and ARES target prose RAG and are complementary to Kelvin, not replaced by it.
+
+**Out of scope entirely for v1:** perturbations that rewrite content inside a unit (paraphrasing, synonym swapping). Deferred to a later phase once the structural approach is proven.
 
 ## Install
 
@@ -63,7 +83,7 @@ seed: 0
 
 - `run` — shell command to invoke your pipeline. Must contain `{input}` and `{output}`.
 - `cases` — folder of `*.md` case files. One file per case. Sections start with `## Heading` — each heading becomes a typed unit.
-- `decision_field` — the JSON key your pipeline writes. Must be scalar (str / number / bool / null).
+- `decision_field` — the JSON key your pipeline writes. **Must be a top-level key** in the output (no dotted paths — `factsheet.delivery_model` is not supported). If your pipeline produces nested output, flatten it in a thin adapter harness before Kelvin sees it. The value must resolve to a scalar (str / number / bool / null).
 - `governing_types` — unit types used for swap perturbations. Normalize to lowercase+underscores (e.g. `Gate Rule` → `gate_rule`).
 
 **2. Write a case file (`cases/acme.md`):**
@@ -107,21 +127,28 @@ Everything lands under `./kelvin/`:
 
 ## Who it's for
 
-- Developers shipping production RAG who want a repeatable correctness signal in CI.
-- Teams debugging why a model upgrade or prompt change quietly degraded their pipeline.
-- Anyone who has shipped a "working" RAG system and learned in production it wasn't.
+- Teams shipping stage-gate, screening, triage, routing, or grading pipelines that need a repeatable evidence-tracking signal in CI.
+- Engineers debugging why a model upgrade or prompt change quietly shifted a decision distribution.
+- Anyone who has seen a production RAG "work" on spot-checks and later found it was reacting to retrieval position rather than content.
 
 ## Status
 
 | Component | Status |
 |-----------|--------|
-| Core perturbations (reorder, pad, swap) | ✅ Done |
-| Scorer | ✅ Done |
-| Stage decomposition (retrieval / reranking / generation) | 🔜 v2 |
+| Core perturbations (`reorder`, `pad`, `swap`) | ✅ Done |
+| Scorer — Invariance + Sensitivity | ✅ Done |
 | CLI (`kelvin check`) | ✅ Done |
-| Terminal / HTML reports | 🔜 PR 3 |
+| Terminal reporter | ✅ Done |
+| Kelvin score `K` (formalized, emitted) | ✅ Done |
+| Grounded-vs-degenerate empirical table | 🔜 v0.2 |
+| Pad split (`pad_length` / `pad_content`) | 🔜 v0.2 |
+| On-disk invocation cache | 🔜 v0.2 |
+| Rule-condition swap (`swap_condition`) | 🔜 v0.3 — design in progress |
+| HTML / markdown reporters | 🔜 Upcoming |
 | `kelvin init` wizard | 🔜 Upcoming |
 | CI/CD integration | 🔜 Upcoming |
+| Automatic schema inference | 🔜 v2 (load-bearing) |
+| Stage decomposition (retrieval / reranking / generation) | 🔜 v2 |
 
 ## Research
 

@@ -117,6 +117,9 @@ class RunScores:
     invariance_sample: int
     sensitivity: float | None
     sensitivity_sample: int
+    # K = (1 - invariance) + (1 - sensitivity), range [0, 2], lower = more anchored.
+    # None if either component is None (no contributing perturbations).
+    kelvin_score: float | None
     sensitivity_by_type: dict[str, tuple[float, int]]   # {type: (mean, sample)}
     governing_types: list[str]
     warnings: list[str] = field(default_factory=list)

@@ -193,3 +193,79 @@ class TestAggregate:
         assert "r1" in rs.warnings
         assert "c1" in rs.caps
         assert "rc1" in rs.caps
+
+
+class TestKelvinScore:
+    """K = (1 - Invariance) + (1 - Sensitivity), range [0, 2], lower = anchored."""
+
+    def test_formula_matches_residuals(self) -> None:
+        # reorder distance 0.2 → invariance = 0.8 → residual 0.2
+        # swap distance 0.3 → sensitivity = 0.3 → residual 0.7
+        # K = 0.9
+        c = CaseScores(
+            case_name="a",
+            reorder=[_sp("reorder", 0.2)],
+            swaps_by_type={"gate_rule": [_sp("swap", 0.3)]},
+        )
+        rs = aggregate([c], seed=0, governing_types=["gate_rule"])
+        assert rs.invariance == pytest.approx(0.8)
+        assert rs.sensitivity == pytest.approx(0.3)
+        assert rs.kelvin_score == pytest.approx((1 - 0.8) + (1 - 0.3))
+        assert rs.kelvin_score == pytest.approx(0.9)
+
+    def test_zero_when_perfectly_anchored(self) -> None:
+        # invariance 1.0 (no drift) + sensitivity 1.0 (every swap moves output) → K = 0
+        c = CaseScores(
+            case_name="a",
+            reorder=[_sp("reorder", 0.0)],
+            swaps_by_type={"gate_rule": [_sp("swap", 1.0)]},
+        )
+        rs = aggregate([c], seed=0, governing_types=["gate_rule"])
+        assert rs.kelvin_score == pytest.approx(0.0)
+
+    def test_two_when_worst_case(self) -> None:
+        # invariance 0.0 (drifts every reorder) + sensitivity 0.0 (ignores swaps) → K = 2
+        c = CaseScores(
+            case_name="a",
+            reorder=[_sp("reorder", 1.0)],
+            swaps_by_type={"gate_rule": [_sp("swap", 0.0)]},
+        )
+        rs = aggregate([c], seed=0, governing_types=["gate_rule"])
+        assert rs.kelvin_score == pytest.approx(2.0)
+
+    def test_constant_output_pipeline(self) -> None:
+        # Constant-output degeneracy: invariance 1.0, sensitivity 0.0 → K = 1.0.
+        # Sanity check the §3.4 prediction: a pipeline that always returns the
+        # same answer is distinguishable only because K sits at 1.0, not 0.0.
+        c = CaseScores(
+            case_name="a",
+            reorder=[_sp("reorder", 0.0), _sp("reorder", 0.0)],
+            pad=[_sp("pad", 0.0)],
+            swaps_by_type={"gate_rule": [_sp("swap", 0.0), _sp("swap", 0.0)]},
+        )
+        rs = aggregate([c], seed=0, governing_types=["gate_rule"])
+        assert rs.invariance == pytest.approx(1.0)
+        assert rs.sensitivity == pytest.approx(0.0)
+        assert rs.kelvin_score == pytest.approx(1.0)
+
+    def test_none_when_invariance_missing(self) -> None:
+        c = CaseScores(
+            case_name="a",
+            swaps_by_type={"gate_rule": [_sp("swap", 0.5)]},
+        )
+        rs = aggregate([c], seed=0, governing_types=["gate_rule"])
+        assert rs.invariance is None
+        assert rs.kelvin_score is None
+
+    def test_none_when_sensitivity_missing(self) -> None:
+        c = CaseScores(
+            case_name="a",
+            reorder=[_sp("reorder", 0.5)],
+        )
+        rs = aggregate([c], seed=0, governing_types=[])
+        assert rs.sensitivity is None
+        assert rs.kelvin_score is None
+
+    def test_none_when_no_cases(self) -> None:
+        rs = aggregate([], seed=0, governing_types=["gate_rule"])
+        assert rs.kelvin_score is None

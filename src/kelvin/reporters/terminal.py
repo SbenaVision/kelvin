@@ -283,6 +283,15 @@ def _build(
         ))
         rows.append(_empty())
 
+    # ── Kelvin score block ────────────────────────────────────────────────────
+    if run_scores.kelvin_score is not None:
+        rows.append(_row(
+            f"{_INDENT}{'Kelvin score':<14}{run_scores.kelvin_score:.2f}"
+        ))
+        rows.append(_row(f"{_INDENT}K = (1 - Inv) + (1 - Sens).  Range [0, 2],"))
+        rows.append(_row(f"{_INDENT}lower = more anchored."))
+        rows.append(_empty())
+
     # ── Diagnostic ────────────────────────────────────────────────────────────
     for line in _diagnostic_rows(run_scores, decision_field):
         rows.append(_row(line))
