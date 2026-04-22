@@ -100,29 +100,59 @@ async function main() {
     venture_name: variant ?? "kelvin-case",
   };
 
+  // Retry on transient upstream 5xx (500/502/503/504) — these surfaced
+  // as 2 of 14 failures in the initial Kelvin run and are Supabase/LLM
+  // infrastructure noise, not content-dependent bugs. Exponential backoff
+  // with jitter; give up after MAX_ATTEMPTS so a truly broken endpoint
+  // doesn't hang the Kelvin run.
+  const MAX_ATTEMPTS = 3;
+  const TRANSIENT_STATUSES = new Set([500, 502, 503, 504]);
+
   log(`POST ${ENDPOINT}`);
-  const t0 = Date.now();
   let resp;
-  try {
-    resp = await fetch(ENDPOINT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "apikey": anonKey,
-        "Authorization": `Bearer ${anonKey}`,
-      },
-      body: JSON.stringify(body),
-    });
-  } catch (err) {
-    die(`network error calling harness: ${err.message}`);
+  let rawBody;
+  let lastErr;
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    const t0 = Date.now();
+    try {
+      resp = await fetch(ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": anonKey,
+          "Authorization": `Bearer ${anonKey}`,
+        },
+        body: JSON.stringify(body),
+      });
+    } catch (err) {
+      lastErr = err;
+      const elapsed = Date.now() - t0;
+      log(`attempt ${attempt}/${MAX_ATTEMPTS} network error in ${elapsed} ms: ${err.message}`);
+      if (attempt === MAX_ATTEMPTS) die(`network error after ${MAX_ATTEMPTS} attempts: ${err.message}`);
+      const backoffMs = 500 * 2 ** (attempt - 1) + Math.floor(Math.random() * 300);
+      log(`  backing off ${backoffMs} ms`);
+      await new Promise((r) => setTimeout(r, backoffMs));
+      continue;
+    }
+
+    const elapsed = Date.now() - t0;
+    log(`attempt ${attempt}/${MAX_ATTEMPTS} HTTP ${resp.status} in ${elapsed} ms`);
+    rawBody = await resp.text();
+
+    if (resp.ok) break;
+
+    if (TRANSIENT_STATUSES.has(resp.status) && attempt < MAX_ATTEMPTS) {
+      const backoffMs = 500 * 2 ** (attempt - 1) + Math.floor(Math.random() * 300);
+      log(`  transient ${resp.status}; backing off ${backoffMs} ms`);
+      await new Promise((r) => setTimeout(r, backoffMs));
+      continue;
+    }
+    // Non-transient error, or out of attempts — fall through to die below.
+    break;
   }
 
-  const elapsed = Date.now() - t0;
-  log(`HTTP ${resp.status} in ${elapsed} ms`);
-
-  const rawBody = await resp.text();
-  if (!resp.ok) {
-    die(`HTTP ${resp.status} from harness: ${rawBody.slice(0, 500)}`);
+  if (!resp || !resp.ok) {
+    die(`HTTP ${resp ? resp.status : "?"} from harness after retries: ${(rawBody || String(lastErr || "")).slice(0, 500)}`);
   }
 
   let data;

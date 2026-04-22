@@ -106,6 +106,7 @@ def run_check(
     effective_seed = seed_override if seed_override is not None else cfg.seed
 
     cases_dir = cfg.cases if cfg.cases.is_absolute() else (cwd / cfg.cases)
+    cache_dir = _resolve_cache_dir(cfg, cwd)
     all_cases = load_cases(cases_dir)
     if not all_cases:
         raise CheckError(
@@ -139,8 +140,11 @@ def run_check(
         cfg=cfg,
         cwd=cwd,
         echo=echo,
+        cache_dir=cache_dir,
     )
     phase1_elapsed_s = time.monotonic() - phase1_start
+    if cache_dir is not None:
+        echo(f"Cache: {cache_dir}")
 
     # Cost preamble: estimate perturbation count and wall-time based on baseline
     # elapsed so users can Ctrl-C before burning compute on expensive pipelines.
@@ -179,6 +183,7 @@ def run_check(
             generators=generators,
             scorer=active_scorer,
             echo=echo,
+            cache_dir=cache_dir,
         )
 
     # Write per-case reports, aggregate, write run report.
@@ -207,6 +212,13 @@ def _load_config(cwd: Path) -> KelvinConfig:
     return KelvinConfig.load(cwd / CONFIG_FILENAME)
 
 
+def _resolve_cache_dir(cfg: KelvinConfig, cwd: Path) -> Path | None:
+    """Absolute path of the opt-in invocation cache, or None if disabled."""
+    if cfg.cache_dir is None:
+        return None
+    return cfg.cache_dir if cfg.cache_dir.is_absolute() else (cwd / cfg.cache_dir)
+
+
 def _filter_cases(all_cases: list[Case], *, only: str | None) -> list[Case]:
     if only is None:
         return list(all_cases)
@@ -225,6 +237,7 @@ def _run_baselines(
     cfg: KelvinConfig,
     cwd: Path,
     echo: Any,
+    cache_dir: Path | None = None,
 ) -> tuple[list[CaseScores], bool]:
     case_scores: list[CaseScores] = []
     decision_validated = False
@@ -237,7 +250,14 @@ def _run_baselines(
             render_case(case.preamble, case.units), encoding="utf-8"
         )
 
-        result = invoke(cfg.run, input_path, output_path, cfg.decision_field, timeout_s=60)
+        result = invoke(
+            cfg.run,
+            input_path,
+            output_path,
+            cfg.decision_field,
+            timeout_s=60,
+            cache_dir=cache_dir,
+        )
 
         if not result.ok:
             # If the pipeline produced a valid JSON object that simply doesn't
@@ -289,6 +309,7 @@ def _run_perturbations_for_case(
     generators: tuple[PerturbationGenerator, ...],
     scorer: Scorer,
     echo: Any,
+    cache_dir: Path | None = None,
 ) -> None:
     work_items: list[tuple[Any, Path, Path]] = []
     for gen in generators:
@@ -311,7 +332,13 @@ def _run_perturbations_for_case(
     with ThreadPoolExecutor(max_workers=2) as executor:
         future_map = {
             executor.submit(
-                invoke, cfg.run, inp, outp, cfg.decision_field, timeout_s=60
+                invoke,
+                cfg.run,
+                inp,
+                outp,
+                cfg.decision_field,
+                timeout_s=60,
+                cache_dir=cache_dir,
             ): pert
             for pert, inp, outp in work_items
         }
