@@ -23,6 +23,7 @@ import sys
 import time
 from pathlib import Path
 
+from kelvin.event_log import EventLogger
 from kelvin.messages import (
     RETRY_GIVING_UP,
     RETRY_TRANSIENT_DETECTED,
@@ -57,6 +58,7 @@ def invoke(
     cache_dir: Path | None = None,
     retry_policy: RetryPolicy | None = None,
     rng: random.Random | None = None,
+    logger: EventLogger | None = None,
 ) -> InvocationResult:
     """Invoke the pipeline once. Returns an `InvocationResult`.
 
@@ -117,13 +119,14 @@ def invoke(
                 delay_s=next_delay,
                 exit_code=result.exit_code if result.exit_code is not None else -1,
                 context=context,
+                logger=logger,
             )
             time.sleep(next_delay)
             continue
 
         # No retry — either permanent failure or attempts exhausted.
         if was_retry:
-            _emit_giving_up(attempts=attempt, context=context)
+            _emit_giving_up(attempts=attempt, context=context, logger=logger)
         break
 
     assert result is not None  # loop always runs at least once
@@ -275,6 +278,7 @@ def _emit_retry_detected(
     delay_s: float,
     exit_code: int,
     context: str,
+    logger: EventLogger | None,
 ) -> None:
     msg = catalog(
         RETRY_TRANSIENT_DETECTED,
@@ -284,12 +288,34 @@ def _emit_retry_detected(
         exit_code=exit_code,
         context=context,
     )
-    print(msg.what, file=sys.stderr)
+    if logger is not None:
+        logger.warn(
+            "retry_detected",
+            text=msg.what,
+            attempt=attempt,
+            max_attempts=max_attempts,
+            delay_s=delay_s,
+            exit_code=exit_code,
+            context=context,
+        )
+    else:
+        # v0.2-compat fallback: direct stderr print (no logger attached).
+        print(msg.what, file=sys.stderr)
 
 
-def _emit_giving_up(*, attempts: int, context: str) -> None:
+def _emit_giving_up(
+    *, attempts: int, context: str, logger: EventLogger | None
+) -> None:
     msg = catalog(RETRY_GIVING_UP, attempts=attempts, context=context)
-    print(msg.what, file=sys.stderr)
+    if logger is not None:
+        logger.warn(
+            "retry_giving_up",
+            text=msg.what,
+            attempts=attempts,
+            context=context,
+        )
+    else:
+        print(msg.what, file=sys.stderr)
 
 
 # ─── On-disk invocation cache ──────────────────────────────────────────────

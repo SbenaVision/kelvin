@@ -56,6 +56,7 @@ RUNNER_DECISION_FIELD_MISSING = "runner.decision_field_missing"
 CHECK_NO_CASES = "check.no_cases"
 CHECK_UNKNOWN_CASE = "check.unknown_case"
 CHECK_ALL_BASELINES_FAILED = "check.all_baselines_failed"
+CHECK_USER_ABORTED = "check.user_aborted"
 
 SCORER_NON_SCALAR_DECISION = "scorer.non_scalar_decision"
 SCORER_NON_SCALAR_DECISION_FIELD = "scorer.non_scalar_decision_field"
@@ -601,6 +602,21 @@ CATALOG: dict[str, MessageTemplate] = {
             "Pick one of the available case names listed above. Case names "
             "come from the filename stem — e.g., `cases/envelop.md` is "
             "case `envelop`."
+        ),
+    ),
+
+    CHECK_USER_ABORTED: MessageTemplate(
+        id=CHECK_USER_ABORTED,
+        what="Run aborted at forecast prompt.",
+        why=(
+            "The user answered no (or anything other than y/yes) at the "
+            "--confirm prompt after Phase 1. Partial reports for "
+            "completed baselines were still written."
+        ),
+        how_to_fix=(
+            "Re-run without --confirm to skip the prompt, or with --yes "
+            "to auto-accept. The on-disk cache preserves successful "
+            "baselines so re-runs are cheap."
         ),
     ),
 

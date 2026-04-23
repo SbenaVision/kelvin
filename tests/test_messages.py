@@ -9,6 +9,7 @@ from kelvin.messages import (
     CHECK_ALL_BASELINES_FAILED,
     CHECK_NO_CASES,
     CHECK_UNKNOWN_CASE,
+    CHECK_USER_ABORTED,
     CONFIG_CACHE_DIR_INVALID,
     CONFIG_CASES_INVALID,
     CONFIG_COUNTERFACTUAL_SWAP_ENABLED_INVALID,
@@ -106,6 +107,7 @@ EXPECTED_ENTRY_IDS: frozenset[str] = frozenset({
     "check.no_cases",
     "check.unknown_case",
     "check.all_baselines_failed",
+    "check.user_aborted",
     # scorer
     "scorer.non_scalar_decision",
     "scorer.non_scalar_decision_field",
@@ -268,6 +270,7 @@ class TestExportedConstantsCoverEveryEntry:
         CHECK_NO_CASES,
         CHECK_UNKNOWN_CASE,
         CHECK_ALL_BASELINES_FAILED,
+        CHECK_USER_ABORTED,
         SCORER_NON_SCALAR_DECISION,
         SCORER_NON_SCALAR_DECISION_FIELD,
         RETRY_TRANSIENT_DETECTED,
