@@ -23,6 +23,10 @@ from pathlib import Path
 from kelvin.types import InvocationResult
 
 _STDERR_TAIL_LINES = 20
+# Cache entry schema version. Pinned at 1 for v0.2 compatibility; bump when
+# a v0.3 pillar extends the cached payload (e.g. noise-floor replays, family
+# identifiers). Bumping invalidates all prior entries cleanly (miss, not
+# crash) — reader in `_cache_lookup` rejects mismatched versions.
 _CACHE_SCHEMA_VERSION = 1
 
 

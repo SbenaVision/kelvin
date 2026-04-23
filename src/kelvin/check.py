@@ -255,7 +255,7 @@ def _run_baselines(
             input_path,
             output_path,
             cfg.decision_field,
-            timeout_s=60,
+            timeout_s=cfg.timeout_s,
             cache_dir=cache_dir,
         )
 
@@ -337,7 +337,7 @@ def _run_perturbations_for_case(
                 inp,
                 outp,
                 cfg.decision_field,
-                timeout_s=60,
+                timeout_s=cfg.timeout_s,
                 cache_dir=cache_dir,
             ): pert
             for pert, inp, outp in work_items
@@ -488,6 +488,7 @@ def _write_per_case_reports(
 
 def _case_report_dict(scores: CaseScores, *, decision_field: str) -> dict:
     return {
+        "schema_version": 1,
         "case": scores.case_name,
         "baseline": {
             "ok": scores.baseline_ok,
@@ -546,6 +547,7 @@ def _write_run_report(
 ) -> None:
     rdir = fs.ensure(fs.run_root(cwd))
     payload = {
+        "schema_version": 1,
         "seed": run_scores.seed,
         "only": only,
         "decision_field": cfg.decision_field,
