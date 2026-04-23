@@ -228,6 +228,38 @@ class TestCounterfactualSwapConfig:
             KelvinConfig.load(write_yaml(tmp_path, yaml_text))
 
 
+class TestConfigErrorStructuredMessage:
+    """ConfigError raised via catalog() carries the FormattedMessage so
+    structured log consumers can render all three fields. Raising with a
+    plain string still works (back-compat for any external caller)."""
+
+    def test_catalog_raise_carries_formatted_message(self, tmp_path: Path) -> None:
+        from kelvin.messages import FormattedMessage
+
+        yaml_text = VALID_YAML + "timeout_s: 0\n"
+        with pytest.raises(ConfigError) as exc:
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+        assert isinstance(exc.value.formatted_message, FormattedMessage)
+        fm = exc.value.formatted_message
+        assert fm.id == "config.timeout_invalid"
+        assert fm.what
+        assert fm.why
+        assert fm.how_to_fix
+
+    def test_str_error_includes_all_three_fields(self, tmp_path: Path) -> None:
+        yaml_text = VALID_YAML + "timeout_s: 0\n"
+        with pytest.raises(ConfigError) as exc:
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+        text = str(exc.value)
+        assert "timeout_s" in text
+        assert "Fix:" in text  # how_to_fix prefix
+
+    def test_plain_string_fallback_still_accepted(self) -> None:
+        err = ConfigError("raw string message")
+        assert err.formatted_message is None
+        assert str(err) == "raw string message"
+
+
 class TestIntraSlotConfig:
     def test_accepts_full_block(self, tmp_path: Path) -> None:
         yaml_text = (

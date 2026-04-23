@@ -23,10 +23,27 @@ from typing import Any
 
 CONFIG_FILE_NOT_FOUND = "config.file_not_found"
 CONFIG_YAML_PARSE_ERROR = "config.yaml_parse_error"
+CONFIG_NOT_MAPPING = "config.not_mapping"
 CONFIG_MISSING_KEYS = "config.missing_keys"
+CONFIG_RUN_INVALID = "config.run_invalid"
 CONFIG_RUN_MISSING_PLACEHOLDERS = "config.run_missing_placeholders"
+CONFIG_CASES_INVALID = "config.cases_invalid"
+CONFIG_DECISION_FIELD_INVALID = "config.decision_field_invalid"
+CONFIG_GOVERNING_TYPES_INVALID = "config.governing_types_invalid"
+CONFIG_SEED_INVALID = "config.seed_invalid"
+CONFIG_CACHE_DIR_INVALID = "config.cache_dir_invalid"
 CONFIG_TIMEOUT_INVALID = "config.timeout_invalid"
 CONFIG_UNKNOWN_GOVERNING_TYPE = "config.unknown_governing_type"
+CONFIG_NOISE_FLOOR_NOT_MAPPING = "config.noise_floor_not_mapping"
+CONFIG_NOISE_FLOOR_ENABLED_INVALID = "config.noise_floor_enabled_invalid"
+CONFIG_NOISE_FLOOR_REPLICATIONS_INVALID = "config.noise_floor_replications_invalid"
+CONFIG_COUNTERFACTUAL_SWAP_NOT_MAPPING = "config.counterfactual_swap_not_mapping"
+CONFIG_COUNTERFACTUAL_SWAP_ENABLED_INVALID = "config.counterfactual_swap_enabled_invalid"
+CONFIG_INTRA_SLOT_NOT_MAPPING = "config.intra_slot_not_mapping"
+CONFIG_INTRA_SLOT_ENABLED_INVALID = "config.intra_slot_enabled_invalid"
+CONFIG_INTRA_SLOT_FAMILIES_INVALID = "config.intra_slot_families_invalid"
+CONFIG_INTRA_SLOT_MARKERS_INVALID = "config.intra_slot_markers_invalid"
+CONFIG_INTRA_SLOT_WHITELIST_INVALID = "config.intra_slot_whitelist_invalid"
 
 RUNNER_TIMEOUT = "runner.timeout"
 RUNNER_OUTPUT_NOT_JSON = "runner.output_not_json"
@@ -112,6 +129,20 @@ CATALOG: dict[str, MessageTemplate] = {
         ),
     ),
 
+    CONFIG_NOT_MAPPING: MessageTemplate(
+        id=CONFIG_NOT_MAPPING,
+        what="Config file {path} is not a YAML mapping at the top level.",
+        why=(
+            "Kelvin expects a mapping (key: value pairs) at the root of "
+            "kelvin.yaml. A list or scalar at the top level cannot be "
+            "interpreted as a config."
+        ),
+        how_to_fix=(
+            "Wrap the file's contents in a top-level mapping — the first "
+            "line should be a key like `run:`, not `-` or a bare value."
+        ),
+    ),
+
     CONFIG_MISSING_KEYS: MessageTemplate(
         id=CONFIG_MISSING_KEYS,
         what="Config file {path} is missing required keys: {missing}.",
@@ -122,6 +153,21 @@ CATALOG: dict[str, MessageTemplate] = {
         how_to_fix=(
             "Add each missing key to {path}. See `kelvin init` or "
             "docs/kelvinspec.md for an example with every required key."
+        ),
+    ),
+
+    CONFIG_RUN_INVALID: MessageTemplate(
+        id=CONFIG_RUN_INVALID,
+        what="Config `run:` must be a non-empty string shell-command template.",
+        why=(
+            "`run:` is the command Kelvin invokes for every baseline and "
+            "every perturbation. An empty or non-string value would leave "
+            "nothing to execute."
+        ),
+        how_to_fix=(
+            "Set `run:` to a shell-command string with {{input}} and "
+            "{{output}} placeholders. Example: "
+            "`run: python my_pipeline.py {{input}} {{output}}`"
         ),
     ),
 
@@ -137,6 +183,75 @@ CATALOG: dict[str, MessageTemplate] = {
         how_to_fix=(
             "Edit the `run:` line to include both placeholders. Example: "
             "`run: python my_pipeline.py {{input}} {{output}}`"
+        ),
+    ),
+
+    CONFIG_CASES_INVALID: MessageTemplate(
+        id=CONFIG_CASES_INVALID,
+        what="Config `cases:` must be a non-empty path string.",
+        why=(
+            "`cases:` names the directory Kelvin scans for `*.md` case "
+            "files. An empty or non-string value has no meaning."
+        ),
+        how_to_fix=(
+            "Set `cases:` to a directory path (relative to the config "
+            "file's location, or absolute). Example: `cases: ./cases`"
+        ),
+    ),
+
+    CONFIG_DECISION_FIELD_INVALID: MessageTemplate(
+        id=CONFIG_DECISION_FIELD_INVALID,
+        what="Config `decision_field:` must be a non-empty string.",
+        why=(
+            "`decision_field:` names the JSON key Kelvin reads from the "
+            "pipeline output to score. An empty or non-string value would "
+            "make scoring ambiguous."
+        ),
+        how_to_fix=(
+            "Set `decision_field:` to the name of the scalar field your "
+            "pipeline emits. Example: `decision_field: score`"
+        ),
+    ),
+
+    CONFIG_GOVERNING_TYPES_INVALID: MessageTemplate(
+        id=CONFIG_GOVERNING_TYPES_INVALID,
+        what="Config `governing_types:` must be a list of strings.",
+        why=(
+            "`governing_types:` declares which section types drive swap "
+            "perturbations. It must be a list (possibly empty) of "
+            "normalized type names."
+        ),
+        how_to_fix=(
+            "Set `governing_types:` to a YAML list. Example: "
+            "`governing_types: [gate_rule]` or `governing_types: []` to "
+            "skip swap perturbations entirely."
+        ),
+    ),
+
+    CONFIG_SEED_INVALID: MessageTemplate(
+        id=CONFIG_SEED_INVALID,
+        what="Config `seed:` must be an integer.",
+        why=(
+            "`seed:` is the root RNG seed for all perturbation generators. "
+            "Non-integer values break determinism and reproducibility."
+        ),
+        how_to_fix=(
+            "Set `seed:` to an integer (any value; 0 is a reasonable "
+            "default). Example: `seed: 42`"
+        ),
+    ),
+
+    CONFIG_CACHE_DIR_INVALID: MessageTemplate(
+        id=CONFIG_CACHE_DIR_INVALID,
+        what="Config `cache_dir:` must be a non-empty string path, or omitted to disable caching.",
+        why=(
+            "The on-disk invocation cache needs a directory path to write "
+            "into. An empty string or wrong type leaves Kelvin with "
+            "nowhere to store entries."
+        ),
+        how_to_fix=(
+            "Either remove `cache_dir:` to disable the cache, or set it "
+            "to a directory path. Example: `cache_dir: ./kelvin_cache`"
         ),
     ),
 
@@ -227,6 +342,154 @@ CATALOG: dict[str, MessageTemplate] = {
             "declared field. If the decision is nested (e.g. "
             "`report.score`), extract it in a wrapper script before "
             "writing the output JSON."
+        ),
+    ),
+
+    CONFIG_NOISE_FLOOR_NOT_MAPPING: MessageTemplate(
+        id=CONFIG_NOISE_FLOOR_NOT_MAPPING,
+        what="Config `noise_floor:` must be a mapping.",
+        why=(
+            "`noise_floor:` is a block config with nested keys like "
+            "`enabled:` and `replications:`. A scalar or list at that "
+            "position can't carry the required fields."
+        ),
+        how_to_fix=(
+            "Use a nested mapping. Example:\n"
+            "  noise_floor:\n"
+            "    enabled: true\n"
+            "    replications: 10"
+        ),
+    ),
+
+    CONFIG_NOISE_FLOOR_ENABLED_INVALID: MessageTemplate(
+        id=CONFIG_NOISE_FLOOR_ENABLED_INVALID,
+        what="Config `noise_floor.enabled` must be a boolean.",
+        why=(
+            "YAML accepts unquoted strings like `yes`/`no` in some places, "
+            "but Kelvin requires an unambiguous `true` or `false` for "
+            "feature flags so there's no parser-dependent behavior."
+        ),
+        how_to_fix=(
+            "Set `noise_floor.enabled: true` or `noise_floor.enabled: "
+            "false`."
+        ),
+    ),
+
+    CONFIG_NOISE_FLOOR_REPLICATIONS_INVALID: MessageTemplate(
+        id=CONFIG_NOISE_FLOOR_REPLICATIONS_INVALID,
+        what="Config `noise_floor.replications` must be an integer >= 2.",
+        why=(
+            "Noise-floor calibration computes per-case stochasticity from "
+            "pairwise distances across replays. At least 2 replays are "
+            "needed to form a single pair; fewer would produce no noise "
+            "estimate."
+        ),
+        how_to_fix=(
+            "Set `noise_floor.replications:` to an integer >= 2. Default "
+            "is 10. For expensive pipelines, 5 is a reasonable floor."
+        ),
+    ),
+
+    CONFIG_COUNTERFACTUAL_SWAP_NOT_MAPPING: MessageTemplate(
+        id=CONFIG_COUNTERFACTUAL_SWAP_NOT_MAPPING,
+        what="Config `counterfactual_swap:` must be a mapping.",
+        why=(
+            "`counterfactual_swap:` is a block config with at least an "
+            "`enabled:` key. A scalar or list at that position can't "
+            "carry the required fields."
+        ),
+        how_to_fix=(
+            "Use a nested mapping. Example:\n"
+            "  counterfactual_swap:\n"
+            "    enabled: true"
+        ),
+    ),
+
+    CONFIG_COUNTERFACTUAL_SWAP_ENABLED_INVALID: MessageTemplate(
+        id=CONFIG_COUNTERFACTUAL_SWAP_ENABLED_INVALID,
+        what="Config `counterfactual_swap.enabled` must be a boolean.",
+        why=(
+            "Feature flags must be unambiguous `true`/`false` so there's "
+            "no parser-dependent behavior."
+        ),
+        how_to_fix=(
+            "Set `counterfactual_swap.enabled: true` or "
+            "`counterfactual_swap.enabled: false`."
+        ),
+    ),
+
+    CONFIG_INTRA_SLOT_NOT_MAPPING: MessageTemplate(
+        id=CONFIG_INTRA_SLOT_NOT_MAPPING,
+        what="Config `intra_slot:` must be a mapping.",
+        why=(
+            "`intra_slot:` is a block config with nested keys like "
+            "`enabled:`, `enabled_families:`, and "
+            "`governing_sentence_markers:`. A scalar or list at that "
+            "position can't carry the required fields."
+        ),
+        how_to_fix=(
+            "Use a nested mapping. Example:\n"
+            "  intra_slot:\n"
+            "    enabled: true\n"
+            "    enabled_families: [numeric_magnitude]"
+        ),
+    ),
+
+    CONFIG_INTRA_SLOT_ENABLED_INVALID: MessageTemplate(
+        id=CONFIG_INTRA_SLOT_ENABLED_INVALID,
+        what="Config `intra_slot.enabled` must be a boolean.",
+        why=(
+            "The top-level intra-slot kill switch must be unambiguous "
+            "`true`/`false`. Keeping this strict makes the "
+            "v0.2-behavior-on-upgrade guarantee trivially verifiable."
+        ),
+        how_to_fix=(
+            "Set `intra_slot.enabled: true` or `intra_slot.enabled: false`."
+        ),
+    ),
+
+    CONFIG_INTRA_SLOT_FAMILIES_INVALID: MessageTemplate(
+        id=CONFIG_INTRA_SLOT_FAMILIES_INVALID,
+        what="Config `intra_slot.enabled_families` must be a list of strings.",
+        why=(
+            "Each entry names a perturbation family to run. Non-string "
+            "values can't match a known family name."
+        ),
+        how_to_fix=(
+            "Set `intra_slot.enabled_families:` to a YAML list of strings. "
+            "Example: `enabled_families: [numeric_magnitude, "
+            "irrelevant_paragraph_injection]`"
+        ),
+    ),
+
+    CONFIG_INTRA_SLOT_MARKERS_INVALID: MessageTemplate(
+        id=CONFIG_INTRA_SLOT_MARKERS_INVALID,
+        what="Config `intra_slot.governing_sentence_markers` must be a mapping.",
+        why=(
+            "`governing_sentence_markers:` is an optional per-case "
+            "override of the default heuristic (sentences in "
+            "`governing_types` sections = governing). It must be a "
+            "mapping from case names to marker specs."
+        ),
+        how_to_fix=(
+            "Either omit the key to use the default heuristic, or supply "
+            "a mapping. Example:\n"
+            "  governing_sentence_markers:\n"
+            "    envelop: [2, 3]"
+        ),
+    ),
+
+    CONFIG_INTRA_SLOT_WHITELIST_INVALID: MessageTemplate(
+        id=CONFIG_INTRA_SLOT_WHITELIST_INVALID,
+        what="Config `intra_slot.filler_stripping_whitelist` must be a list of strings.",
+        why=(
+            "The whitelist names filler words eligible for stripping "
+            "(opt-in). Only string tokens can match against case text."
+        ),
+        how_to_fix=(
+            "Set it to a YAML list of strings or omit the key entirely. "
+            "Example: `filler_stripping_whitelist: [basically, just, "
+            "honestly]`"
         ),
     ),
 

@@ -6,9 +6,26 @@ import pytest
 
 from kelvin.messages import (
     CATALOG,
+    CONFIG_CACHE_DIR_INVALID,
+    CONFIG_CASES_INVALID,
+    CONFIG_COUNTERFACTUAL_SWAP_ENABLED_INVALID,
+    CONFIG_COUNTERFACTUAL_SWAP_NOT_MAPPING,
+    CONFIG_DECISION_FIELD_INVALID,
     CONFIG_FILE_NOT_FOUND,
+    CONFIG_GOVERNING_TYPES_INVALID,
+    CONFIG_INTRA_SLOT_ENABLED_INVALID,
+    CONFIG_INTRA_SLOT_FAMILIES_INVALID,
+    CONFIG_INTRA_SLOT_MARKERS_INVALID,
+    CONFIG_INTRA_SLOT_NOT_MAPPING,
+    CONFIG_INTRA_SLOT_WHITELIST_INVALID,
     CONFIG_MISSING_KEYS,
+    CONFIG_NOISE_FLOOR_ENABLED_INVALID,
+    CONFIG_NOISE_FLOOR_NOT_MAPPING,
+    CONFIG_NOISE_FLOOR_REPLICATIONS_INVALID,
+    CONFIG_NOT_MAPPING,
+    CONFIG_RUN_INVALID,
     CONFIG_RUN_MISSING_PLACEHOLDERS,
+    CONFIG_SEED_INVALID,
     CONFIG_TIMEOUT_INVALID,
     CONFIG_UNKNOWN_GOVERNING_TYPE,
     CONFIG_YAML_PARSE_ERROR,
@@ -25,19 +42,40 @@ from kelvin.messages import (
 
 
 # ─── Snapshot: lock the set of entry IDs ──────────────────────────────────
-# Commit 1 ships exactly these ten IDs. Adding an entry is intentional and
-# should fail this test until the snapshot is updated in the same commit.
+# Commit 2 expands the catalog to cover all config.py raises. Adding or
+# removing an entry is intentional and must update this snapshot in the
+# same commit. This is the ratchet that keeps the catalog honest.
 
 EXPECTED_ENTRY_IDS: frozenset[str] = frozenset({
+    # config
     "config.file_not_found",
     "config.yaml_parse_error",
+    "config.not_mapping",
     "config.missing_keys",
+    "config.run_invalid",
     "config.run_missing_placeholders",
+    "config.cases_invalid",
+    "config.decision_field_invalid",
+    "config.governing_types_invalid",
+    "config.seed_invalid",
+    "config.cache_dir_invalid",
     "config.timeout_invalid",
     "config.unknown_governing_type",
+    "config.noise_floor_not_mapping",
+    "config.noise_floor_enabled_invalid",
+    "config.noise_floor_replications_invalid",
+    "config.counterfactual_swap_not_mapping",
+    "config.counterfactual_swap_enabled_invalid",
+    "config.intra_slot_not_mapping",
+    "config.intra_slot_enabled_invalid",
+    "config.intra_slot_families_invalid",
+    "config.intra_slot_markers_invalid",
+    "config.intra_slot_whitelist_invalid",
+    # runner
     "runner.timeout",
     "runner.output_not_json",
     "runner.decision_field_missing",
+    # retry
     "retry.transient_detected",
     "retry.giving_up",
 })
@@ -158,10 +196,27 @@ class TestExportedConstantsCoverEveryEntry:
     EXPORTED_IDS = (
         CONFIG_FILE_NOT_FOUND,
         CONFIG_YAML_PARSE_ERROR,
+        CONFIG_NOT_MAPPING,
         CONFIG_MISSING_KEYS,
+        CONFIG_RUN_INVALID,
         CONFIG_RUN_MISSING_PLACEHOLDERS,
+        CONFIG_CASES_INVALID,
+        CONFIG_DECISION_FIELD_INVALID,
+        CONFIG_GOVERNING_TYPES_INVALID,
+        CONFIG_SEED_INVALID,
+        CONFIG_CACHE_DIR_INVALID,
         CONFIG_TIMEOUT_INVALID,
         CONFIG_UNKNOWN_GOVERNING_TYPE,
+        CONFIG_NOISE_FLOOR_NOT_MAPPING,
+        CONFIG_NOISE_FLOOR_ENABLED_INVALID,
+        CONFIG_NOISE_FLOOR_REPLICATIONS_INVALID,
+        CONFIG_COUNTERFACTUAL_SWAP_NOT_MAPPING,
+        CONFIG_COUNTERFACTUAL_SWAP_ENABLED_INVALID,
+        CONFIG_INTRA_SLOT_NOT_MAPPING,
+        CONFIG_INTRA_SLOT_ENABLED_INVALID,
+        CONFIG_INTRA_SLOT_FAMILIES_INVALID,
+        CONFIG_INTRA_SLOT_MARKERS_INVALID,
+        CONFIG_INTRA_SLOT_WHITELIST_INVALID,
         RUNNER_TIMEOUT,
         RUNNER_OUTPUT_NOT_JSON,
         RUNNER_DECISION_FIELD_MISSING,

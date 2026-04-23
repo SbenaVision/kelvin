@@ -4,8 +4,36 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import Any
 
 import yaml
+
+from kelvin.messages import (
+    CONFIG_CACHE_DIR_INVALID,
+    CONFIG_CASES_INVALID,
+    CONFIG_COUNTERFACTUAL_SWAP_ENABLED_INVALID,
+    CONFIG_COUNTERFACTUAL_SWAP_NOT_MAPPING,
+    CONFIG_DECISION_FIELD_INVALID,
+    CONFIG_FILE_NOT_FOUND,
+    CONFIG_GOVERNING_TYPES_INVALID,
+    CONFIG_INTRA_SLOT_ENABLED_INVALID,
+    CONFIG_INTRA_SLOT_FAMILIES_INVALID,
+    CONFIG_INTRA_SLOT_MARKERS_INVALID,
+    CONFIG_INTRA_SLOT_NOT_MAPPING,
+    CONFIG_INTRA_SLOT_WHITELIST_INVALID,
+    CONFIG_MISSING_KEYS,
+    CONFIG_NOISE_FLOOR_ENABLED_INVALID,
+    CONFIG_NOISE_FLOOR_NOT_MAPPING,
+    CONFIG_NOISE_FLOOR_REPLICATIONS_INVALID,
+    CONFIG_NOT_MAPPING,
+    CONFIG_RUN_INVALID,
+    CONFIG_RUN_MISSING_PLACEHOLDERS,
+    CONFIG_SEED_INVALID,
+    CONFIG_TIMEOUT_INVALID,
+    CONFIG_YAML_PARSE_ERROR,
+    FormattedMessage,
+    catalog,
+)
 
 CONFIG_FILENAME = "kelvin.yaml"
 
@@ -45,7 +73,22 @@ class IntraSlotConfig:
 
 
 class ConfigError(ValueError):
-    """Raised when kelvin.yaml is missing, malformed, or has bad values."""
+    """Raised when kelvin.yaml is missing, malformed, or has bad values.
+
+    Accepts either a `FormattedMessage` (preferred — carries the full
+    what/why/how-to-fix triple for terminal + structured rendering) or a
+    plain string (backward-compatible fallback). When constructed with a
+    `FormattedMessage`, the rendered text goes into `str(error)` and the
+    original message is accessible via `error.formatted_message`.
+    """
+
+    def __init__(self, message_or_text: Any, /) -> None:
+        if isinstance(message_or_text, FormattedMessage):
+            self.formatted_message: FormattedMessage | None = message_or_text
+            super().__init__(message_or_text.as_text())
+        else:
+            self.formatted_message = None
+            super().__init__(str(message_or_text))
 
 
 @dataclass
@@ -74,45 +117,47 @@ class KelvinConfig:
     @classmethod
     def load(cls, path: Path) -> KelvinConfig:
         if not path.exists():
-            raise ConfigError(f"{path} not found. Run `kelvin init` first.")
+            raise ConfigError(catalog(CONFIG_FILE_NOT_FOUND, path=path))
         try:
             raw = yaml.safe_load(path.read_text(encoding="utf-8"))
         except yaml.YAMLError as exc:
-            raise ConfigError(f"{path} is not valid YAML: {exc}") from exc
+            raise ConfigError(
+                catalog(CONFIG_YAML_PARSE_ERROR, path=path, detail=exc)
+            ) from exc
         if not isinstance(raw, dict):
-            raise ConfigError(f"{path} must contain a YAML mapping at the top level.")
+            raise ConfigError(catalog(CONFIG_NOT_MAPPING, path=path))
 
         missing = [k for k in REQUIRED_KEYS if k not in raw]
         if missing:
             raise ConfigError(
-                f"{path} is missing required keys: {', '.join(missing)}."
+                catalog(
+                    CONFIG_MISSING_KEYS, path=path, missing=", ".join(missing)
+                )
             )
 
         run = raw["run"]
         if not isinstance(run, str) or not run.strip():
-            raise ConfigError("`run` must be a non-empty string shell-command template.")
+            raise ConfigError(catalog(CONFIG_RUN_INVALID))
         if "{input}" not in run or "{output}" not in run:
-            raise ConfigError(
-                "`run` must contain both `{input}` and `{output}` placeholders."
-            )
+            raise ConfigError(catalog(CONFIG_RUN_MISSING_PLACEHOLDERS))
 
         cases_value = raw["cases"]
         if not isinstance(cases_value, str) or not cases_value.strip():
-            raise ConfigError("`cases` must be a non-empty path string.")
+            raise ConfigError(catalog(CONFIG_CASES_INVALID))
 
         decision_field = raw["decision_field"]
         if not isinstance(decision_field, str) or not decision_field.strip():
-            raise ConfigError("`decision_field` must be a non-empty string.")
+            raise ConfigError(catalog(CONFIG_DECISION_FIELD_INVALID))
 
         governing_types = raw["governing_types"]
         if not isinstance(governing_types, list) or not all(
             isinstance(t, str) for t in governing_types
         ):
-            raise ConfigError("`governing_types` must be a list of strings.")
+            raise ConfigError(catalog(CONFIG_GOVERNING_TYPES_INVALID))
 
         seed = raw.get("seed", 0)
         if not isinstance(seed, int):
-            raise ConfigError("`seed` must be an integer.")
+            raise ConfigError(catalog(CONFIG_SEED_INVALID))
 
         cache_raw = raw.get("cache_dir", None)
         cache_dir: Path | None
@@ -121,13 +166,11 @@ class KelvinConfig:
         elif isinstance(cache_raw, str) and cache_raw.strip():
             cache_dir = Path(cache_raw)
         else:
-            raise ConfigError(
-                "`cache_dir` must be a non-empty string path, or omitted to disable."
-            )
+            raise ConfigError(catalog(CONFIG_CACHE_DIR_INVALID))
 
         timeout_s = raw.get("timeout_s", _DEFAULT_TIMEOUT_S)
         if not isinstance(timeout_s, int) or isinstance(timeout_s, bool) or timeout_s <= 0:
-            raise ConfigError("`timeout_s` must be a positive integer.")
+            raise ConfigError(catalog(CONFIG_TIMEOUT_INVALID, value=timeout_s))
 
         noise_floor = _load_noise_floor(raw.get("noise_floor"))
         counterfactual_swap = _load_counterfactual_swap(raw.get("counterfactual_swap"))
@@ -193,13 +236,13 @@ def _load_noise_floor(raw) -> NoiseFloorConfig:
     if raw is None:
         return NoiseFloorConfig()
     if not isinstance(raw, dict):
-        raise ConfigError("`noise_floor` must be a mapping.")
+        raise ConfigError(catalog(CONFIG_NOISE_FLOOR_NOT_MAPPING))
     enabled = raw.get("enabled", False)
     if not isinstance(enabled, bool):
-        raise ConfigError("`noise_floor.enabled` must be a boolean.")
+        raise ConfigError(catalog(CONFIG_NOISE_FLOOR_ENABLED_INVALID))
     replications = raw.get("replications", 10)
     if not isinstance(replications, int) or isinstance(replications, bool) or replications < 2:
-        raise ConfigError("`noise_floor.replications` must be an integer >= 2.")
+        raise ConfigError(catalog(CONFIG_NOISE_FLOOR_REPLICATIONS_INVALID))
     return NoiseFloorConfig(enabled=enabled, replications=replications)
 
 
@@ -207,10 +250,10 @@ def _load_counterfactual_swap(raw) -> CounterfactualSwapConfig:
     if raw is None:
         return CounterfactualSwapConfig()
     if not isinstance(raw, dict):
-        raise ConfigError("`counterfactual_swap` must be a mapping.")
+        raise ConfigError(catalog(CONFIG_COUNTERFACTUAL_SWAP_NOT_MAPPING))
     enabled = raw.get("enabled", False)
     if not isinstance(enabled, bool):
-        raise ConfigError("`counterfactual_swap.enabled` must be a boolean.")
+        raise ConfigError(catalog(CONFIG_COUNTERFACTUAL_SWAP_ENABLED_INVALID))
     return CounterfactualSwapConfig(enabled=enabled)
 
 
@@ -218,21 +261,19 @@ def _load_intra_slot(raw) -> IntraSlotConfig:
     if raw is None:
         return IntraSlotConfig()
     if not isinstance(raw, dict):
-        raise ConfigError("`intra_slot` must be a mapping.")
+        raise ConfigError(catalog(CONFIG_INTRA_SLOT_NOT_MAPPING))
     enabled = raw.get("enabled", False)
     if not isinstance(enabled, bool):
-        raise ConfigError("`intra_slot.enabled` must be a boolean.")
+        raise ConfigError(catalog(CONFIG_INTRA_SLOT_ENABLED_INVALID))
     families = raw.get("enabled_families", [])
     if not isinstance(families, list) or not all(isinstance(f, str) for f in families):
-        raise ConfigError("`intra_slot.enabled_families` must be a list of strings.")
+        raise ConfigError(catalog(CONFIG_INTRA_SLOT_FAMILIES_INVALID))
     markers = raw.get("governing_sentence_markers", {})
     if not isinstance(markers, dict):
-        raise ConfigError("`intra_slot.governing_sentence_markers` must be a mapping.")
+        raise ConfigError(catalog(CONFIG_INTRA_SLOT_MARKERS_INVALID))
     whitelist = raw.get("filler_stripping_whitelist", [])
     if not isinstance(whitelist, list) or not all(isinstance(w, str) for w in whitelist):
-        raise ConfigError(
-            "`intra_slot.filler_stripping_whitelist` must be a list of strings."
-        )
+        raise ConfigError(catalog(CONFIG_INTRA_SLOT_WHITELIST_INVALID))
     return IntraSlotConfig(
         enabled=enabled,
         enabled_families=list(families),
