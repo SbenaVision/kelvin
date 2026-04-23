@@ -40,6 +40,7 @@ from kelvin.messages import (
     CONFIG_TIMEOUT_INVALID,
     CONFIG_UNKNOWN_GOVERNING_TYPE,
     CONFIG_YAML_PARSE_ERROR,
+    DRY_RUN_SKIPPED_INVOCATION,
     RETRY_GIVING_UP,
     RETRY_TRANSIENT_DETECTED,
     RUNNER_DECISION_FIELD_MISSING,
@@ -114,6 +115,8 @@ EXPECTED_ENTRY_IDS: frozenset[str] = frozenset({
     # retry
     "retry.transient_detected",
     "retry.giving_up",
+    # dry-run
+    "dry_run.skipped_invocation",
 })
 
 
@@ -275,6 +278,7 @@ class TestExportedConstantsCoverEveryEntry:
         SCORER_NON_SCALAR_DECISION_FIELD,
         RETRY_TRANSIENT_DETECTED,
         RETRY_GIVING_UP,
+        DRY_RUN_SKIPPED_INVOCATION,
     )
 
     def test_every_exported_id_has_catalog_entry(self) -> None:

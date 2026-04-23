@@ -52,6 +52,13 @@ def check(
         help="Output format for progress events: 'text' (default) or 'json' "
         "(one JSON record per line with ts/level/event/fields).",
     ),
+    dry_run: bool = typer.Option(
+        False,
+        "--dry-run",
+        help="Generate perturbation inputs and write reports without "
+        "invoking the pipeline. No subprocesses spawn; no output JSON "
+        "produced. --confirm is bypassed when --dry-run is active.",
+    ),
 ) -> None:
     """Run perturbations, score outputs, write report.json files.
 
@@ -82,6 +89,7 @@ def check(
             logger=logger,
             confirm_before_phase2=confirm,
             auto_accept=yes,
+            dry_run=dry_run,
         )
     except CheckError as exc:
         typer.echo(f"Error: {exc}", err=True)

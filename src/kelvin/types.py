@@ -90,6 +90,10 @@ class CaseScores:
     baseline_ok: bool = True
     baseline_error: str | None = None
     baseline_decision: Any = None
+    # Dry-run: perturbation inputs were generated but the pipeline was
+    # never invoked. baseline_ok stays False (no decision value produced)
+    # but this flag distinguishes dry-run from real failures.
+    dry_run: bool = False
     warnings: list[str] = field(default_factory=list)
     caps: list[str] = field(default_factory=list)
 
@@ -130,5 +134,9 @@ class RunScores:
     # run (no peers). Surfaced in the report and as a terminal banner so
     # users don't silently get a partial run.
     single_case_run: bool = False
+    # True when the run was invoked with --dry-run: perturbation inputs
+    # are generated but the pipeline is never invoked. All distances are
+    # null; scores are informational only.
+    dry_run: bool = False
     warnings: list[str] = field(default_factory=list)
     caps: list[str] = field(default_factory=list)

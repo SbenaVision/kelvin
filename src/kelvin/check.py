@@ -39,6 +39,7 @@ from kelvin.messages import (
     CHECK_UNKNOWN_CASE,
     CHECK_USER_ABORTED,
     CONFIG_UNKNOWN_GOVERNING_TYPE,
+    DRY_RUN_SKIPPED_INVOCATION,
     FormattedMessage,
     catalog,
 )
@@ -128,6 +129,7 @@ def run_check(
     logger: EventLogger | None = None,
     confirm_before_phase2: bool = False,
     auto_accept: bool = False,
+    dry_run: bool = False,
 ) -> RunScores:
     """Run `kelvin check` end-to-end.
 
@@ -182,7 +184,7 @@ def run_check(
 
     active_scorer: Scorer = scorer or DefaultScorer()
 
-    # Phase 1 — baselines
+    # Phase 1 — baselines (or dry-run planning when dry_run=True)
     phase1_start = time.monotonic()
     case_scores, _decision_validated = _run_baselines(
         cases_to_run=cases_to_run,
@@ -190,6 +192,7 @@ def run_check(
         cwd=cwd,
         logger=logger,
         cache_dir=cache_dir,
+        dry_run=dry_run,
     )
     phase1_elapsed_s = time.monotonic() - phase1_start
     if cache_dir is not None:
@@ -202,7 +205,10 @@ def run_check(
         phase1_elapsed_s=phase1_elapsed_s, logger=logger,
     )
 
-    if not any(c.baseline_ok for c in case_scores):
+    # In dry-run, every baseline skips invoke by design, so baseline_ok is
+    # universally False. Suppress the "all baselines failed" abort path
+    # since it means something different here.
+    if not dry_run and not any(c.baseline_ok for c in case_scores):
         # Every case's baseline failed. Write what we have and bail.
         _write_per_case_reports(case_scores, cwd, cfg)
         run_scores = aggregate(
@@ -217,8 +223,9 @@ def run_check(
         raise AbortRun(catalog(CHECK_ALL_BASELINES_FAILED))
 
     # Forecast prompt: opt-in via `confirm_before_phase2`. When the prompt
-    # is active, --yes and non-TTY stdin both bypass (CI-safe).
-    if confirm_before_phase2 and forecast is not None:
+    # is active, --yes and non-TTY stdin both bypass (CI-safe). Dry-run
+    # bypasses the prompt entirely — no spend, no live invocations.
+    if confirm_before_phase2 and forecast is not None and not dry_run:
         if not _accept_forecast(auto_accept=auto_accept):
             _write_per_case_reports(case_scores, cwd, cfg)
             run_scores = aggregate(
@@ -232,9 +239,10 @@ def run_check(
             _write_run_report(run_scores, cwd, cfg, only=only)
             raise AbortRun(catalog(CHECK_USER_ABORTED))
 
-    # Phase 2 — perturbations for cases with successful baselines
+    # Phase 2 — perturbations. In dry-run, every case participates; in a
+    # real run, cases whose baseline failed are skipped.
     for case, scores in zip(cases_to_run, case_scores, strict=True):
-        if not scores.baseline_ok:
+        if not scores.baseline_ok and not dry_run:
             continue
         _run_perturbations_for_case(
             case=case,
@@ -247,6 +255,7 @@ def run_check(
             scorer=active_scorer,
             logger=logger,
             cache_dir=cache_dir,
+            dry_run=dry_run,
         )
 
     # Write per-case reports, aggregate, write run report.
@@ -258,6 +267,7 @@ def run_check(
         run_warnings=run_warnings,
         run_caps=[],
         single_case_run=single_case_run,
+        dry_run=dry_run,
     )
     _write_run_report(run_scores, cwd, cfg, only=only)
     render_terminal(
@@ -309,6 +319,7 @@ def _run_baselines(
     cwd: Path,
     logger: EventLogger,
     cache_dir: Path | None = None,
+    dry_run: bool = False,
 ) -> tuple[list[CaseScores], bool]:
     case_scores: list[CaseScores] = []
     decision_validated = False
@@ -320,6 +331,28 @@ def _run_baselines(
         input_path.write_text(
             render_case(case.preamble, case.units), encoding="utf-8"
         )
+
+        if dry_run:
+            # Skip invoke entirely. Record the skip for the log and the
+            # per-case report; no subprocess is spawned.
+            logger.info(
+                "dry_run_skipped_invocation",
+                text=catalog(
+                    DRY_RUN_SKIPPED_INVOCATION,
+                    context=f"{case.name}/baseline",
+                ).what,
+                case=case.name,
+                kind="baseline",
+            )
+            case_scores.append(
+                CaseScores(
+                    case_name=case.name,
+                    baseline_ok=False,
+                    baseline_error=None,
+                    dry_run=True,
+                )
+            )
+            continue
 
         result = invoke(
             cfg.run,
@@ -399,6 +432,7 @@ def _run_perturbations_for_case(
     scorer: Scorer,
     logger: EventLogger,
     cache_dir: Path | None = None,
+    dry_run: bool = False,
 ) -> None:
     work_items: list[tuple[Any, Path, Path]] = []
     for gen in generators:
@@ -417,6 +451,34 @@ def _run_perturbations_for_case(
             output_path = vdir / "output.json"
             input_path.write_text(perturbation.rendered_markdown, encoding="utf-8")
             work_items.append((perturbation, input_path, output_path))
+
+    if dry_run:
+        # Skip invoke entirely. Build "skipped" ScoredPerturbation entries
+        # so the per-case report still lists every variant — but no
+        # subprocess is spawned and no output.json is written.
+        for perturbation, input_path, output_path in work_items:
+            logger.info(
+                "dry_run_skipped_invocation",
+                text=catalog(
+                    DRY_RUN_SKIPPED_INVOCATION,
+                    context=f"{case.name}/{perturbation.variant_id}",
+                ).what,
+                case=case.name,
+                variant_id=perturbation.variant_id,
+                kind=perturbation.kind,
+            )
+            sp = ScoredPerturbation(
+                perturbation=perturbation,
+                invocation=InvocationResult(
+                    ok=False,
+                    exit_code=None,
+                    input_path=input_path,
+                    output_path=output_path,
+                ),
+                distance=None,
+            )
+            _dispatch_scored(sp, scores)
+        return
 
     with ThreadPoolExecutor(max_workers=2) as executor:
         future_map = {
@@ -646,7 +708,7 @@ def _write_per_case_reports(
 
 
 def _case_report_dict(scores: CaseScores, *, decision_field: str) -> dict:
-    return {
+    payload: dict[str, Any] = {
         "schema_version": 1,
         "case": scores.case_name,
         "baseline": {
@@ -682,6 +744,11 @@ def _case_report_dict(scores: CaseScores, *, decision_field: str) -> dict:
         "warnings": list(scores.warnings),
         "caps": list(scores.caps),
     }
+    # Emit `dry_run: true` only when set — non-dry runs produce the same
+    # bytes as v0.2, preserving the regression harness.
+    if scores.dry_run:
+        payload["dry_run"] = True
+    return payload
 
 
 def _scored_dict(sp: ScoredPerturbation) -> dict:
@@ -705,7 +772,7 @@ def _write_run_report(
     run_scores: RunScores, cwd: Path, cfg: KelvinConfig, *, only: str | None
 ) -> None:
     rdir = fs.ensure(fs.run_root(cwd))
-    payload = {
+    payload: dict[str, Any] = {
         "schema_version": 1,
         "seed": run_scores.seed,
         "only": only,
@@ -717,7 +784,10 @@ def _write_run_report(
             "baseline_failed": [
                 {"case": c.case_name, "error": c.baseline_error}
                 for c in run_scores.cases
-                if not c.baseline_ok
+                # Exclude dry-run cases: they didn't fail, they were
+                # skipped by design. The top-level `dry_run` marker below
+                # signals the run type.
+                if not c.baseline_ok and not c.dry_run
             ],
         },
         "invariance": run_scores.invariance,
@@ -733,6 +803,10 @@ def _write_run_report(
         "warnings": list(run_scores.warnings),
         "caps": list(run_scores.caps),
     }
+    # Emit `dry_run: true` only when set — non-dry runs produce the same
+    # bytes as v0.2, preserving the regression harness.
+    if run_scores.dry_run:
+        payload["dry_run"] = True
     (rdir / "report.json").write_text(
         json.dumps(payload, indent=2, default=_json_default),
         encoding="utf-8",

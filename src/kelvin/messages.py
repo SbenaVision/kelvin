@@ -72,6 +72,8 @@ CONFIG_RETRY_POLICY_RETRY_ON_TIMEOUT_INVALID = "config.retry_policy_retry_on_tim
 RETRY_TRANSIENT_DETECTED = "retry.transient_detected"
 RETRY_GIVING_UP = "retry.giving_up"
 
+DRY_RUN_SKIPPED_INVOCATION = "dry_run.skipped_invocation"
+
 
 @dataclass(frozen=True)
 class MessageTemplate:
@@ -785,6 +787,21 @@ CATALOG: dict[str, MessageTemplate] = {
             "If this fires frequently, the upstream service may be "
             "unhealthy — inspect stderr tail. To disable retry, clear "
             "`retry_policy.transient_exit_codes:` in kelvin.yaml."
+        ),
+    ),
+
+    DRY_RUN_SKIPPED_INVOCATION: MessageTemplate(
+        id=DRY_RUN_SKIPPED_INVOCATION,
+        what="dry-run: skipped invocation for {context}.",
+        why=(
+            "--dry-run generates perturbation inputs and writes reports "
+            "without calling the pipeline. No subprocess is spawned and no "
+            "output JSON is produced for this variant."
+        ),
+        how_to_fix=(
+            "To actually invoke the pipeline, re-run without --dry-run. "
+            "The generated inputs under kelvin/ can be inspected or fed "
+            "to a different tool."
         ),
     ),
 
