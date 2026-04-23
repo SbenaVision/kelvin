@@ -1,3 +1,3 @@
-"""Kelvin — an unsupervised correctness signal for RAG pipelines."""
+"""Kelvin — an evidence-tracking diagnostic for structured-decision RAG."""
 
-__version__ = "0.1.0"
+__version__ = "0.2.1"
