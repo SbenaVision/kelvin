@@ -16,13 +16,35 @@ from __future__ import annotations
 import contextlib
 import hashlib
 import json
+import random
 import shlex
 import subprocess
+import sys
+import time
 from pathlib import Path
 
+from kelvin.event_log import EventLogger
+from kelvin.messages import (
+    RETRY_GIVING_UP,
+    RETRY_TRANSIENT_DETECTED,
+    RUNNER_DECISION_FIELD_MISSING,
+    RUNNER_EXIT_NONZERO,
+    RUNNER_OUTPUT_MISSING,
+    RUNNER_OUTPUT_NOT_JSON,
+    RUNNER_OUTPUT_NOT_MAPPING,
+    RUNNER_OUTPUT_UNREADABLE,
+    RUNNER_TIMEOUT,
+    catalog,
+)
+from kelvin.retry import DEFAULT as DEFAULT_RETRY_POLICY
+from kelvin.retry import RetryPolicy
 from kelvin.types import InvocationResult
 
 _STDERR_TAIL_LINES = 20
+# Cache entry schema version. Pinned at 1 for v0.2 compatibility; bump when
+# a v0.3 pillar extends the cached payload (e.g. noise-floor replays, family
+# identifiers). Bumping invalidates all prior entries cleanly (miss, not
+# crash) — reader in `_cache_lookup` rejects mismatched versions.
 _CACHE_SCHEMA_VERSION = 1
 
 
@@ -34,6 +56,9 @@ def invoke(
     *,
     timeout_s: float | None = None,
     cache_dir: Path | None = None,
+    retry_policy: RetryPolicy | None = None,
+    rng: random.Random | None = None,
+    logger: EventLogger | None = None,
 ) -> InvocationResult:
     """Invoke the pipeline once. Returns an `InvocationResult`.
 
@@ -43,6 +68,12 @@ def invoke(
     parsed output so downstream inspection (diffs, reports) still works.
     Failures are never cached — transient upstream errors should be allowed
     to retry freely on the next run.
+
+    If `retry_policy` is set (or implied via a non-empty
+    `transient_exit_codes` / `retry_on_timeout`), transient failures are
+    retried with exponential backoff + jitter. The default policy
+    (`RetryPolicy()`) performs no retries — v0.2-byte-compat behavior.
+    Retry progress messages go to stderr so stdout stays parseable.
     """
     # Cache lookup. Computed once and reused for the cache-store at the end.
     cache_key: str | None = None
@@ -57,6 +88,77 @@ def invoke(
             if cached is not None:
                 return cached
 
+    policy = retry_policy if retry_policy is not None else DEFAULT_RETRY_POLICY
+    context = str(input_path)
+
+    was_retry = False
+    result: InvocationResult | None = None
+    for attempt in range(1, policy.max_attempts + 1):
+        result = _attempt_once(
+            run_template,
+            input_path,
+            output_path,
+            decision_field,
+            timeout_s=timeout_s,
+        )
+
+        if result.ok:
+            break
+
+        timed_out = result.exit_code is None
+        if policy.should_retry(
+            attempt=attempt,
+            exit_code=result.exit_code,
+            timed_out=timed_out,
+        ):
+            was_retry = True
+            next_delay = policy.delay_for(attempt + 1, rng=rng)
+            _emit_retry_detected(
+                attempt=attempt,
+                max_attempts=policy.max_attempts,
+                delay_s=next_delay,
+                exit_code=result.exit_code if result.exit_code is not None else -1,
+                context=context,
+                logger=logger,
+            )
+            time.sleep(next_delay)
+            continue
+
+        # No retry — either permanent failure or attempts exhausted.
+        if was_retry:
+            _emit_giving_up(attempts=attempt, context=context, logger=logger)
+        break
+
+    assert result is not None  # loop always runs at least once
+    if result.ok and cache_dir is not None and cache_key is not None:
+        # Don't fail the run because the cache is read-only or full.
+        with contextlib.suppress(OSError):
+            _cache_store(cache_dir, cache_key, result)
+
+    return result
+
+
+def _tail(text: str | None) -> str | None:
+    if not text:
+        return None
+    lines = text.splitlines()
+    if not lines:
+        return None
+    return "\n".join(lines[-_STDERR_TAIL_LINES:])
+
+
+# ─── Single-attempt body ──────────────────────────────────────────────────
+
+
+def _attempt_once(
+    run_template: str,
+    input_path: Path,
+    output_path: Path,
+    decision_field: str,
+    *,
+    timeout_s: float | None,
+) -> InvocationResult:
+    """Run the pipeline exactly once. The retry loop in `invoke()` calls this."""
     command = run_template.format(
         input=shlex.quote(str(input_path)),
         output=shlex.quote(str(output_path)),
@@ -77,7 +179,7 @@ def invoke(
             exit_code=None,
             input_path=input_path,
             output_path=output_path,
-            error=f"pipeline timed out after {timeout_s}s",
+            error=catalog(RUNNER_TIMEOUT, timeout_s=timeout_s).what,
         )
 
     stderr_tail = _tail(proc.stderr)
@@ -88,7 +190,7 @@ def invoke(
             exit_code=proc.returncode,
             input_path=input_path,
             output_path=output_path,
-            error=f"non-zero exit ({proc.returncode})",
+            error=catalog(RUNNER_EXIT_NONZERO, exit_code=proc.returncode).what,
             stderr_tail=stderr_tail,
         )
 
@@ -98,7 +200,7 @@ def invoke(
             exit_code=proc.returncode,
             input_path=input_path,
             output_path=output_path,
-            error="output file not created",
+            error=catalog(RUNNER_OUTPUT_MISSING).what,
             stderr_tail=stderr_tail,
         )
 
@@ -110,19 +212,20 @@ def invoke(
             exit_code=proc.returncode,
             input_path=input_path,
             output_path=output_path,
-            error=f"output file unreadable: {exc}",
+            error=catalog(RUNNER_OUTPUT_UNREADABLE, detail=exc).what,
             stderr_tail=stderr_tail,
         )
 
     try:
         parsed = json.loads(raw)
     except json.JSONDecodeError as exc:
+        detail = f"{exc.msg} at line {exc.lineno}"
         return InvocationResult(
             ok=False,
             exit_code=proc.returncode,
             input_path=input_path,
             output_path=output_path,
-            error=f"output is not valid JSON: {exc.msg} at line {exc.lineno}",
+            error=catalog(RUNNER_OUTPUT_NOT_JSON, detail=detail).what,
             stderr_tail=stderr_tail,
         )
 
@@ -132,10 +235,9 @@ def invoke(
             exit_code=proc.returncode,
             input_path=input_path,
             output_path=output_path,
-            error=(
-                f"output JSON must be a mapping at the top level; "
-                f"got {type(parsed).__name__}"
-            ),
+            error=catalog(
+                RUNNER_OUTPUT_NOT_MAPPING, actual_type=type(parsed).__name__
+            ).what,
             stderr_tail=stderr_tail,
         )
 
@@ -147,14 +249,13 @@ def invoke(
             input_path=input_path,
             output_path=output_path,
             parsed_output=parsed,
-            error=(
-                f"decision field '{decision_field}' missing from output; "
-                f"actual keys: {actual}"
-            ),
+            error=catalog(
+                RUNNER_DECISION_FIELD_MISSING, field=decision_field, actual=actual
+            ).what,
             stderr_tail=stderr_tail,
         )
 
-    result = InvocationResult(
+    return InvocationResult(
         ok=True,
         exit_code=proc.returncode,
         input_path=input_path,
@@ -163,21 +264,58 @@ def invoke(
         decision_value=parsed[decision_field],
     )
 
-    if cache_dir is not None and cache_key is not None:
-        # Don't fail the run because the cache is read-only or full.
-        with contextlib.suppress(OSError):
-            _cache_store(cache_dir, cache_key, result)
 
-    return result
+# ─── Retry event emission ─────────────────────────────────────────────────
+# Retry progress messages go to stderr only so stdout stays parseable for
+# report writers. Each message is a single line (the catalog entry's `what`
+# field); full why/how-to-fix rendering is available via catalog lookup.
 
 
-def _tail(text: str | None) -> str | None:
-    if not text:
-        return None
-    lines = text.splitlines()
-    if not lines:
-        return None
-    return "\n".join(lines[-_STDERR_TAIL_LINES:])
+def _emit_retry_detected(
+    *,
+    attempt: int,
+    max_attempts: int,
+    delay_s: float,
+    exit_code: int,
+    context: str,
+    logger: EventLogger | None,
+) -> None:
+    msg = catalog(
+        RETRY_TRANSIENT_DETECTED,
+        attempt=attempt,
+        max_attempts=max_attempts,
+        delay_s=delay_s,
+        exit_code=exit_code,
+        context=context,
+    )
+    if logger is not None:
+        logger.warn(
+            "retry_detected",
+            text=msg.what,
+            attempt=attempt,
+            max_attempts=max_attempts,
+            delay_s=delay_s,
+            exit_code=exit_code,
+            context=context,
+        )
+    else:
+        # v0.2-compat fallback: direct stderr print (no logger attached).
+        print(msg.what, file=sys.stderr)
+
+
+def _emit_giving_up(
+    *, attempts: int, context: str, logger: EventLogger | None
+) -> None:
+    msg = catalog(RETRY_GIVING_UP, attempts=attempts, context=context)
+    if logger is not None:
+        logger.warn(
+            "retry_giving_up",
+            text=msg.what,
+            attempts=attempts,
+            context=context,
+        )
+    else:
+        print(msg.what, file=sys.stderr)
 
 
 # ─── On-disk invocation cache ──────────────────────────────────────────────

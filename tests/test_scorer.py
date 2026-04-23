@@ -269,3 +269,82 @@ class TestKelvinScore:
     def test_none_when_no_cases(self) -> None:
         rs = aggregate([], seed=0, governing_types=["gate_rule"])
         assert rs.kelvin_score is None
+
+
+class TestInvariancePoolComposition:
+    """Invariance aggregates across reorder + pad_length + pad_content uniformly."""
+
+    def test_pad_length_contributes_to_invariance(self) -> None:
+        c = CaseScores(
+            case_name="a",
+            pad_length=[_sp("pad_length", 0.4), _sp("pad_length", 0.2)],
+        )
+        rs = aggregate([c], seed=0, governing_types=[])
+        assert rs.invariance == pytest.approx(1 - 0.3)
+        assert rs.invariance_sample == 2
+
+    def test_all_three_families_pooled_uniformly(self) -> None:
+        c = CaseScores(
+            case_name="a",
+            reorder=[_sp("reorder", 0.0)],
+            pad_length=[_sp("pad_length", 0.5)],
+            pad_content=[_sp("pad_content", 1.0)],
+        )
+        rs = aggregate([c], seed=0, governing_types=[])
+        assert rs.invariance == pytest.approx(1 - 0.5)
+        assert rs.invariance_sample == 3
+
+
+class TestScalarDistanceEdgeCases:
+    def setup_method(self) -> None:
+        self.s = DefaultScorer()
+
+    def test_zero_baseline_bounded_by_denom_floor(self) -> None:
+        # |0 - 0.3| / max(0, 0.3, 1.0) = 0.3
+        assert self.s.distance(0, 0.3) == pytest.approx(0.3)
+
+    def test_both_zero_is_equal(self) -> None:
+        assert self.s.distance(0, 0) == 0.0
+
+    def test_tiny_floats_use_denom_floor(self) -> None:
+        # Both values < 1.0 — denom clamps to 1.0 so distances stay bounded.
+        assert self.s.distance(0.001, 0.002) == pytest.approx(0.001)
+
+
+class TestDecisionFieldTypeErrorStructuredMessage:
+    """DecisionFieldTypeError raised via catalog() carries the
+    FormattedMessage so structured log consumers can render all three
+    fields. Raising with a plain string still works (back-compat)."""
+
+    def test_catalog_raise_carries_formatted_message(self) -> None:
+        from kelvin.messages import FormattedMessage
+        s = DefaultScorer()
+        with pytest.raises(DecisionFieldTypeError) as exc:
+            s.distance([1, 2], "x")
+        assert isinstance(exc.value.formatted_message, FormattedMessage)
+        assert exc.value.formatted_message.id == "scorer.non_scalar_decision"
+
+    def test_validate_scalar_catalog_raise_carries_formatted_message(self) -> None:
+        from kelvin.messages import FormattedMessage
+        with pytest.raises(DecisionFieldTypeError) as exc:
+            validate_scalar([1, 2], "rec")
+        assert isinstance(exc.value.formatted_message, FormattedMessage)
+        assert exc.value.formatted_message.id == "scorer.non_scalar_decision_field"
+        # Preserves the field_name and actual_type in the message.
+        assert "rec" in str(exc.value)
+        assert "list" in str(exc.value)
+
+    def test_plain_string_fallback_still_accepted(self) -> None:
+        err = DecisionFieldTypeError("raw")
+        assert err.formatted_message is None
+        assert str(err) == "raw"
+
+
+class TestPerTypeSensitivityEdgeCases:
+    def test_type_with_only_failed_swaps_yields_zero_mean_zero_sample(self) -> None:
+        c = CaseScores(
+            case_name="a",
+            swaps_by_type={"gate_rule": [_sp("swap", None)]},
+        )
+        rs = aggregate([c], seed=0, governing_types=["gate_rule"])
+        assert rs.sensitivity_by_type["gate_rule"] == (0.0, 0)

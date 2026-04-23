@@ -23,6 +23,7 @@ under `./kelvin/` to review signal.
 from __future__ import annotations
 
 import json
+import sys
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import asdict
@@ -31,6 +32,17 @@ from typing import Any
 
 from kelvin import fs
 from kelvin.config import CONFIG_FILENAME, KelvinConfig
+from kelvin.event_log import EventLogger, text_logger_for
+from kelvin.messages import (
+    CHECK_ALL_BASELINES_FAILED,
+    CHECK_NO_CASES,
+    CHECK_UNKNOWN_CASE,
+    CHECK_USER_ABORTED,
+    CONFIG_UNKNOWN_GOVERNING_TYPE,
+    DRY_RUN_SKIPPED_INVOCATION,
+    FormattedMessage,
+    catalog,
+)
 from kelvin.parser import load_cases, render_case
 from kelvin.perturbations import PerturbationGenerator
 from kelvin.perturbations.pad import PadContentGenerator
@@ -57,11 +69,34 @@ from kelvin.types import (
 
 
 class CheckError(Exception):
-    """Raised for run-aborting errors (bad config, missing cases, etc.)."""
+    """Raised for run-aborting errors (bad config, missing cases, etc.).
+
+    Accepts either a `FormattedMessage` (preferred — carries the full
+    what/why/how-to-fix triple) or a plain string for back-compat.
+    """
+
+    def __init__(self, message_or_text: Any, /) -> None:
+        if isinstance(message_or_text, FormattedMessage):
+            self.formatted_message: FormattedMessage | None = message_or_text
+            super().__init__(message_or_text.as_text())
+        else:
+            self.formatted_message = None
+            super().__init__(str(message_or_text))
 
 
 class AbortRun(Exception):
-    """Raised mid-run to abort — bad decision field, non-scalar, etc."""
+    """Raised mid-run to abort — bad decision field, non-scalar, etc.
+
+    Accepts either a `FormattedMessage` (preferred) or a plain string.
+    """
+
+    def __init__(self, message_or_text: Any, /) -> None:
+        if isinstance(message_or_text, FormattedMessage):
+            self.formatted_message: FormattedMessage | None = message_or_text
+            super().__init__(message_or_text.as_text())
+        else:
+            self.formatted_message = None
+            super().__init__(str(message_or_text))
 
 
 DEFAULT_GENERATORS: tuple[PerturbationGenerator, ...] = (
@@ -91,6 +126,10 @@ def run_check(
     scorer: Scorer | None = None,
     generators: tuple[PerturbationGenerator, ...] = DEFAULT_GENERATORS,
     echo: Any = print,
+    logger: EventLogger | None = None,
+    confirm_before_phase2: bool = False,
+    auto_accept: bool = False,
+    dry_run: bool = False,
 ) -> RunScores:
     """Run `kelvin check` end-to-end.
 
@@ -102,6 +141,11 @@ def run_check(
         AbortRun    — bad decision field on the first successful baseline.
     """
     _start = time.monotonic()
+    # If caller didn't supply a structured logger, wrap the `echo` callable
+    # so legacy consumers (tests using list.append, typer.echo) keep working
+    # without change.
+    if logger is None:
+        logger = text_logger_for(echo)
     cfg = _load_config(cwd)
     effective_seed = seed_override if seed_override is not None else cfg.seed
 
@@ -109,15 +153,22 @@ def run_check(
     cache_dir = _resolve_cache_dir(cfg, cwd)
     all_cases = load_cases(cases_dir)
     if not all_cases:
-        raise CheckError(
-            f"No cases found in {cases_dir}. Add one or more `*.md` files."
-        )
+        raise CheckError(catalog(CHECK_NO_CASES, cases_dir=cases_dir))
+
+    logger.info(
+        "config_loaded",
+        cases_dir=str(cases_dir),
+        n_cases=len(all_cases),
+        decision_field=cfg.decision_field,
+        governing_types=list(cfg.governing_types),
+        seed=effective_seed,
+    )
 
     # Footgun: declared governing_types must match at least one discovered unit
     # type, otherwise swap generates nothing silently. Also surface normalized
     # type discovery so users catch `## Gate Rule` -> gate_rule surprises.
     _validate_governing_types(all_cases, cfg.governing_types)
-    _echo_discovered_types(all_cases, echo)
+    _echo_discovered_types(all_cases, logger)
 
     cases_to_run = _filter_cases(all_cases, only=only)
 
@@ -129,31 +180,35 @@ def run_check(
             "(no peers). reorder and pad_length still run."
         )
         run_warnings.append(msg)
-        echo(f"\u26a0  {msg}")
+        logger.info("single_case_run", text=f"\u26a0  {msg}", n_cases=1)
 
     active_scorer: Scorer = scorer or DefaultScorer()
 
-    # Phase 1 — baselines
+    # Phase 1 — baselines (or dry-run planning when dry_run=True)
     phase1_start = time.monotonic()
     case_scores, _decision_validated = _run_baselines(
         cases_to_run=cases_to_run,
         cfg=cfg,
         cwd=cwd,
-        echo=echo,
+        logger=logger,
         cache_dir=cache_dir,
+        dry_run=dry_run,
     )
     phase1_elapsed_s = time.monotonic() - phase1_start
     if cache_dir is not None:
-        echo(f"Cache: {cache_dir}")
+        logger.info("cache_path", text=f"Cache: {cache_dir}", cache_dir=str(cache_dir))
 
     # Cost preamble: estimate perturbation count and wall-time based on baseline
     # elapsed so users can Ctrl-C before burning compute on expensive pipelines.
-    _echo_cost_preamble(
+    forecast = _echo_cost_preamble(
         case_scores, cfg.governing_types, single_case_run,
-        phase1_elapsed_s=phase1_elapsed_s, echo=echo,
+        phase1_elapsed_s=phase1_elapsed_s, logger=logger,
     )
 
-    if not any(c.baseline_ok for c in case_scores):
+    # In dry-run, every baseline skips invoke by design, so baseline_ok is
+    # universally False. Suppress the "all baselines failed" abort path
+    # since it means something different here.
+    if not dry_run and not any(c.baseline_ok for c in case_scores):
         # Every case's baseline failed. Write what we have and bail.
         _write_per_case_reports(case_scores, cwd, cfg)
         run_scores = aggregate(
@@ -165,13 +220,29 @@ def run_check(
             single_case_run=single_case_run,
         )
         _write_run_report(run_scores, cwd, cfg, only=only)
-        raise AbortRun(
-            "All baselines failed. See kelvin/<case>/report.json for details."
-        )
+        raise AbortRun(catalog(CHECK_ALL_BASELINES_FAILED))
 
-    # Phase 2 — perturbations for cases with successful baselines
+    # Forecast prompt: opt-in via `confirm_before_phase2`. When the prompt
+    # is active, --yes and non-TTY stdin both bypass (CI-safe). Dry-run
+    # bypasses the prompt entirely — no spend, no live invocations.
+    if confirm_before_phase2 and forecast is not None and not dry_run:
+        if not _accept_forecast(auto_accept=auto_accept):
+            _write_per_case_reports(case_scores, cwd, cfg)
+            run_scores = aggregate(
+                case_scores,
+                seed=effective_seed,
+                governing_types=cfg.governing_types,
+                run_warnings=run_warnings,
+                run_caps=[],
+                single_case_run=single_case_run,
+            )
+            _write_run_report(run_scores, cwd, cfg, only=only)
+            raise AbortRun(catalog(CHECK_USER_ABORTED))
+
+    # Phase 2 — perturbations. In dry-run, every case participates; in a
+    # real run, cases whose baseline failed are skipped.
     for case, scores in zip(cases_to_run, case_scores, strict=True):
-        if not scores.baseline_ok:
+        if not scores.baseline_ok and not dry_run:
             continue
         _run_perturbations_for_case(
             case=case,
@@ -182,8 +253,9 @@ def run_check(
             seed=effective_seed,
             generators=generators,
             scorer=active_scorer,
-            echo=echo,
+            logger=logger,
             cache_dir=cache_dir,
+            dry_run=dry_run,
         )
 
     # Write per-case reports, aggregate, write run report.
@@ -195,12 +267,23 @@ def run_check(
         run_warnings=run_warnings,
         run_caps=[],
         single_case_run=single_case_run,
+        dry_run=dry_run,
     )
     _write_run_report(run_scores, cwd, cfg, only=only)
     render_terminal(
         run_scores,
         elapsed_s=time.monotonic() - _start,
         decision_field=cfg.decision_field,
+    )
+    logger.info(
+        "run_completed",
+        elapsed_s=time.monotonic() - _start,
+        n_cases=len(run_scores.cases),
+        invariance=run_scores.invariance,
+        sensitivity=run_scores.sensitivity,
+        kelvin_score=run_scores.kelvin_score,
+        invariance_sample=run_scores.invariance_sample,
+        sensitivity_sample=run_scores.sensitivity_sample,
     )
     return run_scores
 
@@ -225,9 +308,7 @@ def _filter_cases(all_cases: list[Case], *, only: str | None) -> list[Case]:
     selected = [c for c in all_cases if c.name == only]
     if not selected:
         names = [c.name for c in all_cases]
-        raise CheckError(
-            f"--only '{only}': no such case. Available: {names}"
-        )
+        raise CheckError(catalog(CHECK_UNKNOWN_CASE, only=only, available=names))
     return selected
 
 
@@ -236,8 +317,9 @@ def _run_baselines(
     cases_to_run: list[Case],
     cfg: KelvinConfig,
     cwd: Path,
-    echo: Any,
+    logger: EventLogger,
     cache_dir: Path | None = None,
+    dry_run: bool = False,
 ) -> tuple[list[CaseScores], bool]:
     case_scores: list[CaseScores] = []
     decision_validated = False
@@ -250,13 +332,37 @@ def _run_baselines(
             render_case(case.preamble, case.units), encoding="utf-8"
         )
 
+        if dry_run:
+            # Skip invoke entirely. Record the skip for the log and the
+            # per-case report; no subprocess is spawned.
+            logger.info(
+                "dry_run_skipped_invocation",
+                text=catalog(
+                    DRY_RUN_SKIPPED_INVOCATION,
+                    context=f"{case.name}/baseline",
+                ).what,
+                case=case.name,
+                kind="baseline",
+            )
+            case_scores.append(
+                CaseScores(
+                    case_name=case.name,
+                    baseline_ok=False,
+                    baseline_error=None,
+                    dry_run=True,
+                )
+            )
+            continue
+
         result = invoke(
             cfg.run,
             input_path,
             output_path,
             cfg.decision_field,
-            timeout_s=60,
+            timeout_s=cfg.timeout_s,
             cache_dir=cache_dir,
+            retry_policy=cfg.retry_policy,
+            logger=logger,
         )
 
         if not result.ok:
@@ -269,7 +375,13 @@ def _run_baselines(
             ):
                 raise AbortRun(result.error or "missing decision field")
 
-            echo(f"Baseline failed for {case.name}: {result.error}")
+            logger.info(
+                "baseline_completed",
+                text=f"Baseline failed for {case.name}: {result.error}",
+                case=case.name,
+                ok=False,
+                error=result.error,
+            )
             case_scores.append(
                 CaseScores(
                     case_name=case.name,
@@ -293,7 +405,17 @@ def _run_baselines(
                 baseline_decision=result.decision_value,
             )
         )
-        echo(f"Baseline ok for {case.name}: {cfg.decision_field}={result.decision_value!r}")
+        logger.info(
+            "baseline_completed",
+            text=(
+                f"Baseline ok for {case.name}: "
+                f"{cfg.decision_field}={result.decision_value!r}"
+            ),
+            case=case.name,
+            ok=True,
+            decision_field=cfg.decision_field,
+            decision_value=result.decision_value,
+        )
 
     return case_scores, decision_validated
 
@@ -308,8 +430,9 @@ def _run_perturbations_for_case(
     seed: int,
     generators: tuple[PerturbationGenerator, ...],
     scorer: Scorer,
-    echo: Any,
+    logger: EventLogger,
     cache_dir: Path | None = None,
+    dry_run: bool = False,
 ) -> None:
     work_items: list[tuple[Any, Path, Path]] = []
     for gen in generators:
@@ -329,6 +452,34 @@ def _run_perturbations_for_case(
             input_path.write_text(perturbation.rendered_markdown, encoding="utf-8")
             work_items.append((perturbation, input_path, output_path))
 
+    if dry_run:
+        # Skip invoke entirely. Build "skipped" ScoredPerturbation entries
+        # so the per-case report still lists every variant — but no
+        # subprocess is spawned and no output.json is written.
+        for perturbation, input_path, output_path in work_items:
+            logger.info(
+                "dry_run_skipped_invocation",
+                text=catalog(
+                    DRY_RUN_SKIPPED_INVOCATION,
+                    context=f"{case.name}/{perturbation.variant_id}",
+                ).what,
+                case=case.name,
+                variant_id=perturbation.variant_id,
+                kind=perturbation.kind,
+            )
+            sp = ScoredPerturbation(
+                perturbation=perturbation,
+                invocation=InvocationResult(
+                    ok=False,
+                    exit_code=None,
+                    input_path=input_path,
+                    output_path=output_path,
+                ),
+                distance=None,
+            )
+            _dispatch_scored(sp, scores)
+        return
+
     with ThreadPoolExecutor(max_workers=2) as executor:
         future_map = {
             executor.submit(
@@ -337,8 +488,10 @@ def _run_perturbations_for_case(
                 inp,
                 outp,
                 cfg.decision_field,
-                timeout_s=60,
+                timeout_s=cfg.timeout_s,
                 cache_dir=cache_dir,
+                retry_policy=cfg.retry_policy,
+                logger=logger,
             ): pert
             for pert, inp, outp in work_items
         }
@@ -356,15 +509,33 @@ def _run_perturbations_for_case(
             _dispatch_scored(sp, scores)
 
             if not result.ok:
-                echo(
-                    f"  {case.name}/{perturbation.variant_id}: "
-                    f"perturbation failed ({result.error})"
+                logger.info(
+                    "perturbation_completed",
+                    text=(
+                        f"  {case.name}/{perturbation.variant_id}: "
+                        f"perturbation failed ({result.error})"
+                    ),
+                    case=case.name,
+                    variant_id=perturbation.variant_id,
+                    kind=perturbation.kind,
+                    ok=False,
+                    error=result.error,
                 )
             else:
-                echo(
-                    f"  {case.name}/{perturbation.variant_id}: "
-                    f"{cfg.decision_field}={result.decision_value!r} "
-                    f"distance={distance:.3f}"
+                logger.info(
+                    "perturbation_completed",
+                    text=(
+                        f"  {case.name}/{perturbation.variant_id}: "
+                        f"{cfg.decision_field}={result.decision_value!r} "
+                        f"distance={distance:.3f}"
+                    ),
+                    case=case.name,
+                    variant_id=perturbation.variant_id,
+                    kind=perturbation.kind,
+                    ok=True,
+                    decision_field=cfg.decision_field,
+                    decision_value=result.decision_value,
+                    distance=distance,
                 )
 
 
@@ -414,13 +585,15 @@ def _validate_governing_types(all_cases: list[Case], governing_types: list[str])
     unknown = [t for t in governing_types if t not in discovered]
     if unknown:
         raise CheckError(
-            f"Declared governing_types not found in any case: {unknown}. "
-            f"Discovered types: {sorted(discovered)}. "
-            f"Did you forget to normalize (e.g. `Gate Rule` -> `gate_rule`)?"
+            catalog(
+                CONFIG_UNKNOWN_GOVERNING_TYPE,
+                unknown=unknown,
+                discovered=sorted(discovered),
+            )
         )
 
 
-def _echo_discovered_types(all_cases: list[Case], echo: Any) -> None:
+def _echo_discovered_types(all_cases: list[Case], logger: EventLogger) -> None:
     """One-line summary of normalized unit types across all cases.
 
     Makes normalization outcomes visible so users spot surprises like
@@ -433,7 +606,12 @@ def _echo_discovered_types(all_cases: list[Case], echo: Any) -> None:
     if not counts:
         return
     summary = ", ".join(f"{t}\u00d7{n}" for t, n in sorted(counts.items()))
-    echo(f"Discovered types across {len(all_cases)} case(s): {summary}")
+    logger.info(
+        "types_discovered",
+        text=f"Discovered types across {len(all_cases)} case(s): {summary}",
+        n_cases=len(all_cases),
+        counts=counts,
+    )
 
 
 def _echo_cost_preamble(
@@ -442,12 +620,16 @@ def _echo_cost_preamble(
     single_case_run: bool,
     *,
     phase1_elapsed_s: float,
-    echo: Any,
-) -> None:
-    """Print estimated perturbation count and wall-time before Phase 2 fires."""
+    logger: EventLogger,
+) -> dict[str, Any] | None:
+    """Log estimated perturbation count and wall-time before Phase 2 fires.
+
+    Returns the forecast fields so the caller can offer an interactive
+    confirmation prompt (when `confirm_before_phase2` is set).
+    """
     n_ok = sum(1 for c in case_scores if c.baseline_ok)
     if n_ok == 0:
-        return
+        return None
 
     per_case = _EST_PER_CASE["reorder"] + _EST_PER_CASE["pad_length"]
     if not single_case_run:
@@ -462,10 +644,49 @@ def _echo_cost_preamble(
         f"~{est_wall_s / 60:.1f} min" if est_wall_s >= 60 else f"~{est_wall_s:.0f} s"
     )
 
-    echo(
+    text = (
         f"Running ~{est_total} perturbations across {n_ok} case(s) "
         f"(est. {wall_txt} at baseline speed). Ctrl-C to abort."
     )
+    logger.info(
+        "cost_preamble",
+        text=text,
+        est_total=est_total,
+        est_wall_s=est_wall_s,
+        n_cases=n_ok,
+        governing_types=list(governing_types),
+        single_case_run=single_case_run,
+    )
+    return {
+        "est_total": est_total,
+        "est_wall_s": est_wall_s,
+        "n_cases": n_ok,
+    }
+
+
+def _accept_forecast(*, auto_accept: bool, input_fn: Any = input, isatty: Any = None) -> bool:
+    """Return True if the user accepts the forecast (or bypasses the prompt).
+
+    Bypass conditions (either independently skips the prompt):
+      - `auto_accept` (the --yes flag)
+      - stdin is not a TTY (CI safety — no interactive input available)
+
+    The prompt is written to stdout via `input_fn` so terminal users can
+    respond. Accepts "y"/"yes" (case-insensitive); anything else rejects.
+    """
+    if auto_accept:
+        return True
+    if isatty is None:
+        isatty = sys.stdin.isatty
+    if not isatty():
+        return True
+    try:
+        response = input_fn("Proceed? [y/N] ").strip().lower()
+    except EOFError:
+        # Stdin closed mid-prompt — treat as rejection to avoid accidental
+        # continuation on broken pipes.
+        return False
+    return response in ("y", "yes")
 
 
 # ─── On-disk serialization ──────────────────────────────────────────────────
@@ -487,7 +708,8 @@ def _write_per_case_reports(
 
 
 def _case_report_dict(scores: CaseScores, *, decision_field: str) -> dict:
-    return {
+    payload: dict[str, Any] = {
+        "schema_version": 1,
         "case": scores.case_name,
         "baseline": {
             "ok": scores.baseline_ok,
@@ -522,6 +744,11 @@ def _case_report_dict(scores: CaseScores, *, decision_field: str) -> dict:
         "warnings": list(scores.warnings),
         "caps": list(scores.caps),
     }
+    # Emit `dry_run: true` only when set — non-dry runs produce the same
+    # bytes as v0.2, preserving the regression harness.
+    if scores.dry_run:
+        payload["dry_run"] = True
+    return payload
 
 
 def _scored_dict(sp: ScoredPerturbation) -> dict:
@@ -545,7 +772,8 @@ def _write_run_report(
     run_scores: RunScores, cwd: Path, cfg: KelvinConfig, *, only: str | None
 ) -> None:
     rdir = fs.ensure(fs.run_root(cwd))
-    payload = {
+    payload: dict[str, Any] = {
+        "schema_version": 1,
         "seed": run_scores.seed,
         "only": only,
         "decision_field": cfg.decision_field,
@@ -556,7 +784,10 @@ def _write_run_report(
             "baseline_failed": [
                 {"case": c.case_name, "error": c.baseline_error}
                 for c in run_scores.cases
-                if not c.baseline_ok
+                # Exclude dry-run cases: they didn't fail, they were
+                # skipped by design. The top-level `dry_run` marker below
+                # signals the run type.
+                if not c.baseline_ok and not c.dry_run
             ],
         },
         "invariance": run_scores.invariance,
@@ -572,6 +803,10 @@ def _write_run_report(
         "warnings": list(run_scores.warnings),
         "caps": list(run_scores.caps),
     }
+    # Emit `dry_run: true` only when set — non-dry runs produce the same
+    # bytes as v0.2, preserving the regression harness.
+    if run_scores.dry_run:
+        payload["dry_run"] = True
     (rdir / "report.json").write_text(
         json.dumps(payload, indent=2, default=_json_default),
         encoding="utf-8",

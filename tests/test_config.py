@@ -5,7 +5,15 @@ from pathlib import Path
 import pytest
 import yaml
 
-from kelvin.config import CONFIG_FILENAME, ConfigError, KelvinConfig
+from kelvin.config import (
+    CONFIG_FILENAME,
+    ConfigError,
+    CounterfactualSwapConfig,
+    IntraSlotConfig,
+    KelvinConfig,
+    NoiseFloorConfig,
+)
+from kelvin.retry import RetryPolicy
 
 VALID_YAML = """\
 run: python -m pipe --input {input} --output {output}
@@ -142,3 +150,234 @@ class TestSave:
         assert data["decision_field"] == "recommendation"
         assert data["governing_types"] == ["gate_rule"]
         assert data["seed"] == 0
+
+
+class TestV03BackwardCompat:
+    """v0.2 yaml must load under v0.3 with all new features disabled and
+    default values matching v0.2 semantics.
+    """
+
+    def test_v02_yaml_loads_with_new_flags_off(self, tmp_path: Path) -> None:
+        cfg = KelvinConfig.load(write_yaml(tmp_path, VALID_YAML))
+        assert cfg.timeout_s == 150   # new default, bump from v0.2's hardcoded 60
+        assert cfg.noise_floor.enabled is False
+        assert cfg.counterfactual_swap.enabled is False
+        assert cfg.intra_slot.enabled is False
+        assert cfg.intra_slot.enabled_families == []
+
+    def test_v02_yaml_save_roundtrip_does_not_emit_v03_keys(
+        self, tmp_path: Path
+    ) -> None:
+        cfg = KelvinConfig.load(write_yaml(tmp_path, VALID_YAML))
+        target = tmp_path / "out.yaml"
+        cfg.save(target)
+        data = yaml.safe_load(target.read_text(encoding="utf-8"))
+        assert "noise_floor" not in data
+        assert "counterfactual_swap" not in data
+        assert "intra_slot" not in data
+
+    def test_timeout_s_roundtrips_when_non_default(self, tmp_path: Path) -> None:
+        yaml_text = VALID_YAML + "timeout_s: 300\n"
+        cfg = KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+        assert cfg.timeout_s == 300
+        target = tmp_path / "out.yaml"
+        cfg.save(target)
+        assert "timeout_s: 300" in target.read_text(encoding="utf-8")
+
+    def test_timeout_s_rejects_non_positive(self, tmp_path: Path) -> None:
+        yaml_text = VALID_YAML + "timeout_s: 0\n"
+        with pytest.raises(ConfigError, match="timeout_s"):
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+
+    def test_timeout_s_rejects_bool(self, tmp_path: Path) -> None:
+        yaml_text = VALID_YAML + "timeout_s: true\n"
+        with pytest.raises(ConfigError, match="timeout_s"):
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+
+
+class TestNoiseFloorConfig:
+    def test_accepts_valid_block(self, tmp_path: Path) -> None:
+        yaml_text = VALID_YAML + "noise_floor:\n  enabled: true\n  replications: 7\n"
+        cfg = KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+        assert cfg.noise_floor == NoiseFloorConfig(enabled=True, replications=7)
+
+    def test_rejects_too_few_replications(self, tmp_path: Path) -> None:
+        yaml_text = VALID_YAML + "noise_floor:\n  enabled: true\n  replications: 1\n"
+        with pytest.raises(ConfigError, match="replications"):
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+
+    def test_rejects_non_bool_enabled(self, tmp_path: Path) -> None:
+        yaml_text = VALID_YAML + 'noise_floor:\n  enabled: "yes"\n'
+        with pytest.raises(ConfigError, match="noise_floor.enabled"):
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+
+    def test_rejects_non_mapping(self, tmp_path: Path) -> None:
+        yaml_text = VALID_YAML + "noise_floor: true\n"
+        with pytest.raises(ConfigError, match="noise_floor"):
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+
+
+class TestCounterfactualSwapConfig:
+    def test_accepts_enabled_true(self, tmp_path: Path) -> None:
+        yaml_text = VALID_YAML + "counterfactual_swap:\n  enabled: true\n"
+        cfg = KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+        assert cfg.counterfactual_swap == CounterfactualSwapConfig(enabled=True)
+
+    def test_rejects_non_bool(self, tmp_path: Path) -> None:
+        yaml_text = VALID_YAML + 'counterfactual_swap:\n  enabled: "on"\n'
+        with pytest.raises(ConfigError, match="counterfactual_swap.enabled"):
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+
+
+class TestRetryPolicyConfig:
+    def test_defaults_when_block_omitted(self, tmp_path: Path) -> None:
+        cfg = KelvinConfig.load(write_yaml(tmp_path, VALID_YAML))
+        assert cfg.retry_policy == RetryPolicy()
+        # Default has empty transient codes and retry_on_timeout False —
+        # byte-compatible with v0.2.
+        assert cfg.retry_policy.transient_exit_codes == frozenset()
+        assert cfg.retry_policy.retry_on_timeout is False
+
+    def test_accepts_full_block(self, tmp_path: Path) -> None:
+        yaml_text = (
+            VALID_YAML
+            + "retry_policy:\n"
+            + "  max_attempts: 5\n"
+            + "  initial_delay_s: 0.5\n"
+            + "  backoff_factor: 3.0\n"
+            + "  jitter_max_s: 0.2\n"
+            + "  transient_exit_codes: [75, 111]\n"
+            + "  retry_on_timeout: true\n"
+        )
+        cfg = KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+        assert cfg.retry_policy.max_attempts == 5
+        assert cfg.retry_policy.initial_delay_s == 0.5
+        assert cfg.retry_policy.backoff_factor == 3.0
+        assert cfg.retry_policy.jitter_max_s == 0.2
+        assert cfg.retry_policy.transient_exit_codes == frozenset({75, 111})
+        assert cfg.retry_policy.retry_on_timeout is True
+
+    def test_rejects_non_mapping(self, tmp_path: Path) -> None:
+        yaml_text = VALID_YAML + "retry_policy: [75]\n"
+        with pytest.raises(ConfigError, match="retry_policy"):
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+
+    def test_rejects_zero_max_attempts(self, tmp_path: Path) -> None:
+        yaml_text = VALID_YAML + "retry_policy:\n  max_attempts: 0\n"
+        with pytest.raises(ConfigError, match="max_attempts"):
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+
+    def test_rejects_negative_initial_delay(self, tmp_path: Path) -> None:
+        yaml_text = VALID_YAML + "retry_policy:\n  initial_delay_s: -1.0\n"
+        with pytest.raises(ConfigError, match="initial_delay_s"):
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+
+    def test_rejects_backoff_less_than_one(self, tmp_path: Path) -> None:
+        yaml_text = VALID_YAML + "retry_policy:\n  backoff_factor: 0.5\n"
+        with pytest.raises(ConfigError, match="backoff_factor"):
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+
+    def test_rejects_negative_jitter(self, tmp_path: Path) -> None:
+        yaml_text = VALID_YAML + "retry_policy:\n  jitter_max_s: -0.1\n"
+        with pytest.raises(ConfigError, match="jitter_max_s"):
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+
+    def test_rejects_non_int_transient_codes(self, tmp_path: Path) -> None:
+        yaml_text = (
+            VALID_YAML
+            + 'retry_policy:\n  transient_exit_codes: ["75"]\n'
+        )
+        with pytest.raises(ConfigError, match="transient_exit_codes"):
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+
+    def test_rejects_non_bool_retry_on_timeout(self, tmp_path: Path) -> None:
+        yaml_text = (
+            VALID_YAML + 'retry_policy:\n  retry_on_timeout: "yes"\n'
+        )
+        with pytest.raises(ConfigError, match="retry_on_timeout"):
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+
+    def test_save_omits_block_at_default(self, tmp_path: Path) -> None:
+        cfg = KelvinConfig.load(write_yaml(tmp_path, VALID_YAML))
+        target = tmp_path / "out.yaml"
+        cfg.save(target)
+        data = yaml.safe_load(target.read_text(encoding="utf-8"))
+        assert "retry_policy" not in data
+
+    def test_save_emits_block_when_configured(self, tmp_path: Path) -> None:
+        yaml_text = (
+            VALID_YAML
+            + "retry_policy:\n"
+            + "  transient_exit_codes: [75]\n"
+        )
+        cfg = KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+        target = tmp_path / "out.yaml"
+        cfg.save(target)
+        data = yaml.safe_load(target.read_text(encoding="utf-8"))
+        assert data["retry_policy"]["transient_exit_codes"] == [75]
+
+
+class TestConfigErrorStructuredMessage:
+    """ConfigError raised via catalog() carries the FormattedMessage so
+    structured log consumers can render all three fields. Raising with a
+    plain string still works (back-compat for any external caller)."""
+
+    def test_catalog_raise_carries_formatted_message(self, tmp_path: Path) -> None:
+        from kelvin.messages import FormattedMessage
+
+        yaml_text = VALID_YAML + "timeout_s: 0\n"
+        with pytest.raises(ConfigError) as exc:
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+        assert isinstance(exc.value.formatted_message, FormattedMessage)
+        fm = exc.value.formatted_message
+        assert fm.id == "config.timeout_invalid"
+        assert fm.what
+        assert fm.why
+        assert fm.how_to_fix
+
+    def test_str_error_includes_all_three_fields(self, tmp_path: Path) -> None:
+        yaml_text = VALID_YAML + "timeout_s: 0\n"
+        with pytest.raises(ConfigError) as exc:
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+        text = str(exc.value)
+        assert "timeout_s" in text
+        assert "Fix:" in text  # how_to_fix prefix
+
+    def test_plain_string_fallback_still_accepted(self) -> None:
+        err = ConfigError("raw string message")
+        assert err.formatted_message is None
+        assert str(err) == "raw string message"
+
+
+class TestIntraSlotConfig:
+    def test_accepts_full_block(self, tmp_path: Path) -> None:
+        yaml_text = (
+            VALID_YAML
+            + "intra_slot:\n"
+            + "  enabled: true\n"
+            + "  enabled_families:\n"
+            + "    - irrelevant_paragraph_injection\n"
+            + "    - numeric_magnitude\n"
+            + "  filler_stripping_whitelist: [basically, just]\n"
+        )
+        cfg = KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+        assert cfg.intra_slot.enabled is True
+        assert cfg.intra_slot.enabled_families == [
+            "irrelevant_paragraph_injection",
+            "numeric_magnitude",
+        ]
+        assert cfg.intra_slot.filler_stripping_whitelist == ["basically", "just"]
+
+    def test_rejects_non_list_families(self, tmp_path: Path) -> None:
+        yaml_text = VALID_YAML + "intra_slot:\n  enabled_families: irrelevant\n"
+        with pytest.raises(ConfigError, match="enabled_families"):
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+
+    def test_rejects_non_string_family(self, tmp_path: Path) -> None:
+        yaml_text = VALID_YAML + "intra_slot:\n  enabled_families: [1, 2]\n"
+        with pytest.raises(ConfigError, match="enabled_families"):
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+
+    def test_defaults_when_block_omitted(self, tmp_path: Path) -> None:
+        cfg = KelvinConfig.load(write_yaml(tmp_path, VALID_YAML))
+        assert cfg.intra_slot == IntraSlotConfig()

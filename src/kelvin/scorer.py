@@ -15,11 +15,28 @@ from __future__ import annotations
 from statistics import mean
 from typing import Any, Protocol
 
+from kelvin.messages import (
+    SCORER_NON_SCALAR_DECISION,
+    SCORER_NON_SCALAR_DECISION_FIELD,
+    FormattedMessage,
+    catalog,
+)
 from kelvin.types import CaseScores, RunScores
 
 
 class DecisionFieldTypeError(ValueError):
-    """Raised when the decision field value is not a supported scalar."""
+    """Raised when the decision field value is not a supported scalar.
+
+    Accepts either a `FormattedMessage` (preferred) or a plain string.
+    """
+
+    def __init__(self, message_or_text: Any, /) -> None:
+        if isinstance(message_or_text, FormattedMessage):
+            self.formatted_message: FormattedMessage | None = message_or_text
+            super().__init__(message_or_text.as_text())
+        else:
+            self.formatted_message = None
+            super().__init__(str(message_or_text))
 
 
 class Scorer(Protocol):
@@ -35,8 +52,10 @@ class DefaultScorer:
         for v in (baseline, perturbed):
             if isinstance(v, (list, dict)):
                 raise DecisionFieldTypeError(
-                    f"decision field must be scalar (str, number, bool, null); "
-                    f"got {type(v).__name__}"
+                    catalog(
+                        SCORER_NON_SCALAR_DECISION,
+                        actual_type=type(v).__name__,
+                    )
                 )
 
         a_numeric = _is_numeric(baseline)
@@ -62,8 +81,11 @@ def validate_scalar(value: Any, field_name: str) -> None:
     """
     if isinstance(value, (list, dict)):
         raise DecisionFieldTypeError(
-            f"decision field '{field_name}' must be scalar "
-            f"(str, number, bool, null); got {type(value).__name__}"
+            catalog(
+                SCORER_NON_SCALAR_DECISION_FIELD,
+                field_name=field_name,
+                actual_type=type(value).__name__,
+            )
         )
 
 
@@ -75,6 +97,7 @@ def aggregate(
     run_warnings: list[str] | None = None,
     run_caps: list[str] | None = None,
     single_case_run: bool = False,
+    dry_run: bool = False,
 ) -> RunScores:
     """Roll up per-case distances into cross-case `RunScores`.
 
@@ -124,6 +147,7 @@ def aggregate(
         sensitivity_by_type=sensitivity_by_type,
         governing_types=list(governing_types),
         single_case_run=single_case_run,
+        dry_run=dry_run,
         warnings=warnings,
         caps=caps,
     )

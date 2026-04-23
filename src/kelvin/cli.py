@@ -7,6 +7,7 @@ from pathlib import Path
 import typer
 
 from kelvin.check import AbortRun, CheckError, run_check
+from kelvin.event_log import EventLogger
 
 app = typer.Typer(
     help="Kelvin — an unsupervised correctness signal for RAG pipelines.",
@@ -34,6 +35,30 @@ def check(
         "--seed",
         help="Override the seed from kelvin.yaml.",
     ),
+    confirm: bool = typer.Option(
+        False,
+        "--confirm",
+        help="Prompt y/n after baselines before Phase 2 perturbations run.",
+    ),
+    yes: bool = typer.Option(
+        False,
+        "--yes",
+        help="Skip the --confirm prompt (auto-accept). Also auto-accepts when "
+        "stdin is not a TTY.",
+    ),
+    log_format: str = typer.Option(
+        "text",
+        "--log-format",
+        help="Output format for progress events: 'text' (default) or 'json' "
+        "(one JSON record per line with ts/level/event/fields).",
+    ),
+    dry_run: bool = typer.Option(
+        False,
+        "--dry-run",
+        help="Generate perturbation inputs and write reports without "
+        "invoking the pipeline. No subprocesses spawn; no output JSON "
+        "produced. --confirm is bypassed when --dry-run is active.",
+    ),
 ) -> None:
     """Run perturbations, score outputs, write report.json files.
 
@@ -41,8 +66,31 @@ def check(
     Pretty terminal + HTML reports land in PR 3.
     """
     cwd = Path.cwd()
+    if log_format not in ("text", "json"):
+        typer.echo(
+            f"Error: --log-format must be 'text' or 'json', got {log_format!r}",
+            err=True,
+        )
+        raise typer.Exit(code=1)
+
+    # In text mode, route info events through typer.echo so CLI output
+    # stays on the same channel as v0.2. In json mode, write records to
+    # stdout/stderr directly.
+    logger = EventLogger(
+        fmt=log_format,
+        text_fallback=typer.echo if log_format == "text" else None,
+    )
+
     try:
-        run_check(cwd, only=only, seed_override=seed, echo=typer.echo)
+        run_check(
+            cwd,
+            only=only,
+            seed_override=seed,
+            logger=logger,
+            confirm_before_phase2=confirm,
+            auto_accept=yes,
+            dry_run=dry_run,
+        )
     except CheckError as exc:
         typer.echo(f"Error: {exc}", err=True)
         raise typer.Exit(code=1) from exc
