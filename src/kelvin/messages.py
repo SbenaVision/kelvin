@@ -46,8 +46,19 @@ CONFIG_INTRA_SLOT_MARKERS_INVALID = "config.intra_slot_markers_invalid"
 CONFIG_INTRA_SLOT_WHITELIST_INVALID = "config.intra_slot_whitelist_invalid"
 
 RUNNER_TIMEOUT = "runner.timeout"
+RUNNER_EXIT_NONZERO = "runner.exit_nonzero"
+RUNNER_OUTPUT_MISSING = "runner.output_missing"
+RUNNER_OUTPUT_UNREADABLE = "runner.output_unreadable"
 RUNNER_OUTPUT_NOT_JSON = "runner.output_not_json"
+RUNNER_OUTPUT_NOT_MAPPING = "runner.output_not_mapping"
 RUNNER_DECISION_FIELD_MISSING = "runner.decision_field_missing"
+
+CHECK_NO_CASES = "check.no_cases"
+CHECK_UNKNOWN_CASE = "check.unknown_case"
+CHECK_ALL_BASELINES_FAILED = "check.all_baselines_failed"
+
+SCORER_NON_SCALAR_DECISION = "scorer.non_scalar_decision"
+SCORER_NON_SCALAR_DECISION_FIELD = "scorer.non_scalar_decision_field"
 
 RETRY_TRANSIENT_DETECTED = "retry.transient_detected"
 RETRY_GIVING_UP = "retry.giving_up"
@@ -309,6 +320,50 @@ CATALOG: dict[str, MessageTemplate] = {
         ),
     ),
 
+    RUNNER_EXIT_NONZERO: MessageTemplate(
+        id=RUNNER_EXIT_NONZERO,
+        what="Pipeline failed with non-zero exit code {exit_code}.",
+        why=(
+            "The subprocess returned a non-zero exit code, which Kelvin "
+            "interprets as failure. This could be a genuine pipeline error, "
+            "a transient upstream issue, or a bug in the pipeline wrapper."
+        ),
+        how_to_fix=(
+            "Inspect the stderr tail recorded on the perturbation in "
+            "report.json. Common causes: auth errors, rate limiting, "
+            "missing env vars, unhandled exceptions in the wrapper."
+        ),
+    ),
+
+    RUNNER_OUTPUT_MISSING: MessageTemplate(
+        id=RUNNER_OUTPUT_MISSING,
+        what="Pipeline output file not created.",
+        why=(
+            "The subprocess exited successfully (exit code 0) but did not "
+            "write the expected output file. Kelvin cannot score without "
+            "the output."
+        ),
+        how_to_fix=(
+            "Verify the pipeline actually writes to the path given via the "
+            "{{output}} placeholder in `run:`. A common bug is writing to "
+            "stdout instead of the output file path."
+        ),
+    ),
+
+    RUNNER_OUTPUT_UNREADABLE: MessageTemplate(
+        id=RUNNER_OUTPUT_UNREADABLE,
+        what="Pipeline output file is unreadable: {detail}",
+        why=(
+            "The output file exists on disk but cannot be opened as UTF-8 "
+            "text — this usually means a filesystem permissions issue or a "
+            "pipeline that wrote binary data."
+        ),
+        how_to_fix=(
+            "Check file permissions on the output path. Ensure the "
+            "pipeline writes UTF-8-encoded JSON text, not binary."
+        ),
+    ),
+
     RUNNER_OUTPUT_NOT_JSON: MessageTemplate(
         id=RUNNER_OUTPUT_NOT_JSON,
         what="Pipeline output is not valid JSON: {detail}",
@@ -322,6 +377,24 @@ CATALOG: dict[str, MessageTemplate] = {
             "corrupted the output file. Ensure the pipeline writes valid "
             "JSON — e.g., `json.dump(result, f)` rather than printing a "
             "Python repr."
+        ),
+    ),
+
+    RUNNER_OUTPUT_NOT_MAPPING: MessageTemplate(
+        id=RUNNER_OUTPUT_NOT_MAPPING,
+        what=(
+            "Pipeline output JSON must be a mapping at the top level; "
+            "got {actual_type}."
+        ),
+        why=(
+            "Kelvin reads a decision field by key from the top-level "
+            "object. A JSON array, number, or string at the root has no "
+            "keys to look up."
+        ),
+        how_to_fix=(
+            "Change the pipeline to wrap its result in an object. Example: "
+            "`json.dump({{\"score\": value}}, f)` rather than `json.dump"
+            "(value, f)`."
         ),
     ),
 
@@ -490,6 +563,89 @@ CATALOG: dict[str, MessageTemplate] = {
             "Set it to a YAML list of strings or omit the key entirely. "
             "Example: `filler_stripping_whitelist: [basically, just, "
             "honestly]`"
+        ),
+    ),
+
+    CHECK_NO_CASES: MessageTemplate(
+        id=CHECK_NO_CASES,
+        what="No cases found in {cases_dir}.",
+        why=(
+            "Kelvin needs at least one `*.md` case file in the configured "
+            "`cases:` directory. With zero cases there's nothing to run a "
+            "baseline against, let alone perturb."
+        ),
+        how_to_fix=(
+            "Add one or more `*.md` files to {cases_dir}, or update the "
+            "`cases:` path in kelvin.yaml to point at an existing "
+            "directory that contains case files."
+        ),
+    ),
+
+    CHECK_UNKNOWN_CASE: MessageTemplate(
+        id=CHECK_UNKNOWN_CASE,
+        what="--only {only!r}: no such case. Available: {available}.",
+        why=(
+            "The --only flag filters to a single case by name (filename "
+            "stem, not full path). The requested name doesn't match any "
+            "discovered case file."
+        ),
+        how_to_fix=(
+            "Pick one of the available case names listed above. Case names "
+            "come from the filename stem — e.g., `cases/envelop.md` is "
+            "case `envelop`."
+        ),
+    ),
+
+    CHECK_ALL_BASELINES_FAILED: MessageTemplate(
+        id=CHECK_ALL_BASELINES_FAILED,
+        what="All baselines failed — no case produced a usable decision.",
+        why=(
+            "Kelvin aborts when every case's baseline invocation fails, "
+            "because perturbation results would have no reference to "
+            "compare against. This usually indicates a pipeline-level "
+            "problem (bad auth, wrong endpoint, schema mismatch) rather "
+            "than a case-specific one."
+        ),
+        how_to_fix=(
+            "Inspect the per-case report.json files under kelvin/ for the "
+            "baseline error messages. Fix the pipeline, then re-run. The "
+            "cache will skip any successful calls from prior runs."
+        ),
+    ),
+
+    SCORER_NON_SCALAR_DECISION: MessageTemplate(
+        id=SCORER_NON_SCALAR_DECISION,
+        what=(
+            "Decision field value must be scalar (str, number, bool, "
+            "null); got {actual_type}."
+        ),
+        why=(
+            "Kelvin's v1 scorer operates on scalar decision fields only. "
+            "List or dict values have no well-defined distance and would "
+            "produce meaningless sensitivity/invariance scores."
+        ),
+        how_to_fix=(
+            "Change the pipeline to emit a scalar for the decision field. "
+            "If the decision is naturally structured, extract a scalar "
+            "summary in a wrapper (e.g., the primary category label)."
+        ),
+    ),
+
+    SCORER_NON_SCALAR_DECISION_FIELD: MessageTemplate(
+        id=SCORER_NON_SCALAR_DECISION_FIELD,
+        what=(
+            "Decision field {field_name!r} must be scalar (str, number, "
+            "bool, null); got {actual_type}."
+        ),
+        why=(
+            "Preflight check on the first successful baseline failed — "
+            "before Kelvin burns compute on perturbations, it verifies "
+            "the declared decision field is scalar."
+        ),
+        how_to_fix=(
+            "Either change the pipeline to emit {field_name!r} as a "
+            "scalar, or point `decision_field:` at a different key that "
+            "is scalar. Nested values can be flattened in a wrapper."
         ),
     ),
 

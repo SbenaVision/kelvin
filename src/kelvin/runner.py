@@ -20,6 +20,16 @@ import shlex
 import subprocess
 from pathlib import Path
 
+from kelvin.messages import (
+    RUNNER_DECISION_FIELD_MISSING,
+    RUNNER_EXIT_NONZERO,
+    RUNNER_OUTPUT_MISSING,
+    RUNNER_OUTPUT_NOT_JSON,
+    RUNNER_OUTPUT_NOT_MAPPING,
+    RUNNER_OUTPUT_UNREADABLE,
+    RUNNER_TIMEOUT,
+    catalog,
+)
 from kelvin.types import InvocationResult
 
 _STDERR_TAIL_LINES = 20
@@ -81,7 +91,7 @@ def invoke(
             exit_code=None,
             input_path=input_path,
             output_path=output_path,
-            error=f"pipeline timed out after {timeout_s}s",
+            error=catalog(RUNNER_TIMEOUT, timeout_s=timeout_s).what,
         )
 
     stderr_tail = _tail(proc.stderr)
@@ -92,7 +102,7 @@ def invoke(
             exit_code=proc.returncode,
             input_path=input_path,
             output_path=output_path,
-            error=f"non-zero exit ({proc.returncode})",
+            error=catalog(RUNNER_EXIT_NONZERO, exit_code=proc.returncode).what,
             stderr_tail=stderr_tail,
         )
 
@@ -102,7 +112,7 @@ def invoke(
             exit_code=proc.returncode,
             input_path=input_path,
             output_path=output_path,
-            error="output file not created",
+            error=catalog(RUNNER_OUTPUT_MISSING).what,
             stderr_tail=stderr_tail,
         )
 
@@ -114,19 +124,20 @@ def invoke(
             exit_code=proc.returncode,
             input_path=input_path,
             output_path=output_path,
-            error=f"output file unreadable: {exc}",
+            error=catalog(RUNNER_OUTPUT_UNREADABLE, detail=exc).what,
             stderr_tail=stderr_tail,
         )
 
     try:
         parsed = json.loads(raw)
     except json.JSONDecodeError as exc:
+        detail = f"{exc.msg} at line {exc.lineno}"
         return InvocationResult(
             ok=False,
             exit_code=proc.returncode,
             input_path=input_path,
             output_path=output_path,
-            error=f"output is not valid JSON: {exc.msg} at line {exc.lineno}",
+            error=catalog(RUNNER_OUTPUT_NOT_JSON, detail=detail).what,
             stderr_tail=stderr_tail,
         )
 
@@ -136,10 +147,9 @@ def invoke(
             exit_code=proc.returncode,
             input_path=input_path,
             output_path=output_path,
-            error=(
-                f"output JSON must be a mapping at the top level; "
-                f"got {type(parsed).__name__}"
-            ),
+            error=catalog(
+                RUNNER_OUTPUT_NOT_MAPPING, actual_type=type(parsed).__name__
+            ).what,
             stderr_tail=stderr_tail,
         )
 
@@ -151,10 +161,9 @@ def invoke(
             input_path=input_path,
             output_path=output_path,
             parsed_output=parsed,
-            error=(
-                f"decision field '{decision_field}' missing from output; "
-                f"actual keys: {actual}"
-            ),
+            error=catalog(
+                RUNNER_DECISION_FIELD_MISSING, field=decision_field, actual=actual
+            ).what,
             stderr_tail=stderr_tail,
         )
 

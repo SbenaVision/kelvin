@@ -311,6 +311,35 @@ class TestScalarDistanceEdgeCases:
         assert self.s.distance(0.001, 0.002) == pytest.approx(0.001)
 
 
+class TestDecisionFieldTypeErrorStructuredMessage:
+    """DecisionFieldTypeError raised via catalog() carries the
+    FormattedMessage so structured log consumers can render all three
+    fields. Raising with a plain string still works (back-compat)."""
+
+    def test_catalog_raise_carries_formatted_message(self) -> None:
+        from kelvin.messages import FormattedMessage
+        s = DefaultScorer()
+        with pytest.raises(DecisionFieldTypeError) as exc:
+            s.distance([1, 2], "x")
+        assert isinstance(exc.value.formatted_message, FormattedMessage)
+        assert exc.value.formatted_message.id == "scorer.non_scalar_decision"
+
+    def test_validate_scalar_catalog_raise_carries_formatted_message(self) -> None:
+        from kelvin.messages import FormattedMessage
+        with pytest.raises(DecisionFieldTypeError) as exc:
+            validate_scalar([1, 2], "rec")
+        assert isinstance(exc.value.formatted_message, FormattedMessage)
+        assert exc.value.formatted_message.id == "scorer.non_scalar_decision_field"
+        # Preserves the field_name and actual_type in the message.
+        assert "rec" in str(exc.value)
+        assert "list" in str(exc.value)
+
+    def test_plain_string_fallback_still_accepted(self) -> None:
+        err = DecisionFieldTypeError("raw")
+        assert err.formatted_message is None
+        assert str(err) == "raw"
+
+
 class TestPerTypeSensitivityEdgeCases:
     def test_type_with_only_failed_swaps_yields_zero_mean_zero_sample(self) -> None:
         c = CaseScores(

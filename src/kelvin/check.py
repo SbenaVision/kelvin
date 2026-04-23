@@ -31,6 +31,14 @@ from typing import Any
 
 from kelvin import fs
 from kelvin.config import CONFIG_FILENAME, KelvinConfig
+from kelvin.messages import (
+    CHECK_ALL_BASELINES_FAILED,
+    CHECK_NO_CASES,
+    CHECK_UNKNOWN_CASE,
+    CONFIG_UNKNOWN_GOVERNING_TYPE,
+    FormattedMessage,
+    catalog,
+)
 from kelvin.parser import load_cases, render_case
 from kelvin.perturbations import PerturbationGenerator
 from kelvin.perturbations.pad import PadContentGenerator
@@ -57,11 +65,34 @@ from kelvin.types import (
 
 
 class CheckError(Exception):
-    """Raised for run-aborting errors (bad config, missing cases, etc.)."""
+    """Raised for run-aborting errors (bad config, missing cases, etc.).
+
+    Accepts either a `FormattedMessage` (preferred — carries the full
+    what/why/how-to-fix triple) or a plain string for back-compat.
+    """
+
+    def __init__(self, message_or_text: Any, /) -> None:
+        if isinstance(message_or_text, FormattedMessage):
+            self.formatted_message: FormattedMessage | None = message_or_text
+            super().__init__(message_or_text.as_text())
+        else:
+            self.formatted_message = None
+            super().__init__(str(message_or_text))
 
 
 class AbortRun(Exception):
-    """Raised mid-run to abort — bad decision field, non-scalar, etc."""
+    """Raised mid-run to abort — bad decision field, non-scalar, etc.
+
+    Accepts either a `FormattedMessage` (preferred) or a plain string.
+    """
+
+    def __init__(self, message_or_text: Any, /) -> None:
+        if isinstance(message_or_text, FormattedMessage):
+            self.formatted_message: FormattedMessage | None = message_or_text
+            super().__init__(message_or_text.as_text())
+        else:
+            self.formatted_message = None
+            super().__init__(str(message_or_text))
 
 
 DEFAULT_GENERATORS: tuple[PerturbationGenerator, ...] = (
@@ -109,9 +140,7 @@ def run_check(
     cache_dir = _resolve_cache_dir(cfg, cwd)
     all_cases = load_cases(cases_dir)
     if not all_cases:
-        raise CheckError(
-            f"No cases found in {cases_dir}. Add one or more `*.md` files."
-        )
+        raise CheckError(catalog(CHECK_NO_CASES, cases_dir=cases_dir))
 
     # Footgun: declared governing_types must match at least one discovered unit
     # type, otherwise swap generates nothing silently. Also surface normalized
@@ -165,9 +194,7 @@ def run_check(
             single_case_run=single_case_run,
         )
         _write_run_report(run_scores, cwd, cfg, only=only)
-        raise AbortRun(
-            "All baselines failed. See kelvin/<case>/report.json for details."
-        )
+        raise AbortRun(catalog(CHECK_ALL_BASELINES_FAILED))
 
     # Phase 2 — perturbations for cases with successful baselines
     for case, scores in zip(cases_to_run, case_scores, strict=True):
@@ -225,9 +252,7 @@ def _filter_cases(all_cases: list[Case], *, only: str | None) -> list[Case]:
     selected = [c for c in all_cases if c.name == only]
     if not selected:
         names = [c.name for c in all_cases]
-        raise CheckError(
-            f"--only '{only}': no such case. Available: {names}"
-        )
+        raise CheckError(catalog(CHECK_UNKNOWN_CASE, only=only, available=names))
     return selected
 
 
@@ -414,9 +439,11 @@ def _validate_governing_types(all_cases: list[Case], governing_types: list[str])
     unknown = [t for t in governing_types if t not in discovered]
     if unknown:
         raise CheckError(
-            f"Declared governing_types not found in any case: {unknown}. "
-            f"Discovered types: {sorted(discovered)}. "
-            f"Did you forget to normalize (e.g. `Gate Rule` -> `gate_rule`)?"
+            catalog(
+                CONFIG_UNKNOWN_GOVERNING_TYPE,
+                unknown=unknown,
+                discovered=sorted(discovered),
+            )
         )
 
 
