@@ -26,6 +26,13 @@ from kelvin.messages import (
     CONFIG_NOISE_FLOOR_NOT_MAPPING,
     CONFIG_NOISE_FLOOR_REPLICATIONS_INVALID,
     CONFIG_NOT_MAPPING,
+    CONFIG_RETRY_POLICY_BACKOFF_FACTOR_INVALID,
+    CONFIG_RETRY_POLICY_INITIAL_DELAY_INVALID,
+    CONFIG_RETRY_POLICY_JITTER_MAX_INVALID,
+    CONFIG_RETRY_POLICY_MAX_ATTEMPTS_INVALID,
+    CONFIG_RETRY_POLICY_NOT_MAPPING,
+    CONFIG_RETRY_POLICY_RETRY_ON_TIMEOUT_INVALID,
+    CONFIG_RETRY_POLICY_TRANSIENT_CODES_INVALID,
     CONFIG_RUN_INVALID,
     CONFIG_RUN_MISSING_PLACEHOLDERS,
     CONFIG_SEED_INVALID,
@@ -34,6 +41,7 @@ from kelvin.messages import (
     FormattedMessage,
     catalog,
 )
+from kelvin.retry import RetryPolicy
 
 CONFIG_FILENAME = "kelvin.yaml"
 
@@ -113,6 +121,9 @@ class KelvinConfig:
         default_factory=CounterfactualSwapConfig
     )
     intra_slot: IntraSlotConfig = field(default_factory=IntraSlotConfig)
+    # Optional retry policy for the core runner. When omitted or defaulted,
+    # no retry fires — v0.2-byte-compat.
+    retry_policy: RetryPolicy = field(default_factory=RetryPolicy)
 
     @classmethod
     def load(cls, path: Path) -> KelvinConfig:
@@ -175,6 +186,7 @@ class KelvinConfig:
         noise_floor = _load_noise_floor(raw.get("noise_floor"))
         counterfactual_swap = _load_counterfactual_swap(raw.get("counterfactual_swap"))
         intra_slot = _load_intra_slot(raw.get("intra_slot"))
+        retry_policy = _load_retry_policy(raw.get("retry_policy"))
 
         return cls(
             run=run,
@@ -187,6 +199,7 @@ class KelvinConfig:
             noise_floor=noise_floor,
             counterfactual_swap=counterfactual_swap,
             intra_slot=intra_slot,
+            retry_policy=retry_policy,
         )
 
     def save(self, path: Path) -> None:
@@ -210,6 +223,23 @@ class KelvinConfig:
             }
         if self.counterfactual_swap.enabled:
             data["counterfactual_swap"] = {"enabled": True}
+        _default_retry = RetryPolicy()
+        if (
+            self.retry_policy.max_attempts != _default_retry.max_attempts
+            or self.retry_policy.initial_delay_s != _default_retry.initial_delay_s
+            or self.retry_policy.backoff_factor != _default_retry.backoff_factor
+            or self.retry_policy.jitter_max_s != _default_retry.jitter_max_s
+            or self.retry_policy.transient_exit_codes
+            or self.retry_policy.retry_on_timeout
+        ):
+            data["retry_policy"] = {
+                "max_attempts": self.retry_policy.max_attempts,
+                "initial_delay_s": self.retry_policy.initial_delay_s,
+                "backoff_factor": self.retry_policy.backoff_factor,
+                "jitter_max_s": self.retry_policy.jitter_max_s,
+                "transient_exit_codes": sorted(self.retry_policy.transient_exit_codes),
+                "retry_on_timeout": self.retry_policy.retry_on_timeout,
+            }
         if (
             self.intra_slot.enabled
             or self.intra_slot.enabled_families
@@ -255,6 +285,64 @@ def _load_counterfactual_swap(raw) -> CounterfactualSwapConfig:
     if not isinstance(enabled, bool):
         raise ConfigError(catalog(CONFIG_COUNTERFACTUAL_SWAP_ENABLED_INVALID))
     return CounterfactualSwapConfig(enabled=enabled)
+
+
+def _load_retry_policy(raw) -> RetryPolicy:
+    if raw is None:
+        return RetryPolicy()
+    if not isinstance(raw, dict):
+        raise ConfigError(catalog(CONFIG_RETRY_POLICY_NOT_MAPPING))
+
+    def _float(raw_value, default):
+        # YAML loads 1 as int, 1.0 as float — accept both, reject bool.
+        if isinstance(raw_value, bool):
+            return None
+        if isinstance(raw_value, (int, float)):
+            return float(raw_value)
+        return None
+
+    defaults = RetryPolicy()
+
+    max_attempts = raw.get("max_attempts", defaults.max_attempts)
+    if not isinstance(max_attempts, int) or isinstance(max_attempts, bool) or max_attempts < 1:
+        raise ConfigError(catalog(CONFIG_RETRY_POLICY_MAX_ATTEMPTS_INVALID))
+
+    initial_delay = _float(
+        raw.get("initial_delay_s", defaults.initial_delay_s), defaults.initial_delay_s
+    )
+    if initial_delay is None or initial_delay < 0:
+        raise ConfigError(catalog(CONFIG_RETRY_POLICY_INITIAL_DELAY_INVALID))
+
+    backoff = _float(
+        raw.get("backoff_factor", defaults.backoff_factor), defaults.backoff_factor
+    )
+    if backoff is None or backoff < 1.0:
+        raise ConfigError(catalog(CONFIG_RETRY_POLICY_BACKOFF_FACTOR_INVALID))
+
+    jitter = _float(
+        raw.get("jitter_max_s", defaults.jitter_max_s), defaults.jitter_max_s
+    )
+    if jitter is None or jitter < 0:
+        raise ConfigError(catalog(CONFIG_RETRY_POLICY_JITTER_MAX_INVALID))
+
+    codes_raw = raw.get("transient_exit_codes", [])
+    if not isinstance(codes_raw, list) or not all(
+        isinstance(c, int) and not isinstance(c, bool) for c in codes_raw
+    ):
+        raise ConfigError(catalog(CONFIG_RETRY_POLICY_TRANSIENT_CODES_INVALID))
+
+    retry_on_timeout = raw.get("retry_on_timeout", defaults.retry_on_timeout)
+    if not isinstance(retry_on_timeout, bool):
+        raise ConfigError(catalog(CONFIG_RETRY_POLICY_RETRY_ON_TIMEOUT_INVALID))
+
+    return RetryPolicy(
+        max_attempts=max_attempts,
+        initial_delay_s=initial_delay,
+        backoff_factor=backoff,
+        jitter_max_s=jitter,
+        transient_exit_codes=frozenset(codes_raw),
+        retry_on_timeout=retry_on_timeout,
+    )
 
 
 def _load_intra_slot(raw) -> IntraSlotConfig:

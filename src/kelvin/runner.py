@@ -16,11 +16,16 @@ from __future__ import annotations
 import contextlib
 import hashlib
 import json
+import random
 import shlex
 import subprocess
+import sys
+import time
 from pathlib import Path
 
 from kelvin.messages import (
+    RETRY_GIVING_UP,
+    RETRY_TRANSIENT_DETECTED,
     RUNNER_DECISION_FIELD_MISSING,
     RUNNER_EXIT_NONZERO,
     RUNNER_OUTPUT_MISSING,
@@ -30,6 +35,8 @@ from kelvin.messages import (
     RUNNER_TIMEOUT,
     catalog,
 )
+from kelvin.retry import DEFAULT as DEFAULT_RETRY_POLICY
+from kelvin.retry import RetryPolicy
 from kelvin.types import InvocationResult
 
 _STDERR_TAIL_LINES = 20
@@ -48,6 +55,8 @@ def invoke(
     *,
     timeout_s: float | None = None,
     cache_dir: Path | None = None,
+    retry_policy: RetryPolicy | None = None,
+    rng: random.Random | None = None,
 ) -> InvocationResult:
     """Invoke the pipeline once. Returns an `InvocationResult`.
 
@@ -57,6 +66,12 @@ def invoke(
     parsed output so downstream inspection (diffs, reports) still works.
     Failures are never cached — transient upstream errors should be allowed
     to retry freely on the next run.
+
+    If `retry_policy` is set (or implied via a non-empty
+    `transient_exit_codes` / `retry_on_timeout`), transient failures are
+    retried with exponential backoff + jitter. The default policy
+    (`RetryPolicy()`) performs no retries — v0.2-byte-compat behavior.
+    Retry progress messages go to stderr so stdout stays parseable.
     """
     # Cache lookup. Computed once and reused for the cache-store at the end.
     cache_key: str | None = None
@@ -71,6 +86,76 @@ def invoke(
             if cached is not None:
                 return cached
 
+    policy = retry_policy if retry_policy is not None else DEFAULT_RETRY_POLICY
+    context = str(input_path)
+
+    was_retry = False
+    result: InvocationResult | None = None
+    for attempt in range(1, policy.max_attempts + 1):
+        result = _attempt_once(
+            run_template,
+            input_path,
+            output_path,
+            decision_field,
+            timeout_s=timeout_s,
+        )
+
+        if result.ok:
+            break
+
+        timed_out = result.exit_code is None
+        if policy.should_retry(
+            attempt=attempt,
+            exit_code=result.exit_code,
+            timed_out=timed_out,
+        ):
+            was_retry = True
+            next_delay = policy.delay_for(attempt + 1, rng=rng)
+            _emit_retry_detected(
+                attempt=attempt,
+                max_attempts=policy.max_attempts,
+                delay_s=next_delay,
+                exit_code=result.exit_code if result.exit_code is not None else -1,
+                context=context,
+            )
+            time.sleep(next_delay)
+            continue
+
+        # No retry — either permanent failure or attempts exhausted.
+        if was_retry:
+            _emit_giving_up(attempts=attempt, context=context)
+        break
+
+    assert result is not None  # loop always runs at least once
+    if result.ok and cache_dir is not None and cache_key is not None:
+        # Don't fail the run because the cache is read-only or full.
+        with contextlib.suppress(OSError):
+            _cache_store(cache_dir, cache_key, result)
+
+    return result
+
+
+def _tail(text: str | None) -> str | None:
+    if not text:
+        return None
+    lines = text.splitlines()
+    if not lines:
+        return None
+    return "\n".join(lines[-_STDERR_TAIL_LINES:])
+
+
+# ─── Single-attempt body ──────────────────────────────────────────────────
+
+
+def _attempt_once(
+    run_template: str,
+    input_path: Path,
+    output_path: Path,
+    decision_field: str,
+    *,
+    timeout_s: float | None,
+) -> InvocationResult:
+    """Run the pipeline exactly once. The retry loop in `invoke()` calls this."""
     command = run_template.format(
         input=shlex.quote(str(input_path)),
         output=shlex.quote(str(output_path)),
@@ -167,7 +252,7 @@ def invoke(
             stderr_tail=stderr_tail,
         )
 
-    result = InvocationResult(
+    return InvocationResult(
         ok=True,
         exit_code=proc.returncode,
         input_path=input_path,
@@ -176,21 +261,35 @@ def invoke(
         decision_value=parsed[decision_field],
     )
 
-    if cache_dir is not None and cache_key is not None:
-        # Don't fail the run because the cache is read-only or full.
-        with contextlib.suppress(OSError):
-            _cache_store(cache_dir, cache_key, result)
 
-    return result
+# ─── Retry event emission ─────────────────────────────────────────────────
+# Retry progress messages go to stderr only so stdout stays parseable for
+# report writers. Each message is a single line (the catalog entry's `what`
+# field); full why/how-to-fix rendering is available via catalog lookup.
 
 
-def _tail(text: str | None) -> str | None:
-    if not text:
-        return None
-    lines = text.splitlines()
-    if not lines:
-        return None
-    return "\n".join(lines[-_STDERR_TAIL_LINES:])
+def _emit_retry_detected(
+    *,
+    attempt: int,
+    max_attempts: int,
+    delay_s: float,
+    exit_code: int,
+    context: str,
+) -> None:
+    msg = catalog(
+        RETRY_TRANSIENT_DETECTED,
+        attempt=attempt,
+        max_attempts=max_attempts,
+        delay_s=delay_s,
+        exit_code=exit_code,
+        context=context,
+    )
+    print(msg.what, file=sys.stderr)
+
+
+def _emit_giving_up(*, attempts: int, context: str) -> None:
+    msg = catalog(RETRY_GIVING_UP, attempts=attempts, context=context)
+    print(msg.what, file=sys.stderr)
 
 
 # ─── On-disk invocation cache ──────────────────────────────────────────────

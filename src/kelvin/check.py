@@ -282,6 +282,7 @@ def _run_baselines(
             cfg.decision_field,
             timeout_s=cfg.timeout_s,
             cache_dir=cache_dir,
+            retry_policy=cfg.retry_policy,
         )
 
         if not result.ok:
@@ -364,6 +365,7 @@ def _run_perturbations_for_case(
                 cfg.decision_field,
                 timeout_s=cfg.timeout_s,
                 cache_dir=cache_dir,
+                retry_policy=cfg.retry_policy,
             ): pert
             for pert, inp, outp in work_items
         }

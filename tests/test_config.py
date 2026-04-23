@@ -13,6 +13,7 @@ from kelvin.config import (
     KelvinConfig,
     NoiseFloorConfig,
 )
+from kelvin.retry import RetryPolicy
 
 VALID_YAML = """\
 run: python -m pipe --input {input} --output {output}
@@ -226,6 +227,94 @@ class TestCounterfactualSwapConfig:
         yaml_text = VALID_YAML + 'counterfactual_swap:\n  enabled: "on"\n'
         with pytest.raises(ConfigError, match="counterfactual_swap.enabled"):
             KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+
+
+class TestRetryPolicyConfig:
+    def test_defaults_when_block_omitted(self, tmp_path: Path) -> None:
+        cfg = KelvinConfig.load(write_yaml(tmp_path, VALID_YAML))
+        assert cfg.retry_policy == RetryPolicy()
+        # Default has empty transient codes and retry_on_timeout False —
+        # byte-compatible with v0.2.
+        assert cfg.retry_policy.transient_exit_codes == frozenset()
+        assert cfg.retry_policy.retry_on_timeout is False
+
+    def test_accepts_full_block(self, tmp_path: Path) -> None:
+        yaml_text = (
+            VALID_YAML
+            + "retry_policy:\n"
+            + "  max_attempts: 5\n"
+            + "  initial_delay_s: 0.5\n"
+            + "  backoff_factor: 3.0\n"
+            + "  jitter_max_s: 0.2\n"
+            + "  transient_exit_codes: [75, 111]\n"
+            + "  retry_on_timeout: true\n"
+        )
+        cfg = KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+        assert cfg.retry_policy.max_attempts == 5
+        assert cfg.retry_policy.initial_delay_s == 0.5
+        assert cfg.retry_policy.backoff_factor == 3.0
+        assert cfg.retry_policy.jitter_max_s == 0.2
+        assert cfg.retry_policy.transient_exit_codes == frozenset({75, 111})
+        assert cfg.retry_policy.retry_on_timeout is True
+
+    def test_rejects_non_mapping(self, tmp_path: Path) -> None:
+        yaml_text = VALID_YAML + "retry_policy: [75]\n"
+        with pytest.raises(ConfigError, match="retry_policy"):
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+
+    def test_rejects_zero_max_attempts(self, tmp_path: Path) -> None:
+        yaml_text = VALID_YAML + "retry_policy:\n  max_attempts: 0\n"
+        with pytest.raises(ConfigError, match="max_attempts"):
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+
+    def test_rejects_negative_initial_delay(self, tmp_path: Path) -> None:
+        yaml_text = VALID_YAML + "retry_policy:\n  initial_delay_s: -1.0\n"
+        with pytest.raises(ConfigError, match="initial_delay_s"):
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+
+    def test_rejects_backoff_less_than_one(self, tmp_path: Path) -> None:
+        yaml_text = VALID_YAML + "retry_policy:\n  backoff_factor: 0.5\n"
+        with pytest.raises(ConfigError, match="backoff_factor"):
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+
+    def test_rejects_negative_jitter(self, tmp_path: Path) -> None:
+        yaml_text = VALID_YAML + "retry_policy:\n  jitter_max_s: -0.1\n"
+        with pytest.raises(ConfigError, match="jitter_max_s"):
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+
+    def test_rejects_non_int_transient_codes(self, tmp_path: Path) -> None:
+        yaml_text = (
+            VALID_YAML
+            + 'retry_policy:\n  transient_exit_codes: ["75"]\n'
+        )
+        with pytest.raises(ConfigError, match="transient_exit_codes"):
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+
+    def test_rejects_non_bool_retry_on_timeout(self, tmp_path: Path) -> None:
+        yaml_text = (
+            VALID_YAML + 'retry_policy:\n  retry_on_timeout: "yes"\n'
+        )
+        with pytest.raises(ConfigError, match="retry_on_timeout"):
+            KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+
+    def test_save_omits_block_at_default(self, tmp_path: Path) -> None:
+        cfg = KelvinConfig.load(write_yaml(tmp_path, VALID_YAML))
+        target = tmp_path / "out.yaml"
+        cfg.save(target)
+        data = yaml.safe_load(target.read_text(encoding="utf-8"))
+        assert "retry_policy" not in data
+
+    def test_save_emits_block_when_configured(self, tmp_path: Path) -> None:
+        yaml_text = (
+            VALID_YAML
+            + "retry_policy:\n"
+            + "  transient_exit_codes: [75]\n"
+        )
+        cfg = KelvinConfig.load(write_yaml(tmp_path, yaml_text))
+        target = tmp_path / "out.yaml"
+        cfg.save(target)
+        data = yaml.safe_load(target.read_text(encoding="utf-8"))
+        assert data["retry_policy"]["transient_exit_codes"] == [75]
 
 
 class TestConfigErrorStructuredMessage:

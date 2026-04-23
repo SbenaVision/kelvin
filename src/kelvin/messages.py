@@ -60,6 +60,14 @@ CHECK_ALL_BASELINES_FAILED = "check.all_baselines_failed"
 SCORER_NON_SCALAR_DECISION = "scorer.non_scalar_decision"
 SCORER_NON_SCALAR_DECISION_FIELD = "scorer.non_scalar_decision_field"
 
+CONFIG_RETRY_POLICY_NOT_MAPPING = "config.retry_policy_not_mapping"
+CONFIG_RETRY_POLICY_MAX_ATTEMPTS_INVALID = "config.retry_policy_max_attempts_invalid"
+CONFIG_RETRY_POLICY_INITIAL_DELAY_INVALID = "config.retry_policy_initial_delay_invalid"
+CONFIG_RETRY_POLICY_BACKOFF_FACTOR_INVALID = "config.retry_policy_backoff_factor_invalid"
+CONFIG_RETRY_POLICY_JITTER_MAX_INVALID = "config.retry_policy_jitter_max_invalid"
+CONFIG_RETRY_POLICY_TRANSIENT_CODES_INVALID = "config.retry_policy_transient_codes_invalid"
+CONFIG_RETRY_POLICY_RETRY_ON_TIMEOUT_INVALID = "config.retry_policy_retry_on_timeout_invalid"
+
 RETRY_TRANSIENT_DETECTED = "retry.transient_detected"
 RETRY_GIVING_UP = "retry.giving_up"
 
@@ -646,6 +654,104 @@ CATALOG: dict[str, MessageTemplate] = {
             "Either change the pipeline to emit {field_name!r} as a "
             "scalar, or point `decision_field:` at a different key that "
             "is scalar. Nested values can be flattened in a wrapper."
+        ),
+    ),
+
+    CONFIG_RETRY_POLICY_NOT_MAPPING: MessageTemplate(
+        id=CONFIG_RETRY_POLICY_NOT_MAPPING,
+        what="Config `retry_policy:` must be a mapping.",
+        why=(
+            "`retry_policy:` is a block config with nested keys like "
+            "`max_attempts:` and `transient_exit_codes:`. A scalar or "
+            "list at that position can't carry the required fields."
+        ),
+        how_to_fix=(
+            "Use a nested mapping. Example:\n"
+            "  retry_policy:\n"
+            "    max_attempts: 3\n"
+            "    transient_exit_codes: [75]"
+        ),
+    ),
+
+    CONFIG_RETRY_POLICY_MAX_ATTEMPTS_INVALID: MessageTemplate(
+        id=CONFIG_RETRY_POLICY_MAX_ATTEMPTS_INVALID,
+        what="Config `retry_policy.max_attempts` must be an integer >= 1.",
+        why=(
+            "The attempt count is 1-indexed and must permit at least the "
+            "first try. Values < 1 would skip invocation entirely."
+        ),
+        how_to_fix=(
+            "Set `retry_policy.max_attempts:` to a positive integer. "
+            "Default is 3 (1 initial + 2 retries)."
+        ),
+    ),
+
+    CONFIG_RETRY_POLICY_INITIAL_DELAY_INVALID: MessageTemplate(
+        id=CONFIG_RETRY_POLICY_INITIAL_DELAY_INVALID,
+        what="Config `retry_policy.initial_delay_s` must be a non-negative number.",
+        why=(
+            "Backoff delay cannot be negative. Zero is permitted (retry "
+            "immediately) but discouraged for real upstreams."
+        ),
+        how_to_fix=(
+            "Set `retry_policy.initial_delay_s:` to a number >= 0. "
+            "Default is 1.0."
+        ),
+    ),
+
+    CONFIG_RETRY_POLICY_BACKOFF_FACTOR_INVALID: MessageTemplate(
+        id=CONFIG_RETRY_POLICY_BACKOFF_FACTOR_INVALID,
+        what="Config `retry_policy.backoff_factor` must be a number >= 1.0.",
+        why=(
+            "Backoff factor multiplies the delay between attempts. "
+            "Values < 1.0 would shrink the delay over time, which defeats "
+            "the purpose of exponential backoff."
+        ),
+        how_to_fix=(
+            "Set `retry_policy.backoff_factor:` to a number >= 1.0. "
+            "Default is 2.0 (delay doubles each attempt)."
+        ),
+    ),
+
+    CONFIG_RETRY_POLICY_JITTER_MAX_INVALID: MessageTemplate(
+        id=CONFIG_RETRY_POLICY_JITTER_MAX_INVALID,
+        what="Config `retry_policy.jitter_max_s` must be a non-negative number.",
+        why=(
+            "Jitter randomizes the delay between attempts to avoid "
+            "thundering-herd retries. Negative values are meaningless; "
+            "zero disables jitter."
+        ),
+        how_to_fix=(
+            "Set `retry_policy.jitter_max_s:` to a number >= 0. Default "
+            "is 0.3."
+        ),
+    ),
+
+    CONFIG_RETRY_POLICY_TRANSIENT_CODES_INVALID: MessageTemplate(
+        id=CONFIG_RETRY_POLICY_TRANSIENT_CODES_INVALID,
+        what="Config `retry_policy.transient_exit_codes` must be a list of integers.",
+        why=(
+            "Exit codes are compared as integers against the subprocess "
+            "return code. Non-integer entries can't match."
+        ),
+        how_to_fix=(
+            "Set `retry_policy.transient_exit_codes:` to a YAML list of "
+            "integers. Example: `transient_exit_codes: [75]` (EX_TEMPFAIL "
+            "by convention)."
+        ),
+    ),
+
+    CONFIG_RETRY_POLICY_RETRY_ON_TIMEOUT_INVALID: MessageTemplate(
+        id=CONFIG_RETRY_POLICY_RETRY_ON_TIMEOUT_INVALID,
+        what="Config `retry_policy.retry_on_timeout` must be a boolean.",
+        why=(
+            "Must be unambiguous `true`/`false`. Retrying on timeout is "
+            "off by default because a timed-out pipeline often re-times-"
+            "out; opt in explicitly if you know the upstream is "
+            "slow-to-settle."
+        ),
+        how_to_fix=(
+            "Set `retry_policy.retry_on_timeout: true` or `false`."
         ),
     ),
 
