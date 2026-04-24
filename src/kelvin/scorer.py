@@ -211,6 +211,26 @@ def aggregate(
         eta=eta,
     )
 
+    # Pillar 2: decomposition. Sens(swap_content) is the raw aggregate
+    # sensitivity (same as `sensitivity` above) — exposed here as
+    # sensitivity_content for symmetry. Sens(swap_condition) approximates
+    # Rule_Effect. Content_Effect = sensitivity_content -
+    # sensitivity_condition.
+    all_swap_condition = [d for c in cases for d in c.swap_condition_distances]
+    sensitivity_condition = (
+        mean(all_swap_condition) if all_swap_condition else None
+    )
+    sensitivity_content = sensitivity  # alias; same computation
+    content_effect: float | None = None
+    if sensitivity_content is not None and sensitivity_condition is not None:
+        content_effect = max(0.0, sensitivity_content - sensitivity_condition)
+
+    # Pillar 3: mechanical sensitivity aggregate. Separate from swap-based
+    # sensitivity — different perturbation mechanism, reported as its
+    # own dimension so the paper can cite it independently.
+    all_mechanical = [d for c in cases for d in c.mechanical_sensitivity_distances]
+    mechanical_sensitivity = mean(all_mechanical) if all_mechanical else None
+
     return RunScores(
         cases=cases,
         seed=seed,
@@ -227,6 +247,13 @@ def aggregate(
         invariance_calibrated=inv_cal,
         sensitivity_calibrated=sens_cal,
         kelvin_score_calibrated=k_cal,
+        sensitivity_content=sensitivity_content,
+        sensitivity_content_sample=len(all_swap),
+        sensitivity_condition=sensitivity_condition,
+        sensitivity_condition_sample=len(all_swap_condition),
+        content_effect=content_effect,
+        mechanical_sensitivity=mechanical_sensitivity,
+        mechanical_sensitivity_sample=len(all_mechanical),
         warnings=warnings,
         caps=caps,
     )
