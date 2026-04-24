@@ -56,6 +56,7 @@ from kelvin.scorer import (
     DefaultScorer,
     Scorer,
     aggregate,
+    sigma_c,
     validate_scalar,
 )
 from kelvin.types import (
@@ -191,6 +192,7 @@ def run_check(
         cfg=cfg,
         cwd=cwd,
         logger=logger,
+        scorer_for_sigma=active_scorer,
         cache_dir=cache_dir,
         dry_run=dry_run,
     )
@@ -318,6 +320,7 @@ def _run_baselines(
     cfg: KelvinConfig,
     cwd: Path,
     logger: EventLogger,
+    scorer_for_sigma: Scorer,
     cache_dir: Path | None = None,
     dry_run: bool = False,
 ) -> tuple[list[CaseScores], bool]:
@@ -398,11 +401,62 @@ def _run_baselines(
                 raise AbortRun(str(exc)) from exc
             decision_validated = True
 
+        # Pillar 1: noise-floor replays. Run the same baseline N-1
+        # additional times (bypassing cache so each is a fresh call) and
+        # compute the per-case stochasticity σ_c. The canonical baseline
+        # decision stays the one already produced above; replays only
+        # feed σ_c / η, not perturbation scoring.
+        replays: list[Any] = [result.decision_value]
+        sigma_c_value: float | None = None
+        if cfg.noise_floor.enabled:
+            target = cfg.noise_floor.replications
+            # Reuse the output_path location — each replay overwrites;
+            # the cache is bypassed via cache_dir=None so the markdown's
+            # hash doesn't cache-hit back to the canonical call.
+            for i in range(target - 1):
+                replay = invoke(
+                    cfg.run,
+                    input_path,
+                    output_path,
+                    cfg.decision_field,
+                    timeout_s=cfg.timeout_s,
+                    cache_dir=None,
+                    retry_policy=cfg.retry_policy,
+                    logger=logger,
+                )
+                if replay.ok:
+                    replays.append(replay.decision_value)
+                else:
+                    logger.warn(
+                        "noise_floor_replay_failed",
+                        text=(
+                            f"noise-floor replay {i + 2}/{target} failed "
+                            f"for {case.name}: {replay.error}"
+                        ),
+                        case=case.name,
+                        replay_index=i + 2,
+                        error=replay.error,
+                    )
+            sigma_c_value = sigma_c(replays, scorer_for_sigma)
+            logger.info(
+                "noise_floor_measured",
+                text=(
+                    f"σ_c({case.name}) = "
+                    f"{sigma_c_value if sigma_c_value is None else f'{sigma_c_value:.4f}'} "
+                    f"across {len(replays)} replay(s)"
+                ),
+                case=case.name,
+                sigma_c=sigma_c_value,
+                replay_count=len(replays),
+            )
+
         case_scores.append(
             CaseScores(
                 case_name=case.name,
                 baseline_ok=True,
                 baseline_decision=result.decision_value,
+                baseline_replays=replays if cfg.noise_floor.enabled else [],
+                noise_floor_sigma_c=sigma_c_value,
             )
         )
         logger.info(
@@ -748,6 +802,14 @@ def _case_report_dict(scores: CaseScores, *, decision_field: str) -> dict:
     # bytes as v0.2, preserving the regression harness.
     if scores.dry_run:
         payload["dry_run"] = True
+    # Pillar 1 noise-floor fields: emit only when at least one replay was
+    # collected. Non-noise-floor runs produce the same bytes as v0.2.
+    if scores.noise_floor_sigma_c is not None or scores.baseline_replays:
+        payload["noise_floor"] = {
+            "sigma_c": scores.noise_floor_sigma_c,
+            "replay_count": len(scores.baseline_replays),
+            "baseline_replays": list(scores.baseline_replays),
+        }
     return payload
 
 
@@ -807,6 +869,14 @@ def _write_run_report(
     # bytes as v0.2, preserving the regression harness.
     if run_scores.dry_run:
         payload["dry_run"] = True
+    # Pillar 1 noise-floor fields: emit only when η was measured. Runs
+    # without noise_floor.enabled leave every calibrated field at None
+    # and emit nothing — regression harness stays byte-for-byte green.
+    if run_scores.noise_floor_eta is not None:
+        payload["noise_floor_eta"] = run_scores.noise_floor_eta
+        payload["invariance_calibrated"] = run_scores.invariance_calibrated
+        payload["sensitivity_calibrated"] = run_scores.sensitivity_calibrated
+        payload["kelvin_score_calibrated"] = run_scores.kelvin_score_calibrated
     (rdir / "report.json").write_text(
         json.dumps(payload, indent=2, default=_json_default),
         encoding="utf-8",

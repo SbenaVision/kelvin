@@ -94,6 +94,14 @@ class CaseScores:
     # never invoked. baseline_ok stays False (no decision value produced)
     # but this flag distinguishes dry-run from real failures.
     dry_run: bool = False
+    # Pillar 1 (v0.3): baseline replay decisions collected when
+    # noise_floor.enabled is True. `baseline_replays` includes the
+    # canonical baseline as the first entry (N total for N replications).
+    # `noise_floor_sigma_c` is the mean pairwise distance across replays
+    # — the per-case stochasticity. Both are None when noise floor is
+    # disabled or replays couldn't complete.
+    baseline_replays: list[Any] = field(default_factory=list)
+    noise_floor_sigma_c: float | None = None
     warnings: list[str] = field(default_factory=list)
     caps: list[str] = field(default_factory=list)
 
@@ -138,5 +146,15 @@ class RunScores:
     # are generated but the pipeline is never invoked. All distances are
     # null; scores are informational only.
     dry_run: bool = False
+    # Pillar 1 (v0.3): noise-floor calibration. `noise_floor_eta` is the
+    # mean per-case stochasticity across cases; calibrated scores
+    # normalize the raw signals by subtracting η and rescaling. All are
+    # None when noise floor is disabled or insufficient replay data
+    # exists. Calibrated K can also be None when η >= 1 - Inv_raw
+    # (stochasticity exceeds the invariance signal — unmeasurable).
+    noise_floor_eta: float | None = None
+    invariance_calibrated: float | None = None
+    sensitivity_calibrated: float | None = None
+    kelvin_score_calibrated: float | None = None
     warnings: list[str] = field(default_factory=list)
     caps: list[str] = field(default_factory=list)

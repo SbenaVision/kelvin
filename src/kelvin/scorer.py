@@ -73,6 +73,69 @@ def _is_numeric(value: Any) -> bool:
     return isinstance(value, (int, float)) and not isinstance(value, bool)
 
 
+def sigma_c(decisions: list[Any], scorer: Scorer) -> float | None:
+    """Per-case stochasticity: mean pairwise distance across replay decisions.
+
+    Returns `None` if fewer than 2 decisions are available (no pair to
+    compute). Uses the given scorer's `distance` for commensurability
+    with invariance / sensitivity — σ_c is measured on the same scale
+    as Inv_raw and Sens_raw.
+    """
+    if len(decisions) < 2:
+        return None
+    pairs: list[float] = []
+    for i in range(len(decisions)):
+        for j in range(i + 1, len(decisions)):
+            try:
+                pairs.append(scorer.distance(decisions[i], decisions[j]))
+            except DecisionFieldTypeError:
+                # Non-scalar replay decision is a pipeline bug. Drop the
+                # pair; aggregation handles missing data via None.
+                continue
+    if not pairs:
+        return None
+    return mean(pairs)
+
+
+def calibrate(
+    *,
+    invariance_raw: float | None,
+    sensitivity_raw: float | None,
+    eta: float | None,
+) -> tuple[float | None, float | None, float | None]:
+    """Apply noise-floor calibration to invariance + sensitivity.
+
+    Returns `(Inv_cal, Sens_cal, K_cal)`. Any component is `None` when
+    inputs are missing or when `eta >= 1 - invariance_raw` — the
+    stochasticity floor exceeds the observed invariance signal, so
+    calibration would divide by a non-positive denominator and the
+    signal is "unmeasurable through noise."
+
+    Formula:
+        Inv_cal  = max(0, (Inv_raw  - η) / (1 - η))
+        Sens_cal = max(0, (Sens_raw - η) / (1 - η))
+        K_cal    = (1 - Inv_cal) + (1 - Sens_cal)
+
+    Degenerate preservation: a pipeline with η = 0 gets K_cal == K_raw
+    exactly. The constant pipeline's K = 1.0 is preserved under
+    calibration — AC-1.1 gate.
+    """
+    if eta is None or invariance_raw is None or sensitivity_raw is None:
+        return (None, None, None)
+    if eta <= 0:
+        return (
+            invariance_raw,
+            sensitivity_raw,
+            (1.0 - invariance_raw) + (1.0 - sensitivity_raw),
+        )
+    if eta >= 1.0 - invariance_raw:
+        return (None, None, None)
+    denom = 1.0 - eta
+    inv_cal = max(0.0, (invariance_raw - eta) / denom)
+    sens_cal = max(0.0, (sensitivity_raw - eta) / denom)
+    return (inv_cal, sens_cal, (1.0 - inv_cal) + (1.0 - sens_cal))
+
+
 def validate_scalar(value: Any, field_name: str) -> None:
     """Raise if the value isn't one of Kelvin's supported scalar types.
 
@@ -136,6 +199,18 @@ def aggregate(
         warnings.extend(c.warnings)
         caps.extend(c.caps)
 
+    # Pillar 1: compute noise floor η as the mean per-case σ_c across
+    # cases that actually produced replay data. When noise floor was not
+    # enabled (all σ_c are None), η stays None and calibrated scores
+    # stay None — the report shape is unchanged for non-noise-floor runs.
+    case_sigmas = [c.noise_floor_sigma_c for c in cases if c.noise_floor_sigma_c is not None]
+    eta = mean(case_sigmas) if case_sigmas else None
+    inv_cal, sens_cal, k_cal = calibrate(
+        invariance_raw=invariance,
+        sensitivity_raw=sensitivity,
+        eta=eta,
+    )
+
     return RunScores(
         cases=cases,
         seed=seed,
@@ -148,6 +223,10 @@ def aggregate(
         governing_types=list(governing_types),
         single_case_run=single_case_run,
         dry_run=dry_run,
+        noise_floor_eta=eta,
+        invariance_calibrated=inv_cal,
+        sensitivity_calibrated=sens_cal,
+        kelvin_score_calibrated=k_cal,
         warnings=warnings,
         caps=caps,
     )
