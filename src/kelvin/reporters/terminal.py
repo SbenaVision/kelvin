@@ -294,6 +294,36 @@ def _build(
         rows.append(_row(f"{_INDENT}lower = more anchored."))
         rows.append(_empty())
 
+    # ── Pillar 1: noise floor + calibrated K (opt-in) ─────────────────────────
+    if run_scores.noise_floor_eta is not None:
+        # Replay count is per-case; pull it from the first case with data.
+        replay_n = next(
+            (len(c.baseline_replays) for c in run_scores.cases if c.baseline_replays),
+            0,
+        )
+        rows.append(_row(
+            f"{_INDENT}{'Noise floor η':<14}{run_scores.noise_floor_eta:.3f}"
+        ))
+        rows.append(_row(
+            f"{_INDENT}Measured across {replay_n} replays per case."
+        ))
+        rows.append(_empty())
+        if run_scores.kelvin_score_calibrated is not None:
+            rows.append(_row(
+                f"{_INDENT}{'K_cal':<14}{run_scores.kelvin_score_calibrated:.2f}"
+            ))
+            rows.append(_row(
+                f"{_INDENT}K after calibrating for stochasticity."
+            ))
+        else:
+            rows.append(_row(
+                f"{_INDENT}{'K_cal':<14}—"
+            ))
+            rows.append(_row(
+                f"{_INDENT}Noise exceeds invariance signal; unmeasurable."
+            ))
+        rows.append(_empty())
+
     # ── Diagnostic ────────────────────────────────────────────────────────────
     for line in _diagnostic_rows(run_scores, decision_field):
         rows.append(_row(line))
