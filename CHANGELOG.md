@@ -6,7 +6,65 @@ The format is based on [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.
 
 ## [Unreleased]
 
-Nothing queued beyond v0.2.1 at this time. v0.3 scope is tracked in the [pinned roadmap issue](https://github.com/SbenaVision/kelvin/issues/1); `FALLBACKS.md` pins the paper tier ladder in advance so thresholds aren't relaxed mid-stream.
+Nothing queued beyond v0.3.0 at this time.
+
+## [0.3.0] — 2026-04-24
+
+**Theme.** "Noise-calibrated metamorphic diagnostics for LLM-backed RAG with counterfactual-controlled sensitivity and rule-based presentation-layer probes." Three methodology pillars ship together:
+
+- **Pillar 1 — Noise-floor calibration (`K_cal`).** Baseline replays establish per-pipeline stochasticity `η`; invariance and sensitivity are normalized against noise. Degenerate-pipeline theorem preserved exactly. Partial (n=4) and final (n=6 effective σ_c) VA-API measurements documented pre-merge; the 0.3.0 integration run produces `η=0.124, K_cal=1.090` across n=8 cases with 5 replays each.
+- **Pillar 2 — Counterfactual-controlled swap decomposition.** New `swap_condition` operator edits only the condition clause of a gate-rule governing unit, preserving the focal case's state phrase and justification. Aggregate decomposes raw swap sensitivity: `Sens(swap_content) = Rule_Effect + Content_Effect + ε`. Empirically demonstrated on the grounded stand-in pipeline (gate-rule corpus): `Sens(swap_content)=0.667, Sens(swap_condition)=0.000, Content_Effect=0.667` — the v0.2 raw-swap sensitivity of this pipeline was 100% content leakage.
+- **Pillar 3 — Presentation-layer invariance + mechanical sensitivity + rule-based rhetorical probes (reframed).** Original Pillar 3 scope (labeling-study-validated rhetorical families) was dropped. Replaced with eleven rule-based families whose invariants hold by construction: four presentation-layer invariance (whitespace_jitter, punctuation_normalize, bullet_reformat, non_governing_duplication), four rhetorical invariance with structural constraints (hedge_injection, politeness_injection, discourse_marker_injection, meta_commentary_injection), three mechanical sensitivity (numeric_magnitude, comparator_flip, polarity_flip).
+
+All three pillars are opt-in via `counterfactual_swap.enabled` and `intra_slot.enabled`. A v0.2.1 `kelvin.yaml` produces byte-for-byte identical output to v0.2.1 on deterministic pipelines (Phase A regression green). Whitepaper §5.3 updated with Pillar 1 + Pillar 3 live-API numbers; §5.4 (Table 4) adds Pillar 2 decomposition demo; §5.5 describes the Pillar 3 family catalogue. `experiments/pillar1_va_api_v030.md` documents the integration-run drift analysis; `experiments/pillar2_decomposition_demo/` bundles the Pillar 2 reproduction artifacts.
+
+### Added
+
+- **`SwapConditionGenerator`** (`src/kelvin/perturbations/swap_condition.py`) — parses gate-rule bodies via regex, swaps condition list between peers with matching state phrase + different content, skips units that don't parse cleanly. Gated on `cfg.counterfactual_swap.enabled`. Clean-parse rate surfaced in aggregation.
+- **Eleven Pillar 3 families** (`src/kelvin/perturbations/intra_slot.py`):
+  - Invariance, presentation-layer: `whitespace_jitter`, `punctuation_normalize`, `bullet_reformat`, `non_governing_duplication`.
+  - Invariance, rhetorical (rule-based with structural constraints): `hedge_injection`, `politeness_injection`, `discourse_marker_injection`, `meta_commentary_injection`.
+  - Sensitivity, mechanical: `numeric_magnitude` (curve over 2×/5×/10×/100×), `comparator_flip` (closed pair list), `polarity_flip` (closed antonym list).
+  - Each family gated on `cfg.intra_slot.enabled` + per-family enable in `cfg.intra_slot.enabled_families`.
+- **Aggregation extensions** (`src/kelvin/scorer.py`): decomposition computes `sensitivity_content`, `sensitivity_condition`, `content_effect`; mechanical_sensitivity computed from the three mechanical-sensitivity family distances. All emitted in run-level `report.json` only when the corresponding family produced samples.
+- **`CaseScores` / `RunScores` fields** (additive, defaults preserve v0.2.1): `swap_conditions_by_type`, the four presentation-layer invariance lists, the three mechanical sensitivity lists, `rhetorical` (pooled rhetorical invariance list), plus aggregate fields on `RunScores`.
+- **Invariance pool composition updated.** `CaseScores.invariance_distances` now aggregates v0.2 inter-slot families (reorder, pad_length, pad_content) + Pillar 3 invariance families (presentation-layer + rhetorical). Same `invariance` scalar, larger sample count when Pillar 3 families fire.
+- **`experiments/pillar1_va_api_v030.md`** — integration-run measurement record with per-case σ_c, drift analysis vs earlier Pillar-1-only run, cross-pipeline K_cal landscape.
+- **`experiments/pillar2_decomposition_demo/`** — reproducible Pillar 2 artifacts on the 6-case gate-rule corpus against the grounded stand-in. Zero LLM spend.
+- **Whitepaper §5.4 (Table 4)** — Pillar 2 decomposition demonstration. §5.5 — Pillar 3 family catalogue with each family's structural invariant.
+
+### Changed
+
+- **Whitepaper §5.3** — superseded the 0.2.1-era "final Pillar 1 measurement (n=6 effective σ_c)" paragraph with the 0.3.0 integration-run numbers (n=8 σ_c, Pillar 3 enabled). Retains the earlier measurement in `experiments/pillar1_va_api_final.md` for sample-composition comparison.
+- **Whitepaper §6 and §7** — updated limitations and future-work entries. Pillar 2 content-leakage caveat from §3.3 is now quantified; the "rhetorical families require labeling study" entry from the earlier plan is reframed as "rule-based structural constraints ship what they protect; labeling-validated rhetorical probes remain future work."
+- **`PerturbationKind` literal** expanded to include the 12 new kinds. Additive — existing consumers matching on v0.2 kinds continue to work.
+
+### Cut from earlier plan
+
+- **Labeling-study validation of rhetorical families.** SBA direction: "doesn't make sense to label in 2026." Replaced with rule-based structural constraints. The four rhetorical families still ship, but the meaning-preservation claim is construction-based, not rater-validated. `FALLBACKS.md` updated accordingly.
+- **`swap_condition` on the VA corpus.** Not applicable — VA governing types are prose, not structured gate rules. Demo moved to the tier3 corpus in §5.4. Reviewer can point to Pillar 2 as "works where it works" and separately cite the VA run's null result for it as correct behavior.
+
+### Upgrade notes from v0.2.1
+
+- **No action required.** `pip install -U kelvin-eval` and existing runs continue to work unchanged (no Pillar 2/3 families fire without explicit config opt-in).
+- **To enable the decomposition on a gate-rule corpus**, add to `kelvin.yaml`:
+  ```yaml
+  counterfactual_swap:
+    enabled: true
+  ```
+- **To enable Pillar 3 families**, add:
+  ```yaml
+  intra_slot:
+    enabled: true
+    enabled_families:
+      - numeric_magnitude
+      - comparator_flip
+      - polarity_flip
+      - whitespace_jitter
+      - non_governing_duplication
+      # …add any of the other 6 family names from src/kelvin/perturbations/intra_slot.py
+  ```
+- **Report.json gains optional fields** emitted only when noise floor / counterfactual swap / mechanical-sensitivity families contributed samples. External consumers should tolerate additional top-level keys.
 
 ## [0.2.1] — 2026-04-23
 

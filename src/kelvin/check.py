@@ -45,10 +45,12 @@ from kelvin.messages import (
 )
 from kelvin.parser import load_cases, render_case
 from kelvin.perturbations import PerturbationGenerator
+from kelvin.perturbations.intra_slot import PILLAR3_FAMILIES
 from kelvin.perturbations.pad import PadContentGenerator
 from kelvin.perturbations.pad_length import PadLengthGenerator
 from kelvin.perturbations.reorder import ReorderGenerator
 from kelvin.perturbations.swap import SwapGenerator
+from kelvin.perturbations.swap_condition import SwapConditionGenerator
 from kelvin.reporters.terminal import render as render_terminal
 from kelvin.runner import invoke
 from kelvin.scorer import (
@@ -108,6 +110,29 @@ DEFAULT_GENERATORS: tuple[PerturbationGenerator, ...] = (
 )
 
 
+def _expand_generators(
+    base: tuple[PerturbationGenerator, ...],
+    cfg: KelvinConfig,
+) -> tuple[PerturbationGenerator, ...]:
+    """Append v0.3 opt-in generators based on config flags.
+
+    `counterfactual_swap.enabled` → SwapConditionGenerator.
+    `intra_slot.enabled` + `enabled_families: [...]` → each Pillar 3
+    family listed. Unknown family names are silently skipped (the
+    config validator will have already flagged typos by the time
+    the run reaches here).
+    """
+    extras: list[PerturbationGenerator] = []
+    if cfg.counterfactual_swap.enabled:
+        extras.append(SwapConditionGenerator())
+    if cfg.intra_slot.enabled:
+        for family in cfg.intra_slot.enabled_families:
+            cls = PILLAR3_FAMILIES.get(family)
+            if cls is not None:
+                extras.append(cls())
+    return tuple(base) + tuple(extras)
+
+
 # Expected perturbation counts per generator, used for the cost preamble.
 # These match each generator's TARGET_COUNT and are an estimate — actual
 # counts may be lower when caps or peer-pool shortages apply.
@@ -149,6 +174,11 @@ def run_check(
         logger = text_logger_for(echo)
     cfg = _load_config(cwd)
     effective_seed = seed_override if seed_override is not None else cfg.seed
+
+    # Expand generator tuple with opt-in v0.3 Pillar 2 / Pillar 3 families
+    # based on config flags. When neither flag is set, generators stays
+    # at v0.2.1 defaults and the regression harness is byte-for-byte.
+    generators = _expand_generators(generators, cfg)
 
     cases_dir = cfg.cases if cfg.cases.is_absolute() else (cwd / cfg.cases)
     cache_dir = _resolve_cache_dir(cfg, cwd)
@@ -620,6 +650,32 @@ def _dispatch_scored(sp: ScoredPerturbation, scores: CaseScores) -> None:
     elif kind == "swap":
         gtype = sp.perturbation.notes.get("governing_type", "unknown")
         scores.swaps_by_type.setdefault(gtype, []).append(sp)
+    elif kind == "swap_condition":
+        gtype = sp.perturbation.notes.get("governing_type", "unknown")
+        scores.swap_conditions_by_type.setdefault(gtype, []).append(sp)
+    elif kind == "whitespace_jitter":
+        scores.whitespace_jitter.append(sp)
+    elif kind == "punctuation_normalize":
+        scores.punctuation_normalize.append(sp)
+    elif kind == "bullet_reformat":
+        scores.bullet_reformat.append(sp)
+    elif kind == "non_governing_duplication":
+        scores.non_governing_duplication.append(sp)
+    elif kind == "numeric_magnitude":
+        scores.numeric_magnitude.append(sp)
+    elif kind == "comparator_flip":
+        scores.comparator_flip.append(sp)
+    elif kind == "polarity_flip":
+        scores.polarity_flip.append(sp)
+    elif kind in (
+        "hedge_injection",
+        "politeness_injection",
+        "discourse_marker_injection",
+        "meta_commentary_injection",
+    ):
+        # Rhetorical families — treated as invariance perturbations. Share
+        # a single bucket since they're dispatched the same way.
+        scores.rhetorical.append(sp)
 
 
 # ─── Footgun helpers (Tier 2) ───────────────────────────────────────────────
@@ -877,6 +933,17 @@ def _write_run_report(
         payload["invariance_calibrated"] = run_scores.invariance_calibrated
         payload["sensitivity_calibrated"] = run_scores.sensitivity_calibrated
         payload["kelvin_score_calibrated"] = run_scores.kelvin_score_calibrated
+    # Pillar 2 decomposition: emit when any swap_condition sample exists.
+    if run_scores.sensitivity_condition_sample > 0:
+        payload["sensitivity_content"] = run_scores.sensitivity_content
+        payload["sensitivity_content_sample"] = run_scores.sensitivity_content_sample
+        payload["sensitivity_condition"] = run_scores.sensitivity_condition
+        payload["sensitivity_condition_sample"] = run_scores.sensitivity_condition_sample
+        payload["content_effect"] = run_scores.content_effect
+    # Pillar 3 mechanical sensitivity aggregate.
+    if run_scores.mechanical_sensitivity_sample > 0:
+        payload["mechanical_sensitivity"] = run_scores.mechanical_sensitivity
+        payload["mechanical_sensitivity_sample"] = run_scores.mechanical_sensitivity_sample
     (rdir / "report.json").write_text(
         json.dumps(payload, indent=2, default=_json_default),
         encoding="utf-8",

@@ -6,7 +6,21 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Literal
 
-PerturbationKind = Literal["reorder", "pad_length", "pad_content", "swap"]
+PerturbationKind = Literal[
+    # v0.2 families
+    "reorder", "pad_length", "pad_content", "swap",
+    # v0.3 Pillar 2: counterfactual-controlled swap on governing rules
+    "swap_condition",
+    # v0.3 Pillar 3: presentation-layer invariance probes
+    "whitespace_jitter", "punctuation_normalize", "bullet_reformat",
+    "non_governing_duplication",
+    # v0.3 Pillar 3: mechanical sensitivity probes
+    "numeric_magnitude", "comparator_flip", "polarity_flip",
+    # v0.3 Pillar 3: rule-based rhetorical invariance probes
+    # (structural constraints, not labeling-validated)
+    "hedge_injection", "politeness_injection",
+    "discourse_marker_injection", "meta_commentary_injection",
+]
 
 
 @dataclass(frozen=True)
@@ -87,6 +101,29 @@ class CaseScores:
     pad_length: list[ScoredPerturbation] = field(default_factory=list)
     pad_content: list[ScoredPerturbation] = field(default_factory=list)
     swaps_by_type: dict[str, list[ScoredPerturbation]] = field(default_factory=dict)
+    # Pillar 2: swap_condition perturbations, keyed by governing type.
+    # Parallel structure to swaps_by_type; aggregator decomposes raw swap
+    # sensitivity into Rule_Effect (Sens(swap_condition)) + Content_Effect
+    # (Sens(swap_content) - Sens(swap_condition)).
+    swap_conditions_by_type: dict[str, list[ScoredPerturbation]] = field(
+        default_factory=dict
+    )
+    # Pillar 3 presentation-layer invariance families: decisions must not
+    # move on whitespace/punctuation/bullet/duplication changes.
+    whitespace_jitter: list[ScoredPerturbation] = field(default_factory=list)
+    punctuation_normalize: list[ScoredPerturbation] = field(default_factory=list)
+    bullet_reformat: list[ScoredPerturbation] = field(default_factory=list)
+    non_governing_duplication: list[ScoredPerturbation] = field(default_factory=list)
+    # Pillar 3 mechanical sensitivity families: decisions should move on
+    # targeted numeric/comparator/polarity edits inside governing sections.
+    numeric_magnitude: list[ScoredPerturbation] = field(default_factory=list)
+    comparator_flip: list[ScoredPerturbation] = field(default_factory=list)
+    polarity_flip: list[ScoredPerturbation] = field(default_factory=list)
+    # Pillar 3 rule-based rhetorical invariance families: hedge/politeness/
+    # discourse-marker/meta-commentary insertions with structural constraints.
+    # Pooled into a single list because they're dispatched and aggregated
+    # together — per-family breakdown available from sp.perturbation.kind.
+    rhetorical: list[ScoredPerturbation] = field(default_factory=list)
     baseline_ok: bool = True
     baseline_error: str | None = None
     baseline_decision: Any = None
@@ -107,9 +144,23 @@ class CaseScores:
 
     @property
     def invariance_distances(self) -> list[float]:
+        # Inter-slot (v0.2) + intra-slot presentation-layer (v0.3 Pillar 3)
+        # are combined into the single aggregate invariance pool. A pipeline
+        # that's supposed to be invariant under any of these probes is also
+        # supposed to be invariant under all of them; the aggregate uses all
+        # contributions.
         return [
             sp.distance
-            for sp in (*self.reorder, *self.pad_length, *self.pad_content)
+            for sp in (
+                *self.reorder,
+                *self.pad_length,
+                *self.pad_content,
+                *self.whitespace_jitter,
+                *self.punctuation_normalize,
+                *self.bullet_reformat,
+                *self.non_governing_duplication,
+                *self.rhetorical,
+            )
             if sp.distance is not None
         ]
 
@@ -119,6 +170,31 @@ class CaseScores:
             sp.distance
             for swaps in self.swaps_by_type.values()
             for sp in swaps
+            if sp.distance is not None
+        ]
+
+    @property
+    def swap_condition_distances(self) -> list[float]:
+        """Rule_Effect approximation — distances from counterfactual-
+        controlled swaps, aggregated across all governing types."""
+        return [
+            sp.distance
+            for swaps in self.swap_conditions_by_type.values()
+            for sp in swaps
+            if sp.distance is not None
+        ]
+
+    @property
+    def mechanical_sensitivity_distances(self) -> list[float]:
+        """Mechanical sensitivity perturbations (Pillar 3): numeric,
+        comparator, polarity edits inside governing sections."""
+        return [
+            sp.distance
+            for sp in (
+                *self.numeric_magnitude,
+                *self.comparator_flip,
+                *self.polarity_flip,
+            )
             if sp.distance is not None
         ]
 
@@ -156,5 +232,25 @@ class RunScores:
     invariance_calibrated: float | None = None
     sensitivity_calibrated: float | None = None
     kelvin_score_calibrated: float | None = None
+    # Pillar 2 (v0.3): counterfactual-controlled swap decomposition.
+    # sensitivity_content is Sens(swap) — same as v0.2's "sensitivity"
+    # aggregate, repeated here for symmetry with sensitivity_condition.
+    # sensitivity_condition is Sens(swap_condition) and approximates
+    # Rule_Effect. content_effect = sensitivity_content -
+    # sensitivity_condition (Content_Effect, may be negative with noise;
+    # clamped to 0 for display). All three are None when counterfactual
+    # swap is disabled or no swap_condition perturbations produced
+    # contributing distances.
+    sensitivity_content: float | None = None
+    sensitivity_content_sample: int = 0
+    sensitivity_condition: float | None = None
+    sensitivity_condition_sample: int = 0
+    content_effect: float | None = None
+    swap_condition_clean_parse_rate: float | None = None
+    # Pillar 3 (v0.3): mechanical sensitivity aggregate. Distinct from
+    # swap-based sensitivity because the perturbations target numeric /
+    # comparator / polarity tokens directly, not governing-unit swaps.
+    mechanical_sensitivity: float | None = None
+    mechanical_sensitivity_sample: int = 0
     warnings: list[str] = field(default_factory=list)
     caps: list[str] = field(default_factory=list)
