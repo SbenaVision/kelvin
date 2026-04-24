@@ -1,0 +1,305 @@
+{
+  "schema_version": 1,
+  "case": "meridian",
+  "baseline": {
+    "ok": true,
+    "error": null,
+    "decision_value": "pre-seed",
+    "decision_field": "stage_assessment"
+  },
+  "perturbations": [
+    {
+      "variant_id": "reorder-01",
+      "kind": "reorder",
+      "notes": {
+        "order": [
+          0,
+          1,
+          6,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "pre-seed",
+        "stderr_tail": null
+      },
+      "distance": 0.0,
+      "input_path": "/private/tmp/pillar2_grounded/kelvin/meridian/perturbations/reorder-01/input.md",
+      "output_path": "/private/tmp/pillar2_grounded/kelvin/meridian/perturbations/reorder-01/output.json"
+    },
+    {
+      "variant_id": "reorder-02",
+      "kind": "reorder",
+      "notes": {
+        "order": [
+          0,
+          3,
+          5,
+          4,
+          6,
+          1,
+          2
+        ]
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "pre-seed",
+        "stderr_tail": null
+      },
+      "distance": 0.0,
+      "input_path": "/private/tmp/pillar2_grounded/kelvin/meridian/perturbations/reorder-02/input.md",
+      "output_path": "/private/tmp/pillar2_grounded/kelvin/meridian/perturbations/reorder-02/output.json"
+    },
+    {
+      "variant_id": "reorder-03",
+      "kind": "reorder",
+      "notes": {
+        "order": [
+          6,
+          0,
+          1,
+          3,
+          2,
+          4,
+          5
+        ]
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "pre-seed",
+        "stderr_tail": null
+      },
+      "distance": 0.0,
+      "input_path": "/private/tmp/pillar2_grounded/kelvin/meridian/perturbations/reorder-03/input.md",
+      "output_path": "/private/tmp/pillar2_grounded/kelvin/meridian/perturbations/reorder-03/output.json"
+    },
+    {
+      "variant_id": "pad_length-01",
+      "kind": "pad_length",
+      "notes": {
+        "insert_count": 2,
+        "inserted": [
+          {
+            "position": 2,
+            "length_chars": 258
+          },
+          {
+            "position": 5,
+            "length_chars": 156
+          }
+        ],
+        "total_chars": 414
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "pre-seed",
+        "stderr_tail": null
+      },
+      "distance": 0.0,
+      "input_path": "/private/tmp/pillar2_grounded/kelvin/meridian/perturbations/pad_length-01/input.md",
+      "output_path": "/private/tmp/pillar2_grounded/kelvin/meridian/perturbations/pad_length-01/output.json"
+    },
+    {
+      "variant_id": "pad_length-03",
+      "kind": "pad_length",
+      "notes": {
+        "insert_count": 2,
+        "inserted": [
+          {
+            "position": 2,
+            "length_chars": 218
+          },
+          {
+            "position": 4,
+            "length_chars": 227
+          }
+        ],
+        "total_chars": 445
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "pre-seed",
+        "stderr_tail": null
+      },
+      "distance": 0.0,
+      "input_path": "/private/tmp/pillar2_grounded/kelvin/meridian/perturbations/pad_length-03/input.md",
+      "output_path": "/private/tmp/pillar2_grounded/kelvin/meridian/perturbations/pad_length-03/output.json"
+    },
+    {
+      "variant_id": "pad_length-02",
+      "kind": "pad_length",
+      "notes": {
+        "insert_count": 2,
+        "inserted": [
+          {
+            "position": 4,
+            "length_chars": 268
+          },
+          {
+            "position": 2,
+            "length_chars": 233
+          }
+        ],
+        "total_chars": 501
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "pre-seed",
+        "stderr_tail": null
+      },
+      "distance": 0.0,
+      "input_path": "/private/tmp/pillar2_grounded/kelvin/meridian/perturbations/pad_length-02/input.md",
+      "output_path": "/private/tmp/pillar2_grounded/kelvin/meridian/perturbations/pad_length-02/output.json"
+    },
+    {
+      "variant_id": "pad_content-02",
+      "kind": "pad_content",
+      "notes": {
+        "insert_count": 3,
+        "inserted": [
+          {
+            "from_case": "envelop",
+            "type": "gate_rule",
+            "source_index": 6,
+            "position": 0
+          },
+          {
+            "from_case": "rhodium",
+            "type": "market_evidence",
+            "source_index": 3,
+            "position": 6
+          },
+          {
+            "from_case": "freakinggenius",
+            "type": "gate_rule",
+            "source_index": 6,
+            "position": 7
+          }
+        ]
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "seed",
+        "stderr_tail": null
+      },
+      "distance": 1.0,
+      "input_path": "/private/tmp/pillar2_grounded/kelvin/meridian/perturbations/pad_content-02/input.md",
+      "output_path": "/private/tmp/pillar2_grounded/kelvin/meridian/perturbations/pad_content-02/output.json"
+    },
+    {
+      "variant_id": "pad_content-01",
+      "kind": "pad_content",
+      "notes": {
+        "insert_count": 3,
+        "inserted": [
+          {
+            "from_case": "artisanflow",
+            "type": "traction_signal",
+            "source_index": 4,
+            "position": 4
+          },
+          {
+            "from_case": "northpass",
+            "type": "unit_economics",
+            "source_index": 5,
+            "position": 3
+          },
+          {
+            "from_case": "freakinggenius",
+            "type": "venture_description",
+            "source_index": 0,
+            "position": 7
+          }
+        ]
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "pre-seed",
+        "stderr_tail": null
+      },
+      "distance": 0.0,
+      "input_path": "/private/tmp/pillar2_grounded/kelvin/meridian/perturbations/pad_content-01/input.md",
+      "output_path": "/private/tmp/pillar2_grounded/kelvin/meridian/perturbations/pad_content-01/output.json"
+    },
+    {
+      "variant_id": "pad_content-03",
+      "kind": "pad_content",
+      "notes": {
+        "insert_count": 2,
+        "inserted": [
+          {
+            "from_case": "freakinggenius",
+            "type": "venture_description",
+            "source_index": 0,
+            "position": 6
+          },
+          {
+            "from_case": "freakinggenius",
+            "type": "gate_rule",
+            "source_index": 6,
+            "position": 5
+          }
+        ]
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "idea",
+        "stderr_tail": null
+      },
+      "distance": 1.0,
+      "input_path": "/private/tmp/pillar2_grounded/kelvin/meridian/perturbations/pad_content-03/input.md",
+      "output_path": "/private/tmp/pillar2_grounded/kelvin/meridian/perturbations/pad_content-03/output.json"
+    },
+    {
+      "variant_id": "swap-gate_rule-01",
+      "kind": "swap",
+      "notes": {
+        "governing_type": "gate_rule",
+        "position_replaced": 6,
+        "original_header": "Gate Rule",
+        "from_case": "artisanflow",
+        "peer_source_index": 6
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "growth",
+        "stderr_tail": null
+      },
+      "distance": 1.0,
+      "input_path": "/private/tmp/pillar2_grounded/kelvin/meridian/perturbations/swap-gate_rule-01/input.md",
+      "output_path": "/private/tmp/pillar2_grounded/kelvin/meridian/perturbations/swap-gate_rule-01/output.json"
+    }
+  ],
+  "scores": {
+    "invariance": 0.7777777777777778,
+    "invariance_sample": 9,
+    "sensitivity": 1.0,
+    "sensitivity_sample": 1,
+    "sensitivity_by_type": {
+      "gate_rule": {
+        "mean": 1.0,
+        "sample": 1
+      }
+    }
+  },
+  "warnings": [
+    "meridian: swap_condition found no eligible peers for gate_rule (same state_phrase + different condition list)"
+  ],
+  "caps": [
+    "meridian: swap-gate_rule capped at 1 (case positions=1, peer pool=5, target=3)"
+  ]
+}

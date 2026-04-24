@@ -1,0 +1,326 @@
+{
+  "schema_version": 1,
+  "case": "rhodium",
+  "baseline": {
+    "ok": true,
+    "error": null,
+    "decision_value": "scale",
+    "decision_field": "stage_assessment"
+  },
+  "perturbations": [
+    {
+      "variant_id": "reorder-02",
+      "kind": "reorder",
+      "notes": {
+        "order": [
+          2,
+          5,
+          6,
+          3,
+          4,
+          0,
+          1
+        ]
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "scale",
+        "stderr_tail": null
+      },
+      "distance": 0.0,
+      "input_path": "/private/tmp/pillar2_grounded/kelvin/rhodium/perturbations/reorder-02/input.md",
+      "output_path": "/private/tmp/pillar2_grounded/kelvin/rhodium/perturbations/reorder-02/output.json"
+    },
+    {
+      "variant_id": "reorder-01",
+      "kind": "reorder",
+      "notes": {
+        "order": [
+          1,
+          5,
+          3,
+          6,
+          2,
+          4,
+          0
+        ]
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "scale",
+        "stderr_tail": null
+      },
+      "distance": 0.0,
+      "input_path": "/private/tmp/pillar2_grounded/kelvin/rhodium/perturbations/reorder-01/input.md",
+      "output_path": "/private/tmp/pillar2_grounded/kelvin/rhodium/perturbations/reorder-01/output.json"
+    },
+    {
+      "variant_id": "reorder-03",
+      "kind": "reorder",
+      "notes": {
+        "order": [
+          0,
+          4,
+          2,
+          5,
+          6,
+          3,
+          1
+        ]
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "scale",
+        "stderr_tail": null
+      },
+      "distance": 0.0,
+      "input_path": "/private/tmp/pillar2_grounded/kelvin/rhodium/perturbations/reorder-03/input.md",
+      "output_path": "/private/tmp/pillar2_grounded/kelvin/rhodium/perturbations/reorder-03/output.json"
+    },
+    {
+      "variant_id": "pad_length-01",
+      "kind": "pad_length",
+      "notes": {
+        "insert_count": 4,
+        "inserted": [
+          {
+            "position": 1,
+            "length_chars": 249
+          },
+          {
+            "position": 3,
+            "length_chars": 276
+          },
+          {
+            "position": 8,
+            "length_chars": 268
+          },
+          {
+            "position": 1,
+            "length_chars": 249
+          }
+        ],
+        "total_chars": 1042
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "scale",
+        "stderr_tail": null
+      },
+      "distance": 0.0,
+      "input_path": "/private/tmp/pillar2_grounded/kelvin/rhodium/perturbations/pad_length-01/input.md",
+      "output_path": "/private/tmp/pillar2_grounded/kelvin/rhodium/perturbations/pad_length-01/output.json"
+    },
+    {
+      "variant_id": "pad_length-03",
+      "kind": "pad_length",
+      "notes": {
+        "insert_count": 4,
+        "inserted": [
+          {
+            "position": 2,
+            "length_chars": 268
+          },
+          {
+            "position": 5,
+            "length_chars": 276
+          },
+          {
+            "position": 4,
+            "length_chars": 249
+          },
+          {
+            "position": 8,
+            "length_chars": 218
+          }
+        ],
+        "total_chars": 1011
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "scale",
+        "stderr_tail": null
+      },
+      "distance": 0.0,
+      "input_path": "/private/tmp/pillar2_grounded/kelvin/rhodium/perturbations/pad_length-03/input.md",
+      "output_path": "/private/tmp/pillar2_grounded/kelvin/rhodium/perturbations/pad_length-03/output.json"
+    },
+    {
+      "variant_id": "pad_length-02",
+      "kind": "pad_length",
+      "notes": {
+        "insert_count": 2,
+        "inserted": [
+          {
+            "position": 2,
+            "length_chars": 218
+          },
+          {
+            "position": 4,
+            "length_chars": 233
+          }
+        ],
+        "total_chars": 451
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "scale",
+        "stderr_tail": null
+      },
+      "distance": 0.0,
+      "input_path": "/private/tmp/pillar2_grounded/kelvin/rhodium/perturbations/pad_length-02/input.md",
+      "output_path": "/private/tmp/pillar2_grounded/kelvin/rhodium/perturbations/pad_length-02/output.json"
+    },
+    {
+      "variant_id": "pad_content-02",
+      "kind": "pad_content",
+      "notes": {
+        "insert_count": 3,
+        "inserted": [
+          {
+            "from_case": "northpass",
+            "type": "gate_rule",
+            "source_index": 6,
+            "position": 0
+          },
+          {
+            "from_case": "meridian",
+            "type": "unit_economics",
+            "source_index": 5,
+            "position": 8
+          },
+          {
+            "from_case": "meridian",
+            "type": "team",
+            "source_index": 2,
+            "position": 6
+          }
+        ]
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "idea",
+        "stderr_tail": null
+      },
+      "distance": 1.0,
+      "input_path": "/private/tmp/pillar2_grounded/kelvin/rhodium/perturbations/pad_content-02/input.md",
+      "output_path": "/private/tmp/pillar2_grounded/kelvin/rhodium/perturbations/pad_content-02/output.json"
+    },
+    {
+      "variant_id": "pad_content-01",
+      "kind": "pad_content",
+      "notes": {
+        "insert_count": 2,
+        "inserted": [
+          {
+            "from_case": "artisanflow",
+            "type": "gate_rule",
+            "source_index": 6,
+            "position": 5
+          },
+          {
+            "from_case": "artisanflow",
+            "type": "unit_economics",
+            "source_index": 5,
+            "position": 3
+          }
+        ]
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "growth",
+        "stderr_tail": null
+      },
+      "distance": 1.0,
+      "input_path": "/private/tmp/pillar2_grounded/kelvin/rhodium/perturbations/pad_content-01/input.md",
+      "output_path": "/private/tmp/pillar2_grounded/kelvin/rhodium/perturbations/pad_content-01/output.json"
+    },
+    {
+      "variant_id": "pad_content-03",
+      "kind": "pad_content",
+      "notes": {
+        "insert_count": 4,
+        "inserted": [
+          {
+            "from_case": "envelop",
+            "type": "venture_description",
+            "source_index": 0,
+            "position": 2
+          },
+          {
+            "from_case": "artisanflow",
+            "type": "gate_rule",
+            "source_index": 6,
+            "position": 6
+          },
+          {
+            "from_case": "envelop",
+            "type": "gate_rule",
+            "source_index": 6,
+            "position": 6
+          },
+          {
+            "from_case": "freakinggenius",
+            "type": "market_evidence",
+            "source_index": 3,
+            "position": 4
+          }
+        ]
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "growth",
+        "stderr_tail": null
+      },
+      "distance": 1.0,
+      "input_path": "/private/tmp/pillar2_grounded/kelvin/rhodium/perturbations/pad_content-03/input.md",
+      "output_path": "/private/tmp/pillar2_grounded/kelvin/rhodium/perturbations/pad_content-03/output.json"
+    },
+    {
+      "variant_id": "swap-gate_rule-01",
+      "kind": "swap",
+      "notes": {
+        "governing_type": "gate_rule",
+        "position_replaced": 6,
+        "original_header": "Gate Rule",
+        "from_case": "freakinggenius",
+        "peer_source_index": 6
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "idea",
+        "stderr_tail": null
+      },
+      "distance": 1.0,
+      "input_path": "/private/tmp/pillar2_grounded/kelvin/rhodium/perturbations/swap-gate_rule-01/input.md",
+      "output_path": "/private/tmp/pillar2_grounded/kelvin/rhodium/perturbations/swap-gate_rule-01/output.json"
+    }
+  ],
+  "scores": {
+    "invariance": 0.6666666666666667,
+    "invariance_sample": 9,
+    "sensitivity": 1.0,
+    "sensitivity_sample": 1,
+    "sensitivity_by_type": {
+      "gate_rule": {
+        "mean": 1.0,
+        "sample": 1
+      }
+    }
+  },
+  "warnings": [],
+  "caps": [
+    "rhodium: swap-gate_rule capped at 1 (case positions=1, peer pool=5, target=3)",
+    "rhodium: swap_condition-gate_rule capped at 2 (eligible peers=2, target=3)"
+  ]
+}

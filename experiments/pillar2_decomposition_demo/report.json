@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "seed": 0,
+  "only": null,
+  "decision_field": "stage_assessment",
+  "governing_types": [
+    "gate_rule"
+  ],
+  "cases": {
+    "run": [
+      "artisanflow",
+      "envelop",
+      "freakinggenius",
+      "meridian",
+      "northpass",
+      "rhodium"
+    ],
+    "baseline_ok": [
+      "artisanflow",
+      "envelop",
+      "freakinggenius",
+      "meridian",
+      "northpass",
+      "rhodium"
+    ],
+    "baseline_failed": []
+  },
+  "invariance": 0.8518518518518519,
+  "invariance_sample": 54,
+  "sensitivity": 0.6666666666666666,
+  "sensitivity_sample": 6,
+  "kelvin_score": 0.4814814814814815,
+  "single_case_run": false,
+  "sensitivity_by_type": {
+    "gate_rule": {
+      "mean": 0.6666666666666666,
+      "sample": 6
+    }
+  },
+  "warnings": [
+    "meridian: swap_condition found no eligible peers for gate_rule (same state_phrase + different condition list)"
+  ],
+  "caps": [
+    "artisanflow: swap-gate_rule capped at 1 (case positions=1, peer pool=5, target=3)",
+    "artisanflow: swap_condition-gate_rule capped at 1 (eligible peers=1, target=3)",
+    "envelop: swap-gate_rule capped at 1 (case positions=1, peer pool=5, target=3)",
+    "envelop: swap_condition-gate_rule capped at 1 (eligible peers=1, target=3)",
+    "freakinggenius: swap-gate_rule capped at 1 (case positions=1, peer pool=5, target=3)",
+    "freakinggenius: swap_condition-gate_rule capped at 1 (eligible peers=1, target=3)",
+    "meridian: swap-gate_rule capped at 1 (case positions=1, peer pool=5, target=3)",
+    "northpass: swap-gate_rule capped at 1 (case positions=1, peer pool=5, target=3)",
+    "northpass: swap_condition-gate_rule capped at 1 (eligible peers=1, target=3)",
+    "rhodium: swap-gate_rule capped at 1 (case positions=1, peer pool=5, target=3)",
+    "rhodium: swap_condition-gate_rule capped at 2 (eligible peers=2, target=3)"
+  ],
+  "sensitivity_content": 0.6666666666666666,
+  "sensitivity_content_sample": 6,
+  "sensitivity_condition": 0.0,
+  "sensitivity_condition_sample": 6,
+  "content_effect": 0.6666666666666666
+}
