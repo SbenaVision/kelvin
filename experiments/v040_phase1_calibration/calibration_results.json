@@ -17,28 +17,28 @@
       "withheld": false,
       "eta": 0.0,
       "sensitivity_calibrated": 0.0,
-      "invariance_calibrated": 0.9345238095238095,
+      "invariance_calibrated": 0.9404761904761905,
       "delta_from_target": -1
     },
     "mid_issue": {
       "target": 4,
-      "score": 5,
+      "score": 4,
       "category": "Needs work",
       "withheld": false,
-      "eta": 0.15185185185185185,
-      "sensitivity_calibrated": 0.8034934497816596,
-      "invariance_calibrated": 0.4806612601372427,
-      "delta_from_target": 1
+      "eta": 0.254320987654321,
+      "sensitivity_calibrated": null,
+      "invariance_calibrated": null,
+      "delta_from_target": 0
     },
     "one_moderate_issue": {
       "target": 7,
-      "score": 10,
-      "category": "Production-ready",
+      "score": 4,
+      "category": "Needs work",
       "withheld": false,
       "eta": 0.0,
-      "sensitivity_calibrated": 0.6666666666666666,
+      "sensitivity_calibrated": 0.4444444444444444,
       "invariance_calibrated": 0.9642857142857143,
-      "delta_from_target": 3
+      "delta_from_target": -3
     },
     "grounded_oracle": {
       "target": 10,
@@ -47,17 +47,17 @@
       "withheld": false,
       "eta": 0.0,
       "sensitivity_calibrated": 0.6666666666666666,
-      "invariance_calibrated": 0.9523809523809523,
+      "invariance_calibrated": 0.9722222222222222,
       "delta_from_target": 0
     }
   },
   "anchor_pass": false,
   "ordinality_pass": true,
   "stability_runs_mid_issue": [
-    5,
     4,
-    6
+    5,
+    4
   ],
-  "stability_pass": false,
+  "stability_pass": true,
   "go": false
 }
