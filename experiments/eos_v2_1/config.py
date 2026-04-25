@@ -31,7 +31,7 @@ DELTA_DIR: int = 4                # directional margin (R^Ω_↑/↓ AND naive d
 # ---------------------------------------------------------------------
 # Corpus parameters
 # ---------------------------------------------------------------------
-N_PER_DRAW: int = 300
+N_PER_DRAW: int = 500
 K_D: int = 3
 BOUNDARY_FRACTION: float = 0.65
 INTERIOR_PASS_FRACTION: float = 0.175
@@ -96,7 +96,13 @@ PIPELINE_IDS: dict[str, int] = {
 # ---------------------------------------------------------------------
 # Naive directional acceptance (diagnostic only — load-bearing test)
 # ---------------------------------------------------------------------
-# Naive directional uses Δ_naive = DELTA_DIR with NO noise term.
-# Naive uses raw α=δ (no Bonferroni) per the load-bearing comparison
-# in v2; we keep the same convention so the comparison is consistent.
-DELTA_NAIVE: int = DELTA_DIR
+# Naive directional uses Δ_naive < Δ_dir with NO noise term.
+# Δ_naive = 3 (one less than Δ_dir = 4) so the borderline T's effect
+# of +5 lands cleanly above the naive threshold even with adverse
+# jitter, while staying below the omega threshold q + Δ_dir ≈ 7.
+#
+# Naive uses raw α=δ=0.05 (no Bonferroni) per the load-bearing
+# comparison convention.
+#
+# Divergence-zone width = (q + Δ_dir) − Δ_naive ≈ 4 score points.
+DELTA_NAIVE: int = 3

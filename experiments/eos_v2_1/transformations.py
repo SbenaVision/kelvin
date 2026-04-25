@@ -187,19 +187,41 @@ def _A_case_risk_down(inp: Input) -> bool:
 
 
 def _A_add_strict_clause(inp: Input) -> bool:
-    # Adds "team_size >= 10". Active = cases that DO NOT satisfy the
-    # added clause, which is most of the corpus (team_size < 10).
-    return inp.case.team_size < 10
+    """Active iff:
+       (a) the added strict clause "team_size >= 10" FAILS for x
+           (i.e., team_size(x) < 10), AND
+       (b) at least one EXISTING clause passes for x.
+
+    Rationale: if no existing clause passes, score was already 20
+    and adding a failing clause keeps it at the floor (no genuine
+    "down" perturbation observable). Restricting to (b) ensures the
+    added clause has a measurable downward effect on score.
+    """
+    if inp.case.team_size >= 10:
+        return False  # added clause passes — no perturbation
+    existing = parse(inp.rule_text)
+    return any(c.eval_on(inp.case) for c in existing)
 
 
 def _A_remove_last_clause(inp: Input) -> bool:
-    # Removes the last clause. Active iff that clause was failing
-    # for x (so removal benefits x). For default rule, last is "risk <= 40".
+    """Active iff:
+       (a) the removed last clause FAILS for x
+           (i.e., removing it benefits x; if it was passing, removal
+           reduces the passed/total ratio and the predicted UP direction
+           does not necessarily hold), AND
+       (b) at least one REMAINING clause passes for x.
+
+    Rationale: if no remaining clause passes, score is dominated by
+    score floor and the "up" effect is degenerate.
+    """
     clauses = parse(inp.rule_text)
     if len(clauses) < 2:
         return False
     last = clauses[-1]
-    return not last.eval_on(inp.case)
+    if last.eval_on(inp.case):
+        return False  # removed clause was passing — removal would reduce ratio
+    remaining = clauses[:-1]
+    return any(c.eval_on(inp.case) for c in remaining)
 
 
 def _A_borderline_add_passing(inp: Input) -> bool:
