@@ -1,0 +1,230 @@
+{
+  "schema_version": "1.0",
+  "kelvin_version": "0.4.0",
+  "maturity": {
+    "score": 4,
+    "category": "Needs work",
+    "withheld": false,
+    "withheld_reason": null,
+    "sub_scores": {
+      "drift": 0.333,
+      "sensitivity": 0.382958,
+      "equivalence": 0.5
+    },
+    "metrics": {
+      "drift": 0.254321,
+      "sensitivity": 0.454189,
+      "equivalence": 0.346904
+    }
+  },
+  "pillar_coverage": {
+    "pillar_1": true,
+    "pillar_2": true,
+    "pillar_3": true
+  },
+  "silent_pillars": {},
+  "findings": [
+    {
+      "axis": "drift",
+      "severity": "severe",
+      "title": "Drift",
+      "description": "Your pipeline gives different answers for the same input 25% of the time. Same input should produce the same output.",
+      "current_value": 0.254321,
+      "expected_value": 0.0,
+      "direction": "lower-is-better",
+      "impact": 0.847737
+    },
+    {
+      "axis": "equivalence",
+      "severity": "severe",
+      "title": "Brittleness",
+      "description": "Cosmetic changes (whitespace, reorder, padding) move the output. Your pipeline depends on surface form, not content.",
+      "current_value": 0.346904,
+      "expected_value": 1.0,
+      "direction": "higher-is-better",
+      "impact": 0.653096
+    },
+    {
+      "axis": "sensitivity",
+      "severity": "moderate",
+      "title": "Reduced rule sensitivity",
+      "description": "Some rule changes don't reach the output. Either the pipeline is ignoring part of the rule, or some rule axes don't drive the decision.",
+      "current_value": 0.454189,
+      "expected_value": 1.0,
+      "direction": "higher-is-better",
+      "impact": 0.545811
+    }
+  ],
+  "recommendations": [
+    {
+      "finding_axis": "drift",
+      "finding_severity": "severe",
+      "text": "Set temperature=0 in your LLM calls and re-check. If your pipeline isn't LLM-backed, look for non-deterministic input (timestamps, randomized retrieval order, time-of-day code paths).",
+      "needs_investigation": false
+    },
+    {
+      "finding_axis": "equivalence",
+      "finding_severity": "severe",
+      "text": "Don't route off surface features (first character, byte length, raw header). Parse the input semantically before branching, and treat formatting as cosmetic in your routing.",
+      "needs_investigation": false
+    },
+    {
+      "finding_axis": "sensitivity",
+      "finding_severity": "moderate",
+      "text": "Audit which parts of the rule your pipeline reads. If only some clauses drive the output, decide whether that's by design (skip the others) or a bug (add them to the prompt).",
+      "needs_investigation": false
+    }
+  ],
+  "top_fix": {
+    "finding_axis": "drift",
+    "finding_severity": "severe",
+    "text": "Set temperature=0 in your LLM calls and re-check. If your pipeline isn't LLM-backed, look for non-deterministic input (timestamps, randomized retrieval order, time-of-day code paths).",
+    "needs_investigation": false
+  },
+  "variance": {
+    "top_axes_by_impact": [
+      {
+        "axis": "drift",
+        "sub_score": 0.333,
+        "impact": 0.667
+      },
+      {
+        "axis": "sensitivity",
+        "sub_score": 0.382958,
+        "impact": 0.617042
+      },
+      {
+        "axis": "equivalence",
+        "sub_score": 0.5,
+        "impact": 0.5
+      }
+    ],
+    "family_breakdown": [
+      {
+        "family": "reorder",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "pad_length",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "pad_content",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "swap",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 2
+      },
+      {
+        "family": "swap_condition",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 2
+      },
+      {
+        "family": "whitespace_jitter",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "punctuation_normalize",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "bullet_reformat",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "non_governing_duplication",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "numeric_magnitude",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "comparator_flip",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "polarity_flip",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "hedge_injection",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "politeness_injection",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "discourse_marker_injection",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "meta_commentary_injection",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      }
+    ]
+  },
+  "raw_metrics": {
+    "noise_floor_eta": 0.254320987654321,
+    "invariance": 0.513,
+    "sensitivity": 0.593,
+    "kelvin_score": null,
+    "invariance_calibrated": null,
+    "sensitivity_calibrated": null,
+    "kelvin_score_calibrated": null,
+    "sensitivity_content": null,
+    "sensitivity_condition": 0.5,
+    "content_effect": null,
+    "mechanical_sensitivity": 0.5
+  }
+}

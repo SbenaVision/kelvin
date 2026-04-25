@@ -1,3 +1,3 @@
-"""Kelvin — an evidence-tracking diagnostic for structured-decision RAG."""
+"""Kelvin — practitioner-facing reliability check for AI/RAG pipelines."""
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"

@@ -1,0 +1,47 @@
+┌─ Kelvin v0.4 ─ Partially measured ─────────────────────────────
+│
+│   Drift        ██████████  1.00
+│   Sensitivity  ██████████  1.00
+│   Equivalence  ██████████  1.00
+│
+│   Pillar coverage:
+│     Pillar 1 (drift)       measured
+│     Pillar 2 (rule swap)   silent — gate_rule format not recognized
+│     Pillar 3 (formatting)  measured
+│
+│   What's working: Stability · Rule responsiveness · Robustness
+│
+│   Top fix: Restructure gate_rule bodies to match Kelvin's
+│   expected pattern, or wait for v0.5's broader format…
+│
+│   ── Verbose detail ─────────────────────
+│   Numeric: 10 / 10  (⚠ partial coverage — not comparable to fully-measured runs)
+│   Raw metrics:
+│     Drift          0.0000
+│     Sensitivity    0.8750
+│     Equivalence    1.0000
+│
+│   Per-axis impact (drag on score):
+│     Drift          sub=1.00  impact=0.00
+│     Sensitivity    sub=1.00  impact=0.00
+│     Equivalence    sub=1.00  impact=0.00
+│
+│   Per-family contribution to invariance pool:
+│     reorder                      n=  1  mean_dist=0.000  share=  0.0%  (P3)
+│     pad_length                   n=  1  mean_dist=0.000  share=  0.0%  (P3)
+│     pad_content                  n=  1  mean_dist=0.000  share=  0.0%  (P3)
+│     swap                         n=  1  mean_dist=0.000  share=  0.0%  (P2)
+│     swap_condition               n=  1  mean_dist=0.000  share=  0.0%  (P2)
+│     whitespace_jitter            n=  1  mean_dist=0.000  share=  0.0%  (P3)
+│     punctuation_normalize        n=  1  mean_dist=0.000  share=  0.0%  (P3)
+│     bullet_reformat              n=  1  mean_dist=0.000  share=  0.0%  (P3)
+│     non_governing_duplication    n=  1  mean_dist=0.000  share=  0.0%  (P3)
+│     numeric_magnitude            n=  1  mean_dist=0.000  share=  0.0%  (P3)
+│     comparator_flip              n=  1  mean_dist=0.000  share=  0.0%  (P3)
+│     polarity_flip                n=  1  mean_dist=0.000  share=  0.0%  (P3)
+│     hedge_injection              n=  1  mean_dist=0.000  share=  0.0%  (P3)
+│     politeness_injection         n=  1  mean_dist=0.000  share=  0.0%  (P3)
+│     discourse_marker_injection   n=  1  mean_dist=0.000  share=  0.0%  (P3)
+│     meta_commentary_injection    n=  1  mean_dist=0.000  share=  0.0%  (P3)
+│
+└

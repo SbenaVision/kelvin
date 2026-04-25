@@ -1,0 +1,25 @@
+# Kelvin v0.4 — ⚠️ Needs work
+
+## Sub-scores
+
+| Axis | Sub-score |
+| --- | --- |
+| Drift | 1.00 |
+| Sensitivity | 0.37 |
+| Equivalence | 1.00 |
+
+## What's wrong
+
+1. **Reduced rule sensitivity** — Some rule changes don't reach the output. Either the pipeline is ignoring part of the rule, or some rule axes don't drive the decision.
+   - **Fix:** Audit which parts of the rule your pipeline reads. If only some clauses drive the output, decide whether that's by design (skip the others) or a bug (add them to the prompt).
+
+## What's working
+
+- Stability
+- Robustness
+
+## Top fix
+
+Audit which parts of the rule your pipeline reads. If only some clauses drive the output, decide whether that's by design (skip the others) or a bug (add them to the prompt).
+
+_Run with `--verbose` for per-axis sub-score detail and the per-family breakdown._

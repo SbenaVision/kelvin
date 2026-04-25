@@ -1,0 +1,25 @@
+# Kelvin v0.4 — ❌ Not production-ready
+
+## Sub-scores
+
+| Axis | Sub-score |
+| --- | --- |
+| Drift | 1.00 |
+| Sensitivity | 0.00 |
+| Equivalence | 1.00 |
+
+## What's wrong
+
+1. **Rule-blindness** — When you change the governing rule, the output barely changes. Your rules aren't actually being read.
+   - **Fix:** Check your prompt or routing code: the rule text isn't reaching the decision logic. Confirm the rule is being passed to the model and isn't being truncated, summarized, or pre-emptied by a system prompt.
+
+## What's working
+
+- Stability
+- Robustness
+
+## Top fix
+
+Check your prompt or routing code: the rule text isn't reaching the decision logic. Confirm the rule is being passed to the model and isn't being truncated, summarized, or pre-emptied by a system prompt.
+
+_Run with `--verbose` for per-axis sub-score detail and the per-family breakdown._

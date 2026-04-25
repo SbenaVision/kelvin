@@ -156,6 +156,7 @@ def run_check(
     confirm_before_phase2: bool = False,
     auto_accept: bool = False,
     dry_run: bool = False,
+    render_v03_terminal: bool = True,
 ) -> RunScores:
     """Run `kelvin check` end-to-end.
 
@@ -302,11 +303,12 @@ def run_check(
         dry_run=dry_run,
     )
     _write_run_report(run_scores, cwd, cfg, only=only)
-    render_terminal(
-        run_scores,
-        elapsed_s=time.monotonic() - _start,
-        decision_field=cfg.decision_field,
-    )
+    if render_v03_terminal:
+        render_terminal(
+            run_scores,
+            elapsed_s=time.monotonic() - _start,
+            decision_field=cfg.decision_field,
+        )
     logger.info(
         "run_completed",
         elapsed_s=time.monotonic() - _start,

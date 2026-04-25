@@ -1,0 +1,130 @@
+{
+  "ac2_lines_under_30": {
+    "pass": true,
+    "failures": []
+  },
+  "ac3_no_jargon": {
+    "pass": true,
+    "failures": []
+  },
+  "ac5_ordering": {
+    "pass": true,
+    "ranks": [
+      [
+        "constant",
+        0
+      ],
+      [
+        "brittle",
+        0
+      ],
+      [
+        "mid_issue",
+        1
+      ],
+      [
+        "one_moderate_issue",
+        1
+      ],
+      [
+        "grounded_oracle",
+        2
+      ]
+    ]
+  },
+  "ac7_envelop_partial": {
+    "pass": true,
+    "category": "Partially measured",
+    "pillar_coverage": {
+      "pillar_1": true,
+      "pillar_2": false,
+      "pillar_3": true
+    },
+    "silent_pillars": {
+      "pillar_2": "swap_condition_format_mismatch"
+    }
+  },
+  "all_pass": true,
+  "results": [
+    {
+      "name": "constant",
+      "category": "Not production-ready",
+      "score": 1,
+      "default_lines": 18,
+      "verbose_lines": 47,
+      "pillar_coverage": {
+        "pillar_1": true,
+        "pillar_2": true,
+        "pillar_3": true
+      },
+      "silent_pillars": {}
+    },
+    {
+      "name": "brittle",
+      "category": "Not production-ready",
+      "score": 1,
+      "default_lines": 18,
+      "verbose_lines": 47,
+      "pillar_coverage": {
+        "pillar_1": true,
+        "pillar_2": true,
+        "pillar_3": true
+      },
+      "silent_pillars": {}
+    },
+    {
+      "name": "mid_issue",
+      "category": "Needs work",
+      "score": 4,
+      "default_lines": 22,
+      "verbose_lines": 51,
+      "pillar_coverage": {
+        "pillar_1": true,
+        "pillar_2": true,
+        "pillar_3": true
+      },
+      "silent_pillars": {}
+    },
+    {
+      "name": "one_moderate_issue",
+      "category": "Needs work",
+      "score": 4,
+      "default_lines": 18,
+      "verbose_lines": 47,
+      "pillar_coverage": {
+        "pillar_1": true,
+        "pillar_2": true,
+        "pillar_3": true
+      },
+      "silent_pillars": {}
+    },
+    {
+      "name": "grounded_oracle",
+      "category": "Production-ready",
+      "score": 10,
+      "default_lines": 12,
+      "verbose_lines": 41,
+      "pillar_coverage": {
+        "pillar_1": true,
+        "pillar_2": true,
+        "pillar_3": true
+      },
+      "silent_pillars": {}
+    },
+    {
+      "name": "envelop",
+      "category": "Partially measured",
+      "score": 10,
+      "default_lines": 18,
+      "verbose_lines": 47,
+      "pillar_coverage": {
+        "pillar_1": true,
+        "pillar_2": false,
+        "pillar_3": true
+      },
+      "silent_pillars": {
+        "pillar_2": "swap_condition_format_mismatch"
+      }
+    }
+  ]
+}

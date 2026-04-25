@@ -78,8 +78,15 @@ def _case_with_all_families(case_name: str) -> CaseScores:
 def _run(eta: float | None,
          sens_cal: float | None,
          inv_cal: float | None,
-         *, all_families: bool = True) -> RunScores:
-    """Build a RunScores with the listed metrics."""
+         *, all_families: bool = True,
+         sens_condition: float | None = 0.5,
+         mech_sens: float | None = 0.5) -> RunScores:
+    """Build a RunScores with the listed metrics.
+
+    Pillar 2 / Pillar 3 metrics default to non-None so the score
+    isn't auto-flagged as Partially measured. Tests that exercise
+    silent-pillar logic explicitly set them to None.
+    """
     cases = [_case_with_all_families("c1")] if all_families else [CaseScores(case_name="c1")]
     return RunScores(
         cases=cases,
@@ -95,6 +102,10 @@ def _run(eta: float | None,
         invariance_calibrated=inv_cal,
         sensitivity_calibrated=sens_cal,
         kelvin_score_calibrated=None,
+        sensitivity_condition=sens_condition,
+        sensitivity_condition_sample=10 if sens_condition is not None else 0,
+        mechanical_sensitivity=mech_sens,
+        mechanical_sensitivity_sample=10 if mech_sens is not None else 0,
     )
 
 
@@ -234,6 +245,73 @@ def test_withholds_when_invariance_missing():
     m = compute_maturity(run)
     assert m.withheld
     assert m.score is None
+
+
+# =====================================================================
+# Silent-pillar handling (per docs/PHASE_2_SCOPE.md)
+# =====================================================================
+
+
+def test_silent_pillar_2_blocks_production_ready():
+    """When sensitivity_condition is None, the verdict must be
+    'Partially measured' regardless of how clean other axes are."""
+    run = _run(eta=0.0, sens_cal=1.0, inv_cal=1.0, sens_condition=None)
+    m = compute_maturity(run)
+    assert not m.withheld
+    assert m.category == "Partially measured", (
+        f"clean axes + silent Pillar 2 should be Partially measured; "
+        f"got {m.category}"
+    )
+    assert m.pillar_coverage["pillar_2"] is False
+    assert m.pillar_coverage["pillar_1"] is True
+    assert m.pillar_coverage["pillar_3"] is True
+    # Numeric IS computed (downstream reporter decides what to show).
+    assert m.score == 10
+
+
+def test_silent_pillar_3_blocks_production_ready():
+    run = _run(eta=0.0, sens_cal=1.0, inv_cal=1.0, mech_sens=None)
+    m = compute_maturity(run)
+    assert m.category == "Partially measured"
+    assert m.pillar_coverage["pillar_3"] is False
+    # mechanical samples present in case fixture, so reason is "no samples"
+    # rather than "disabled".
+    assert m.silent_pillars["pillar_3"] == "intra_slot_no_mechanical_samples"
+
+
+def test_silent_pillar_1_blocks_production_ready():
+    """eta=None → Pillar 1 silent → Partially measured."""
+    run = _run(eta=None, sens_cal=1.0, inv_cal=1.0)
+    m = compute_maturity(run)
+    assert m.category == "Partially measured"
+    assert m.pillar_coverage["pillar_1"] is False
+    assert m.silent_pillars["pillar_1"] == "noise_floor_disabled_or_no_replays"
+
+
+def test_silent_pillar_2_distinguishes_format_mismatch_from_no_perturbations():
+    """When clean_parse_rate is None or 0, reason is format mismatch.
+    When clean_parse_rate > 0 but sens_condition is None, reason is
+    no_perturbations."""
+    # Format mismatch case (clean_parse_rate not set → defaults to None).
+    run = _run(eta=0.0, sens_cal=1.0, inv_cal=1.0, sens_condition=None)
+    run.swap_condition_clean_parse_rate = None
+    m = compute_maturity(run)
+    assert m.silent_pillars["pillar_2"] == "swap_condition_format_mismatch"
+
+    # No-perturbations case.
+    run.swap_condition_clean_parse_rate = 1.0
+    m2 = compute_maturity(run)
+    assert m2.silent_pillars["pillar_2"] == "swap_condition_no_perturbations"
+
+
+def test_all_pillars_measured_yields_normal_category():
+    """When all three pillars measured, normal 1–10 → category mapping
+    applies (not 'Partially measured')."""
+    run = _run(eta=0.0, sens_cal=1.0, inv_cal=1.0)
+    m = compute_maturity(run)
+    assert m.category == "Production-ready"
+    assert all(m.pillar_coverage.values())
+    assert m.silent_pillars == {}
 
 
 def test_withholds_when_family_disabled():

@@ -42,7 +42,22 @@ from .taxonomy import Axis, STANDARD_SCORE_FAMILIES
 from .types import RunScores
 
 
-Category = Literal["Not production-ready", "Needs work", "Production-ready"]
+Category = Literal[
+    "Not production-ready",
+    "Needs work",
+    "Production-ready",
+    "Partially measured",
+]
+
+
+# Silent-pillar reasons surfaced in practitioner output.
+PillarSilenceReason = Literal[
+    "noise_floor_disabled_or_no_replays",
+    "swap_condition_format_mismatch",
+    "swap_condition_no_perturbations",
+    "intra_slot_disabled",
+    "intra_slot_no_mechanical_samples",
+]
 
 
 # =====================================================================
@@ -216,15 +231,28 @@ class MaturityScore:
     `score` is None when the score is withheld (non-standard family
     set, missing required metrics, or calibration disagreement). The
     `category` is always populated when at least one axis is measurable.
+
+    `pillar_coverage` reports per-pillar measurement status:
+      pillar_1 (drift / noise floor): True iff η was measured.
+      pillar_2 (counterfactual swap): True iff sensitivity_condition
+                                      was measurable.
+      pillar_3 (intra_slot): True iff mechanical_sensitivity was
+                              measurable.
+    When ANY pillar is False (silent), category becomes
+    "Partially measured" regardless of the numeric score, per
+    `docs/PHASE_2_SCOPE.md`.
+
+    `silent_pillars` maps the silent pillar names to their inferred
+    cause for practitioner-facing diagnostics.
     """
     score: int | None
     category: Category | None
     withheld: bool
     withheld_reason: str | None
-    # Per-axis sub-scores (0–1) for transparency / debugging.
     sub_scores: dict[Axis, float] = field(default_factory=dict)
-    # Per-axis raw metric values (post-extraction from RunScores).
     metrics: dict[Axis, float] = field(default_factory=dict)
+    pillar_coverage: dict[str, bool] = field(default_factory=dict)
+    silent_pillars: dict[str, PillarSilenceReason] = field(default_factory=dict)
 
 
 def _category_for(score: int) -> Category:
@@ -369,7 +397,16 @@ def compute_maturity(run: RunScores) -> MaturityScore:
     raw = 1.0 + 9.0 * min_sub
     score = int(round(raw))
     score = max(1, min(10, score))
-    category = _category_for(score)
+
+    # --- Pillar coverage + silent-pillar override ------------------------
+    pillar_coverage, silent_pillars = _detect_pillar_coverage(run)
+
+    if any(not v for v in pillar_coverage.values()):
+        # Silent pillar present — verdict becomes "Partially measured"
+        # regardless of numeric (per docs/PHASE_2_SCOPE.md).
+        category = "Partially measured"
+    else:
+        category = _category_for(score)
 
     return MaturityScore(
         score=score,
@@ -378,4 +415,76 @@ def compute_maturity(run: RunScores) -> MaturityScore:
         withheld_reason=None,
         sub_scores=sub_scores,
         metrics=metrics,
+        pillar_coverage=pillar_coverage,
+        silent_pillars=silent_pillars,
     )
+
+
+def _detect_pillar_coverage(
+    run: RunScores,
+) -> tuple[dict[str, bool], dict[str, PillarSilenceReason]]:
+    """Inspect a RunScores for per-pillar measurement status.
+
+    Returns (pillar_coverage, silent_pillars).
+
+    pillar_coverage:
+        pillar_1 → True iff η was measured (non-None) and at least one
+                   case has baseline_replays.
+        pillar_2 → True iff sensitivity_condition was measurable
+                   (non-None) and at least one case actually parsed
+                   a swap_condition.
+        pillar_3 → True iff mechanical_sensitivity was measurable
+                   (non-None) and at least one mechanical-family
+                   perturbation fired.
+
+    silent_pillars maps the silent pillar names to inferred causes.
+    """
+    coverage: dict[str, bool] = {}
+    reasons: dict[str, PillarSilenceReason] = {}
+
+    # ── Pillar 1 (drift / noise floor) ────────────────────────────────
+    p1_measured = run.noise_floor_eta is not None
+    if not p1_measured:
+        # Distinguish "disabled" from "no replays returned": both look
+        # the same in RunScores; surface the practitioner-facing
+        # disabled-or-empty message.
+        coverage["pillar_1"] = False
+        reasons["pillar_1"] = "noise_floor_disabled_or_no_replays"
+    else:
+        coverage["pillar_1"] = True
+
+    # ── Pillar 2 (counterfactual swap) ────────────────────────────────
+    p2_measured = run.sensitivity_condition is not None
+    if not p2_measured:
+        # Two flavours:
+        # - clean_parse_rate is None or 0 → format mismatch (no
+        #   gate-rule body parsed cleanly).
+        # - clean_parse_rate > 0 but no perturbations fired (e.g., no
+        #   peer cases with matching state_phrase).
+        coverage["pillar_2"] = False
+        cpr = run.swap_condition_clean_parse_rate
+        if cpr is None or cpr <= 0:
+            reasons["pillar_2"] = "swap_condition_format_mismatch"
+        else:
+            reasons["pillar_2"] = "swap_condition_no_perturbations"
+    else:
+        coverage["pillar_2"] = True
+
+    # ── Pillar 3 (intra_slot — mechanical sensitivity) ────────────────
+    p3_measured = run.mechanical_sensitivity is not None
+    if not p3_measured:
+        coverage["pillar_3"] = False
+        # Look at case-level lists to disambiguate.
+        any_mech = any(
+            case.numeric_magnitude or case.comparator_flip or case.polarity_flip
+            for case in run.cases
+        )
+        reasons["pillar_3"] = (
+            "intra_slot_no_mechanical_samples"
+            if any_mech
+            else "intra_slot_disabled"
+        )
+    else:
+        coverage["pillar_3"] = True
+
+    return coverage, reasons

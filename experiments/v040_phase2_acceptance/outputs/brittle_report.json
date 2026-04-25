@@ -1,0 +1,230 @@
+{
+  "schema_version": "1.0",
+  "kelvin_version": "0.4.0",
+  "maturity": {
+    "score": 1,
+    "category": "Not production-ready",
+    "withheld": false,
+    "withheld_reason": null,
+    "sub_scores": {
+      "drift": 1.0,
+      "sensitivity": 0.0,
+      "equivalence": 1.0
+    },
+    "metrics": {
+      "drift": 0.0,
+      "sensitivity": 0.0,
+      "equivalence": 0.940476
+    }
+  },
+  "pillar_coverage": {
+    "pillar_1": true,
+    "pillar_2": true,
+    "pillar_3": true
+  },
+  "silent_pillars": {},
+  "findings": [
+    {
+      "axis": "sensitivity",
+      "severity": "severe",
+      "title": "Rule-blindness",
+      "description": "When you change the governing rule, the output barely changes. Your rules aren't actually being read.",
+      "current_value": 0.0,
+      "expected_value": 1.0,
+      "direction": "higher-is-better",
+      "impact": 1.0
+    },
+    {
+      "axis": "drift",
+      "severity": "good",
+      "title": "Stability",
+      "description": "Your pipeline gives the same answer when run twice on the same input.",
+      "current_value": 0.0,
+      "expected_value": 0.0,
+      "direction": "lower-is-better",
+      "impact": 0.0
+    },
+    {
+      "axis": "equivalence",
+      "severity": "good",
+      "title": "Robustness",
+      "description": "Cosmetic changes (typos, rephrasing, reformatting) don't move the output.",
+      "current_value": 0.940476,
+      "expected_value": 1.0,
+      "direction": "higher-is-better",
+      "impact": 0.0
+    }
+  ],
+  "recommendations": [
+    {
+      "finding_axis": "sensitivity",
+      "finding_severity": "severe",
+      "text": "Check your prompt or routing code: the rule text isn't reaching the decision logic. Confirm the rule is being passed to the model and isn't being truncated, summarized, or pre-emptied by a system prompt.",
+      "needs_investigation": false
+    },
+    {
+      "finding_axis": "drift",
+      "finding_severity": "good",
+      "text": "Already on track. Keep this stable as the pipeline evolves.",
+      "needs_investigation": false
+    },
+    {
+      "finding_axis": "equivalence",
+      "finding_severity": "good",
+      "text": "Already on track. Keep this stable as the pipeline evolves.",
+      "needs_investigation": false
+    }
+  ],
+  "top_fix": {
+    "finding_axis": "sensitivity",
+    "finding_severity": "severe",
+    "text": "Check your prompt or routing code: the rule text isn't reaching the decision logic. Confirm the rule is being passed to the model and isn't being truncated, summarized, or pre-emptied by a system prompt.",
+    "needs_investigation": false
+  },
+  "variance": {
+    "top_axes_by_impact": [
+      {
+        "axis": "sensitivity",
+        "sub_score": 0.0,
+        "impact": 1.0
+      },
+      {
+        "axis": "drift",
+        "sub_score": 1.0,
+        "impact": 0.0
+      },
+      {
+        "axis": "equivalence",
+        "sub_score": 1.0,
+        "impact": 0.0
+      }
+    ],
+    "family_breakdown": [
+      {
+        "family": "reorder",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "pad_length",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "pad_content",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "swap",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 2
+      },
+      {
+        "family": "swap_condition",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 2
+      },
+      {
+        "family": "whitespace_jitter",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "punctuation_normalize",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "bullet_reformat",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "non_governing_duplication",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "numeric_magnitude",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "comparator_flip",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "polarity_flip",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "hedge_injection",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "politeness_injection",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "discourse_marker_injection",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      },
+      {
+        "family": "meta_commentary_injection",
+        "n_samples": 1,
+        "mean_distance": 0.0,
+        "contribution_pct": 0.0,
+        "pillar": 3
+      }
+    ]
+  },
+  "raw_metrics": {
+    "noise_floor_eta": 0.0,
+    "invariance": 0.9404761904761905,
+    "sensitivity": 0.0,
+    "kelvin_score": null,
+    "invariance_calibrated": 0.9404761904761905,
+    "sensitivity_calibrated": 0.0,
+    "kelvin_score_calibrated": null,
+    "sensitivity_content": null,
+    "sensitivity_condition": 0.5,
+    "content_effect": null,
+    "mechanical_sensitivity": 0.5
+  }
+}
