@@ -1,0 +1,25 @@
+{
+  "seal_sha256": "556b70d6ad38f0d7f11071c76b27ddc045139ef46707459feb32733101f5f999",
+  "bounds": {
+    "M": 8,
+    "A": 4,
+    "family_size": 5,
+    "epsilon": 0.1,
+    "theta": 0.9,
+    "lambda": 0.08,
+    "delta": 0.05,
+    "theorem2_n_min": 577,
+    "theorem3_n_min": 451,
+    "n_eff_min_committed": 600,
+    "alpha_per_pair": 0.000625
+  },
+  "t2_aligned": true,
+  "t2_violators": [],
+  "t3_aligned": true,
+  "t3_separating_probe_per_adversary": {
+    "f_ruleblind": "strengthen_risk_threshold",
+    "f_constant": "strengthen_risk_threshold",
+    "f_wrongstatic": "strengthen_risk_threshold",
+    "f_wrongstochastic": "strengthen_risk_threshold"
+  }
+}
