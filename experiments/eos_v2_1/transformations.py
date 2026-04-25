@@ -57,17 +57,72 @@ BORDERLINE TRANSFORMATION:
     clauses pass for x}. On this subset, the deterministic effect is
     exactly +5 score points.
 
-  Divergence-zone math:
-    Naive directional threshold:   Δ_naive = 4
-    Omega directional threshold:   q_0.95(x) + Δ_dir = q + 4 ≈ 7  (q ≈ 3 typical)
-    Borderline effect:             +5
-    ⇒ Naive R_↑ holds whenever signed_effect ≥ 4. With effect = 5 +
-      (jitter₂ − jitter₁), holds with high probability.
-    ⇒ Omega R^Ω_↑ holds whenever signed_effect ≥ q + 4 ≈ 7. With
-      effect ≈ 5, holds only when jitter₂ − jitter₁ ≥ ~2 — uncommon.
+  --- Divergence-zone math (with empirical-q correction) ---
+
+  Notation: D := jitter₂ − jitter₁ (a single draw under the sealed
+  jitter model: P(jitter=0)=0.88, P(jitter=k)=0.02 for k ∈ {-3..-1,1..3}).
+  Exact distribution of D, computed from the joint:
+      P(D = 0)  = 0.7768
+      P(D = ±1) = 0.0368
+      P(D = ±2) = 0.0364
+      P(D = ±3) = 0.0360
+      P(D = ±4) = 0.0012
+      P(D = ±5) = 0.0008
+      P(D = ±6) = 0.0004
+
+  Naive threshold (Δ_naive = 2, sealed in config):
+      Naive R_↑ holds  ⇔  5 + D ≥ 2  ⇔  D ≥ −3
+      P(D ≥ −3) = 0.0360 + 0.0364 + 0.0368 + 0.7768
+                + 0.0368 + 0.0364 + 0.0360 + 0.0012 + 0.0008 + 0.0004
+                = 0.9976
+  Naive acceptance is therefore near-certain on A_T_borderline,
+  independent of q.
+
+  Omega threshold (q_0.95(x) + Δ_dir, with Δ_dir = 4):
+  q_0.95(x) is empirically estimated from K = 20 baseline replays via
+  the K(K-1)/2 = 190 pairwise-difference 95th percentile. Under the
+  sealed jitter model, q is NOT always 3 — its distribution is
+  approximately:
+
+      Pr[k jittered replays] ~ Binomial(K=20, p_noise=0.12)
+      Conditional on k:
+        k=0  (≈ 7.8% of cases) :  all 190 pairs are 0  ⇒  q = 0
+        k=1  (≈ 21.1%)         :  171 zeros + 19 nonzeros in {1,2,3};
+                                   q = 95th percentile of the 19,
+                                   ≈ 1, 2, or 3 depending on |jitter|
+        k=2  (≈ 27.3%)         :  153 zeros + 36 one-jittered + 1
+                                   both-jittered; q ≈ 3 typically
+        k≥3  (≈ 43.7%)         :  q ≈ 3 typically (could spike higher
+                                   only if both-jittered diffs > 3
+                                   crowd into the 95th percentile band)
+
+  Per-case omega R^Ω_↑ holds  ⇔  5 + D ≥ q + 4  ⇔  D ≥ q − 1.
+      If q = 0 :  P(D ≥ −1) = 0.9252
+      If q = 1 :  P(D ≥  0) = 0.8884
+      If q = 2 :  P(D ≥  1) = 0.1116
+      If q = 3 :  P(D ≥  2) = 0.0748
+      If q = 4 :  P(D ≥  3) = 0.0384
+      If q ≥ 5 :  P(D ≥ ≥4) ≤ 0.0024
+
+  The empirical-q-weighted rate depends on the realized q distribution
+  per draw and per pipeline; the run reports it as a histogram (see
+  results.md). Even under a worst-case mix (e.g., 10% of cases get
+  q=0, contributing ~0.092 alone) the unconditional omega rate stays
+  well below 0.40 — far below the 0.90 acceptance threshold under
+  CP_LCB at α = δ/m = 6.494e-04.
+
+  Conditional reference points (cited in results.md):
+    (1) If q = 3 (the v2 median observation):
+        P(D ≥ 2) = 0.0748
+        Expected omega_count ≈ 12 / 164 — rejects.
+    (2) Empirical-q calculation (from the actual run's q histogram):
+        Reported in results.md as `omega_correct_rate (empirical)`.
+    (3) Expected omega-reject still holds: empirical rate is far below
+        the 90% acceptance threshold even when q is small.
 
   This is the engineered c7 signal: naive accepts on f_track over
-  A_T_borderline; omega rejects on the same data.
+  A_T_borderline (CP_LCB at α=0.05 ≥ 0.90); omega rejects on the same
+  data (CP_LCB at α=6.494e-04 < 0.90).
 
 For the wrong-direction adversary (f_wrongstatic): borderline-T is
 NOT specifically about the corrupted clause, so its directional rate

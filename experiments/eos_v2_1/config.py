@@ -97,12 +97,19 @@ PIPELINE_IDS: dict[str, int] = {
 # Naive directional acceptance (diagnostic only — load-bearing test)
 # ---------------------------------------------------------------------
 # Naive directional uses Δ_naive < Δ_dir with NO noise term.
-# Δ_naive = 3 (one less than Δ_dir = 4) so the borderline T's effect
-# of +5 lands cleanly above the naive threshold even with adverse
-# jitter, while staying below the omega threshold q + Δ_dir ≈ 7.
+# Δ_naive = 2 (two less than Δ_dir = 4) makes naive acceptance robust
+# under any plausible per-case jitter realization. With borderline-T
+# effect = +5:
+#   naive R_↑ holds when 5 + (j2 − j1) ≥ 2, i.e., j2 − j1 ≥ −3
+#   P(j2 − j1 ≥ −3) under sealed jitter model = 0.9976
+# So naive accepts at near-certainty regardless of the empirical q.
+#
+# Omega R^Ω_↑ still uses q + Δ_dir = q + 4 as its threshold; it
+# rejects on the borderline T because the +5 effect is below q + 4
+# whenever q ≥ 2. See transformations.py for the full empirical-q
+# rationale (q=0/1/2/3 cases are all enumerated and shown to leave
+# omega rate << 90%).
 #
 # Naive uses raw α=δ=0.05 (no Bonferroni) per the load-bearing
 # comparison convention.
-#
-# Divergence-zone width = (q + Δ_dir) − Δ_naive ≈ 4 score points.
-DELTA_NAIVE: int = 3
+DELTA_NAIVE: int = 2
