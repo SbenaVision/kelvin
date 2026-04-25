@@ -1,0 +1,91 @@
+seal_sha256,draw,pipeline,axis,classification,n_transforms_total,n_correct,n_wrong,n_no_effect,n_degraded,n_invariant,n_violated,n_unresolved,reason
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_constant,order,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_constant,optional,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_constant,non_rule_fact,invariant-candidate,3,0,0,0,0,3,0,0,"axis declared non-causal; uniform invariance / no-effect (3 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_constant,rule_threshold,ignored-candidate,6,0,0,6,0,0,0,0,axis declared rule_bearing; all directional T's no-effect (6) — pipeline ignores axis
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_constant,rule_clause,ignored-candidate,3,0,0,3,0,0,0,0,axis declared rule_bearing; all directional T's no-effect (3) — pipeline ignores axis
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_constant,case_fact,ignored-candidate,6,0,0,6,0,0,0,0,axis declared causal; all directional T's no-effect (6) — pipeline ignores axis
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_ruleblind,order,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_ruleblind,optional,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_ruleblind,non_rule_fact,invariant-candidate,3,0,0,0,0,3,0,0,"axis declared non-causal; uniform invariance / no-effect (3 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_ruleblind,rule_threshold,ignored-candidate,6,0,0,6,0,0,0,0,axis declared rule_bearing; all directional T's no-effect (6) — pipeline ignores axis
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_ruleblind,rule_clause,ignored-candidate,3,0,0,3,0,0,0,0,axis declared rule_bearing; all directional T's no-effect (3) — pipeline ignores axis
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_ruleblind,case_fact,responsive-correct,6,2,0,4,0,0,0,0,"2/6 T's correct-direction; 4 no-effect, 0 unresolved"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_track,order,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_track,optional,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_track,non_rule_fact,invariant-candidate,3,0,0,0,0,3,0,0,"axis declared non-causal; uniform invariance / no-effect (3 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_track,rule_threshold,unstable,6,5,0,0,1,0,0,0,mixed: 5c 0w 0ne 1d  inv=0 viol=0
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_track,rule_clause,unstable,3,1,0,0,2,0,0,0,mixed: 1c 0w 0ne 2d  inv=0 viol=0
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_track,case_fact,unstable,6,4,0,0,2,0,0,0,mixed: 4c 0w 0ne 2d  inv=0 viol=0
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_wrongstatic,order,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_wrongstatic,optional,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_wrongstatic,non_rule_fact,invariant-candidate,3,0,0,0,0,3,0,0,"axis declared non-causal; uniform invariance / no-effect (3 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_wrongstatic,rule_threshold,responsive-wrong-direction,6,3,2,0,1,0,0,0,"2/6 T's wrong-direction; 3 correct, 0 no-effect, 1 degraded"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_wrongstatic,rule_clause,unstable,3,0,0,0,3,0,0,0,mixed: 0c 0w 0ne 3d  inv=0 viol=0
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_wrongstatic,case_fact,responsive-wrong-direction,6,2,2,0,2,0,0,0,"2/6 T's wrong-direction; 2 correct, 0 no-effect, 2 degraded"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_wrongstochastic,order,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_wrongstochastic,optional,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_wrongstochastic,non_rule_fact,invariant-candidate,3,0,0,0,0,3,0,0,"axis declared non-causal; uniform invariance / no-effect (3 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_wrongstochastic,rule_threshold,unstable,6,0,0,0,6,0,0,0,mixed: 0c 0w 0ne 6d  inv=0 viol=0
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_wrongstochastic,rule_clause,unstable,3,0,0,1,2,0,0,0,mixed: 0c 0w 1ne 2d  inv=0 viol=0
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,0,f_wrongstochastic,case_fact,unstable,6,0,0,0,6,0,0,0,mixed: 0c 0w 0ne 6d  inv=0 viol=0
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_constant,order,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_constant,optional,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_constant,non_rule_fact,invariant-candidate,3,0,0,0,0,3,0,0,"axis declared non-causal; uniform invariance / no-effect (3 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_constant,rule_threshold,ignored-candidate,6,0,0,6,0,0,0,0,axis declared rule_bearing; all directional T's no-effect (6) — pipeline ignores axis
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_constant,rule_clause,ignored-candidate,3,0,0,3,0,0,0,0,axis declared rule_bearing; all directional T's no-effect (3) — pipeline ignores axis
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_constant,case_fact,ignored-candidate,6,0,0,6,0,0,0,0,axis declared causal; all directional T's no-effect (6) — pipeline ignores axis
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_ruleblind,order,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_ruleblind,optional,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_ruleblind,non_rule_fact,invariant-candidate,3,0,0,0,0,3,0,0,"axis declared non-causal; uniform invariance / no-effect (3 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_ruleblind,rule_threshold,ignored-candidate,6,0,0,6,0,0,0,0,axis declared rule_bearing; all directional T's no-effect (6) — pipeline ignores axis
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_ruleblind,rule_clause,ignored-candidate,3,0,0,3,0,0,0,0,axis declared rule_bearing; all directional T's no-effect (3) — pipeline ignores axis
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_ruleblind,case_fact,responsive-correct,6,2,0,4,0,0,0,0,"2/6 T's correct-direction; 4 no-effect, 0 unresolved"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_track,order,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_track,optional,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_track,non_rule_fact,invariant-candidate,3,0,0,0,0,3,0,0,"axis declared non-causal; uniform invariance / no-effect (3 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_track,rule_threshold,unstable,6,5,0,0,1,0,0,0,mixed: 5c 0w 0ne 1d  inv=0 viol=0
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_track,rule_clause,unstable,3,1,0,0,2,0,0,0,mixed: 1c 0w 0ne 2d  inv=0 viol=0
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_track,case_fact,unstable,6,4,0,0,2,0,0,0,mixed: 4c 0w 0ne 2d  inv=0 viol=0
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_wrongstatic,order,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_wrongstatic,optional,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_wrongstatic,non_rule_fact,invariant-candidate,3,0,0,0,0,3,0,0,"axis declared non-causal; uniform invariance / no-effect (3 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_wrongstatic,rule_threshold,responsive-wrong-direction,6,3,2,0,1,0,0,0,"2/6 T's wrong-direction; 3 correct, 0 no-effect, 1 degraded"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_wrongstatic,rule_clause,unstable,3,0,0,0,3,0,0,0,mixed: 0c 0w 0ne 3d  inv=0 viol=0
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_wrongstatic,case_fact,responsive-wrong-direction,6,2,2,0,2,0,0,0,"2/6 T's wrong-direction; 2 correct, 0 no-effect, 2 degraded"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_wrongstochastic,order,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_wrongstochastic,optional,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_wrongstochastic,non_rule_fact,invariant-candidate,3,0,0,0,0,3,0,0,"axis declared non-causal; uniform invariance / no-effect (3 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_wrongstochastic,rule_threshold,unstable,6,0,0,0,6,0,0,0,mixed: 0c 0w 0ne 6d  inv=0 viol=0
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_wrongstochastic,rule_clause,unstable,3,0,0,1,2,0,0,0,mixed: 0c 0w 1ne 2d  inv=0 viol=0
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,1,f_wrongstochastic,case_fact,unstable,6,0,0,0,6,0,0,0,mixed: 0c 0w 0ne 6d  inv=0 viol=0
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_constant,order,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_constant,optional,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_constant,non_rule_fact,invariant-candidate,3,0,0,0,0,3,0,0,"axis declared non-causal; uniform invariance / no-effect (3 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_constant,rule_threshold,ignored-candidate,6,0,0,6,0,0,0,0,axis declared rule_bearing; all directional T's no-effect (6) — pipeline ignores axis
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_constant,rule_clause,ignored-candidate,3,0,0,3,0,0,0,0,axis declared rule_bearing; all directional T's no-effect (3) — pipeline ignores axis
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_constant,case_fact,ignored-candidate,6,0,0,6,0,0,0,0,axis declared causal; all directional T's no-effect (6) — pipeline ignores axis
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_ruleblind,order,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_ruleblind,optional,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_ruleblind,non_rule_fact,invariant-candidate,3,0,0,0,0,3,0,0,"axis declared non-causal; uniform invariance / no-effect (3 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_ruleblind,rule_threshold,ignored-candidate,6,0,0,6,0,0,0,0,axis declared rule_bearing; all directional T's no-effect (6) — pipeline ignores axis
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_ruleblind,rule_clause,ignored-candidate,3,0,0,3,0,0,0,0,axis declared rule_bearing; all directional T's no-effect (3) — pipeline ignores axis
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_ruleblind,case_fact,responsive-correct,6,2,0,4,0,0,0,0,"2/6 T's correct-direction; 4 no-effect, 0 unresolved"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_track,order,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_track,optional,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_track,non_rule_fact,invariant-candidate,3,0,0,0,0,3,0,0,"axis declared non-causal; uniform invariance / no-effect (3 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_track,rule_threshold,responsive-correct,6,6,0,0,0,0,0,0,"6/6 T's correct-direction; 0 no-effect, 0 unresolved"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_track,rule_clause,unstable,3,1,0,0,2,0,0,0,mixed: 1c 0w 0ne 2d  inv=0 viol=0
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_track,case_fact,unstable,6,5,0,0,1,0,0,0,mixed: 5c 0w 0ne 1d  inv=0 viol=0
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_wrongstatic,order,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_wrongstatic,optional,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_wrongstatic,non_rule_fact,invariant-candidate,3,0,0,0,0,3,0,0,"axis declared non-causal; uniform invariance / no-effect (3 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_wrongstatic,rule_threshold,responsive-wrong-direction,6,4,2,0,0,0,0,0,"2/6 T's wrong-direction; 4 correct, 0 no-effect, 0 degraded"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_wrongstatic,rule_clause,unstable,3,0,0,0,3,0,0,0,mixed: 0c 0w 0ne 3d  inv=0 viol=0
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_wrongstatic,case_fact,responsive-wrong-direction,6,3,2,0,1,0,0,0,"2/6 T's wrong-direction; 3 correct, 0 no-effect, 1 degraded"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_wrongstochastic,order,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_wrongstochastic,optional,invariant-candidate,2,0,0,0,0,2,0,0,"axis declared non-causal; uniform invariance / no-effect (2 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_wrongstochastic,non_rule_fact,invariant-candidate,3,0,0,0,0,3,0,0,"axis declared non-causal; uniform invariance / no-effect (3 inv, 0 no-effect)"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_wrongstochastic,rule_threshold,unstable,6,0,0,0,6,0,0,0,mixed: 0c 0w 0ne 6d  inv=0 viol=0
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_wrongstochastic,rule_clause,unstable,3,0,0,1,2,0,0,0,mixed: 0c 0w 1ne 2d  inv=0 viol=0
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,2,f_wrongstochastic,case_fact,unstable,6,0,0,0,6,0,0,0,mixed: 0c 0w 0ne 6d  inv=0 viol=0

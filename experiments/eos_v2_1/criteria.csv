@@ -1,0 +1,9 @@
+seal_sha256,criterion,passed,detail
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,c1_sig_separates_each_adversary_on_rule_axes,1,sep blind=True const=True wrong=True stoch=True
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,c2_ruleblind_constant_75pct_no_effect_on_rule_axes,1,blind=100%  const=100%
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,c3_directional_rates_on_corrupted_clause,1,track: c=1.00 w=0.00 ne=0.00 (n_eff_active=113) | wrong: c=0.00 w=1.00 ne=0.00 (n_eff_active=113) | blind: c=0.00 w=0.00 ne=1.00 (n_eff_active=113) | const: c=0.00 w=0.00 ne=1.00 (n_eff_active=113) | stoch: c=0.42 w=0.00 ne=0.58 (n_eff_active=113)
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,c4_wrongstochastic_not_rule_tracking,1,rt=unstable rc=unstable
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,c5_track_order_optional_nonrule_invariant,1,order=invariant-candidate optional=invariant-candidate non_rule_fact=invariant-candidate
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,c6_track_pairwise_jaccard_geq_0.80,1,"min=0.923 triple_size=24 per-pair=[1.0, 0.923, 0.923]"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,c7_load_bearing_directional,1,"fired=[('f_track', 'weaken_team_threshold'), ('f_track', 'add_strict_clause'), ('f_track', 'add_passing_clause'), ('f_track', 'case_team_plus'), ('f_track', 'case_team_minus'), ('f_wrongstatic', 'weaken_team_threshold')]  borderline_fired=[('f_track', 'add_passing_clause')]"
+c533d2dccf8e1b94c4c8024eaf0f6c0d54acd8470b2a14626bc959e28ddf7875,c8_no_adversary_axis_responsive_correct_on_rule_axes,1,misclassified=none
