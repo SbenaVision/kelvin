@@ -45,7 +45,14 @@ ALPHA_PER_PAIR: float = DELTA / (2 * M * A_PLUS_1)
 # Relation thresholds (raw — no noise term)
 # ---------------------------------------------------------------------
 DELTA_DIR: int = 4                 # for R_up, R_down
-DELTA_EQ: int = 5                  # for R_eq
+DELTA_EQ: int = 6                  # for R_eq — chosen so that the maximum
+                                    # absolute jitter difference (6, when
+                                    # j_t = +3, j_b = -3 or vice versa)
+                                    # is contained within the equality
+                                    # tolerance. With Δ_eq = 6 and no
+                                    # rule effect, R_eq holds with prob
+                                    # exactly 1.0 on invariant probes.
+                                    # (Certification-hygiene fix.)
 
 # ---------------------------------------------------------------------
 # Stochastic adversary
