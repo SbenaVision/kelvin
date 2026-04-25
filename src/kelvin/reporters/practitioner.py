@@ -9,9 +9,11 @@ engineer who wants to know, at a glance:
 
 Design constraints (from `docs/PHASE_2_SCOPE.md` and the Phase 2 spec):
 
-- **Under 30 lines.** Compact format — each bad finding is at most
-  3 lines (title with one-line summary, then `→` recommendation
-  wrapped to ≤ 2 lines).
+- **Under 30 lines.** Findings + recommendations are NEVER
+  truncated — text wraps in full inside the box border. If the
+  30-line budget would be exceeded, we drop a finding (3 → 2 → 1)
+  rather than truncate any text. A clipped fix is worse than no
+  fix.
 - **No statistical jargon.** Never uses "ANOVA", "F-stat", "residual",
   "variance", "p-value", "isotonic", etc. (AC3 — regex-grepped in
   tests.)
@@ -68,6 +70,7 @@ from ..variance import family_breakdown, top_axes_by_impact
 # ── Layout constants ───────────────────────────────────────────────────────
 
 _INNER_WIDTH = 64
+_LINE_BUDGET = 30        # AC2 — default output strictly < this many lines
 _BAR_CELLS = 10
 _BAR_FILLED = "█"
 _BAR_EMPTY = "░"
@@ -129,27 +132,22 @@ def _bar(value: float) -> str:
     return _BAR_FILLED * filled + _BAR_EMPTY * (_BAR_CELLS - filled)
 
 
-def _shorten(text: str, indent: str) -> str:
-    """Compress text into a single line that fits the box, with an
-    ellipsis if it would overflow."""
-    width = max(20, _INNER_WIDTH - len(indent))
-    return textwrap.shorten(text, width=width, placeholder="…")
+def _wrap_full(text: str, indent: str) -> list[str]:
+    """Wrap *text* to fit the box width — NEVER truncate.
 
+    Returns one or more lines, each prefixed with *indent*. If the
+    text fits on a single line it returns a 1-element list; otherwise
+    it returns as many lines as needed.
 
-def _wrap2(text: str, indent: str) -> list[str]:
-    """Wrap text to at most two lines (truncate the rest with an
-    ellipsis on line 2)."""
+    Findings descriptions, recommendations, and the Top fix line all
+    flow through here. Truncation would clip actionable advice mid-
+    thought ("Confirm the rule is…") which is worse than no advice.
+    """
     width = max(20, _INNER_WIDTH - len(indent))
     lines = textwrap.wrap(text, width=width)
     if not lines:
-        return [indent]
-    if len(lines) <= 2:
-        return [f"{indent}{ln}" for ln in lines]
-    # Keep first line; condense remainder on line 2 with ellipsis.
-    head = lines[0]
-    rest = " ".join(lines[1:])
-    rest_short = textwrap.shorten(rest, width=width, placeholder="…")
-    return [f"{indent}{head}", f"{indent}{rest_short}"]
+        return [indent.rstrip() or indent]
+    return [f"{indent}{ln}" for ln in lines]
 
 
 # ── Section builders ───────────────────────────────────────────────────────
@@ -201,14 +199,15 @@ def _pillar_coverage_block(maturity: MaturityScore) -> list[str]:
 def _whats_wrong_block(
     findings: list[Finding],
     recommendations: list[Recommendation],
+    limit: int = 3,
 ) -> list[str]:
-    """Top-3 severe+moderate findings, each compressed to 2–3 lines.
+    """Top-N severe+moderate findings, each fully wrapped (no truncation).
 
     Format per finding:
-        N. <title> — <one-line description summary>
-           → <one or two-line recommendation>
+        N. <title> — <description, wrapped to as many lines as needed>
+           → <recommendation, wrapped to as many lines as needed>
     """
-    bad = whats_wrong(findings, limit=3)
+    bad = whats_wrong(findings, limit=limit)
     if not bad:
         return []
     rec_for: dict[int, Recommendation] = {
@@ -216,30 +215,26 @@ def _whats_wrong_block(
     }
     rows = ["│   What's wrong:"]
     for n, f in enumerate(bad, start=1):
-        # First line: index + title + first wrap-line of description.
-        title_line = _shorten(
+        rows.extend(_wrap_full(
             f"{n}. {f.title} — {f.description}",
             indent="│     ",
-        )
-        rows.append(f"│     {title_line}")
+        ))
         rec = rec_for.get(id(f))
         if rec is not None:
-            rows.extend(_wrap2(f"→ {rec.text}", indent="│        "))
+            rows.extend(_wrap_full(f"→ {rec.text}", indent="│        "))
     return rows
 
 
-def _whats_working_line(findings: list[Finding]) -> str | None:
-    """Compact one-line summary of `good`-severity findings.
+def _whats_working_lines(findings: list[Finding]) -> list[str]:
+    """Wrapped summary of `good`-severity findings.
 
-    Joins titles with bullets so all positives fit on a single row.
-    Returns None when nothing is working (all axes failing).
+    Returns an empty list when nothing is working.
     """
     good = whats_working(findings)
     if not good:
-        return None
+        return []
     titles = " · ".join(f.title for f in good)
-    headline = "What's working: " + titles
-    return "│   " + _shorten(headline, indent="│   ")
+    return _wrap_full("What's working: " + titles, indent="│   ")
 
 
 def _top_fix_block(
@@ -259,14 +254,14 @@ def _top_fix_block(
         if maturity.pillar_coverage.get(key) is False:
             reason = maturity.silent_pillars.get(key)
             if reason and reason in _SILENCE_FIX:
-                return _wrap2(
+                return _wrap_full(
                     f"Top fix: {_SILENCE_FIX[reason]}",
                     indent="│   ",
                 )
 
     if top_fix is None:
         return []
-    return _wrap2(f"Top fix: {top_fix.text}", indent="│   ")
+    return _wrap_full(f"Top fix: {top_fix.text}", indent="│   ")
 
 
 def _trailer(verbose: bool) -> list[str]:
@@ -347,21 +342,22 @@ def _verbose_block(
 
 # ── Main builder ───────────────────────────────────────────────────────────
 
-def _build(
+def _build_once(
     maturity: MaturityScore,
     findings: list[Finding],
     recommendations: list[Recommendation],
     top_fix: Recommendation | None,
     *,
-    verbose: bool = False,
-    run: RunScores | None = None,
+    verbose: bool,
+    run: RunScores | None,
+    findings_limit: int,
 ) -> list[str]:
-    """Compose the practitioner output as a list of lines (no trailing \\n).
+    """Compose the practitioner output ONCE with a fixed findings_limit.
 
-    When `verbose=True`, an additional block is appended with the
-    numeric 1–10 score, raw metrics, per-axis impact ranking, and the
-    per-family invariance breakdown. The numeric is banner-flagged
-    when coverage is partial (per docs/PHASE_2_SCOPE.md).
+    `_build` wraps this with a budget-retry loop that drops findings
+    (3 → 2 → 1 → 0) when the rendered output would exceed the line
+    budget. Per the spec, we drop findings rather than truncate any
+    text — a clipped recommendation is worse than no recommendation.
     """
     rows: list[str] = []
 
@@ -374,7 +370,7 @@ def _build(
     if maturity.withheld:
         rows.append("│   Score withheld.")
         if maturity.withheld_reason:
-            rows.extend(_wrap2(maturity.withheld_reason, indent="│   "))
+            rows.extend(_wrap_full(maturity.withheld_reason, indent="│   "))
         rows.append("│")
         rows.extend(_trailer(verbose))
         return rows
@@ -392,8 +388,8 @@ def _build(
             rows.extend(cov)
             rows.append("│")
 
-    # What's wrong (top-3 findings).
-    bad = _whats_wrong_block(findings, recommendations)
+    # What's wrong (top-N findings, fully wrapped).
+    bad = _whats_wrong_block(findings, recommendations, limit=findings_limit)
     if bad:
         rows.extend(bad)
         rows.append("│")
@@ -401,13 +397,13 @@ def _build(
         rows.append("│   No issues detected. All v0.4 checks passed.")
         rows.append("│")
 
-    # What's working — compact one-liner so we don't blow the budget.
-    working = _whats_working_line(findings)
+    # What's working — wrapped, no truncation.
+    working = _whats_working_lines(findings)
     if working:
-        rows.append(working)
+        rows.extend(working)
         rows.append("│")
 
-    # Top fix line (≤ 2 wrap-lines).
+    # Top fix line (fully wrapped).
     fix = _top_fix_block(maturity, top_fix)
     if fix:
         rows.extend(fix)
@@ -419,6 +415,47 @@ def _build(
 
     rows.extend(_trailer(verbose))
     return rows
+
+
+def _build(
+    maturity: MaturityScore,
+    findings: list[Finding],
+    recommendations: list[Recommendation],
+    top_fix: Recommendation | None,
+    *,
+    verbose: bool = False,
+    run: RunScores | None = None,
+) -> list[str]:
+    """Compose the practitioner output with a line-budget retry.
+
+    Tries findings_limit = 3, 2, 1, 0 in turn; returns the first
+    rendering that fits under `_LINE_BUDGET` (30) lines. The text
+    itself is never truncated — wrapping is fine, dropping a finding
+    is fine, but a clipped recommendation is forbidden.
+
+    The verbose addendum is exempt from the budget (it's intentionally
+    detailed and shown only when the user opts in).
+    """
+    if verbose:
+        # Verbose has no line cap — show everything.
+        return _build_once(
+            maturity, findings, recommendations, top_fix,
+            verbose=True, run=run, findings_limit=3,
+        )
+
+    last_rendered: list[str] = []
+    for limit in (3, 2, 1, 0):
+        rendered = _build_once(
+            maturity, findings, recommendations, top_fix,
+            verbose=False, run=run, findings_limit=limit,
+        )
+        last_rendered = rendered
+        if len(rendered) < _LINE_BUDGET:
+            return rendered
+    # All retries blew the budget. Return the most-aggressive trim
+    # (limit=0). Practically unreachable for the calibrated rule
+    # tables, but defensible behavior.
+    return last_rendered
 
 
 # ── Public entry point ─────────────────────────────────────────────────────

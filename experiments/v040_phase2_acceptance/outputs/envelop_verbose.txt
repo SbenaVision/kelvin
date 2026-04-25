@@ -12,7 +12,8 @@
 │   What's working: Stability · Rule responsiveness · Robustness
 │
 │   Top fix: Restructure gate_rule bodies to match Kelvin's
-│   expected pattern, or wait for v0.5's broader format…
+│   expected pattern, or wait for v0.5's broader format
+│   coverage.
 │
 │   ── Verbose detail ─────────────────────
 │   Numeric: 10 / 10  (⚠ partial coverage — not comparable to fully-measured runs)
@@ -27,10 +28,10 @@
 │     Equivalence    sub=1.00  impact=0.00
 │
 │   Per-family contribution to invariance pool:
-│     reorder                      n=  1  mean_dist=0.000  share=  0.0%  (P3)
-│     pad_length                   n=  1  mean_dist=0.000  share=  0.0%  (P3)
-│     pad_content                  n=  1  mean_dist=0.000  share=  0.0%  (P3)
-│     swap                         n=  1  mean_dist=0.000  share=  0.0%  (P2)
+│     swap                         n=  8  mean_dist=0.875  share=100.0%  (P2)
+│     reorder                      n= 24  mean_dist=0.000  share=  0.0%  (P3)
+│     pad_length                   n= 24  mean_dist=0.000  share=  0.0%  (P3)
+│     pad_content                  n= 24  mean_dist=0.000  share=  0.0%  (P3)
 │     swap_condition               n=  1  mean_dist=0.000  share=  0.0%  (P2)
 │     whitespace_jitter            n=  1  mean_dist=0.000  share=  0.0%  (P3)
 │     punctuation_normalize        n=  1  mean_dist=0.000  share=  0.0%  (P3)

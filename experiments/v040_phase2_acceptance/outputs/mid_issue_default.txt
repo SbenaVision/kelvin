@@ -5,18 +5,25 @@
 │   Equivalence  █████░░░░░  0.50
 │
 │   What's wrong:
-│     1. Drift — Your pipeline gives different answers for the…
+│     1. Drift — Your pipeline gives different answers for the
+│     same input 25% of the time. Same input should produce the
+│     same output.
 │        → Set temperature=0 in your LLM calls and re-check. If
-│        your pipeline isn't LLM-backed, look for non-…
-│     2. Brittleness — Cosmetic changes (whitespace, reorder,…
+│        your pipeline isn't LLM-backed, look for non-
+│        deterministic input (timestamps, randomized retrieval
+│        order, time-of-day code paths).
+│     2. Brittleness — Cosmetic changes (whitespace, reorder,
+│     padding) move the output. Your pipeline depends on surface
+│     form, not content.
 │        → Don't route off surface features (first character,
-│        byte length, raw header). Parse the input semantically…
-│     3. Reduced rule sensitivity — Some rule changes don't…
-│        → Audit which parts of the rule your pipeline reads. If
-│        only some clauses drive the output, decide whether…
+│        byte length, raw header). Parse the input semantically
+│        before branching, and treat formatting as cosmetic in
+│        your routing.
 │
 │   Top fix: Set temperature=0 in your LLM calls and re-check.
-│   If your pipeline isn't LLM-backed, look for non-…
+│   If your pipeline isn't LLM-backed, look for non-
+│   deterministic input (timestamps, randomized retrieval order,
+│   time-of-day code paths).
 │
 │   Run with --verbose for per-axis and per-family detail.
 └

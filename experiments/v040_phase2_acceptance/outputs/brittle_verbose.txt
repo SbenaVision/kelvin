@@ -5,14 +5,20 @@
 │   Equivalence  ██████████  1.00
 │
 │   What's wrong:
-│     1. Rule-blindness — When you change the governing rule,…
+│     1. Rule-blindness — When you change the governing rule,
+│     the output barely changes. Your rules aren't actually
+│     being read.
 │        → Check your prompt or routing code: the rule text
-│        isn't reaching the decision logic. Confirm the rule is…
+│        isn't reaching the decision logic. Confirm the rule is
+│        being passed to the model and isn't being truncated,
+│        summarized, or pre-emptied by a system prompt.
 │
 │   What's working: Stability · Robustness
 │
 │   Top fix: Check your prompt or routing code: the rule text
-│   isn't reaching the decision logic. Confirm the rule is…
+│   isn't reaching the decision logic. Confirm the rule is being
+│   passed to the model and isn't being truncated, summarized,
+│   or pre-emptied by a system prompt.
 │
 │   ── Verbose detail ─────────────────────
 │   Numeric: 1 / 10
@@ -27,21 +33,21 @@
 │     Equivalence    sub=1.00  impact=0.00
 │
 │   Per-family contribution to invariance pool:
-│     reorder                      n=  1  mean_dist=0.000  share=  0.0%  (P3)
-│     pad_length                   n=  1  mean_dist=0.000  share=  0.0%  (P3)
-│     pad_content                  n=  1  mean_dist=0.000  share=  0.0%  (P3)
-│     swap                         n=  1  mean_dist=0.000  share=  0.0%  (P2)
-│     swap_condition               n=  1  mean_dist=0.000  share=  0.0%  (P2)
-│     whitespace_jitter            n=  1  mean_dist=0.000  share=  0.0%  (P3)
-│     punctuation_normalize        n=  1  mean_dist=0.000  share=  0.0%  (P3)
-│     bullet_reformat              n=  1  mean_dist=0.000  share=  0.0%  (P3)
-│     non_governing_duplication    n=  1  mean_dist=0.000  share=  0.0%  (P3)
-│     numeric_magnitude            n=  1  mean_dist=0.000  share=  0.0%  (P3)
-│     comparator_flip              n=  1  mean_dist=0.000  share=  0.0%  (P3)
-│     polarity_flip                n=  1  mean_dist=0.000  share=  0.0%  (P3)
-│     hedge_injection              n=  1  mean_dist=0.000  share=  0.0%  (P3)
-│     politeness_injection         n=  1  mean_dist=0.000  share=  0.0%  (P3)
-│     discourse_marker_injection   n=  1  mean_dist=0.000  share=  0.0%  (P3)
-│     meta_commentary_injection    n=  1  mean_dist=0.000  share=  0.0%  (P3)
+│     reorder                      n= 24  mean_dist=0.000  share=  0.0%  (P3)
+│     pad_length                   n= 24  mean_dist=0.000  share=  0.0%  (P3)
+│     pad_content                  n= 24  mean_dist=0.000  share=  0.0%  (P3)
+│     swap                         n= 16  mean_dist=0.000  share=  0.0%  (P2)
+│     swap_condition               n= 16  mean_dist=0.000  share=  0.0%  (P2)
+│     whitespace_jitter            n= 24  mean_dist=0.000  share=  0.0%  (P3)
+│     punctuation_normalize        n= 24  mean_dist=0.000  share=  0.0%  (P3)
+│     bullet_reformat              n= 24  mean_dist=0.000  share=  0.0%  (P3)
+│     non_governing_duplication    n= 24  mean_dist=0.000  share=  0.0%  (P3)
+│     numeric_magnitude            n= 16  mean_dist=0.000  share=  0.0%  (P3)
+│     comparator_flip              n= 16  mean_dist=0.000  share=  0.0%  (P3)
+│     polarity_flip                n= 16  mean_dist=0.000  share=  0.0%  (P3)
+│     hedge_injection              n= 16  mean_dist=0.000  share=  0.0%  (P3)
+│     politeness_injection         n= 16  mean_dist=0.000  share=  0.0%  (P3)
+│     discourse_marker_injection   n= 16  mean_dist=0.000  share=  0.0%  (P3)
+│     meta_commentary_injection    n= 16  mean_dist=0.000  share=  0.0%  (P3)
 │
 └

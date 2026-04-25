@@ -98,32 +98,32 @@
     ],
     "family_breakdown": [
       {
+        "family": "swap",
+        "n_samples": 8,
+        "mean_distance": 0.875,
+        "contribution_pct": 100.0,
+        "pillar": 2
+      },
+      {
         "family": "reorder",
-        "n_samples": 1,
+        "n_samples": 24,
         "mean_distance": 0.0,
         "contribution_pct": 0.0,
         "pillar": 3
       },
       {
         "family": "pad_length",
-        "n_samples": 1,
+        "n_samples": 24,
         "mean_distance": 0.0,
         "contribution_pct": 0.0,
         "pillar": 3
       },
       {
         "family": "pad_content",
-        "n_samples": 1,
+        "n_samples": 24,
         "mean_distance": 0.0,
         "contribution_pct": 0.0,
         "pillar": 3
-      },
-      {
-        "family": "swap",
-        "n_samples": 1,
-        "mean_distance": 0.0,
-        "contribution_pct": 0.0,
-        "pillar": 2
       },
       {
         "family": "swap_condition",
@@ -215,7 +215,7 @@
     "noise_floor_eta": 0.0,
     "invariance": 1.0,
     "sensitivity": 0.875,
-    "kelvin_score": null,
+    "kelvin_score": 0.125,
     "invariance_calibrated": 1.0,
     "sensitivity_calibrated": 0.875,
     "kelvin_score_calibrated": 0.125,
