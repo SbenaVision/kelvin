@@ -3,6 +3,70 @@
 Captured items for v0.5+ that surfaced during v0.4 development. Each
 item names the problem it fixes and the diagnostic that produced it.
 
+## High priority — must-fix-soon
+
+### B-3 (PROMOTED). Pillar 2 swap_condition format coverage
+
+**Status: HIGH PRIORITY.** Promoted from "v0.5 — Score model" on
+2026-04-25 after the Phase 1 Envelop run produced a misleading 10/10
+"Production-ready" verdict because Pillar 2 silently failed to fire.
+
+**Why this is high priority.**
+- Until B-3 lands, **Envelop's Kelvin score is uninterpretable**: the
+  Phase 1 run reported maturity 10/10 / Production-ready, but
+  `sensitivity_condition` and `content_effect` were both `None`
+  because Envelop's gate_rule format
+  (`Goal frame: ... / Stage profile: ... / Dimensions: ...`) doesn't
+  match Kelvin's expected `requires: <list>. <state_phrase>. <details>`.
+- **Any user pipeline with a non-standard gate_rule format will
+  produce the same false-positive verdict.** A practitioner could ship
+  a pipeline that Kelvin says is Production-ready when in fact one of
+  the three pillars wasn't even measured.
+- This is the exact failure mode v0.4's verdict surface is supposed to
+  prevent.
+
+**Mitigation in v0.4 Phase 2.** Reporter must surface silent pillars
+explicitly (see "Reporters / UX → silent-pillar handling" below) so
+the verdict is never "Production-ready" when a standard pillar didn't
+fire. That contains the symptom; B-3 fixes the cause.
+
+**Problem.** Pillar 2 (counterfactual-controlled swap) requires the
+gate_rule body to match the regex `^(.*?\brequires:\s+)(.+?)\.\s+(.+)$`
+and the state_phrase to be one of a fixed canonical list ("All
+conditions are met.", etc.). Pipelines that use a different gate_rule
+schema don't match → `swap_condition` produces zero contributing
+perturbations → Pillar 2 metrics are all None.
+
+**Diagnostic that produced it.** Phase 1 Envelop run on
+`experiments/envelop_local/pipelines/envelop.py` with K=30 replays:
+`sensitivity_condition = None`, `content_effect = None`,
+`sensitivity_content = None`. The `swap_condition` family fired zero
+perturbations because Envelop's gate_rule doesn't have "requires:"
++ state_phrase.
+
+**Fix options.**
+- Generalize `swap_condition` to accept pluggable gate_rule grammars
+  (config-declared rule shape — e.g., a `gate_rule_grammar:` block in
+  `kelvin.yaml` that names a parser plugin or supplies a regex with
+  named capture groups for the swappable axes).
+- Or: ship a no-Pillar-2 mode that hides Pillar 2 metrics from the
+  report when no perturbations fire (currently emits None fields).
+  This is a coverage workaround, not a real fix.
+
+**Impact when fixed.** Pipeline authors using non-canonical gate_rule
+formats can extract Pillar 2 signal directly. Envelop becomes
+meaningfully evaluable through Kelvin (currently it isn't).
+
+**Blockers explicitly named.**
+- This blocks meaningful Envelop evaluation.
+- This blocks any v0.5 LLM-backed re-anchoring (B-2) on a non-standard
+  pipeline.
+- This blocks generalizing Kelvin to "any structured-decision RAG"
+  pipelines, since most real pipelines won't use Kelvin's exact
+  `requires: ...` format.
+
+---
+
 ## v0.5 — Score model
 
 ### B-1. MIN-over-per-family invariance aggregation
@@ -71,30 +135,7 @@ refit the ANCHORS table. Specifically:
 **Impact.** Score becomes robust to corpus drift and reflects what
 practitioners actually see on production pipelines.
 
-### B-3. Pillar 2 swap_condition format coverage
-
-**Problem.** Pillar 2 (counterfactual-controlled swap) requires the
-gate_rule body to match the regex `^(.*?\brequires:\s+)(.+?)\.\s+(.+)$`
-and the state_phrase to be one of a fixed canonical list ("All
-conditions are met.", etc.). Pipelines that use a different gate_rule
-schema (e.g., Envelop's "Goal frame: growth / Stage profile: early /
-Dimensions: P=5 ...") don't match → swap_condition produces zero
-contributing perturbations → Pillar 2 metrics are all None.
-
-**Diagnostic that produced it.** Phase 1 Envelop run:
-`sensitivity_condition = None`, `content_effect = None`. The
-`swap_condition` family fired zero perturbations because Envelop's
-gate_rule doesn't have "requires:" + state_phrase.
-
-**Fix.** Either:
-- Generalize `swap_condition` to accept pluggable gate_rule grammars
-  (config-declared rule shape).
-- Or: ship a no-Pillar-2 mode that hides Pillar 2 metrics from the
-  report when no perturbations fire (currently emits None fields).
-
-**Impact.** Pipeline authors using non-canonical gate_rule formats get
-clean reports without spurious None fields and can still extract
-Pillar 1 + Pillar 3 + invariance signal.
+### B-3 — see "High priority" section above.
 
 ## v0.5 — Reporters / UX
 
