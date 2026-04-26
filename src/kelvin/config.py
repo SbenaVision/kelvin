@@ -45,7 +45,11 @@ from kelvin.retry import RetryPolicy
 
 CONFIG_FILENAME = "kelvin.yaml"
 
-REQUIRED_KEYS = ("run", "cases", "decision_field", "governing_types")
+# v0.4: governing_types is no longer required. When omitted, Kelvin runs in
+# perturb-all-types mode — every detected unit type with cross-case peers is
+# eligible for swap perturbations, and the per-unit-type sensitivity profile
+# itself reveals which types the pipeline treats as governing.
+REQUIRED_KEYS = ("run", "cases", "decision_field")
 
 # Subprocess timeout default, bumped from v0.2's hardcoded 60s. LLM-backed
 # pipelines routinely take >60s; 60s was effectively a v0.2 bug. Users who
@@ -160,7 +164,9 @@ class KelvinConfig:
         if not isinstance(decision_field, str) or not decision_field.strip():
             raise ConfigError(catalog(CONFIG_DECISION_FIELD_INVALID))
 
-        governing_types = raw["governing_types"]
+        # v0.4: governing_types is optional. Default to empty list, which
+        # triggers perturb-all-types mode in the swap generators.
+        governing_types = raw.get("governing_types", [])
         if not isinstance(governing_types, list) or not all(
             isinstance(t, str) for t in governing_types
         ):

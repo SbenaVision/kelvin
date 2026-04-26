@@ -1,5 +1,34 @@
 run: node /Users/sb/MyDev/envelopstudio/harness/kelvin_runner.mjs --input {input} --output {output}
 cases: ./cases
 decision_field: stage_assessment
-governing_types: [gate_rule]
+# v0.4: no governing_types declared — Kelvin perturbs every detected unit
+# type with cross-case peers and the per-type sensitivity profile reveals
+# which types the pipeline empirically treats as governing.
 seed: 0
+cache_dir: .kelvin-cache
+
+noise_floor:
+  enabled: true
+  replications: 5
+
+counterfactual_swap:
+  enabled: true
+
+intra_slot:
+  enabled: true
+  enabled_families:
+    - whitespace_jitter
+    - punctuation_normalize
+    - bullet_reformat
+    - non_governing_duplication
+    - hedge_injection
+    - politeness_injection
+    - discourse_marker_injection
+    - meta_commentary_injection
+    - numeric_magnitude
+    - comparator_flip
+    - polarity_flip
+
+retry_policy:
+  transient_exit_codes: [1]
+  max_attempts: 3

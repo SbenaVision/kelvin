@@ -135,13 +135,23 @@ class SwapConditionGenerator:
         caps: list[str] = []
         perturbations: list[Perturbation] = []
 
-        for gtype in governing_types:
+        # v0.4: when governing_types is empty/unset, attempt swap_condition on
+        # every unit type. Non-rule-shaped types skip cleanly (no parse → no
+        # perturbation, no warning); only rule-shaped types contribute.
+        auto_mode = not governing_types
+        if auto_mode:
+            types_to_attempt = sorted({u.type for u in case.units})
+        else:
+            types_to_attempt = list(governing_types)
+
+        for gtype in types_to_attempt:
             focal_units = case.units_of_type(gtype)
             if not focal_units:
-                warnings.append(
-                    f"{case.name}: swap_condition skipped for type '{gtype}' — "
-                    f"case has no units of this type"
-                )
+                if not auto_mode:
+                    warnings.append(
+                        f"{case.name}: swap_condition skipped for type '{gtype}' — "
+                        f"case has no units of this type"
+                    )
                 continue
 
             # For each focal unit, find peer units with parseable gate-rule
@@ -151,11 +161,16 @@ class SwapConditionGenerator:
             for focal_unit in focal_units:
                 parsed_focal = parse_gate_rule(focal_unit.content)
                 if parsed_focal is None:
-                    caps.append(
-                        f"{case.name}: swap_condition clean-parse FAILED for "
-                        f"{gtype} unit at index {focal_unit.index} "
-                        f"(no 'requires:' + state-phrase structure)"
-                    )
+                    # In declared-types mode, surface the parse failure so
+                    # the user knows Pillar 2 isn't firing on a type they
+                    # explicitly asked about. In auto mode, silently skip:
+                    # most types aren't rule-shaped, and that's the point.
+                    if not auto_mode:
+                        caps.append(
+                            f"{case.name}: swap_condition clean-parse FAILED for "
+                            f"{gtype} unit at index {focal_unit.index} "
+                            f"(no 'requires:' + state-phrase structure)"
+                        )
                     continue
 
                 # Collect eligible peers: same gtype, parse cleanly, matching
@@ -175,10 +190,13 @@ class SwapConditionGenerator:
                         peer_pool.append((peer_case.name, peer_unit, parsed_peer))
 
                 if not peer_pool:
-                    warnings.append(
-                        f"{case.name}: swap_condition found no eligible peers "
-                        f"for {gtype} (same state_phrase + different condition list)"
-                    )
+                    # Same auto-mode reasoning as the parse-failure branch:
+                    # singleton state phrases are expected in mixed corpora.
+                    if not auto_mode:
+                        warnings.append(
+                            f"{case.name}: swap_condition found no eligible peers "
+                            f"for {gtype} (same state_phrase + different condition list)"
+                        )
                     continue
 
                 effective = min(TARGET_COUNT, len(peer_pool))

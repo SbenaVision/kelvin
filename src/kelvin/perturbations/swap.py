@@ -30,21 +30,38 @@ class SwapGenerator:
         caps: list[str] = []
         perturbations: list[Perturbation] = []
 
-        for gtype in governing_types:
+        # v0.4: when governing_types is empty/unset, perturb every unit type
+        # in the focal case. The per-unit-type sensitivity profile in
+        # aggregation reveals which types the pipeline reads as governing,
+        # rather than asking the user to declare them.
+        auto_mode = not governing_types
+        if auto_mode:
+            types_to_swap = sorted({u.type for u in case.units})
+        else:
+            types_to_swap = list(governing_types)
+
+        for gtype in types_to_swap:
             case_units = case.units_of_type(gtype)
             if not case_units:
-                warnings.append(
-                    f"{case.name}: swap skipped for type '{gtype}' — "
-                    f"case has no units of this type"
-                )
+                # In auto mode this can't happen (we built the list from the
+                # case). In declared mode, surface the misconfiguration.
+                if not auto_mode:
+                    warnings.append(
+                        f"{case.name}: swap skipped for type '{gtype}' — "
+                        f"case has no units of this type"
+                    )
                 continue
 
             pool = peer_pool(case, peer_cases, type_filter=gtype)
             if not pool:
-                warnings.append(
-                    f"{case.name}: swap skipped for type '{gtype}' — "
-                    f"peer pool has no units of this type"
-                )
+                # Singleton types are expected in auto mode (e.g., a unique
+                # section appearing in only one case); no warning. In
+                # declared mode this is a real config concern.
+                if not auto_mode:
+                    warnings.append(
+                        f"{case.name}: swap skipped for type '{gtype}' — "
+                        f"peer pool has no units of this type"
+                    )
                 continue
 
             effective = min(TARGET_COUNT, len(case_units), len(pool))

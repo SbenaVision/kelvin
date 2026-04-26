@@ -175,6 +175,11 @@ def run_check(
     cfg = _load_config(cwd)
     effective_seed = seed_override if seed_override is not None else cfg.seed
 
+    # v0.4: when governing_types is empty/unset, the run is in perturb-all-
+    # types mode. Computed once and threaded through report writers and the
+    # signature.json artifact for consistency across happy and abort paths.
+    auto_governing_types = not cfg.governing_types
+
     # Expand generator tuple with opt-in v0.3 Pillar 2 / Pillar 3 families
     # based on config flags. When neither flag is set, generators stays
     # at v0.2.1 defaults and the regression harness is byte-for-byte.
@@ -235,6 +240,7 @@ def run_check(
     forecast = _echo_cost_preamble(
         case_scores, cfg.governing_types, single_case_run,
         phase1_elapsed_s=phase1_elapsed_s, logger=logger,
+        all_cases=all_cases,
     )
 
     # In dry-run, every baseline skips invoke by design, so baseline_ok is
@@ -251,7 +257,14 @@ def run_check(
             run_caps=[],
             single_case_run=single_case_run,
         )
-        _write_run_report(run_scores, cwd, cfg, only=only)
+        _write_run_report(
+            run_scores, cwd, cfg, only=only,
+            auto_governing_types=auto_governing_types,
+        )
+        _write_signature_json(
+            run_scores, cwd, cfg,
+            auto_governing_types=auto_governing_types,
+        )
         raise AbortRun(catalog(CHECK_ALL_BASELINES_FAILED))
 
     # Forecast prompt: opt-in via `confirm_before_phase2`. When the prompt
@@ -268,7 +281,14 @@ def run_check(
                 run_caps=[],
                 single_case_run=single_case_run,
             )
-            _write_run_report(run_scores, cwd, cfg, only=only)
+            _write_run_report(
+                run_scores, cwd, cfg, only=only,
+                auto_governing_types=auto_governing_types,
+            )
+            _write_signature_json(
+                run_scores, cwd, cfg,
+                auto_governing_types=auto_governing_types,
+            )
             raise AbortRun(catalog(CHECK_USER_ABORTED))
 
     # Phase 2 — perturbations. In dry-run, every case participates; in a
@@ -290,7 +310,7 @@ def run_check(
             dry_run=dry_run,
         )
 
-    # Write per-case reports, aggregate, write run report.
+    # Write per-case reports, aggregate, write run report + signature.json.
     _write_per_case_reports(case_scores, cwd, cfg)
     run_scores = aggregate(
         case_scores,
@@ -301,7 +321,14 @@ def run_check(
         single_case_run=single_case_run,
         dry_run=dry_run,
     )
-    _write_run_report(run_scores, cwd, cfg, only=only)
+    _write_run_report(
+        run_scores, cwd, cfg, only=only,
+        auto_governing_types=auto_governing_types,
+    )
+    _write_signature_json(
+        run_scores, cwd, cfg,
+        auto_governing_types=auto_governing_types,
+    )
     render_terminal(
         run_scores,
         elapsed_s=time.monotonic() - _start,
@@ -731,6 +758,7 @@ def _echo_cost_preamble(
     *,
     phase1_elapsed_s: float,
     logger: EventLogger,
+    all_cases: list[Case] | None = None,
 ) -> dict[str, Any] | None:
     """Log estimated perturbation count and wall-time before Phase 2 fires.
 
@@ -744,7 +772,15 @@ def _echo_cost_preamble(
     per_case = _EST_PER_CASE["reorder"] + _EST_PER_CASE["pad_length"]
     if not single_case_run:
         per_case += _EST_PER_CASE["pad_content"]
-        per_case += _EST_PER_CASE["swap_per_type"] * len(governing_types)
+        # v0.4: when governing_types is empty (auto-mode), estimate swap
+        # targets per case from types that appear in ≥2 cases — that's the
+        # eligibility condition for swap to fire. Falls back to declared
+        # count when governing_types is set.
+        if governing_types:
+            n_swap_targets = len(governing_types)
+        else:
+            n_swap_targets = _estimate_auto_swap_targets(all_cases or [])
+        per_case += _EST_PER_CASE["swap_per_type"] * n_swap_targets
     est_total = per_case * n_ok
 
     avg_baseline_s = phase1_elapsed_s / n_ok if n_ok else 0.0
@@ -772,6 +808,32 @@ def _echo_cost_preamble(
         "est_wall_s": est_wall_s,
         "n_cases": n_ok,
     }
+
+
+def _estimate_auto_swap_targets(all_cases: list[Case]) -> int:
+    """Per-case avg of unit types that have ≥1 cross-case peer.
+
+    A type qualifies for swap if it appears in the focal case AND at least
+    one other case. In a 10-case corpus with 7 cases having `gate_rule` and
+    10 having `team`, both qualify per-case. Used for the cost preamble
+    estimate in v0.4 auto mode.
+    """
+    if len(all_cases) < 2:
+        return 0
+    type_to_cases: dict[str, set[str]] = {}
+    for c in all_cases:
+        for u in c.units:
+            type_to_cases.setdefault(u.type, set()).add(c.name)
+    # Per case: count how many of its types also appear in ≥1 other case.
+    counts = []
+    for c in all_cases:
+        case_types = {u.type for u in c.units}
+        n = sum(
+            1 for t in case_types
+            if len(type_to_cases.get(t, set()) - {c.name}) >= 1
+        )
+        counts.append(n)
+    return round(sum(counts) / len(counts)) if counts else 0
 
 
 def _accept_forecast(*, auto_accept: bool, input_fn: Any = input, isatty: Any = None) -> bool:
@@ -887,7 +949,8 @@ def _scored_dict(sp: ScoredPerturbation) -> dict:
 
 
 def _write_run_report(
-    run_scores: RunScores, cwd: Path, cfg: KelvinConfig, *, only: str | None
+    run_scores: RunScores, cwd: Path, cfg: KelvinConfig, *, only: str | None,
+    auto_governing_types: bool = False,
 ) -> None:
     rdir = fs.ensure(fs.run_root(cwd))
     payload: dict[str, Any] = {
@@ -944,7 +1007,71 @@ def _write_run_report(
     if run_scores.mechanical_sensitivity_sample > 0:
         payload["mechanical_sensitivity"] = run_scores.mechanical_sensitivity
         payload["mechanical_sensitivity_sample"] = run_scores.mechanical_sensitivity_sample
+    # v0.4: emit `auto_governing_types: true` only when we ran in auto-mode.
+    # Omitted when governing_types was declared, preserving byte-compat
+    # with v0.3.0 reports.
+    if auto_governing_types:
+        payload["auto_governing_types"] = True
     (rdir / "report.json").write_text(
+        json.dumps(payload, indent=2, default=_json_default),
+        encoding="utf-8",
+    )
+
+
+def _write_signature_json(
+    run_scores: RunScores,
+    cwd: Path,
+    cfg: KelvinConfig,
+    *,
+    auto_governing_types: bool,
+) -> None:
+    """v0.4: write `kelvin/signature.json` — the response-geometry vector
+    bundled as one named, versioned artifact. Always emits.
+
+    Schema_version is independent of `report.json` and starts at 1.
+    """
+    rdir = fs.ensure(fs.run_root(cwd))
+    payload: dict[str, Any] = {
+        "schema_version": 1,
+        "kelvin_version": "0.4.0",
+        "seed": run_scores.seed,
+        "n_cases": len(run_scores.cases),
+        "decision_field": cfg.decision_field,
+        "auto_governing_types": auto_governing_types,
+        "raw": {
+            "invariance": run_scores.invariance,
+            "invariance_sample": run_scores.invariance_sample,
+            "sensitivity": run_scores.sensitivity,
+            "sensitivity_sample": run_scores.sensitivity_sample,
+            "kelvin_score": run_scores.kelvin_score,
+        },
+        "noise_floor": {
+            "eta": run_scores.noise_floor_eta,
+            "invariance_calibrated": run_scores.invariance_calibrated,
+            "sensitivity_calibrated": run_scores.sensitivity_calibrated,
+            "kelvin_score_calibrated": run_scores.kelvin_score_calibrated,
+        },
+        "decomposition": {
+            "sensitivity_content": run_scores.sensitivity_content,
+            "sensitivity_content_sample": run_scores.sensitivity_content_sample,
+            "sensitivity_condition": run_scores.sensitivity_condition,
+            "sensitivity_condition_sample": run_scores.sensitivity_condition_sample,
+            "content_effect": run_scores.content_effect,
+        },
+        "mechanical_sensitivity": {
+            "value": run_scores.mechanical_sensitivity,
+            "sample": run_scores.mechanical_sensitivity_sample,
+        },
+        "sensitivity_profile": {
+            "by_type": {
+                gtype: {"mean": mean_val, "sample": sample}
+                for gtype, (mean_val, sample) in run_scores.sensitivity_by_type.items()
+            },
+        },
+    }
+    if run_scores.dry_run:
+        payload["dry_run"] = True
+    (rdir / "signature.json").write_text(
         json.dumps(payload, indent=2, default=_json_default),
         encoding="utf-8",
     )
