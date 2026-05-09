@@ -1,0 +1,5 @@
+run: python3 ../pipelines/constant.py --input {input} --output {output}
+cases: ../cases
+decision_field: verdict
+governing_types: [gate_rule]
+seed: 0

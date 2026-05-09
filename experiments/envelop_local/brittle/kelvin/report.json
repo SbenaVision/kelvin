@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "seed": 0,
+  "only": null,
+  "decision_field": "verdict",
+  "governing_types": [
+    "gate_rule"
+  ],
+  "cases": {
+    "run": [
+      "alpha",
+      "bravo",
+      "charlie",
+      "delta",
+      "echo",
+      "foxtrot",
+      "golf",
+      "hotel"
+    ],
+    "baseline_ok": [
+      "alpha",
+      "bravo",
+      "charlie",
+      "delta",
+      "echo",
+      "foxtrot",
+      "golf",
+      "hotel"
+    ],
+    "baseline_failed": []
+  },
+  "invariance": 0.9444444444444444,
+  "invariance_sample": 72,
+  "sensitivity": 0.0,
+  "sensitivity_sample": 8,
+  "kelvin_score": 1.0555555555555556,
+  "single_case_run": false,
+  "sensitivity_by_type": {
+    "gate_rule": {
+      "mean": 0.0,
+      "sample": 8
+    }
+  },
+  "warnings": [],
+  "caps": [
+    "alpha: swap-gate_rule capped at 1 (case positions=1, peer pool=7, target=3)",
+    "bravo: swap-gate_rule capped at 1 (case positions=1, peer pool=7, target=3)",
+    "charlie: swap-gate_rule capped at 1 (case positions=1, peer pool=7, target=3)",
+    "delta: swap-gate_rule capped at 1 (case positions=1, peer pool=7, target=3)",
+    "echo: swap-gate_rule capped at 1 (case positions=1, peer pool=7, target=3)",
+    "foxtrot: swap-gate_rule capped at 1 (case positions=1, peer pool=7, target=3)",
+    "golf: swap-gate_rule capped at 1 (case positions=1, peer pool=7, target=3)",
+    "hotel: swap-gate_rule capped at 1 (case positions=1, peer pool=7, target=3)"
+  ]
+}

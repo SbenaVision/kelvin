@@ -1,0 +1,318 @@
+{
+  "schema_version": 1,
+  "case": "foxtrot",
+  "baseline": {
+    "ok": true,
+    "error": null,
+    "decision_value": "Reshape",
+    "decision_field": "verdict"
+  },
+  "perturbations": [
+    {
+      "variant_id": "reorder-02",
+      "kind": "reorder",
+      "notes": {
+        "order": [
+          5,
+          0,
+          2,
+          1,
+          4,
+          3
+        ]
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "Reshape",
+        "stderr_tail": null
+      },
+      "distance": 0.0,
+      "input_path": "/Users/sb/MyDev/Kelvin/.claude/worktrees/competent-bose-7a0d7d/experiments/envelop_local/envelop/kelvin/foxtrot/perturbations/reorder-02/input.md",
+      "output_path": "/Users/sb/MyDev/Kelvin/.claude/worktrees/competent-bose-7a0d7d/experiments/envelop_local/envelop/kelvin/foxtrot/perturbations/reorder-02/output.json"
+    },
+    {
+      "variant_id": "reorder-01",
+      "kind": "reorder",
+      "notes": {
+        "order": [
+          0,
+          5,
+          1,
+          4,
+          3,
+          2
+        ]
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "Reshape",
+        "stderr_tail": null
+      },
+      "distance": 0.0,
+      "input_path": "/Users/sb/MyDev/Kelvin/.claude/worktrees/competent-bose-7a0d7d/experiments/envelop_local/envelop/kelvin/foxtrot/perturbations/reorder-01/input.md",
+      "output_path": "/Users/sb/MyDev/Kelvin/.claude/worktrees/competent-bose-7a0d7d/experiments/envelop_local/envelop/kelvin/foxtrot/perturbations/reorder-01/output.json"
+    },
+    {
+      "variant_id": "reorder-03",
+      "kind": "reorder",
+      "notes": {
+        "order": [
+          4,
+          2,
+          0,
+          3,
+          5,
+          1
+        ]
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "Reshape",
+        "stderr_tail": null
+      },
+      "distance": 0.0,
+      "input_path": "/Users/sb/MyDev/Kelvin/.claude/worktrees/competent-bose-7a0d7d/experiments/envelop_local/envelop/kelvin/foxtrot/perturbations/reorder-03/input.md",
+      "output_path": "/Users/sb/MyDev/Kelvin/.claude/worktrees/competent-bose-7a0d7d/experiments/envelop_local/envelop/kelvin/foxtrot/perturbations/reorder-03/output.json"
+    },
+    {
+      "variant_id": "pad_length-01",
+      "kind": "pad_length",
+      "notes": {
+        "insert_count": 2,
+        "inserted": [
+          {
+            "position": 2,
+            "length_chars": 268
+          },
+          {
+            "position": 1,
+            "length_chars": 276
+          }
+        ],
+        "total_chars": 544
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "Reshape",
+        "stderr_tail": null
+      },
+      "distance": 0.0,
+      "input_path": "/Users/sb/MyDev/Kelvin/.claude/worktrees/competent-bose-7a0d7d/experiments/envelop_local/envelop/kelvin/foxtrot/perturbations/pad_length-01/input.md",
+      "output_path": "/Users/sb/MyDev/Kelvin/.claude/worktrees/competent-bose-7a0d7d/experiments/envelop_local/envelop/kelvin/foxtrot/perturbations/pad_length-01/output.json"
+    },
+    {
+      "variant_id": "pad_length-02",
+      "kind": "pad_length",
+      "notes": {
+        "insert_count": 4,
+        "inserted": [
+          {
+            "position": 4,
+            "length_chars": 276
+          },
+          {
+            "position": 2,
+            "length_chars": 268
+          },
+          {
+            "position": 5,
+            "length_chars": 227
+          },
+          {
+            "position": 9,
+            "length_chars": 258
+          }
+        ],
+        "total_chars": 1029
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "Reshape",
+        "stderr_tail": null
+      },
+      "distance": 0.0,
+      "input_path": "/Users/sb/MyDev/Kelvin/.claude/worktrees/competent-bose-7a0d7d/experiments/envelop_local/envelop/kelvin/foxtrot/perturbations/pad_length-02/input.md",
+      "output_path": "/Users/sb/MyDev/Kelvin/.claude/worktrees/competent-bose-7a0d7d/experiments/envelop_local/envelop/kelvin/foxtrot/perturbations/pad_length-02/output.json"
+    },
+    {
+      "variant_id": "pad_length-03",
+      "kind": "pad_length",
+      "notes": {
+        "insert_count": 3,
+        "inserted": [
+          {
+            "position": 1,
+            "length_chars": 233
+          },
+          {
+            "position": 2,
+            "length_chars": 258
+          },
+          {
+            "position": 8,
+            "length_chars": 233
+          }
+        ],
+        "total_chars": 724
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "Reshape",
+        "stderr_tail": null
+      },
+      "distance": 0.0,
+      "input_path": "/Users/sb/MyDev/Kelvin/.claude/worktrees/competent-bose-7a0d7d/experiments/envelop_local/envelop/kelvin/foxtrot/perturbations/pad_length-03/input.md",
+      "output_path": "/Users/sb/MyDev/Kelvin/.claude/worktrees/competent-bose-7a0d7d/experiments/envelop_local/envelop/kelvin/foxtrot/perturbations/pad_length-03/output.json"
+    },
+    {
+      "variant_id": "pad_content-02",
+      "kind": "pad_content",
+      "notes": {
+        "insert_count": 2,
+        "inserted": [
+          {
+            "from_case": "charlie",
+            "type": "gate_rule",
+            "source_index": 5,
+            "position": 3
+          },
+          {
+            "from_case": "hotel",
+            "type": "team",
+            "source_index": 2,
+            "position": 1
+          }
+        ]
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "Reshape",
+        "stderr_tail": null
+      },
+      "distance": 0.0,
+      "input_path": "/Users/sb/MyDev/Kelvin/.claude/worktrees/competent-bose-7a0d7d/experiments/envelop_local/envelop/kelvin/foxtrot/perturbations/pad_content-02/input.md",
+      "output_path": "/Users/sb/MyDev/Kelvin/.claude/worktrees/competent-bose-7a0d7d/experiments/envelop_local/envelop/kelvin/foxtrot/perturbations/pad_content-02/output.json"
+    },
+    {
+      "variant_id": "pad_content-01",
+      "kind": "pad_content",
+      "notes": {
+        "insert_count": 4,
+        "inserted": [
+          {
+            "from_case": "alpha",
+            "type": "target_customer",
+            "source_index": 1,
+            "position": 6
+          },
+          {
+            "from_case": "golf",
+            "type": "venture_description",
+            "source_index": 0,
+            "position": 5
+          },
+          {
+            "from_case": "echo",
+            "type": "target_customer",
+            "source_index": 1,
+            "position": 6
+          },
+          {
+            "from_case": "hotel",
+            "type": "gate_rule",
+            "source_index": 5,
+            "position": 3
+          }
+        ]
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "Reshape",
+        "stderr_tail": null
+      },
+      "distance": 0.0,
+      "input_path": "/Users/sb/MyDev/Kelvin/.claude/worktrees/competent-bose-7a0d7d/experiments/envelop_local/envelop/kelvin/foxtrot/perturbations/pad_content-01/input.md",
+      "output_path": "/Users/sb/MyDev/Kelvin/.claude/worktrees/competent-bose-7a0d7d/experiments/envelop_local/envelop/kelvin/foxtrot/perturbations/pad_content-01/output.json"
+    },
+    {
+      "variant_id": "pad_content-03",
+      "kind": "pad_content",
+      "notes": {
+        "insert_count": 3,
+        "inserted": [
+          {
+            "from_case": "delta",
+            "type": "gate_rule",
+            "source_index": 5,
+            "position": 0
+          },
+          {
+            "from_case": "delta",
+            "type": "market_evidence",
+            "source_index": 3,
+            "position": 1
+          },
+          {
+            "from_case": "golf",
+            "type": "gate_rule",
+            "source_index": 5,
+            "position": 5
+          }
+        ]
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "Reshape",
+        "stderr_tail": null
+      },
+      "distance": 0.0,
+      "input_path": "/Users/sb/MyDev/Kelvin/.claude/worktrees/competent-bose-7a0d7d/experiments/envelop_local/envelop/kelvin/foxtrot/perturbations/pad_content-03/input.md",
+      "output_path": "/Users/sb/MyDev/Kelvin/.claude/worktrees/competent-bose-7a0d7d/experiments/envelop_local/envelop/kelvin/foxtrot/perturbations/pad_content-03/output.json"
+    },
+    {
+      "variant_id": "swap-gate_rule-01",
+      "kind": "swap",
+      "notes": {
+        "governing_type": "gate_rule",
+        "position_replaced": 5,
+        "original_header": "Gate Rule",
+        "from_case": "charlie",
+        "peer_source_index": 5
+      },
+      "invocation": {
+        "ok": true,
+        "error": null,
+        "decision_value": "Go",
+        "stderr_tail": null
+      },
+      "distance": 1.0,
+      "input_path": "/Users/sb/MyDev/Kelvin/.claude/worktrees/competent-bose-7a0d7d/experiments/envelop_local/envelop/kelvin/foxtrot/perturbations/swap-gate_rule-01/input.md",
+      "output_path": "/Users/sb/MyDev/Kelvin/.claude/worktrees/competent-bose-7a0d7d/experiments/envelop_local/envelop/kelvin/foxtrot/perturbations/swap-gate_rule-01/output.json"
+    }
+  ],
+  "scores": {
+    "invariance": 1.0,
+    "invariance_sample": 9,
+    "sensitivity": 1.0,
+    "sensitivity_sample": 1,
+    "sensitivity_by_type": {
+      "gate_rule": {
+        "mean": 1.0,
+        "sample": 1
+      }
+    }
+  },
+  "warnings": [],
+  "caps": [
+    "foxtrot: swap-gate_rule capped at 1 (case positions=1, peer pool=7, target=3)"
+  ]
+}

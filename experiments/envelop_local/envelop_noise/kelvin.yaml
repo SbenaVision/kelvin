@@ -1,0 +1,8 @@
+run: python3 ../pipelines/envelop.py --input {input} --output {output}
+cases: ../cases
+decision_field: verdict
+governing_types: [gate_rule]
+seed: 0
+noise_floor:
+  enabled: true
+  replications: 10
