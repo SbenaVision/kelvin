@@ -1,0 +1,770 @@
+{
+  "corpus_size": 200,
+  "seed": 42,
+  "ground_truth": [
+    [
+      "permute_founders",
+      "R_eq",
+      "valid"
+    ],
+    [
+      "rename_founders",
+      "R_eq",
+      "valid"
+    ],
+    [
+      "permute_risks",
+      "R_eq",
+      "valid"
+    ],
+    [
+      "append_description",
+      "R_eq",
+      "bug_symmetry"
+    ],
+    [
+      "replace_description",
+      "R_eq",
+      "bug_symmetry"
+    ],
+    [
+      "bump_founder_experience",
+      "R_le",
+      "valid"
+    ],
+    [
+      "scale_revenue_up",
+      "R_le",
+      "valid"
+    ],
+    [
+      "team_plus",
+      "R_le",
+      "valid"
+    ],
+    [
+      "promote_stage",
+      "R_le",
+      "valid"
+    ],
+    [
+      "drop_risk",
+      "R_le",
+      "valid"
+    ],
+    [
+      "scale_revenue_down",
+      "R_ge",
+      "valid"
+    ],
+    [
+      "team_minus",
+      "R_ge",
+      "valid"
+    ],
+    [
+      "demote_stage",
+      "R_ge",
+      "valid"
+    ],
+    [
+      "add_risk",
+      "R_ge",
+      "valid"
+    ]
+  ],
+  "all_candidates": [
+    {
+      "t": "permute_founders",
+      "r": "R_eq",
+      "axis": "founders",
+      "hold_count": 200,
+      "total": 200,
+      "hold_rate": 1.0,
+      "wilson_lower": 0.9811539940816792
+    },
+    {
+      "t": "permute_founders",
+      "r": "R_le",
+      "axis": "founders",
+      "hold_count": 200,
+      "total": 200,
+      "hold_rate": 1.0,
+      "wilson_lower": 0.9811539940816792
+    },
+    {
+      "t": "permute_founders",
+      "r": "R_ge",
+      "axis": "founders",
+      "hold_count": 200,
+      "total": 200,
+      "hold_rate": 1.0,
+      "wilson_lower": 0.9811539940816792
+    },
+    {
+      "t": "rename_founders",
+      "r": "R_eq",
+      "axis": "founders",
+      "hold_count": 200,
+      "total": 200,
+      "hold_rate": 1.0,
+      "wilson_lower": 0.9811539940816792
+    },
+    {
+      "t": "rename_founders",
+      "r": "R_le",
+      "axis": "founders",
+      "hold_count": 200,
+      "total": 200,
+      "hold_rate": 1.0,
+      "wilson_lower": 0.9811539940816792
+    },
+    {
+      "t": "rename_founders",
+      "r": "R_ge",
+      "axis": "founders",
+      "hold_count": 200,
+      "total": 200,
+      "hold_rate": 1.0,
+      "wilson_lower": 0.9811539940816792
+    },
+    {
+      "t": "bump_founder_experience",
+      "r": "R_eq",
+      "axis": "founders",
+      "hold_count": 17,
+      "total": 200,
+      "hold_rate": 0.085,
+      "wilson_lower": 0.05374529946985246
+    },
+    {
+      "t": "bump_founder_experience",
+      "r": "R_le",
+      "axis": "founders",
+      "hold_count": 200,
+      "total": 200,
+      "hold_rate": 1.0,
+      "wilson_lower": 0.9811539940816792
+    },
+    {
+      "t": "bump_founder_experience",
+      "r": "R_ge",
+      "axis": "founders",
+      "hold_count": 17,
+      "total": 200,
+      "hold_rate": 0.085,
+      "wilson_lower": 0.05374529946985246
+    },
+    {
+      "t": "permute_risks",
+      "r": "R_eq",
+      "axis": "risks",
+      "hold_count": 200,
+      "total": 200,
+      "hold_rate": 1.0,
+      "wilson_lower": 0.9811539940816792
+    },
+    {
+      "t": "permute_risks",
+      "r": "R_le",
+      "axis": "risks",
+      "hold_count": 200,
+      "total": 200,
+      "hold_rate": 1.0,
+      "wilson_lower": 0.9811539940816792
+    },
+    {
+      "t": "permute_risks",
+      "r": "R_ge",
+      "axis": "risks",
+      "hold_count": 200,
+      "total": 200,
+      "hold_rate": 1.0,
+      "wilson_lower": 0.9811539940816792
+    },
+    {
+      "t": "add_risk",
+      "r": "R_eq",
+      "axis": "risks",
+      "hold_count": 28,
+      "total": 200,
+      "hold_rate": 0.14,
+      "wilson_lower": 0.09866918625271483
+    },
+    {
+      "t": "add_risk",
+      "r": "R_le",
+      "axis": "risks",
+      "hold_count": 28,
+      "total": 200,
+      "hold_rate": 0.14,
+      "wilson_lower": 0.09866918625271483
+    },
+    {
+      "t": "add_risk",
+      "r": "R_ge",
+      "axis": "risks",
+      "hold_count": 200,
+      "total": 200,
+      "hold_rate": 1.0,
+      "wilson_lower": 0.9811539940816792
+    },
+    {
+      "t": "drop_risk",
+      "r": "R_eq",
+      "axis": "risks",
+      "hold_count": 36,
+      "total": 200,
+      "hold_rate": 0.18,
+      "wilson_lower": 0.1329455066253411
+    },
+    {
+      "t": "drop_risk",
+      "r": "R_le",
+      "axis": "risks",
+      "hold_count": 200,
+      "total": 200,
+      "hold_rate": 1.0,
+      "wilson_lower": 0.9811539940816792
+    },
+    {
+      "t": "drop_risk",
+      "r": "R_ge",
+      "axis": "risks",
+      "hold_count": 36,
+      "total": 200,
+      "hold_rate": 0.18,
+      "wilson_lower": 0.1329455066253411
+    },
+    {
+      "t": "append_description",
+      "r": "R_eq",
+      "axis": "description",
+      "hold_count": 200,
+      "total": 200,
+      "hold_rate": 1.0,
+      "wilson_lower": 0.9811539940816792
+    },
+    {
+      "t": "append_description",
+      "r": "R_le",
+      "axis": "description",
+      "hold_count": 200,
+      "total": 200,
+      "hold_rate": 1.0,
+      "wilson_lower": 0.9811539940816792
+    },
+    {
+      "t": "append_description",
+      "r": "R_ge",
+      "axis": "description",
+      "hold_count": 200,
+      "total": 200,
+      "hold_rate": 1.0,
+      "wilson_lower": 0.9811539940816792
+    },
+    {
+      "t": "replace_description",
+      "r": "R_eq",
+      "axis": "description",
+      "hold_count": 200,
+      "total": 200,
+      "hold_rate": 1.0,
+      "wilson_lower": 0.9811539940816792
+    },
+    {
+      "t": "replace_description",
+      "r": "R_le",
+      "axis": "description",
+      "hold_count": 200,
+      "total": 200,
+      "hold_rate": 1.0,
+      "wilson_lower": 0.9811539940816792
+    },
+    {
+      "t": "replace_description",
+      "r": "R_ge",
+      "axis": "description",
+      "hold_count": 200,
+      "total": 200,
+      "hold_rate": 1.0,
+      "wilson_lower": 0.9811539940816792
+    },
+    {
+      "t": "scale_revenue_up",
+      "r": "R_eq",
+      "axis": "revenue",
+      "hold_count": 67,
+      "total": 200,
+      "hold_rate": 0.335,
+      "wilson_lower": 0.27323980968742656
+    },
+    {
+      "t": "scale_revenue_up",
+      "r": "R_le",
+      "axis": "revenue",
+      "hold_count": 200,
+      "total": 200,
+      "hold_rate": 1.0,
+      "wilson_lower": 0.9811539940816792
+    },
+    {
+      "t": "scale_revenue_up",
+      "r": "R_ge",
+      "axis": "revenue",
+      "hold_count": 67,
+      "total": 200,
+      "hold_rate": 0.335,
+      "wilson_lower": 0.27323980968742656
+    },
+    {
+      "t": "scale_revenue_down",
+      "r": "R_eq",
+      "axis": "revenue",
+      "hold_count": 71,
+      "total": 200,
+      "hold_rate": 0.355,
+      "wilson_lower": 0.29198518653239286
+    },
+    {
+      "t": "scale_revenue_down",
+      "r": "R_le",
+      "axis": "revenue",
+      "hold_count": 71,
+      "total": 200,
+      "hold_rate": 0.355,
+      "wilson_lower": 0.29198518653239286
+    },
+    {
+      "t": "scale_revenue_down",
+      "r": "R_ge",
+      "axis": "revenue",
+      "hold_count": 200,
+      "total": 200,
+      "hold_rate": 1.0,
+      "wilson_lower": 0.9811539940816792
+    },
+    {
+      "t": "team_plus",
+      "r": "R_eq",
+      "axis": "team_size",
+      "hold_count": 0,
+      "total": 200,
+      "hold_rate": 0.0,
+      "wilson_lower": 0.0
+    },
+    {
+      "t": "team_plus",
+      "r": "R_le",
+      "axis": "team_size",
+      "hold_count": 200,
+      "total": 200,
+      "hold_rate": 1.0,
+      "wilson_lower": 0.9811539940816792
+    },
+    {
+      "t": "team_plus",
+      "r": "R_ge",
+      "axis": "team_size",
+      "hold_count": 0,
+      "total": 200,
+      "hold_rate": 0.0,
+      "wilson_lower": 0.0
+    },
+    {
+      "t": "team_minus",
+      "r": "R_eq",
+      "axis": "team_size",
+      "hold_count": 24,
+      "total": 200,
+      "hold_rate": 0.12,
+      "wilson_lower": 0.08197935023887544
+    },
+    {
+      "t": "team_minus",
+      "r": "R_le",
+      "axis": "team_size",
+      "hold_count": 24,
+      "total": 200,
+      "hold_rate": 0.12,
+      "wilson_lower": 0.08197935023887544
+    },
+    {
+      "t": "team_minus",
+      "r": "R_ge",
+      "axis": "team_size",
+      "hold_count": 200,
+      "total": 200,
+      "hold_rate": 1.0,
+      "wilson_lower": 0.9811539940816792
+    },
+    {
+      "t": "promote_stage",
+      "r": "R_eq",
+      "axis": "stage",
+      "hold_count": 68,
+      "total": 200,
+      "hold_rate": 0.34,
+      "wilson_lower": 0.2779143922159556
+    },
+    {
+      "t": "promote_stage",
+      "r": "R_le",
+      "axis": "stage",
+      "hold_count": 200,
+      "total": 200,
+      "hold_rate": 1.0,
+      "wilson_lower": 0.9811539940816792
+    },
+    {
+      "t": "promote_stage",
+      "r": "R_ge",
+      "axis": "stage",
+      "hold_count": 68,
+      "total": 200,
+      "hold_rate": 0.34,
+      "wilson_lower": 0.2779143922159556
+    },
+    {
+      "t": "demote_stage",
+      "r": "R_eq",
+      "axis": "stage",
+      "hold_count": 65,
+      "total": 200,
+      "hold_rate": 0.325,
+      "wilson_lower": 0.2639146705018622
+    },
+    {
+      "t": "demote_stage",
+      "r": "R_le",
+      "axis": "stage",
+      "hold_count": 65,
+      "total": 200,
+      "hold_rate": 0.325,
+      "wilson_lower": 0.2639146705018622
+    },
+    {
+      "t": "demote_stage",
+      "r": "R_ge",
+      "axis": "stage",
+      "hold_count": 200,
+      "total": 200,
+      "hold_rate": 1.0,
+      "wilson_lower": 0.9811539940816792
+    }
+  ],
+  "discovered_raw": [
+    [
+      "permute_founders",
+      "R_eq"
+    ],
+    [
+      "permute_founders",
+      "R_le"
+    ],
+    [
+      "permute_founders",
+      "R_ge"
+    ],
+    [
+      "rename_founders",
+      "R_eq"
+    ],
+    [
+      "rename_founders",
+      "R_le"
+    ],
+    [
+      "rename_founders",
+      "R_ge"
+    ],
+    [
+      "bump_founder_experience",
+      "R_le"
+    ],
+    [
+      "permute_risks",
+      "R_eq"
+    ],
+    [
+      "permute_risks",
+      "R_le"
+    ],
+    [
+      "permute_risks",
+      "R_ge"
+    ],
+    [
+      "add_risk",
+      "R_ge"
+    ],
+    [
+      "drop_risk",
+      "R_le"
+    ],
+    [
+      "append_description",
+      "R_eq"
+    ],
+    [
+      "append_description",
+      "R_le"
+    ],
+    [
+      "append_description",
+      "R_ge"
+    ],
+    [
+      "replace_description",
+      "R_eq"
+    ],
+    [
+      "replace_description",
+      "R_le"
+    ],
+    [
+      "replace_description",
+      "R_ge"
+    ],
+    [
+      "scale_revenue_up",
+      "R_le"
+    ],
+    [
+      "scale_revenue_down",
+      "R_ge"
+    ],
+    [
+      "team_plus",
+      "R_le"
+    ],
+    [
+      "team_minus",
+      "R_ge"
+    ],
+    [
+      "promote_stage",
+      "R_le"
+    ],
+    [
+      "demote_stage",
+      "R_ge"
+    ]
+  ],
+  "discovered_post_subsumption": [
+    [
+      "permute_founders",
+      "R_eq"
+    ],
+    [
+      "rename_founders",
+      "R_eq"
+    ],
+    [
+      "bump_founder_experience",
+      "R_le"
+    ],
+    [
+      "permute_risks",
+      "R_eq"
+    ],
+    [
+      "add_risk",
+      "R_ge"
+    ],
+    [
+      "drop_risk",
+      "R_le"
+    ],
+    [
+      "append_description",
+      "R_eq"
+    ],
+    [
+      "replace_description",
+      "R_eq"
+    ],
+    [
+      "scale_revenue_up",
+      "R_le"
+    ],
+    [
+      "scale_revenue_down",
+      "R_ge"
+    ],
+    [
+      "team_plus",
+      "R_le"
+    ],
+    [
+      "team_minus",
+      "R_ge"
+    ],
+    [
+      "promote_stage",
+      "R_le"
+    ],
+    [
+      "demote_stage",
+      "R_ge"
+    ]
+  ],
+  "kept_post_filter": [
+    [
+      "permute_founders",
+      "R_eq"
+    ],
+    [
+      "rename_founders",
+      "R_eq"
+    ],
+    [
+      "bump_founder_experience",
+      "R_le"
+    ],
+    [
+      "permute_risks",
+      "R_eq"
+    ],
+    [
+      "add_risk",
+      "R_ge"
+    ],
+    [
+      "drop_risk",
+      "R_le"
+    ],
+    [
+      "scale_revenue_up",
+      "R_le"
+    ],
+    [
+      "scale_revenue_down",
+      "R_ge"
+    ],
+    [
+      "team_plus",
+      "R_le"
+    ],
+    [
+      "team_minus",
+      "R_ge"
+    ],
+    [
+      "promote_stage",
+      "R_le"
+    ],
+    [
+      "demote_stage",
+      "R_ge"
+    ]
+  ],
+  "rejected_post_filter": [
+    [
+      "append_description",
+      "R_eq"
+    ],
+    [
+      "replace_description",
+      "R_eq"
+    ]
+  ],
+  "metrics": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "bug_rejection_rate": 1.0
+  },
+  "regression": [
+    {
+      "t": "permute_founders",
+      "r": "R_eq",
+      "violation_rate_correct": 0.0,
+      "violation_rate_buggy": 0.0,
+      "caught": false
+    },
+    {
+      "t": "rename_founders",
+      "r": "R_eq",
+      "violation_rate_correct": 0.0,
+      "violation_rate_buggy": 0.0,
+      "caught": false
+    },
+    {
+      "t": "bump_founder_experience",
+      "r": "R_le",
+      "violation_rate_correct": 0.0,
+      "violation_rate_buggy": 0.0,
+      "caught": false
+    },
+    {
+      "t": "permute_risks",
+      "r": "R_eq",
+      "violation_rate_correct": 0.0,
+      "violation_rate_buggy": 0.0,
+      "caught": false
+    },
+    {
+      "t": "add_risk",
+      "r": "R_ge",
+      "violation_rate_correct": 0.0,
+      "violation_rate_buggy": 0.0,
+      "caught": false
+    },
+    {
+      "t": "drop_risk",
+      "r": "R_le",
+      "violation_rate_correct": 0.0,
+      "violation_rate_buggy": 0.0,
+      "caught": false
+    },
+    {
+      "t": "scale_revenue_up",
+      "r": "R_le",
+      "violation_rate_correct": 0.0,
+      "violation_rate_buggy": 0.0,
+      "caught": false
+    },
+    {
+      "t": "scale_revenue_down",
+      "r": "R_ge",
+      "violation_rate_correct": 0.0,
+      "violation_rate_buggy": 0.0,
+      "caught": false
+    },
+    {
+      "t": "team_plus",
+      "r": "R_le",
+      "violation_rate_correct": 0.0,
+      "violation_rate_buggy": 0.0,
+      "caught": false
+    },
+    {
+      "t": "team_minus",
+      "r": "R_ge",
+      "violation_rate_correct": 0.0,
+      "violation_rate_buggy": 0.0,
+      "caught": false
+    },
+    {
+      "t": "promote_stage",
+      "r": "R_le",
+      "violation_rate_correct": 0.0,
+      "violation_rate_buggy": 0.66,
+      "caught": true
+    },
+    {
+      "t": "demote_stage",
+      "r": "R_ge",
+      "violation_rate_correct": 0.0,
+      "violation_rate_buggy": 0.675,
+      "caught": true
+    }
+  ],
+  "criteria": {
+    "recall \u2265 0.80": true,
+    "precision \u2265 0.80": true,
+    "bug-symmetry rejection = 1": true,
+    "regression caught": true
+  },
+  "all_passed": true
+}

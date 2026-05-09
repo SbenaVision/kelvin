@@ -1,0 +1,25 @@
+pipeline,axis,classification,n_transforms,n_responsive,n_invariant,n_null,reason
+f_constant,order,invariant-candidate,2,0,2,0,schema declares axis non-causal; uniform invariance is consistent with the specification
+f_constant,optional,invariant-candidate,2,0,2,0,schema declares axis non-causal; uniform invariance is consistent with the specification
+f_constant,non_rule_fact,invariant-candidate,3,0,3,0,schema declares axis non-causal; uniform invariance is consistent with the specification
+f_constant,rule_threshold,ignored-candidate,6,0,6,0,schema declares axis rule_bearing; uniform invariance indicates the pipeline is ignoring this axis
+f_constant,rule_clause,ignored-candidate,2,0,2,0,schema declares axis rule_bearing; uniform invariance indicates the pipeline is ignoring this axis
+f_constant,case_fact,ignored-candidate,6,0,6,0,schema declares axis causal; uniform invariance indicates the pipeline is ignoring this axis
+f_ruleblind,order,invariant-candidate,2,0,2,0,schema declares axis non-causal; uniform invariance is consistent with the specification
+f_ruleblind,optional,invariant-candidate,2,0,2,0,schema declares axis non-causal; uniform invariance is consistent with the specification
+f_ruleblind,non_rule_fact,invariant-candidate,3,0,3,0,schema declares axis non-causal; uniform invariance is consistent with the specification
+f_ruleblind,rule_threshold,ignored-candidate,6,0,6,0,schema declares axis rule_bearing; uniform invariance indicates the pipeline is ignoring this axis
+f_ruleblind,rule_clause,ignored-candidate,2,0,2,0,schema declares axis rule_bearing; uniform invariance indicates the pipeline is ignoring this axis
+f_ruleblind,case_fact,responsive,6,4,2,0,4/6 T's show directional response
+f_track,order,invariant-candidate,2,0,2,0,schema declares axis non-causal; uniform invariance is consistent with the specification
+f_track,optional,invariant-candidate,2,0,2,0,schema declares axis non-causal; uniform invariance is consistent with the specification
+f_track,non_rule_fact,invariant-candidate,3,0,3,0,schema declares axis non-causal; uniform invariance is consistent with the specification
+f_track,rule_threshold,responsive,6,6,0,0,6/6 T's show directional response
+f_track,rule_clause,responsive,2,1,0,1,1/2 T's show directional response
+f_track,case_fact,responsive,6,6,0,0,6/6 T's show directional response
+f_wrongrule,order,invariant-candidate,2,0,2,0,schema declares axis non-causal; uniform invariance is consistent with the specification
+f_wrongrule,optional,invariant-candidate,2,0,2,0,schema declares axis non-causal; uniform invariance is consistent with the specification
+f_wrongrule,non_rule_fact,invariant-candidate,3,0,3,0,schema declares axis non-causal; uniform invariance is consistent with the specification
+f_wrongrule,rule_threshold,responsive,6,6,0,0,6/6 T's show directional response
+f_wrongrule,rule_clause,unstable/noisy,2,0,0,2,mix of invariant (0) and null (2) T's with no responsive T — see candidate-level report
+f_wrongrule,case_fact,responsive,6,6,0,0,6/6 T's show directional response
