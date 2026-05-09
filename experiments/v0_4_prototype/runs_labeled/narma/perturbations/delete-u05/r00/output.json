@@ -1,0 +1,177 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 553,
+  "vvs_score": 500,
+  "vvs_band": "Possible, but major gaps",
+  "vvs_dimensions": {
+    "P": 4,
+    "M": 3,
+    "C": 3,
+    "D": 2,
+    "L": 2,
+    "F": 3,
+    "E": 3
+  },
+  "raw": {
+    "evidence_of_stage": "The input describes a conceptual architecture and vision without mentioning any built product, prototype, or user engagement.",
+    "one_liner": "Narma is an \"Enterprise Agentic Brain\" that observes work patterns, detects employee intent, and auto-builds AI agents to provide continuous assistance and optimize AI automation at scale for AI-first companies.",
+    "stated_vs_observed_stage": {
+      "mismatch_reason": "",
+      "claimed_stage": "idea",
+      "evidenced_stage": "idea",
+      "mismatch_flag": false
+    },
+    "extraction_sources": [
+      {
+        "source": "system_inferred",
+        "field": "market_data.buyer",
+        "source_phrase": "AI-first companies seeking to see, prove, and deploy AI automation at scale."
+      },
+      {
+        "source": "system_inferred",
+        "field": "market_data.end_user",
+        "source_phrase": "AI-first companies seeking to see, prove, and deploy AI automation at scale."
+      },
+      {
+        "field": "market_data.trigger_now",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.alternatives",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "market_data.why_better"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.anti_icp",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.price_tiers"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.pricing_model",
+        "source": "missing"
+      },
+      {
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.human_work_per_customer"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.revenue_assumption"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.cost_assumption",
+        "source_phrase": ""
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "The architecture has three layers...Vision: a single system that observes how work happens, decides what AI should do next, and auto-builds agents continuously...",
+        "field": "stage_assessment",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "The input describes a conceptual architecture and vision without mentioning any built product, prototype, or user engagement.",
+        "field": "evidence_of_stage",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "goal_horizon_target"
+      },
+      {
+        "field": "delivery_mode",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source": "system_inferred",
+        "field": "product_requires_new_hardware",
+        "source_phrase": "lightweight desktop sensors capture work patterns including application usage, activity sequences, and time allocation."
+      },
+      {
+        "source_phrase": "",
+        "field": "product_behavior_change_level",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "field": "founder_resources.team_structure",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.relevant_skills",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.investment_status",
+        "source": "missing"
+      }
+    ],
+    "traction_signals": [],
+    "stage_assessment": "idea",
+    "contradictions": [],
+    "gaps": [],
+    "product_requires_new_hardware": false,
+    "thesis_evolution": {
+      "detected": false
+    },
+    "goal_frame": "growth",
+    "team_members": [],
+    "fields": [],
+    "delivery_model": "existing_devices_software",
+    "core_excitement": "The founder is excited by the prospect of creating a single system that can observe, decide, and continuously auto-build AI agents to provide a 'Continuous AI lift' for enterprises seeking to scale AI automation.",
+    "venture_name": "narma-del-u05-r0 — ## s01\n\nnarma",
+    "market_data": {
+      "trigger_now": "Enterprises often struggle with a lack of telemetry to pinpoint AI savings, unreliable ROI measurements, and constant drift in systems and human resources.",
+      "end_user": "AI-first companies seeking to see, prove, and deploy AI automation at scale.",
+      "source": "inferred",
+      "segment": "AI-first companies looking to deploy and scale AI automation."
+    },
+    "what_makes_this_different": "Narma's innovation lies in its \"Enterprise Agentic Brain\" which observes work patterns, detects employee intent and business value from existing foundation models, and continuously auto-builds AI agents to intercept work and provide assistance, ensuring a \"Continuous AI lift\" and addressing the telemetry and ROI challenges in AI automation.",
+    "founder_resources": {
+      "money_available": "Not specified",
+      "time_available": "Not specified"
+    },
+    "product_description": "Narma is an \"Enterprise Agentic Brain\" with a three-layered architecture. Layer 1 (Observe) uses lightweight desktop sensors to capture work patterns, application usage, activity sequences, and time allocation. Layer 2 (Intelligence Layer or \"Brain\") detects employee intent, the business value of tasks, and identifies \"drift\" where work deviates from intended flows. Narma leverages existing foundation models and focuses on the \"Work Graph\" to pinpoint resource consumption and identify opportunities for AI assistance. The system's vision is to observe work, decide AI actions, and continuously build agents for \"Continuous AI lift.\"",
+    "thesis": "Narma is developing an \"Enterprise Agentic Brain\" for AI-first companies to address the significant challenges of deploying and scaling AI automation. The core innovation lies in its three-layered architecture: an observation layer that captures work patterns, an intelligence layer (the \"Brain\") that interprets employee intent and business value, and an auto-building agent layer. This system aims to provide continuous AI assistance by understanding how work is actually done, identifying inefficiencies, and automatically deploying AI agents to intercept work and provide assistance. It is designed to reveal where resources are wasted and where AI can intercede, ensuring a \"Continuous AI lift.\"\n\nNarma targets AI-first companies who are struggling to effectively implement and measure the ROI of AI automation. The problem Narma solves is the lack of clear telemetry for AI savings, unreliable ROI measurement, and constant \"drift\" in both systems and human processes. Narma repositions AI automation from a static deployment to a dynamic, continuously optimizing process. Instead of simply replacing existing solutions, it complements and enhances them by providing a foundational layer of intelligence and automation that observes, decides, and acts.\n\nThe founder's goal appears to be building a growth-stage startup, given the focus on \"scale\" and addressing enterprise-level problems. The venture is currently at the idea or concept stage, as the description focuses on the architecture and vision without mentioning any built product or user traction. The venture's positioning is unique as it doesn't replace existing AI models but rather sits alongside them, orchestrating and optimizing their deployment and impact within an organization by focusing on the \"Work Graph.\"",
+    "core_insight": {
+      "what": "",
+      "why_different": "Narma focuses on observing the 'Work Graph' and leveraging existing foundation models to continuously auto-build agents rather than building its own LLMs, providing a dynamic and adaptive AI automation layer.",
+      "if_wrong": "If Narma cannot accurately detect employee intent or the business value of tasks from observed work patterns, its ability to effectively deploy and optimize AI automation will be undermined, leading to potentially irrelevant or disruptive AI assistance.",
+      "source_excerpt": "Vision: a single system that observes how work happens, decides what AI should do next, and auto-builds agents continuously to ensure a \"Continuous AI lift.\""
+    },
+    "delivery_mode": "software",
+    "schema_version": "vr-3.1.1",
+    "unit_economics": {
+      "price_tiers": "",
+      "source": "inferred"
+    }
+  }
+}

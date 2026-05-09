@@ -1,0 +1,197 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 515,
+  "vvs_score": 500,
+  "vvs_band": "Possible, but major gaps",
+  "vvs_dimensions": {
+    "P": 4,
+    "M": 3,
+    "C": 2,
+    "D": 2,
+    "L": 3,
+    "F": 4,
+    "E": 3
+  },
+  "raw": {
+    "stated_vs_observed_stage": {
+      "claimed_stage": "idea",
+      "evidenced_stage": "idea",
+      "mismatch_flag": false,
+      "mismatch_reason": ""
+    },
+    "product_behavior_change_level": "high",
+    "market_data": {
+      "competitors": [],
+      "end_user": "Clinicians working in high-acuity cardiac environments such as the Cardiac Intensive Care Unit (CICU), assessing patients with multi-valve heart disease.",
+      "buyer": "Hospital systems or cardiology departments",
+      "why_better": "ReadyRounds provides a systematic, physics-based method to decompose interdependencies in multi-valve disease, offering clarity, precision, and guidance for decision-making.",
+      "alternatives": "Current standard measurements and subjective clinical assessment, without a systematic method to decompose interdependencies.",
+      "trigger_now": "The inability of current methods to systematically decompose interdependencies in multi-valve disease, leading to fragmented and slow decision-making.",
+      "segment": "Clinicians in high-acuity cardiac environments (Cardiac Intensive Care Unit - CICU) dealing with multi-valve heart disease.",
+      "source": "form"
+    },
+    "thesis_evolution": {
+      "detected": false
+    },
+    "team_members": [],
+    "delivery_model": "existing_devices_software",
+    "founder_resources": {
+      "time_available": "Not specified",
+      "money_available": "Not specified",
+      "investment_status": "open",
+      "relevant_skills": "Not specified"
+    },
+    "goal_frame": "growth",
+    "product_description": "ReadyRounds is a physics-constrained inference engine that ingests data from multiple sources (echo, cath, CMR) to determine the latent hemodynamic state (true flows and pressures). It provides primary driver ranking, counterfactual simulation, consistency reports, and next-best-test guidance.",
+    "one_liner": "ReadyRounds is a computational layer for hemodynamic reasoning that helps clinicians diagnose and manage complex multi-valve heart disease in high-acuity environments.",
+    "product_requires_new_hardware": false,
+    "bottleneck": {
+      "type": "technical",
+      "relaxed_by": "Successful development of the physics engine, validation on synthetic data, and clinical validation on 50+ real patient pairs.",
+      "why_it_blocks": "The core technology must be built and proven accurate before clinical adoption.",
+      "current_blocker": "Development of the physics engine and validation on synthetic and real patient data."
+    },
+    "unit_economics": {
+      "source": "form",
+      "cost_assumption": "unknown",
+      "revenue_assumption": "unknown",
+      "price_tiers": "",
+      "pricing_model": "subscription"
+    },
+    "evidence_of_stage": "A 12-month roadmap to develop the physics engine, validate the inverse solver on synthetic data, and conduct clinical validation on real patient pairs (n≥50) before a prospective pilot.",
+    "extraction_sources": [
+      {
+        "source_phrase": "Clinicians working in high-acuity cardiac environments such as the Cardiac Intensive Care Unit (CICU), assessing patients with multi-valve heart disease.",
+        "source": "system_inferred",
+        "field": "market_data.buyer"
+      },
+      {
+        "source": "founder_stated",
+        "source_phrase": "",
+        "field": "market_data.end_user"
+      },
+      {
+        "field": "market_data.trigger_now",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "field": "market_data.alternatives",
+        "source_phrase": "in multi-valve disease, standard measurements are often coupled and unreliable — the severity of one valve depends on another — and clinicians currently lack a systematic method to decompose these interdependencies, leading to fragmented and slow decision-making.",
+        "source": "system_inferred"
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "The solution is a physics-constrained inference engine that ingests data from multiple sources (echo, cath, CMR) and solves for the latent hemodynamic state — true flows and pressures — while respecting the laws of physics.",
+        "field": "market_data.why_better"
+      },
+      {
+        "field": "market_data.anti_icp",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.price_tiers",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "computational layer for hemodynamic reasoning",
+        "field": "unit_economics.pricing_model"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "unit_economics.hardware_cost_per_customer"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.human_work_per_customer"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "unit_economics.revenue_assumption"
+      },
+      {
+        "field": "unit_economics.cost_assumption",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "stage_assessment",
+        "source_phrase": "A 12-month roadmap to develop the physics engine, validate the inverse solver on synthetic data, and conduct clinical validation on real patient pairs (n≥50) before a prospective pilot.",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "evidence_of_stage"
+      },
+      {
+        "field": "goal_horizon_target",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "field": "delivery_mode",
+        "source": "system_inferred",
+        "source_phrase": "computational layer for hemodynamic reasoning"
+      },
+      {
+        "field": "product_requires_new_hardware",
+        "source_phrase": "ingests data from multiple sources (echo, cath, CMR)",
+        "source": "system_inferred"
+      },
+      {
+        "field": "product_behavior_change_level",
+        "source_phrase": "clinicians currently lack a systematic method to decompose these interdependencies, leading to fragmented and slow decision-making.",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "founder_resources.team_structure"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "founder_resources.relevant_skills"
+      },
+      {
+        "field": "founder_resources.investment_status",
+        "source_phrase": "Not specified",
+        "source": "system_inferred"
+      }
+    ],
+    "venture_name": "ReadyRounds",
+    "contradictions": [],
+    "what_makes_this_different": "ReadyRounds introduces a physics-constrained inference engine to systematically decompose the complex interdependencies of multi-valve heart disease, offering clarity and precision that current clinical methods lack.",
+    "gaps": [],
+    "things_that_must_work": [
+      "Integration with existing diagnostic devices (echo, cath, CMR)",
+      "Clinical acceptance of a computational diagnostic aid",
+      "Regulatory approval for medical device software"
+    ],
+    "stage_assessment": "idea",
+    "fields": [],
+    "thesis": "ReadyRounds offers a novel approach to diagnosing and managing complex multi-valve heart disease in high-acuity settings like the Cardiac Intensive Care Unit (CICU). Its core innovation lies in a \"computational layer for hemodynamic reasoning\" that uses a physics-constrained inference engine. This engine ingests various diagnostic data (echo, cath, CMR) to determine the true underlying hemodynamics (flows and pressures), effectively disentangling the complex interplay of multiple valve issues. The venture aims to provide clinicians with tools that rank primary drivers of disease, simulate counterfactuals (predicting outcomes of interventions), identify inconsistent measurements, and guide further diagnostic testing. This directly addresses the critical challenge clinicians face in accurately assessing interdependent valve severities, which currently leads to slow and fragmented decision-making. The founder's ambitious goal is to develop this physics engine, validate it thoroughly on synthetic and real patient data, and move to a prospective pilot within 12 months, indicating a growth-oriented startup trajectory rather than a lifestyle business. The venture is currently at the idea/concept stage, with a clear roadmap for building and validating the core technology. ReadyRounds seeks to replace the current fragmented and subjective assessment methods with a precise, physics-based computational approach.",
+    "core_excitement": "The founder is excited about applying a physics-constrained inference engine to revolutionize the diagnosis and management of complex multi-valve heart disease by providing clinicians with precise, systematic insights currently unavailable.",
+    "core_insight": {
+      "source_excerpt": "The solution is a physics-constrained inference engine that ingests data from multiple sources ... and solves for the latent hemodynamic state — true flows and pressures — while respecting the laws of physics.",
+      "if_wrong": "Clinicians will continue to face fragmented and slow decision-making due to unreliable and coupled measurements in multi-valve heart disease.",
+      "why_different": "It provides a systematic, physics-based method to decompose complex interdependencies in multi-valve disease, which is currently lacking.",
+      "what": ""
+    },
+    "traction_signals": [],
+    "schema_version": "vr-3.1.1"
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 500,
+  "vvs_score": 350,
+  "vvs_band": "Non-viable",
+  "vvs_dimensions": {
+    "P": 3,
+    "M": 3,
+    "C": 3,
+    "D": 2,
+    "L": 2,
+    "F": 3,
+    "E": 2
+  },
+  "raw": {
+    "core_excitement": "The founder is excited by the prospect of augmenting traditional input methods with a hands-free command layer, reducing the cognitive load of navigating complex data streams.",
+    "venture_name": "Stagehand",
+    "market_data": {
+      "trigger_now": "The need to reduce cognitive load and improve efficiency in complex, hands-on professional environments.",
+      "why_better": "Stagehand augments traditional input methods with a hands-free command layer, reducing cognitive load and providing rapid navigation with consistent, predictable, and low-latency performance, unlike AI-generative UI tools.",
+      "source": "form",
+      "alternatives": "Traditional input methods (mouse/keyboard)",
+      "end_user": "React developers",
+      "anti_icp": "",
+      "segment": "React developers building applications for professional environments requiring hands-free operation or rapid navigation of complex data streams (medical dashboards, financial trading terminals, industrial monitoring, accessibility tools)."
+    },
+    "what_makes_this_different": "Stagehand's core innovation is its \"orchestration approach\" to voice-interactive UI. Unlike AI tools that generate UI, Stagehand reuses existing React components, ensuring predictable performance and low latency. Its \"zero rebuild\" requirement simplifies adoption for developers, allowing integration of voice control with minimal code changes. The two-tier processing model (fast local matcher with LLM fallback) ensures quick responses for common commands.",
+    "founder_resources": {
+      "relevant_skills": "",
+      "investment_status": "not_raising",
+      "time_available": "Not specified in source material.",
+      "money_available": "Not specified in source material."
+    },
+    "things_that_must_work": [
+      "React developer community adoption"
+    ],
+    "product_description": "Stagehand is an open-source React framework that functions as a voice-interactive UI orchestration layer. It uses an \"orchestration approach\" to rearrange and interact with pre-defined, registered components. Technical differentiators include a two-tier processing model with a fast local matcher and an LLM fallback, and optimistic UI updates targeting sub-200ms perceived response time. It is designed for viral developer adoption with a \"zero rebuild\" requirement, allowing existing React components to be wrapped in a simple hook for voice control. The vision is to augment traditional input methods with a hands-free command layer to reduce the cognitive load of navigating complex data streams.",
+    "thesis": "Stagehand introduces a novel approach to voice-interactive user interfaces by acting as an orchestration layer for existing React components. Its genuine innovation lies in its \"zero rebuild\" requirement, allowing developers to quickly integrate voice control into their applications by wrapping existing components with a simple hook. This differentiates it from AI tools that generate UI dynamically, ensuring consistent, predictable, and low-latency performance. Stagehand is targeted at React developers who are building applications for professional environments where hands-free operation or rapid navigation of complex data streams is crucial. This includes sectors like medical dashboards, financial trading, industrial monitoring, and accessibility tools. The core problem it solves is the high cognitive load and inefficiency associated with traditional input methods in these demanding contexts. The founder's goal appears to be a growth startup, aiming for viral developer adoption through its open-source nature. The venture is currently at the idea stage, with the framework described conceptually, but no mention of a working prototype or user base. Stagehand aims to precede existing solutions by providing a new input method that augments, rather than replaces, traditional keyboard and mouse interfaces, making complex applications more efficient and accessible.",
+    "core_insight": {
+      "what": "",
+      "if_wrong": "",
+      "source_excerpt": "",
+      "why_different": ""
+    },
+    "delivery_mode": "software",
+    "schema_version": "vr-3.1.1",
+    "known_unknowns": {
+      "what_founder_seems_unsure_about": [],
+      "what_founder_has_not_told_us": [
+        "Specifics of the open-source license and governance model.",
+        "Details of the 'simple hook' for wrapping React components.",
+        "Examples of how existing React components are 'orchestrated'.",
+        "Any performance benchmarks beyond perceived response time.",
+        "Initial traction or early adopter feedback.",
+        "Specifics on the go-to-market strategy beyond 'open-source adoption'.",
+        "The founders' background, skills, and team composition.",
+        "Financial resources (time and money available).",
+        "Specific target metrics or milestones for the next 3, 6, or 12 months."
+      ]
+    },
+    "unit_economics": {
+      "price_tiers": "",
+      "source": "inferred"
+    },
+    "evidence_of_stage": "The venture is described conceptually, as a framework designed for future adoption, with no mention of a working prototype, user base, or revenue.",
+    "one_liner": "Stagehand is an open-source React framework that enables voice-interactive UI orchestration for existing React components.",
+    "stated_vs_observed_stage": {
+      "mismatch_reason": "",
+      "evidenced_stage": "idea",
+      "claimed_stage": "idea",
+      "mismatch_flag": false
+    },
+    "extraction_sources": [
+      {
+        "source": "system_inferred",
+        "field": "market_data.buyer",
+        "source_phrase": "Distribution is aimed at React developers via open-source adoption."
+      },
+      {
+        "source_phrase": "Distribution is aimed at React developers via open-source adoption.",
+        "field": "market_data.end_user",
+        "source": "system_inferred"
+      },
+      {
+        "source": "system_inferred",
+        "field": "market_data.trigger_now",
+        "source_phrase": "reducing the cognitive load of navigating complex data streams."
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.alternatives",
+        "source": "founder_stated"
+      },
+      {
+        "field": "market_data.why_better",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "field": "market_data.anti_icp",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.price_tiers",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "open-source React framework",
+        "source": "system_inferred",
+        "field": "unit_economics.pricing_model"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.hardware_cost_per_customer"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.human_work_per_customer",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.revenue_assumption"
+      },
+      {
+        "field": "unit_economics.cost_assumption",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "Stagehand is an open-source React framework that functions as a voice-in... The venture is described conceptually, as a framework designed for future adoption, with no mention of a working prototype, user base, or revenue.",
+        "field": "stage_assessment",
+        "source": "system_inferred"
+      },
+      {
+        "field": "evidence_of_stage",
+        "source": "system_inferred",
+        "source_phrase": "The venture is described conceptually, as a framework designed for future adoption, with no mention of a working prototype, user base, or revenue."
+      },
+      {
+        "field": "goal_horizon_target",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "founder_stated",
+        "field": "delivery_mode",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "augment traditional input methods (mouse/keyboard) with a hands-free command layer",
+        "source": "system_inferred",
+        "field": "product_requires_new_hardware"
+      },
+      {
+        "source_phrase": "augment traditional input methods (mouse/keyboard) with a hands-free command layer",
+        "field": "product_behavior_change_level",
+        "source": "system_inferred"
+      },
+      {
+        "field": "founder_resources.team_structure",
+        "source": "system_inferred",
+        "source_phrase": "Team: Not specified"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "founder_resources.relevant_skills"
+      },
+      {
+        "source": "system_inferred",
+        "field": "founder_resources.investment_status",
+        "source_phrase": "Open for investors: Not specified"
+      }
+    ],
+    "stage_assessment": "idea",
+    "traction_signals": [],
+    "contradictions": [],
+    "gaps": [],
+    "product_behavior_change_level": "medium",
+    "product_requires_new_hardware": false,
+    "thesis_evolution": {
+      "detected": false
+    },
+    "goal_frame": "growth",
+    "team_members": [],
+    "fields": [],
+    "bottleneck": {
+      "why_it_blocks": "Without developer adoption, the framework cannot gain traction or demonstrate its value, inhibiting further development and integration into real-world applications.",
+      "type": "market",
+      "relaxed_by": "Successful initial adoption by a cohort of influential React developers, evidenced by usage and contributions to the open-source project.",
+      "current_blocker": "Getting initial React developer adoption and community buy-in"
+    },
+    "delivery_model": "existing_devices_software"
+  }
+}

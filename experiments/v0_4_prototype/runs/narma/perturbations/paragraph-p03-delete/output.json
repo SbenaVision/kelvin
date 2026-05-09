@@ -1,0 +1,190 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "raw": {
+    "product_requires_new_hardware": false,
+    "gaps": [],
+    "bottleneck": {
+      "type": "technical",
+      "why_it_blocks": "Without a functional system to capture work patterns, analyze intent, and auto-generate/deploy agents, the core value proposition cannot be tested or proven to potential customers.",
+      "current_blocker": "Building the core technology (Observe, Intelligence, and Execution layers) to demonstrate functionality and value.",
+      "relaxed_by": "A working prototype or MVP that can effectively demonstrate end-to-end functionality within a controlled environment for an AI-first company."
+    },
+    "delivery_model": "existing_devices_software",
+    "thesis_evolution": {
+      "detected": false
+    },
+    "team_members": [],
+    "goal_frame": "growth",
+    "fields": [],
+    "stated_vs_observed_stage": {
+      "claimed_stage": "idea",
+      "evidenced_stage": "idea",
+      "mismatch_flag": false,
+      "mismatch_reason": ""
+    },
+    "extraction_sources": [
+      {
+        "field": "market_data.buyer",
+        "source": "system_inferred",
+        "source_phrase": "AI-first companies seeking to see, prove, and deploy AI automation at scale."
+      },
+      {
+        "source_phrase": "AI-first companies seeking to see, prove, and deploy AI automation at scale.",
+        "field": "market_data.end_user",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.trigger_now",
+        "source": "founder_stated"
+      },
+      {
+        "field": "market_data.alternatives",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "field": "market_data.why_better",
+        "source_phrase": ""
+      },
+      {
+        "field": "market_data.anti_icp",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.price_tiers",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.pricing_model",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.human_work_per_customer",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.revenue_assumption",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.cost_assumption",
+        "source_phrase": ""
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "stage_assessment",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "evidence_of_stage"
+      },
+      {
+        "source_phrase": "",
+        "field": "goal_horizon_target",
+        "source": "missing"
+      },
+      {
+        "source": "founder_stated",
+        "field": "delivery_mode",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "product_requires_new_hardware",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "product_behavior_change_level"
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.team_structure",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "field": "founder_resources.relevant_skills",
+        "source_phrase": ""
+      },
+      {
+        "source": "founder_stated",
+        "field": "founder_resources.investment_status",
+        "source_phrase": ""
+      }
+    ],
+    "evidence_of_stage": "The venture description outlines a conceptual architecture and vision, but no mention of any built components, users, or revenue.",
+    "one_liner": "Narma is an \"Enterprise Agentic Brain\" for AI-first companies to see, prove, and deploy AI automation at scale.",
+    "contradictions": [],
+    "stage_assessment": "idea",
+    "traction_signals": [],
+    "thesis": "Narma is developing an \"Enterprise Agentic Brain\" for AI-first companies to address the significant challenges they face in deploying AI automation at scale. The core innovation lies in its three-layered architecture: \"Observe\" uses lightweight desktop sensors to capture work patterns, \"Intelligence\" analyzes these patterns to detect intent, business value, and \"drift,\" and \"Execution\" features an \"Agent Factory\" that automates the generation, deployment, and monitoring of AI agents for high-ROI opportunities. This enables Narma to act as a system that observes work, decides on AI actions, and continuously builds agents for \"Continuous AI lift.\"\n\nNarma is designed for AI-first companies that struggle with a lack of telemetry for AI savings, unreliable ROI measurements, and constant drift in systems and human resources. The problem is severe and frequent, as these companies often invest heavily in AI without clear visibility into its impact or efficient deployment mechanisms. Narma aims to provide this visibility and automation, ultimately ensuring that AI investments translate into tangible business value.\n\nThe founder's goal appears to be building a growth-oriented startup, given the focus on \"at scale\" deployment and \"Continuous AI lift,\" implying significant market penetration and continuous product development rather than a lifestyle business or a pure moonshot. The venture is currently at the idea stage, with the concept clearly articulated but no evidence of a prototype, users, or revenue.\n\nNarma positions itself as a core infrastructure layer that complements existing foundation models, rather than replacing them. It precedes the full-scale deployment of AI agents by providing the intelligence and automation necessary to identify, prove, and then deploy these agents effectively. This means Narma is not directly competing with AI model providers but rather enabling their more efficient and impactful use within AI-first enterprises.",
+    "core_insight": {
+      "what": "",
+      "source_excerpt": "narma is an \"Enterprise Agentic Brain\" designed for AI-first companies to see, prove, and deploy AI automation at scale. The architecture has three layers. Observe (Layer 1): lightweight desktop sensors capture work patterns including application usage, activity sequences, and time allocation. Intelligence Layer (Layer 2): a \"Brain\" that detects employee intent, the business value of tasks, and \"drift\" where work diverges from the intended flow. Execution Layer (Layer 3): an \"Agent Factory\" that automatically generates, deploys, and monitors AI agents for validated high-ROI opportunities with built-in approval gates. The system uses existing foundation models rather than building its own LLMs, focusing instead on the \"Work Graph\" to reveal where resources are burned and where AI can intercept work mid-flow to provide assistance. Vision: a single system that observes how work happens, decides what AI should do next, and auto-builds agents continuously to ensure a \"Continuous AI lift.\"",
+      "if_wrong": "If AI-first companies cannot consistently derive value from observing work patterns or if the automated agent generation and deployment proves ineffective in real-world scenarios, then Narma\\_s core premise for achieving scalable AI automation would be invalid.",
+      "why_different": "This venture differentiates itself by providing a comprehensive three-layered approach (Observe, Intelligence, Execution) that leverages existing foundation models but focuses on understanding the 'Work Graph' and auto-building agents for 'Continuous AI lift,' addressing the challenges of telemetry, ROI measurement, and drift in AI deployments."
+    },
+    "known_unknowns": {
+      "what_founder_has_not_told_us": [
+        "Specific details about the team and their relevant experience.",
+        "Any artifacts or signals of progress.",
+        "The initial market and ideal customer profile (ICP).",
+        "Specific success metrics or goals for 1-year and 3-year horizons.",
+        "Financial resources available (money and time for the next 3 months).",
+        "What specifically keeps the founder awake at night regarding this venture.",
+        "The founder's professional profile and background.",
+        "How Envelop could add value to this venture.",
+        "The founder's plan without Envelop.",
+        "Known competitors and the current market position.",
+        "Whether they are open for investors."
+      ],
+      "what_founder_seems_unsure_about": []
+    },
+    "unit_economics": {
+      "price_tiers": "",
+      "source": "form"
+    },
+    "schema_version": "vr-3.1.1",
+    "delivery_mode": "software",
+    "venture_name": "narma-paragraph-p03-delete — narma is an \"Enterprise Agentic Brain\" designed for AI-first companies to see, p",
+    "market_data": {
+      "buyer": "AI-first companies",
+      "source": "form",
+      "segment": "AI-first companies looking for scalable AI automation",
+      "end_user": "AI-first companies"
+    },
+    "what_makes_this_different": "Narma fundamentally differs by providing an integrated full-lifecycle AI automation platform that observes, analyzes, and then automatically deploys and monitors AI agents, rather than just offering insights or individual AI tools. Its focus on the \"Work Graph\" and \"Continuous AI lift\" for AI-first companies is a specific innovation.",
+    "founder_resources": {
+      "open_for_investors": false,
+      "investment_status": "not_raising",
+      "time_available": "",
+      "money_available": ""
+    },
+    "core_excitement": "The founder is excited by the prospect of creating a single system that can autonomously observe how work happens, decide what AI should do, and continuously build AI agents to ensure a perpetual \"AI lift\" for enterprises.",
+    "product_description": "Narma is an \"Enterprise Agentic Brain\" designed to help AI-first companies achieve scalable AI automation. It operates through three layers: Observe (desktop sensors for work patterns), Intelligence (detects employee intent, business value, and work drift), and Execution (Agent Factory for automated generation, deployment, and monitoring of AI agents for high-ROI opportunities). It leverages existing foundation models, focusing on understanding the \"Work Graph\" to identify AI interception points and deliver \"Continuous AI lift.\"",
+    "things_that_must_work": []
+  }
+}

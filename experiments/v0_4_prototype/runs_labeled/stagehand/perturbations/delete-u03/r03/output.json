@@ -1,0 +1,69 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 463,
+  "vvs_score": 350,
+  "vvs_band": "Non-viable",
+  "vvs_dimensions": {
+    "P": 3,
+    "M": 3,
+    "C": 2,
+    "D": 2,
+    "L": 2,
+    "F": 3,
+    "E": 3
+  },
+  "raw": {
+    "one_liner": "Stagehand is an open-source React framework that adds a voice-interactive UI orchestration layer to existing React applications, enabling natural language command and control.",
+    "thesis_evolution": {
+      "detected": false
+    },
+    "venture_name": "Stagehand",
+    "goal_frame": "growth",
+    "product_description": "Stagehand is an open-source React framework that functions as a voice-interactive UI orchestration layer, enabling users in high-cognitive-load environments to manage complex dashboards through natural language commands. It features a two-tier processing model for fast local command matching and LLM fallback for complex intent parsing, aiming for sub-200ms perceived response time. The framework is designed for viral developer adoption with a \"zero rebuild\" requirement, allowing existing React components to be voice-controlled via a simple hook.",
+    "what_makes_this_different": "Stagehand's core innovation is its 'zero rebuild' approach, allowing existing React components to be voice-controlled with minimal effort, combined with a two-tier processing model that ensures both speed and accuracy for voice commands in high-cognitive-load environments.",
+    "gaps": [],
+    "team_members": [],
+    "traction_signals": [],
+    "thesis": "\nStagehand is an open-source React framework designed to integrate voice-interactive UI orchestration into existing applications, primarily targeting high-cognitive-load environments. The core innovation lies in its ability to enable natural language command and control over complex dashboards without requiring a rebuild of existing React components. This is achieved through a 'zero rebuild' wrapping mechanism for existing components and a two-tier processing model that prioritizes fast local command matching and leverages LLMs for complex intent parsing. The venture aims to augment traditional input methods with a hands-free command layer, thereby reducing cognitive load in professional settings such as medical dashboards, financial trading terminals, and industrial monitoring. The founder's goal appears to be a growth startup, given the focus on viral developer adoption and expanding into various professional environments. Stagehand is currently at the idea/concept stage, with the framework described but no mention of a working prototype, users, or revenue.\n\nPositioning in Value Chain: Stagehand complements existing React applications by adding a new interaction layer (voice control) on top of them. It doesn't replace the underlying application or its components but rather enhances their usability, particularly in scenarios where hands-free operation or rapid navigation is crucial. This positions it as an augmentation tool that adds significant value to current solutions by improving user experience and efficiency in specific, demanding contexts.",
+    "stage_assessment": "idea",
+    "market_data": {
+      "trigger_now": "The need for hands-free operation and rapid navigation in complex data streams to reduce cognitive load.",
+      "source": "inferred",
+      "segment": "voice-interactive UI orchestration for professional applications",
+      "why_better": "Stagehand offers a hands-free command layer that reduces cognitive load and enables rapid navigation in complex dashboards without requiring a complete rebuild of existing React applications.",
+      "end_user": "Users in professional, high-cognitive-load environments such as medical dashboards, financial trading terminals, and industrial monitoring.",
+      "alternatives": "Traditional input methods (mouse/keyboard)",
+      "buyer": "React developers or companies employing React developers for their applications.",
+      "anti_icp": ""
+    },
+    "core_insight": {
+      "what": "",
+      "if_wrong": "Developers will not adopt the framework if the integration is not truly 'zero rebuild' or if the performance/accuracy of voice commands does not significantly improve workflow in high-cognitive-load settings.",
+      "source_excerpt": "The framework is designed for viral developer adoption with a \"zero rebuild\" requirement: existing React components are wrapped in a simple hook to enable voice control. Technical differentiators include a two-tier processing model — a fast local matcher for common commands (<50ms) with an LLM fallback for complex intent parsing — and optimistic UI updates targeting sub-200ms perceived response time.",
+      "why_different": "Its 'zero rebuild' approach for existing React components and a two-tier processing model (fast local matcher + LLM fallback) for rapid, accurate voice command execution."
+    },
+    "delivery_model": "existing_devices_software",
+    "contradictions": [],
+    "fields": [],
+    "founder_resources": {
+      "open_for_investors": true,
+      "time_available": "",
+      "investment_status": "not_raising",
+      "money_available": ""
+    },
+    "unit_economics": {
+      "price_tiers": "",
+      "source": "inferred"
+    },
+    "core_excitement": "The founder is excited about augmenting traditional input methods with a hands-free command layer to reduce cognitive load in critical professional environments, leveraging the ",
+    "schema_version": "vr-3.1.1",
+    "extraction_sources": [
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      }
+    ]
+  }
+}

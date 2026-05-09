@@ -1,0 +1,172 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "raw": {
+    "schema_version": "vr-3.1.1",
+    "stage_assessment": "idea",
+    "market_data": {
+      "segment": "aging population (75+)",
+      "source": "form",
+      "trigger_now": "frequently neglects essential daily tasks like taking medicine, exercising, or limiting TV time without proactive reminders.",
+      "tam": "467 million people aged 75 or older, projected to reach 700 million by 2030",
+      "buyer": "adult child of the senior",
+      "end_user": "aging population aged 75 and older"
+    },
+    "core_insight": {
+      "why_different": "",
+      "if_wrong": "",
+      "source_excerpt": "",
+      "what": ""
+    },
+    "delivery_model": "existing_devices_software",
+    "stated_vs_observed_stage": {
+      "mismatch_flag": false,
+      "mismatch_reason": "",
+      "evidenced_stage": "idea",
+      "claimed_stage": "idea"
+    },
+    "contradictions": [],
+    "fields": [],
+    "founder_resources": {
+      "time_available": "",
+      "open_for_investors": true,
+      "money_available": "",
+      "investment_status": "open"
+    },
+    "unit_economics": {
+      "source": "inferred",
+      "price_tiers": ""
+    },
+    "delivery_mode": "hybrid",
+    "one_liner": "HiMom is a programmable platform and marketplace that uses smart home devices and a mobile app to provide proactive aid and social connectivity for the aging population.",
+    "thesis_evolution": {
+      "detected": false
+    },
+    "venture_name": "HiMom",
+    "goal_frame": "growth",
+    "product_description": "HiMom is a programmable platform and marketplace designed to provide proactive aid and social connectivity for the aging population (750+) through a combination of smart home devices (e.g., Amazon Echo) and a mobile application for their adult children. Children use the mobile app to define and deliver daily routines such as medication reminders at 90:0 AM, lunchtime alerts at 120:0 PM, and air conditioning shut-off warnings at 90:0 PM. The system uses connected devices (watches, TVs) to trigger actions based on real-time data, such as prompting a brain-training quiz if the user has watched TV for over 1200 minutes or suggesting a walk if daily steps are under 1000. The platform is designed as a marketplace where new actions, services, and third-party providers can be integrated with \"30-click\" simplicity for the end user.",
+    "things_that_must_work": [
+      "Integration with various smart home devices (e.g., Amazon Echo, smartwatches, smart TVs)",
+      "Ability to define and deliver daily routines through the mobile app",
+      "Marketplace functionality for third-party integrations"
+    ],
+    "gaps": [],
+    "what_makes_this_different": "The programmable platform and marketplace model for proactive senior care, allowing for easy integration of new services and third-party providers with minimal user effort, leveraging existing smart home devices.",
+    "product_requires_new_hardware": false,
+    "team_members": [],
+    "traction_signals": [],
+    "thesis": "HiMom aims to enhance the quality of life for seniors (75+) and empower their adult children to provide better care. The venture proposes a programmable platform and marketplace that integrates smart home devices (like Amazon Echo) with a mobile application. Adult children will use the app to set up personalized daily routines and reminders for their parents, such as medication alerts or activity suggestions, leveraging connected devices like smartwatches and TVs for real-time data and actions. The core innovation lies in this programmable and extensible marketplace model, allowing for easy integration of new services and third-party providers with minimal user effort. The target users are seniors (75+), while their adult children act as the buyers and managers of the system. This venture addresses the significant problem of seniors neglecting essential daily tasks, which is frequent and severe, impacting their well-being. The founder's goal appears to be a growth startup, given the emphasis on a scalable platform and marketplace for a large and growing demographic. The venture is currently at the idea stage, with a clear concept and proposed functionality but no indication of building or launch. HiMom positions itself as a solution that complements existing smart home technology by providing a dedicated, programmable layer for proactive senior care, thereby empowering family caregivers rather than replacing professional care. It provides a unique value proposition by offering an extensible, integrated system specifically designed for the aging population, differentiating it from general smart home platforms or fragmented senior care solutions.",
+    "extraction_sources": [
+      {
+        "source_phrase": "The buyer/manager is the adult child of the senior, who uses the mobile app to define routines and integrate new services on behalf of the parent.",
+        "field": "market_data.buyer",
+        "source": "system_inferred"
+      },
+      {
+        "source": "system_inferred",
+        "field": "market_data.end_user",
+        "source_phrase": "End users are the aging population aged 75 and older."
+      },
+      {
+        "source_phrase": "This population frequently neglects essential daily tasks like taking medicine, exercising, or limiting TV time without proactive reminders.",
+        "field": "market_data.trigger_now",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.alternatives",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "market_data.why_better"
+      },
+      {
+        "field": "market_data.anti_icp",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "field": "unit_economics.price_tiers",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.pricing_model",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.human_work_per_customer",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.revenue_assumption",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.cost_assumption",
+        "source_phrase": ""
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "founder_stated",
+        "field": "stage_assessment",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "field": "evidence_of_stage",
+        "source_phrase": ""
+      },
+      {
+        "field": "goal_horizon_target",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "field": "delivery_mode",
+        "source_phrase": "a combination of smart home devices (e.g., Amazon Echo) and a mobile application",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "smart home devices (e.g., Amazon Echo) and a mobile application",
+        "field": "product_requires_new_hardware",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "field": "product_behavior_change_level",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "field": "founder_resources.team_structure",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "founder_resources.relevant_skills"
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "Open for investors: Not specified",
+        "field": "founder_resources.investment_status"
+      }
+    ]
+  }
+}

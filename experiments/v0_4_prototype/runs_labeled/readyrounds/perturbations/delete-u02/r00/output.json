@@ -1,0 +1,196 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 553,
+  "vvs_score": 350,
+  "vvs_band": "Non-viable",
+  "vvs_dimensions": {
+    "P": 4,
+    "M": 3,
+    "C": 3,
+    "D": 2,
+    "L": 2,
+    "F": 3,
+    "E": 2
+  },
+  "raw": {
+    "traction_signals": [],
+    "gaps": [],
+    "unit_economics": {
+      "price_tiers": "",
+      "pricing_model": "subscription",
+      "source": "form"
+    },
+    "thesis": "ReadyRounds proposes a novel computational layer to address the inherent complexities of multi-valve heart disease assessment in high-acuity cardiac environments like the CICU. The core innovation lies in its ability to systematically decompose the interdependencies between valve severities, which clinicians currently lack. This allows for precise identification of primary drivers of clinical presentation, prediction of intervention outcomes, flagging of inconsistent measurements, and guidance on optimal diagnostic tests. The venture targets clinicians in these specialized settings, aiming to significantly improve the speed and accuracy of decision-making in a condition currently plagued by fragmented understanding. The founder’s goal is a growth startup, given the explicit 12-month roadmap towards a prospective pilot and the ambition to solve a complex medical problem with a novel technical solution. The venture is currently at the idea/concept stage, with a clear plan to develop and validate the underlying physics engine and inverse solver. ReadyRounds is positioned to complement existing cardiac assessment tools by providing a layer of computational intelligence that resolves ambiguities and interdependencies that current methods cannot, thereby improving diagnostic accuracy and guiding treatment more effectively.",
+    "founder_resources": {
+      "time_available": "",
+      "money_available": ""
+    },
+    "things_that_must_work": [
+      "Successful development of the physics engine",
+      "Validation of the inverse solver on synthetic data",
+      "Clinical validation on at least 50 real patient pairs"
+    ],
+    "stage_assessment": "idea",
+    "bottleneck": {
+      "type": "technical",
+      "why_it_blocks": "This computational layer is the core of the product and requires significant technical development and rigorous validation before any clinical application.",
+      "current_blocker": "Development and validation of the physics engine and inverse solver",
+      "relaxed_by": "Successful development of the physics engine, validation of the inverse solver on synthetic data, and completion of clinical validation on at least 50 real patient pairs."
+    },
+    "contradictions": [],
+    "core_insight": {
+      "if_wrong": "If the computational layer cannot accurately decompose valve interdependencies, clinical decisions will remain fragmented and slow, and the product will not provide value.",
+      "why_different": "It provides a systematic method to decompose interdependencies that current methods lack, leading to fragmented and slow decision-making.",
+      "what": "",
+      "source_excerpt": "standard measurements are often coupled and unreliable — the severity of one valve depends on another — and clinicians currently lack a systematic method to decompose these interdependencies"
+    },
+    "extraction_sources": [
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "market_data.buyer"
+      },
+      {
+        "source": "founder_stated",
+        "source_phrase": "",
+        "field": "market_data.end_user"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "market_data.trigger_now"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "market_data.alternatives"
+      },
+      {
+        "source_phrase": "clinicians currently lack a systematic method to decompose these interdependencies, leading to fragmented and slow decision-making.",
+        "source": "system_inferred",
+        "field": "market_data.why_better"
+      },
+      {
+        "field": "market_data.anti_icp",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.price_tiers"
+      },
+      {
+        "source_phrase": "computational layer",
+        "source": "system_inferred",
+        "field": "unit_economics.pricing_model"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "unit_economics.hardware_cost_per_customer"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.human_work_per_customer"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "unit_economics.revenue_assumption"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "unit_economics.cost_assumption"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "stage_assessment",
+        "source": "system_inferred",
+        "source_phrase": "A 12-month roadmap to develop the physics engine, validate the inverse solver on synthetic data, and conduct clinical validation on real patient pairs (n≥50) before a prospective pilot."
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "evidence_of_stage"
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "A 12-month roadmap to develop the physics engine, validate the inverse solver on synthetic data, and conduct clinical validation on real patient pairs (n≥50) before a prospective pilot.",
+        "field": "goal_horizon_target"
+      },
+      {
+        "source_phrase": "computational layer",
+        "source": "system_inferred",
+        "field": "delivery_mode"
+      },
+      {
+        "source_phrase": "computational layer",
+        "source": "system_inferred",
+        "field": "product_requires_new_hardware"
+      },
+      {
+        "field": "product_behavior_change_level",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "founder_resources.team_structure",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "founder_resources.relevant_skills",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "founder_resources.investment_status"
+      }
+    ],
+    "thesis_evolution": {
+      "detected": false
+    },
+    "product_description": "ReadyRounds offers a \"computational layer for hemodynamic reasoning\" specifically for assessing multi-valve heart disease in high-acuity environments like the Cardiac Intensive Care Unit (CICU). Key deliverables include ranking primary drivers, a counterfactual simulator, a consistency report, and next-best-test guidance.",
+    "fields": [],
+    "team_members": [],
+    "market_data": {
+      "source": "form",
+      "segment": "High-acuity cardiac care",
+      "end_user": "Clinicians working in high-acuity cardiac environments such as the Cardiac Intensive Care Unit (CICU), assessing patients with multi-valve heart disease."
+    },
+    "one_liner": "ReadyRounds is a computational layer for hemodynamic reasoning that helps clinicians assess multi-valve heart disease in high-acuity environments.",
+    "stated_vs_observed_stage": {
+      "mismatch_reason": "",
+      "claimed_stage": "idea",
+      "evidenced_stage": "idea",
+      "mismatch_flag": false
+    },
+    "delivery_model": "existing_devices_software",
+    "what_makes_this_different": "ReadyRounds offers a computational layer that can systematically decompose the interdependencies of multi-valve heart disease, providing clarity and actionable insights in situations where current methods lead to fragmented decision-making.",
+    "venture_name": "ReadyRounds",
+    "evidence_of_stage": "A 12-month roadmap is described to develop and validate the core technical components, indicating the product is not yet built.",
+    "goal_frame": "growth",
+    "known_unknowns": {
+      "what_founder_seems_unsure_about": [],
+      "what_founder_has_not_told_us": [
+        "Target market size (TAM, SAM)",
+        "Specific competitors and current alternatives",
+        "Go-to-market strategy",
+        "Team structure and relevant skills",
+        "Financial resources and investment status",
+        "Pricing strategy and unit economics (CAC, LTV)"
+      ]
+    },
+    "schema_version": "vr-3.1.1"
+  }
+}

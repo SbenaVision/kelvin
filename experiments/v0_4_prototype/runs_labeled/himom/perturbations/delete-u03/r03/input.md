@@ -1,0 +1,43 @@
+## s01
+
+HiMom is a programmable platform and marketplace designed to provide proactive aid and social connectivity for the aging population (75+) through a combination of smart home devices (e.g., Amazon Echo) and a mobile application for their adult children.
+
+## s02
+
+Children use the mobile app to define and deliver daily routines such as medication reminders at 9:00 AM, lunchtime alerts at 12:00 PM, and air conditioning shut-off warnings at 9:00 PM.
+
+## s04
+
+The platform is designed as a marketplace where new actions, services, and third-party providers can be integrated with "3-click" simplicity for the end user.
+
+## s05
+
+Vision: to improve quality of life for seniors and help children provide better care through a simple, extensible interface that leverages IoT capabilities.
+
+## s06
+
+End users are the aging population aged 75 and older.
+
+## s07
+
+The buyer/manager is the adult child of the senior, who uses the mobile app to define routines and integrate new services on behalf of the parent.
+
+## s08
+
+Not specified in source material.
+
+## s09
+
+An estimated 467 million people are aged 75 or older, projected to reach 700 million by 2030.
+
+## s10
+
+This population frequently neglects essential daily tasks like taking medicine, exercising, or limiting TV time without proactive reminders.
+
+## s11
+
+Not specified in source material.
+
+## s12
+
+Not specified in source material.

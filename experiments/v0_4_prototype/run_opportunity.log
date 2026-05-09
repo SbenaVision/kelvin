@@ -1,0 +1,43 @@
+======================================================================
+Cases: ['himom', 'stagehand', 'readyrounds', 'narma']
+  himom: 6 paragraphs
+  stagehand: 6 paragraphs
+  readyrounds: 7 paragraphs
+  narma: 6 paragraphs
+Estimated calls: 165 (40 baselines + 125 deletions)
+Budget @ ~90s/call sequential: ~248 min;
+  with 3 workers: ~82 min
+======================================================================
+
+=== Phase 1: 10 baselines per case ===
+  [5/40] 1.2 min
+  [10/40] 2.2 min
+  [15/40] 3.1 min
+  [20/40] 4.1 min
+  [25/40] 5.3 min
+  [30/40] 6.0 min
+  [35/40] 7.2 min
+  [40/40] 8.2 min
+
+  Baseline replay summary:
+    himom           mean= 482.4  σ= 32.9  N=10/10
+    stagehand       mean= 503.2  σ= 30.3  N=10/10
+    readyrounds     mean= 516.8  σ= 35.9  N=10/10
+    narma           mean= 481.5  σ= 42.8  N=10/10
+
+=== Phase 2: deletion perturbations (5 replays per unit) ===
+  [10/125] 2.1 min
+  [20/125] 5.5 min
+  [30/125] 7.6 min
+  [40/125] 9.3 min
+  [50/125] 11.2 min
+  [60/125] 13.3 min
+  [70/125] 15.2 min
+  [80/125] 17.0 min
+  [90/125] 19.1 min
+  [100/125] 21.0 min
+  [110/125] 23.1 min
+  [120/125] 24.9 min
+  [125/125] 26.0 min
+
+✓ Artifacts in /Users/sb/MyDev/Kelvin/.claude/worktrees/compassionate-kare-20cec7/experiments/v0_4_prototype/

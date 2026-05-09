@@ -1,0 +1,199 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 500,
+  "vvs_score": 454,
+  "vvs_band": "Weak path to revenue",
+  "vvs_dimensions": {
+    "P": 3,
+    "M": 3,
+    "C": 3,
+    "D": 3,
+    "L": 2,
+    "F": 3,
+    "E": 2
+  },
+  "raw": {
+    "delivery_model": "existing_devices_software",
+    "bottleneck": {
+      "why_it_blocks": "Without developer adoption, Stagehand cannot achieve its vision of viral distribution and widespread integration into applications.",
+      "type": "market",
+      "current_blocker": "Getting developers to adopt the open-source framework.",
+      "relaxed_by": "Demonstrating the ease of integration, the clear benefits of reduced cognitive load for end-users, and robust documentation and community support for the framework."
+    },
+    "fields": [],
+    "thesis_evolution": {
+      "detected": false
+    },
+    "goal_frame": "growth",
+    "team_members": [],
+    "product_requires_new_hardware": false,
+    "product_behavior_change_level": "medium",
+    "gaps": [],
+    "contradictions": [],
+    "traction_signals": [],
+    "stage_assessment": "idea",
+    "stated_vs_observed_stage": {
+      "mismatch_reason": "",
+      "mismatch_flag": false,
+      "evidenced_stage": "idea",
+      "claimed_stage": "idea"
+    },
+    "extraction_sources": [
+      {
+        "source": "founder_stated",
+        "field": "market_data.buyer",
+        "source_phrase": ""
+      },
+      {
+        "source": "founder_stated",
+        "field": "market_data.end_user",
+        "source_phrase": ""
+      },
+      {
+        "source": "founder_stated",
+        "field": "market_data.trigger_now",
+        "source_phrase": ""
+      },
+      {
+        "field": "market_data.alternatives",
+        "source": "system_inferred",
+        "source_phrase": "augment traditional input methods (mouse/keyboard)"
+      },
+      {
+        "source": "founder_stated",
+        "field": "market_data.why_better",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.anti_icp",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.price_tiers"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.pricing_model",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.human_work_per_customer",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.revenue_assumption",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.cost_assumption"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "stage_assessment",
+        "source": "system_inferred",
+        "source_phrase": "The framework is designed for viral developer adoption with a \"zero rebuild\" requirement: existing React components are wrapped in a simple hook to enable voice control.\nVision: to augment traditional input methods (mouse/keyboard) with a hands-free command layer, reducing the cognitive load of navigating complex data streams."
+      },
+      {
+        "source": "system_inferred",
+        "field": "evidence_of_stage",
+        "source_phrase": "The Venture description describes the vision, technical differentiators, and distribution strategy, but does not provide any evidence of physical product, users, or revenue."
+      },
+      {
+        "source": "missing",
+        "field": "goal_horizon_target",
+        "source_phrase": ""
+      },
+      {
+        "field": "delivery_mode",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "field": "product_requires_new_hardware",
+        "source": "system_inferred",
+        "source_phrase": "open-source React framework"
+      },
+      {
+        "source": "system_inferred",
+        "field": "product_behavior_change_level",
+        "source_phrase": "augment traditional input methods (mouse/keyboard) with a hands-free command layer"
+      },
+      {
+        "source_phrase": "Not specified in source material.",
+        "source": "system_inferred",
+        "field": "founder_resources.team_structure"
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.relevant_skills",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "Not specified",
+        "field": "founder_resources.investment_status",
+        "source": "system_inferred"
+      }
+    ],
+    "one_liner": "Stagehand is an open-source React framework that provides a voice-interactive UI orchestration layer for developers to integrate hands-free control into complex applications.",
+    "evidence_of_stage": "The description outlines a vision, technical differentiators, and distribution strategy, but does not mention any built product, users, or revenue.",
+    "unit_economics": {
+      "price_tiers": "",
+      "source": "form"
+    },
+    "schema_version": "vr-3.1.1",
+    "delivery_mode": "software",
+    "core_insight": {
+      "what": "",
+      "why_different": "Stagehand's orchestration approach, which rearranges and interacts with pre-defined components for consistent and low-latency performance, differentiates it from AI tools that generate UI on-the-fly.",
+      "if_wrong": "If the orchestration approach does not provide sufficient consistency, predictability, or low latency, or if voice control augmentation does not significantly reduce cognitive load in target environments, the core value proposition of Stagehand would be undermined.",
+      "source_excerpt": ""
+    },
+    "thesis": "\nStagehand is an open-source React framework designed to integrate voice-interactive UI orchestration into existing applications, primarily targeting high-cognitive-load environments. The core innovation lies in its \"orchestration approach\" to voice control, which, unlike generative AI, rearranges and interacts with pre-defined React components. This ensures consistent, predictable, and low-latency performance, crucial for environments such as medical dashboards, financial trading terminals, and industrial monitoring where hands-free operation or rapid navigation is critical. The venture aims for viral developer adoption by offering a \"zero rebuild\" requirement, allowing existing React components to be easily voice-enabled with a simple hook. The founder envisions Stagehand augmenting traditional input methods, thereby reducing cognitive load in complex data streams. This is a growth-oriented startup, aiming for widespread developer adoption. The venture is currently at the idea or concept stage, as no specific building or launch activities are mentioned, but the technical differentiators and distribution strategy are clearly articulated. Stagehand complements existing React applications by adding a voice-control layer, thereby enhancing their functionality rather than replacing them. This positions it as an enablement tool within the existing software development value chain.",
+    "product_description": "Stagehand is an open-source React framework that functions as a voice-interactive UI orchestration layer, enabling users in high-cognitive-load environments to manage complex dashboards through natural language commands. It uses an \"orchestration approach,\" rearranging and interacting with pre-defined, registered components for consistent, predictable, and low-latency performance. Key technical features include a two-tier processing model with a fast local matcher for common commands and an LLM fallback for complex intent, and optimistic UI updates for sub-200ms perceived response times. It allows for \"zero rebuild\" by wrapping existing React components in a simple hook to enable voice control.",
+    "things_that_must_work": [
+      "Developer adoption of the open-source framework",
+      "The effectiveness of the two-tier processing model for speed and accuracy in voice command interpretation",
+      "The actual reduction of cognitive load for target users",
+      "Integration with various existing React components and their ease of wrapping with the provided hook."
+    ],
+    "what_makes_this_different": "Stagehand distinguishes itself by using an \"orchestration approach\" for voice control, interacting with pre-defined components for predictable and low-latency performance, contrasting with generative AI tools. Its technical differentiators include a two-tier processing model for speed and optimistic UI updates, alongside a \"zero rebuild\" integration for developers.",
+    "founder_resources": {
+      "team_structure": "solo",
+      "investment_status": "not_raising",
+      "relevant_skills": "",
+      "open_for_investors": true,
+      "technical_or_business": "",
+      "time_available": "",
+      "money_available": ""
+    },
+    "venture_name": "stagehand-del-u11-r0",
+    "market_data": {
+      "source": "form",
+      "buyer": "React developers.",
+      "trigger_now": "The need to reduce cognitive load and enable hands-free operation in complex, high-pressure professional environments.",
+      "why_better": "Stagehand offers consistent, predictable, and low-latency voice control through its orchestration approach, providing a hands-free command layer that reduces cognitive load.",
+      "anti_icp": "",
+      "end_user": "Users in high-cognitive-load environments, such as medical professionals, financial traders, and industrial monitors, who need hands-free operation or rapid navigation.",
+      "segment": "React development tools for voice-controlled UI orchestration",
+      "alternatives": "Traditional input methods (mouse/keyboard) or potentially AI tools that generate UI on-the-fly (though Stagehand positions itself as different)."
+    },
+    "core_excitement": "The founder is excited by the prospect of augmenting traditional input methods with a hands-free voice command layer, thereby significantly reducing the cognitive load in complex, data-rich professional environments."
+  }
+}

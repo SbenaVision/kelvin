@@ -1,0 +1,163 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "raw": {
+    "extraction_sources": [
+      {
+        "source": "system_inferred",
+        "source_phrase": "Distribution is aimed at React developers",
+        "field": "market_data.buyer"
+      },
+      {
+        "source_phrase": "users in high-cognitive-load environments to manage complex dashboards through natural language commands.",
+        "source": "system_inferred",
+        "field": "market_data.end_user"
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "Professional environments where hands-free operation or rapid navigation is critical",
+        "field": "market_data.trigger_now"
+      },
+      {
+        "source_phrase": "augment traditional input methods (mouse/keyboard)",
+        "source": "system_inferred",
+        "field": "market_data.alternatives"
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "reducing the cognitive load of navigating complex data streams.",
+        "field": "market_data.why_better"
+      },
+      {
+        "field": "market_data.anti_icp",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.price_tiers",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "field": "unit_economics.pricing_model",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.hardware_cost_per_customer"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.human_work_per_customer"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.revenue_assumption"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "unit_economics.cost_assumption"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "stage_assessment",
+        "source": "system_inferred",
+        "source_phrase": "Not specified in source material."
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "evidence_of_stage"
+      },
+      {
+        "field": "goal_horizon_target",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "source": "founder_stated",
+        "source_phrase": "",
+        "field": "delivery_mode"
+      },
+      {
+        "field": "product_requires_new_hardware",
+        "source_phrase": "",
+        "source": "founder_stated"
+      },
+      {
+        "field": "product_behavior_change_level",
+        "source": "system_inferred",
+        "source_phrase": "augment traditional input methods (mouse/keyboard)"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "founder_resources.team_structure"
+      },
+      {
+        "field": "founder_resources.relevant_skills",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "founder_resources.investment_status"
+      }
+    ],
+    "what_makes_this_different": "Stagehand distinguishes itself by focusing on UI orchestration rather than generation, ensuring predictable, low-latency performance through a two-tier voice command processing model and a \"zero rebuild\" integration for existing React components.",
+    "core_excitement": "The founder is excited about augmenting traditional input methods with a hands-free command layer to reduce cognitive load in complex data environments.",
+    "contradictions": [],
+    "traction_signals": [],
+    "product_description": "Stagehand is an open-source React framework that functions as a voice-interactive UI orchestration layer. It enables users in high-cognitive-load environments to manage complex dashboards through natural language commands. Unlike AI tools that generate UI on-the-fly, Stagehand uses an \"orchestration approach,\" rearranging and interacting with pre-defined, registered components to ensure consistent, predictable, and low-latency performance. Technical differentiators include a two-tier processing model—a fast local matcher for common commands (>50ms) with an LLM fallback for complex intent parsing—and optimistic UI updates targeting sub-200ms perceived response time. The framework is designed for viral developer adoption with a \"zero rebuild\" requirement: existing React components are wrapped in a simple hook to enable voice control. Its vision is to augment traditional input methods (mouse/keyboard) with a hands-free command layer, reducing the cognitive load of navigating complex data streams.",
+    "thesis": "Stagehand introduces a novel approach to human-computer interaction in high-cognitive-load environments. By providing a voice-interactive orchestration layer for existing React UIs, Stagehand aims to reduce cognitive load and enhance efficiency for users navigating complex dashboards. Unlike generative AI solutions, Stagehand focuses on predictable and low-latency performance through its orchestration model, leveraging pre-defined components and a two-tier processing system for voice commands. This venture is for React developers working on applications where hands-free operation or rapid navigation is critical, such as medical, financial, and industrial dashboards, as well as accessibility tools. The core innovation lies in seamlessly integrating voice control into existing React ecosystems with minimal development effort, promising viral adoption among developers. The founder's goal appears to be a growth startup, given the emphasis on viral adoption through an open-source framework and its potential to augment a wide range of professional applications. The venture is currently at the idea stage, with the concept clearly defined but no mention of a built prototype or user acquisition. Stagehand positions itself as a complementary solution, preceding and augmenting existing UI frameworks by adding a new interaction paradigm rather than replacing them.",
+    "product_requires_new_hardware": false,
+    "goal_frame": "growth",
+    "fields": [],
+    "delivery_model": "existing_devices_software",
+    "product_behavior_change_level": "medium",
+    "founder_resources": {
+      "money_available": "",
+      "time_available": ""
+    },
+    "unit_economics": {
+      "source": "inferred",
+      "price_tiers": ""
+    },
+    "schema_version": "vr-3.1.1",
+    "venture_name": "stagehand-paragraph-p01-comparator_flip — Stagehand",
+    "core_insight": {
+      "if_wrong": "If developers find the integration complex or the performance unpredictable, then voice-interactive UI orchestration will likely not achieve widespread adoption.",
+      "what": "",
+      "why_different": "Stagehand orchestrates pre-defined components with a two-tier processing model for voice commands, ensuring speed and predictability, instead of generating UI on-the-fly like other AI tools.",
+      "source_excerpt": "Stagehand is an open-source React framework that functions as a voice-interactive UI orchestration layer. It enables users in high-cognitive-load environments to manage complex dashboards through natural language commands. Unlike AI tools that generate UI on-the-fly, Stagehand uses an 'orchestration approach,' rearranging and interacting with pre-defined, registered components to ensure consistent, predictable, and low-latency performance."
+    },
+    "stage_assessment": "idea",
+    "team_members": [],
+    "stated_vs_observed_stage": {
+      "claimed_stage": "idea",
+      "evidenced_stage": "idea",
+      "mismatch_flag": false,
+      "mismatch_reason": ""
+    },
+    "one_liner": "Stagehand is an open-source React framework that provides a voice-interactive UI orchestration layer for managing complex dashboards through natural language commands.",
+    "thesis_evolution": {
+      "detected": false
+    },
+    "delivery_mode": "software",
+    "gaps": [],
+    "market_data": {
+      "source": "form",
+      "segment": "Professional environments where hands-free operation or rapid navigation is critical, including medical dashboards, financial trading terminals, industrial monitoring, and accessibility tools."
+    }
+  }
+}

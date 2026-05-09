@@ -1,0 +1,194 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "raw": {
+    "bottleneck": {
+      "relaxed_by": "Conducting user interviews, building a waitlist with commitment, and testing distribution channels to confirm interest and conversion.",
+      "current_blocker": "Problem validation with paying or committed users",
+      "type": "market",
+      "why_it_blocks": "Without validated demand and willingness to pay, building a product is premature, and there is no evidence the matching experience is desired or better than alternatives."
+    },
+    "unit_economics": {
+      "pricing_model": "hybrid",
+      "source": "inferred",
+      "price_tiers": ""
+    },
+    "market_data": {
+      "trigger_now": "",
+      "segment": "Consumer social for hikers",
+      "end_user": "Individual hikers",
+      "alternatives": "AllTrails (for route-finding), Meetup (for general activity partners), or hiking alone",
+      "buyer": "Individual hikers",
+      "source": "inferred"
+    },
+    "venture_name": "NorthPass",
+    "product_requires_new_hardware": false,
+    "stated_vs_observed_stage": {
+      "mismatch_flag": false,
+      "mismatch_reason": "",
+      "evidenced_stage": "idea",
+      "claimed_stage": "idea"
+    },
+    "known_unknowns": {
+      "what_founder_has_not_told_us": [
+        "Exact target market demographics",
+        "Specific features for the paid tier beyond verified identity and insurance-backed no-show guarantees",
+        "Detailed financial projections (CAC, LTV, operational costs beyond infrastructure)"
+      ],
+      "what_founder_seems_unsure_about": [
+        "If the activity-partner matching space for hiking is a real gap or a proven non-market"
+      ]
+    },
+    "goal_frame": "growth",
+    "product_behavior_change_level": "medium",
+    "contradictions": [],
+    "fields": [],
+    "extraction_sources": [
+      {
+        "source": "system_inferred",
+        "field": "market_data.buyer",
+        "source_phrase": "pairing nearby users"
+      },
+      {
+        "source_phrase": "pairing nearby users",
+        "field": "market_data.end_user",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.trigger_now",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "market_data.alternatives"
+      },
+      {
+        "field": "market_data.why_better",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.anti_icp",
+        "source": "missing"
+      },
+      {
+        "field": "unit_economics.price_tiers",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "unit_economics.pricing_model"
+      },
+      {
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.human_work_per_customer"
+      },
+      {
+        "source_phrase": "Planned freemium conversion assumed at 3–5% based on category averages cited in blog posts.",
+        "source": "system_inferred",
+        "field": "unit_economics.revenue_assumption"
+      },
+      {
+        "source": "system_inferred",
+        "field": "unit_economics.cost_assumption",
+        "source_phrase": "Infrastructure costs not estimated."
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "stage_assessment"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "evidence_of_stage"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "goal_horizon_target"
+      },
+      {
+        "source": "founder_stated",
+        "field": "delivery_mode",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "product_requires_new_hardware",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "pairing nearby users by matching planned trail difficulty, pace, and available dates",
+        "field": "product_behavior_change_level",
+        "source": "system_inferred"
+      },
+      {
+        "field": "founder_resources.team_structure",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.relevant_skills",
+        "source": "founder_stated"
+      },
+      {
+        "field": "founder_resources.investment_status",
+        "source": "system_inferred",
+        "source_phrase": ""
+      }
+    ],
+    "what_makes_this_different": "NorthPass offers a specialized matching algorithm for hiking partners, considering specific criteria like trail difficulty, pace, and availability, which differentiates it from general activity-partner apps or hiking apps focused on routes.",
+    "one_liner": "NorthPass is a consumer social app that pairs nearby hikers based on preferred trail difficulty, pace, and availability.",
+    "team_members": [],
+    "thesis_evolution": {
+      "detected": false
+    },
+    "core_insight": {
+      "source_excerpt": "",
+      "if_wrong": "",
+      "what": "",
+      "why_different": ""
+    },
+    "product_description": "NorthPass is a mobile application designed to connect hikers with compatible partners. Users will be able to input their preferences for trail difficulty, hiking pace, and available dates. The app will then match them with other nearby users who share similar preferences. The planned revenue model is freemium, offering a basic service for free and a paid tier for features such as verified-identity matching and insurance-backed no-show guarantees.",
+    "things_that_must_work": [
+      "User acquisition for initial network effects",
+      "Effective and accurate matching algorithm",
+      "Trust and safety mechanisms for users meeting strangers",
+      "Freemium conversion to paid tier"
+    ],
+    "traction_signals": [],
+    "thesis": "NorthPass aims to capitalize on the growing popularity of hiking by creating a dedicated social app for \"hiking buddies.\" The core innovation lies in its specialized matching algorithm, which considers trail difficulty, pace, and availability, moving beyond the general activity matching or route-finding offered by existing solutions. The target user is an individual hiker seeking a compatible partner for their outdoor excursions, addressing the problem of finding reliable and suitable companions. The founder envisions NorthPass as a growth startup, given the intention to scale and the freemium revenue model. Currently, the venture is at the idea stage, with no product in the market, no users, and no formal validation. The venture intends to complement existing solutions like AllTrails, focusing on the social matching aspect rather than replacing route-finding functionality, and aiming to provide a more tailored experience than general platforms like Meetup.",
+    "gaps": [],
+    "core_excitement": "The founder is excited by the opportunity to fill a clear gap in the market for a dedicated hiking companion matching service, tapping into a rapidly growing outdoor activity.",
+    "stage_assessment": "idea",
+    "delivery_mode": "software",
+    "delivery_model": "existing_devices_software",
+    "founder_resources": {
+      "relevant_skills": "UX design",
+      "technical_or_business": "business",
+      "team_structure": "solo",
+      "investment_status": "open",
+      "time_available": "evenings and weekends",
+      "money_available": "?"
+    },
+    "schema_version": "vr-3.1.1"
+  }
+}

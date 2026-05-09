@@ -1,0 +1,178 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 553,
+  "vvs_score": 512,
+  "vvs_band": "Possible, but major gaps",
+  "vvs_dimensions": {
+    "P": 4,
+    "M": 3,
+    "C": 3,
+    "D": 2,
+    "L": 3,
+    "F": 4,
+    "E": 2
+  },
+  "raw": {
+    "delivery_mode": "software",
+    "thesis": "The venture, \"readyrounds-del-u01-r3\", is centered on developing a physics-constrained inference engine for high-acuity cardiac environments, specifically for patients with multi-valve heart disease. The core innovation lies in its ability to ingest data from various sources (echo, cath, CMR) and, by adhering to physical laws, solve for latent hemodynamic states, such as true flows and pressures. This allows for a more accurate and comprehensive understanding of complex cardiac conditions.\n\nThe primary target users are clinicians in Cardiac Intensive Care Units (CICU) who currently struggle with the interconnected and often unreliable nature of standard measurements in multi-valve disease. The problem it addresses is the fragmented and slow decision-making process exacerbated by the inability to systematically decompose interdependencies between multiple cardiac lesions. This leads to diagnostic uncertainty and suboptimal treatment planning, making the problem severe and frequent in this specialized medical field.\n\nThe founder's goal appears to be a growth-oriented startup, given the explicit 12-month roadmap focusing on developing and validating the core technology (physics engine and inverse solver) and conducting clinical validation before a prospective pilot. This indicates a clear intention to build and scale a robust medical technology solution.\n\nCurrently, the venture is at the idea/concept stage, with a clear roadmap for development and validation. The founder is preparing to build the core technology and gather initial clinical evidence. The primary goal for the next 12 months is to achieve a prospective pilot, which necessitates significant development and validation work.\n\nThis venture positions itself as a complement to existing diagnostic tools. Instead of replacing echo, cath, or CMR, it enhances their utility by providing a unifying analytical layer that interprets data from these diverse sources. It aims to precede definitive treatment by providing clinicians with a more accurate and holistic diagnostic picture, thereby improving treatment selection and patient outcomes.",
+    "founder_resources": {
+      "money_available": "",
+      "team_structure": "solo",
+      "time_available": ""
+    },
+    "team_members": [],
+    "traction_signals": [],
+    "one_liner": "A physics-constrained inference engine that helps clinicians diagnose multi-valve heart disease by solving for true hemodynamic states from multiple data sources.",
+    "venture_name": "readyrounds-del-u01-r3",
+    "contradictions": [],
+    "stage_assessment": "idea",
+    "goal_frame": "growth",
+    "extraction_sources": [
+      {
+        "field": "market_data.buyer",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "market_data.end_user"
+      },
+      {
+        "source": "founder_stated",
+        "field": "market_data.trigger_now",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "field": "market_data.alternatives",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.why_better",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "market_data.anti_icp"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.price_tiers",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.pricing_model"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source": "missing"
+      },
+      {
+        "field": "unit_economics.human_work_per_customer",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.revenue_assumption",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.cost_assumption",
+        "source": "missing"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "A 12-month roadmap to develop the physics engine, validate the inverse solver on synthetic data, and conduct clinical validation on real patient pairs (n≥50) before a prospective pilot.",
+        "field": "stage_assessment",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "evidence_of_stage"
+      },
+      {
+        "field": "goal_horizon_target",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "The solution is a physics-constrained inference engine that ingests data from multiple sources (echo, cath, CMR) and solves for the latent hemodynamic state",
+        "field": "delivery_mode",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "The solution is a physics-constrained inference engine that ingests data from multiple sources (echo, cath, CMR)",
+        "field": "product_requires_new_hardware",
+        "source": "system_inferred"
+      },
+      {
+        "field": "product_behavior_change_level",
+        "source": "system_inferred",
+        "source_phrase": "clinicians currently lack a systematic method to decompose these interdependencies, leading to fragmented and slow decision-making."
+      },
+      {
+        "field": "founder_resources.team_structure",
+        "source": "system_inferred",
+        "source_phrase": "Team: Not specified"
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.relevant_skills",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "founder_resources.investment_status"
+      }
+    ],
+    "what_makes_this_different": "The specific innovation is the physics-constrained inference engine that unifies disparate cardiac data sources (echo, cath, CMR) to resolve latent hemodynamic states, offering primary driver ranking, counterfactual simulation, consistency reports, and next-best-test guidance. This is genuinely new because current clinical methods for multi-valve disease lack a systematic way to decompose interdependencies, leading to fragmented diagnosis and slow decision-making.",
+    "thesis_evolution": {
+      "detected": false
+    },
+    "stated_vs_observed_stage": {
+      "claimed_stage": "idea",
+      "mismatch_reason": "",
+      "mismatch_flag": false,
+      "evidenced_stage": "idea"
+    },
+    "delivery_model": "existing_devices_software",
+    "product_requires_new_hardware": false,
+    "evidence_of_stage": "The venture has a stated 12-month roadmap to develop the physics engine, validate the inverse solver, and conduct clinical validation on real patient pairs.",
+    "unit_economics": {
+      "source": "form",
+      "price_tiers": ""
+    },
+    "fields": [],
+    "gaps": [],
+    "product_description": "The solution is a physics-constrained inference engine that ingests data from multiple sources (echo, cath, CMR) and solves for the latent hemodynamic state — true flows and pressures — while respecting the laws of physics. Key deliverables include primary driver ranking (identifying which lesion most explains the clinical picture), a counterfactual simulator (predicting how fixing one valve will affect the severity of others), a consistency report (flagging measurements that contradict physical principles), and next-best-test guidance (identifying the specific measurement that would most reduce diagnostic uncertainty).",
+    "product_behavior_change_level": "medium",
+    "market_data": {
+      "trigger_now": "In multi-valve disease, standard measurements are often coupled and unreliable — the severity of one valve depends on another — and clinicians currently lack a systematic method to decompose these interdependencies, leading to fragmented and slow decision-making.",
+      "segment": "High-acuity cardiac environments, specifically for patients with multi-valve heart disease.",
+      "end_user": "Clinicians working in high-acuity cardiac environments such as the Cardiac Intensive Care Unit (CICU), assessing patients with multi-valve heart disease.",
+      "source": "form"
+    },
+    "core_insight": {
+      "if_wrong": "If the physics-constrained inference engine cannot accurately solve for latent hemodynamic states or cannot reliably decompose interdependencies in multi-valve disease, the core value proposition of improved diagnosis and treatment planning will fail.",
+      "why_different": "The venture is genuinely new because it introduces a physics-constrained inference engine to synthesize data from multiple cardiac diagnostic sources, providing a unified and physically consistent view of hemodynamic states. Existing solutions lack this systematic approach to decomposing interdependencies in multi-valve disease.",
+      "what": "",
+      "source_excerpt": ""
+    },
+    "schema_version": "vr-3.1.1"
+  }
+}

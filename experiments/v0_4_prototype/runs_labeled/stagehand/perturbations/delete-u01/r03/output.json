@@ -1,0 +1,189 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 463,
+  "vvs_score": 454,
+  "vvs_band": "Weak path to revenue",
+  "vvs_dimensions": {
+    "P": 3,
+    "M": 3,
+    "C": 2,
+    "D": 2,
+    "L": 3,
+    "F": 3,
+    "E": 3
+  },
+  "raw": {
+    "contradictions": [],
+    "market_data": {
+      "source": "form",
+      "buyer": "Not specified, but likely organizations or development teams using React-based dashboards in target professional environments.",
+      "segment": "Professional environments using complex dashboards (e.g., medical, financial, industrial, accessibility).",
+      "end_user": "Users in high-cognitive-load environments who need to manage complex dashboards, as well as React developers who would integrate the solution.",
+      "alternatives": "Traditional input methods like mouse and keyboard for navigating complex dashboards.",
+      "why_better": "Stagehand offers a hands-free command layer that reduces cognitive load and augments traditional input methods, providing a more efficient way to manage complex dashboards, especially in environments where rapid navigation is critical.",
+      "trigger_now": "The need for reduced cognitive load and more efficient, potentially hands-free, navigation of complex data streams in professional settings."
+    },
+    "thesis": "Stagehand is building a hands-free, natural language command layer for complex dashboards, initially targeting React developers. The core innovation lies in its \"orchestration approach\" that leverages pre-defined, registered components for consistent, predictable, and low-latency performance, differentiating it from AI tools generating on-the-fly UIs. This approach aims to reduce cognitive load in high-stakes environments like medical dashboards, financial trading, and industrial monitoring where rapid navigation and hands-free operation are critical. The founder envisions augmenting traditional input methods with this new command layer. The specific target user is a developer working with React components in high-cognitive-load environments. The problem it addresses is the cognitive burden and inefficiency of navigating complex dashboards using traditional input methods, especially when hands-free operation is beneficial or necessary. The venture appears to be a growth-oriented startup given the emphasis on developer adoption and expanding into various professional environments. It is currently at the idea stage, with the founder articulating the vision and technical differentiators. Stagehand is positioning itself as a complementary solution that enhances existing React-based dashboards rather than replacing them. It aims to integrate a new input modality that precedes direct interaction with the GUI, thereby streamlining workflows.",
+    "what_makes_this_different": "Stagehand's core innovation is its \"orchestration approach,\" which, unlike generative AI tools, directly interacts with and rearranges existing, pre-defined components. This ensures predictable, low-latency performance crucial for high-cognitive-load environments. It features a two-tier processing model (fast local matcher + LLM fallback) and targets viral developer adoption with a \"zero rebuild\" integration.",
+    "thesis_evolution": {
+      "detected": false
+    },
+    "delivery_mode": "software",
+    "venture_name": "Stagehand",
+    "gaps": [],
+    "things_that_must_work": [
+      "Widespread developer adoption of the React hook.",
+      "Performance of the local matcher and LLM fallback system.",
+      "User acceptance of natural language commands for dashboard navigation."
+    ],
+    "stated_vs_observed_stage": {
+      "mismatch_flag": false,
+      "evidenced_stage": "idea",
+      "claimed_stage": "idea",
+      "mismatch_reason": ""
+    },
+    "one_liner": "Stagehand enables users in high-cognitive-load environments to manage complex dashboards through natural language commands.",
+    "team_members": [],
+    "technical_architecture": "Two-tier processing model: a fast local matcher for common commands (<50ms) with an LLM fallback for complex intent parsing. Optimistic UI updates targeting sub-200ms perceived response time. Designed for \"zero rebuild\" integration by wrapping existing React components in a simple hook.",
+    "core_excitement": "The founder is excited by the prospect of augmenting traditional input methods with a hands-free command layer to significantly reduce cognitive load in high-stakes professional environments.",
+    "product_behavior_change_level": "medium",
+    "unit_economics": {
+      "source": "form",
+      "price_tiers": ""
+    },
+    "product_requires_new_hardware": false,
+    "goal_frame": "growth",
+    "stage_assessment": "idea",
+    "extraction_sources": [
+      {
+        "field": "market_data.buyer",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "It enables users in high-cognitive-load environments to manage complex dashboards through natural language commands. ... Distribution is aimed at React developers via open-source adoption.",
+        "source": "system_inferred",
+        "field": "market_data.end_user"
+      },
+      {
+        "source_phrase": "enables users in high-cognitive-load environments to manage complex dashboards through natural language commands.",
+        "source": "system_inferred",
+        "field": "market_data.trigger_now"
+      },
+      {
+        "source_phrase": "augment traditional input methods (mouse/keyboard)",
+        "source": "system_inferred",
+        "field": "market_data.alternatives"
+      },
+      {
+        "source": "system_inferred",
+        "field": "market_data.why_better",
+        "source_phrase": "augment traditional input methods (mouse/keyboard) with a hands-free command layer, reducing the cognitive load of navigating complex data streams."
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "market_data.anti_icp"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.price_tiers",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.pricing_model",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.hardware_cost_per_customer"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.human_work_per_customer",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.revenue_assumption",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.cost_assumption",
+        "source_phrase": ""
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "The founder described the vision, technical differentiators, and target environments, but no mention of development progress, prototype, or users.",
+        "source": "system_inferred",
+        "field": "stage_assessment"
+      },
+      {
+        "source_phrase": "The founder has extensively described the vision, technical differentiators, and target environments, indicating a well-developed concept.",
+        "field": "evidence_of_stage",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "goal_horizon_target"
+      },
+      {
+        "field": "delivery_mode",
+        "source": "system_inferred",
+        "source_phrase": "It enables users... to manage complex dashboards through natural language commands. ... existing React components are wrapped in a simple hook to enable voice control."
+      },
+      {
+        "source_phrase": "augment traditional input methods (mouse/keyboard) with a hands-free command layer",
+        "source": "system_inferred",
+        "field": "product_requires_new_hardware"
+      },
+      {
+        "field": "product_behavior_change_level",
+        "source": "system_inferred",
+        "source_phrase": "augment traditional input methods (mouse/keyboard) with a hands-free command layer"
+      },
+      {
+        "field": "founder_resources.team_structure",
+        "source": "system_inferred",
+        "source_phrase": "Team: Not specified"
+      },
+      {
+        "field": "founder_resources.relevant_skills",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "founder_resources.investment_status"
+      }
+    ],
+    "core_insight": {
+      "source_excerpt": "Stagehand uses an 'orchestration approach,' rearranging and interacting with pre-defined, registered components to ensure consistent, predictable, and low-latency performance. ... The framework is designed for viral developer adoption with a 'zero rebuild' requirement: existing React components are wrapped in a simple hook to enable voice control.",
+      "what": "",
+      "if_wrong": "If the orchestration approach fails to deliver consistent, predictable, and low-latency performance, or if developers do not adopt the 'zero rebuild' framework, the core value proposition of reducing cognitive load and enhancing efficiency will not be realized, hindering adoption in target environments.",
+      "why_different": "Stagehand differentiates itself from other AI tools by orchestrating pre-defined, registered components for consistent, predictable, and low-latency performance, rather than generating UI on-the-fly. This ensures reliability and speed crucial for high-cognitive-load environments."
+    },
+    "traction_signals": [],
+    "founder_resources": {
+      "money_available": "",
+      "time_available": "",
+      "team_structure": "solo",
+      "investment_status": "not_raising"
+    },
+    "fields": [],
+    "product_description": "Stagehand provides a hands-free command layer for complex dashboards. It uses an \"orchestration approach\" to interact with pre-defined, registered components, ensuring consistent and predictable performance, unlike AI tools that generate UI on-the-fly. The technical differentiators include a two-tier processing model with a fast local matcher and an LLM fallback, and optimistic UI updates for sub-200ms perceived response time. It is designed for viral developer adoption with a \"zero rebuild\" requirement, allowing existing React components to be wrapped in a simple hook for voice control. The vision is to augment traditional input methods, reducing the cognitive load of navigating complex data streams in professional environments such as medical, financial, and industrial settings, as well as accessibility tools.",
+    "evidence_of_stage": "The founder has extensively described the vision, technical differentiators, and target environments, indicating a well-developed concept.",
+    "delivery_model": "existing_devices_software",
+    "schema_version": "vr-3.1.1"
+  }
+}

@@ -1,0 +1,248 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "seed",
+  "raw": {
+    "traction_signals": [
+      {
+        "source": "form",
+        "confidence": "high",
+        "signal": "Paying Subscribers",
+        "evidence": "212 paying subscribers"
+      },
+      {
+        "source": "form",
+        "confidence": "high",
+        "evidence": "$145K",
+        "signal": "Annual Revenue Run-Rate"
+      },
+      {
+        "source": "form",
+        "evidence": "Net churn negative for the last two quarters (expansion revenue from Starter → Pro upgrades exceeds cancellations)",
+        "signal": "Net Churn",
+        "confidence": "high"
+      },
+      {
+        "confidence": "high",
+        "signal": "NPS",
+        "evidence": "NPS 48",
+        "source": "form"
+      },
+      {
+        "confidence": "high",
+        "evidence": "Featured in two independent newsletters for the segment",
+        "signal": "Press/Mentions",
+        "source": "form"
+      }
+    ],
+    "product_behavior_change_level": "medium",
+    "goal_frame": "growth",
+    "gaps": [],
+    "venture_name": "ArtisanFlow",
+    "unit_economics": {
+      "cost_assumption": "known",
+      "ltv": "$574",
+      "pricing_model": "subscription",
+      "human_work_per_customer": "Support cost $3.40/month",
+      "hardware_cost_per_customer": "0",
+      "source": "form",
+      "price_tiers": "$29/month Starter or $59/month Pro",
+      "revenue_assumption": "known",
+      "cac_target": "$68"
+    },
+    "thesis": "ArtisanFlow addresses the critical operational bottlenecks faced by independent craft sellers operating across multiple e-commerce platforms like Etsy, Shopify, and Faire. The venture offers a B2C SaaS solution that automates inventory reconciliation, cross-channel listings, and order routing, effectively allowing solo makers and small craft businesses (2-3 people) to manage complex fulfillment processes without needing to hire additional staff. This innovation is genuinely new because it specifically targets the multi-channel solo maker, a segment often underserved by generic enterprise solutions or disparate DIY tools. The target users are solo makers and small craft businesses who generate $50K+/year and juggle 200-1,500 orders monthly across two or more channels. The problem is severe and frequent: without ArtisanFlow, these sellers rely on a \"duct-tape stack\" of Zapier, Airtable, and Google Sheets, leading to high maintenance opportunity costs and inefficiencies in managing inventory and orders across platforms. The founder's goal is clearly a growth startup, evidenced by their focus on scaling subscriber numbers, achieving net negative churn, and reaching self-sustaining cash flow. The venture is well beyond the idea or building phase; it's actively growing, with 212 paying subscribers, $145K annual recurring revenue, and 14 months in the market. ArtisanFlow positions itself as a replacement for the current patchwork of manual processes and generic tools, offering a specialized, integrated solution that directly addresses the unique needs of multi-channel craft sellers.",
+    "founder_resources": {
+      "time_available": "Full-time",
+      "money_available": "$60K personal capital committed",
+      "relevant_skills": "Co-founder 1: five years running own craft business on three channels. Co-founder 2: backend engineer, previously shipped a Shopify app in the same segment.",
+      "team_structure": "cofounder",
+      "investment_status": "open"
+    },
+    "delivery_mode": "software",
+    "product_description": "ArtisanFlow is a B2C SaaS workflow tool for independent craft sellers on Etsy, Shopify, and Faire — automating inventory reconciliation, cross-channel listings, and order routing so a solo maker can operate like a small warehouse without hiring. The product ingests order data via OAuth from each platform, normalizes SKUs, and writes pick-pack-ship instructions to a phone-optimized queue.",
+    "market_data": {
+      "segment": "Independent craft sellers on Etsy, Shopify, and Faire",
+      "why_better": "No current vendor focuses specifically on the multi-channel solo maker, offering a specialized, integrated solution.",
+      "end_user": "Solo makers and 2-3 person craft businesses",
+      "source": "form",
+      "trigger_now": "Opportunity cost of maintaining the 'duct-tape stack' (Zapier, Airtable, Google Sheets) or desire to operate more efficiently without hiring.",
+      "anti_icp": "sellers on a single channel (don't need reconciliation), dropshippers (don't handle inventory), enterprise fulfillment centers (need ERP-grade systems)",
+      "sam": "Roughly 180,000 Etsy sellers gross over $50K/year and the top quartile run on 2+ channels.",
+      "alternatives": "Zapier, Airtable, and Google Sheets (duct-tape stack)",
+      "buyer": "Solo makers and 2-3 person craft businesses"
+    },
+    "stage_assessment": "seed",
+    "core_insight": {
+      "if_wrong": "If multi-channel craft sellers do not prioritize operational efficiency or are content with their current manual systems, ArtisanFlow will struggle to gain adoption.",
+      "what": "",
+      "source_excerpt": "ArtisanFlow is a B2C SaaS workflow tool for independent craft sellers on Etsy, Shopify, and Faire — automating inventory reconciliation, cross-channel listings, and order routing so a solo maker can operate like a small warehouse without hiring.",
+      "why_different": "ArtisanFlow specifically targets the multi-channel solo maker segment, offering a tailored solution that generic tools or manual processes cannot match."
+    },
+    "things_that_must_work": [
+      "OAuth integrations with Etsy, Shopify, and Faire must remain stable and functional.",
+      "Availability of reliable payment processing for subscription fees."
+    ],
+    "product_requires_new_hardware": false,
+    "known_unknowns": {
+      "what_founder_seems_unsure_about": [],
+      "what_founder_has_not_told_us": []
+    },
+    "fields": [],
+    "team_members": [
+      {
+        "source": "form",
+        "confidence": "high",
+        "role": "Solo-operator",
+        "background": "Five years running her own craft business on three channels.",
+        "name": "Co-founder 1"
+      },
+      {
+        "name": "Co-founder 2",
+        "background": "Previously shipped a Shopify app in the same segment.",
+        "source": "form",
+        "confidence": "high",
+        "role": "Backend engineer"
+      },
+      {
+        "confidence": "high",
+        "role": "Support tickets",
+        "source": "form",
+        "name": "Contractor",
+        "background": "Handles support tickets part-time."
+      }
+    ],
+    "contradictions": [],
+    "evidence_of_stage": "Product in market for 14 months, 212 paying subscribers, annual revenue run-rate $145K.",
+    "thesis_evolution": {
+      "detected": false
+    },
+    "bottleneck": {
+      "type": "market",
+      "current_blocker": "Scaling customer acquisition efficiently beyond current channels.",
+      "why_it_blocks": "While CAC is good, expanding beyond existing newsletter sponsorships and SEO content may require new strategies and investments to maintain efficiency.",
+      "relaxed_by": "Developing new, scalable acquisition channels or optimizing existing ones for higher reach at current CAC."
+    },
+    "what_makes_this_different": "ArtisanFlow provides an integrated, automated workflow solution specifically designed for multi-channel independent craft sellers, enabling them to professionalize their operations without the need for significant hiring, unlike generic solutions or manual workarounds.",
+    "delivery_model": "existing_devices_software",
+    "stated_vs_observed_stage": {
+      "mismatch_reason": "",
+      "evidenced_stage": "revenue",
+      "claimed_stage": "revenue",
+      "mismatch_flag": false
+    },
+    "core_excitement": "The founder is excited about enabling solo makers to achieve operational efficiency similar to larger businesses, without needing to hire, by automating complex multi-channel selling challenges.",
+    "extraction_sources": [
+      {
+        "field": "market_data.buyer",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source": "founder_stated",
+        "field": "market_data.end_user",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "market_data.trigger_now"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.alternatives",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "market_data.why_better"
+      },
+      {
+        "source": "founder_stated",
+        "field": "market_data.anti_icp",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "unit_economics.price_tiers"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.pricing_model",
+        "source": "founder_stated"
+      },
+      {
+        "source": "founder_stated",
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.human_work_per_customer",
+        "source": "founder_stated"
+      },
+      {
+        "source": "founder_stated",
+        "field": "unit_economics.revenue_assumption",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.cost_assumption",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "stage_assessment"
+      },
+      {
+        "source_phrase": "",
+        "field": "evidence_of_stage",
+        "source": "founder_stated"
+      },
+      {
+        "source": "missing",
+        "field": "goal_horizon_target",
+        "source_phrase": ""
+      },
+      {
+        "source": "founder_stated",
+        "field": "delivery_mode",
+        "source_phrase": ""
+      },
+      {
+        "field": "product_requires_new_hardware",
+        "source": "system_inferred",
+        "source_phrase": "ArtisanFlow is a B2C SaaS workflow tool"
+      },
+      {
+        "source": "system_inferred",
+        "field": "product_behavior_change_level",
+        "source_phrase": "automating inventory reconciliation, cross-channel listings, and order routing so a solo maker can operate like a small warehouse without hiring."
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.team_structure",
+        "source": "founder_stated"
+      },
+      {
+        "field": "founder_resources.relevant_skills",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "Advance from Validate to Build requires: founder committed capital, evidence of demand, and first ventures actively using the platform. All conditions are met.",
+        "field": "founder_resources.investment_status",
+        "source": "system_inferred"
+      }
+    ],
+    "one_liner": "ArtisanFlow is a B2C SaaS workflow tool for independent craft sellers on Etsy, Shopify, and Faire, automating critical operational tasks across multiple sales channels.",
+    "schema_version": "vr-3.1.1"
+  }
+}

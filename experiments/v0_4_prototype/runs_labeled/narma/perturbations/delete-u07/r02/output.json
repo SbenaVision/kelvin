@@ -1,0 +1,203 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 553,
+  "vvs_score": 512,
+  "vvs_band": "Possible, but major gaps",
+  "vvs_dimensions": {
+    "P": 4,
+    "M": 3,
+    "C": 3,
+    "D": 2,
+    "L": 3,
+    "F": 4,
+    "E": 2
+  },
+  "raw": {
+    "one_liner": "Narma is an \"Enterprise Agentic Brain\" designed for AI-first companies to scale AI automation by observing work patterns, detecting intent, and deploying AI agents for high-ROI tasks.",
+    "market_data": {
+      "trigger_now": "Enterprises struggle with a lack of telemetry for AI savings, unreliable ROI measurements, and constant drift in systems and human resources.",
+      "segment": "AI-first companies",
+      "end_user": "employees at AI-first companies",
+      "source": "inferred"
+    },
+    "core_insight": {
+      "why_different": "",
+      "if_wrong": "",
+      "source_excerpt": "",
+      "what": ""
+    },
+    "delivery_mode": "software",
+    "stated_vs_observed_stage": {
+      "claimed_stage": "idea",
+      "mismatch_reason": "The founder has clearly articulated a detailed multi-layered architecture, which goes beyond a mere 'idea' and indicates a 'concept' stage.",
+      "evidenced_stage": "concept",
+      "mismatch_flag": true
+    },
+    "traction_signals": [],
+    "fields": [],
+    "contradictions": [],
+    "schema_version": "vr-3.1.1",
+    "goal_frame": "growth",
+    "extraction_sources": [
+      {
+        "source_phrase": "",
+        "field": "market_data.buyer",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "AI-first companies",
+        "field": "market_data.end_user",
+        "source": "system_inferred"
+      },
+      {
+        "field": "market_data.trigger_now",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.alternatives",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.why_better",
+        "source": "missing"
+      },
+      {
+        "field": "market_data.anti_icp",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.price_tiers"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.pricing_model"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.hardware_cost_per_customer"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.human_work_per_customer",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.revenue_assumption",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.cost_assumption"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "founder_stated",
+        "field": "stage_assessment",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "The architecture has three layers. Observe (Layer 1): lightweight desktop sensors capture work patterns including application usage, activity sequences, and time allocation. Intelligence Layer (Layer 2): a 'Brain' that detects employee intent, the business value of tasks, and 'drift' where work diverges from the intended flow. Execution Layer (Layer 3): an 'Agent Factory' that automatically generates, deploys, and monitors AI agents for validated high-ROI opportunities with built-in approval gates.",
+        "field": "evidence_of_stage",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "field": "goal_horizon_target",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "a lightweight desktop sensors",
+        "field": "delivery_mode",
+        "source": "system_inferred"
+      },
+      {
+        "field": "product_requires_new_hardware",
+        "source": "system_inferred",
+        "source_phrase": "lightweight desktop sensors"
+      },
+      {
+        "source": "system_inferred",
+        "field": "product_behavior_change_level",
+        "source_phrase": "detects employee intent, the business value of tasks, and 'drift' where work diverges from the intended flow."
+      },
+      {
+        "field": "founder_resources.team_structure",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "founder_resources.relevant_skills",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "founder_resources.investment_status"
+      }
+    ],
+    "what_makes_this_different": "Narma's innovative approach lies in its \"Work Graph,\" which, instead of building new LLMs, leverages existing foundation models to pinpoint resource expenditure and identify optimal points within workflows for AI assistance, directly addressing enterprises' challenges with AI savings telemetry and ROI measurement.",
+    "gaps": [],
+    "product_description": "Narma is an \"Enterprise Agentic Brain\" designed for AI-first companies. It has three layers: Observe (Layer 1) uses lightweight desktop sensors to capture work patterns, application usage, and time allocation. The Intelligence Layer (Layer 2) acts as a \"Brain\" to detect employee intent, business value of tasks, and \"drift\" in workflows. The Execution Layer (Layer 3) is an \"Agent Factory\" that automates the generation, deployment, and monitoring of AI agents for validated high-ROI opportunities with built-in approval gates. The system utilizes existing foundation models and focuses on a \"Work Graph\" to identify resource consumption and opportunities for AI intervention.",
+    "team_members": [],
+    "thesis": "Narma is an \"Enterprise Agentic Brain\" for AI-first companies that aims to enable scalable AI automation. It operates by observing work patterns via desktop sensors (Layer 1), then using an \"Intelligence Layer\" (Layer 2) to detect employee intent, business value, and workflow drift. Finally, an \"Execution Layer\" (Layer 3) automates the generation, deployment, and monitoring of AI agents for high-ROI opportunities. The core innovation lies in its \"Work Graph\" approach, which leverages existing foundation models to analyze where resources are being consumed and where AI can be injected into workflows to provide assistance and drive efficiency for enterprises struggling with lack of telemetry, unreliable ROI measurement, and system drift. Narma seeks to replace or significantly augment existing manual observation and process optimization methods, delivering verifiable AI savings and improved workflow adherence. The founder's goal appears to be building a growth-stage startup given the enterprise focus and problem scale. Based on the description of the architecture and layers, the venture is at the concept or prototype stage, with the product being actively built out conceptually, if not yet physically.",
+    "stage_assessment": "idea",
+    "delivery_model": "existing_devices_software",
+    "venture_name": "narma-del-u07-r2",
+    "thesis_evolution": {
+      "detected": false
+    },
+    "core_excitement": "The founder is excited about solving the critical enterprise problem of scaling AI automation by providing granular visibility into work patterns and precise AI agent deployment.",
+    "product_requires_new_hardware": false,
+    "known_unknowns": {
+      "what_founder_seems_unsure_about": [],
+      "what_founder_has_not_told_us": [
+        "Status",
+        "Team",
+        "3 Unique Things",
+        "Initial Market",
+        "Success Vision (1y/3y)",
+        "Money (3mo)",
+        "Time (3mo)",
+        "What keeps them awake",
+        "Profile",
+        "Where Envelop adds value",
+        "Plan without Envelop",
+        "Competitors",
+        "Market Position",
+        "Open for investors",
+        "Pricing model",
+        "Hardware cost per customer",
+        "Human work per customer",
+        "Revenue assumptions",
+        "Cost assumptions",
+        "Target buyer"
+      ]
+    },
+    "founder_resources": {
+      "time_available": "",
+      "money_available": ""
+    },
+    "product_behavior_change_level": "medium",
+    "evidence_of_stage": "The venture describes a multi-layered architecture for an \"Enterprise Agentic Brain\" and its functional components, indicating a conceptual stage.",
+    "unit_economics": {
+      "source": "inferred",
+      "price_tiers": ""
+    }
+  }
+}

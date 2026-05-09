@@ -1,0 +1,195 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 463,
+  "vvs_score": 350,
+  "vvs_band": "Non-viable",
+  "vvs_dimensions": {
+    "P": 3,
+    "M": 3,
+    "C": 2,
+    "D": 2,
+    "L": 2,
+    "F": 3,
+    "E": 2
+  },
+  "raw": {
+    "delivery_model": "existing_devices_software",
+    "stage_assessment": "idea",
+    "delivery_mode": "software",
+    "core_excitement": "The founder is excited about enabling AI-first companies to achieve continuous AI optimization by precisely identifying opportunities, proving ROI, and automatically deploying agents.",
+    "gaps": [],
+    "founder_resources": {
+      "money_available": "",
+      "time_available": "",
+      "team_structure": "solo",
+      "investment_status": "not_raising"
+    },
+    "things_that_must_work": [
+      "Integration with existing foundation models and enterprise IT infrastructures.",
+      "Accuracy of desktop sensors in capturing work patterns without privacy concerns.",
+      "Reliability of the \"Brain\" in detecting employee intent and business value.",
+      "Effectiveness of the \"Agent Factory\" in generating valid and high-ROI AI agents automatically.",
+      "Acceptance of automated agent deployment and approval gates by enterprise users and management."
+    ],
+    "product_description": "narma is an \"Enterprise Agentic Brain\" with a three-layered architecture. The \"Observe\" layer uses lightweight desktop sensors to capture work patterns, including application usage, activity sequences, and time allocation. The \"Intelligence Layer\" acts as a \"Brain\" to detect employee intent, the business value of tasks, and \"drift\" where work diverges from the intended flow. The \"Execution Layer\" is an \"Agent Factory\" that automatically generates, deploys, and monitors AI agents for validated high-ROI opportunities with built-in approval gates. It uses existing foundation models and focuses on the \"Work Graph\" to identify areas for AI assistance.",
+    "core_insight": {
+      "if_wrong": "Companies will continue to struggle with AI adoption, unreliable ROI, and workflow drift, and narma will not provide a solution that scales effectively.",
+      "what": "",
+      "source_excerpt": "a single system that observes how work happens, decides what AI should do next, and auto-builds agents continuously to ensure a \"Continuous AI lift.\"",
+      "why_different": "This system automates the entire lifecycle from observation to agent deployment, leveraging existing foundation models, rather than focusing on building new LLMs."
+    },
+    "thesis_evolution": {
+      "detected": false
+    },
+    "team_members": [],
+    "thesis": "narma is developing an \"Enterprise Agentic Brain\" for AI-first companies to address the challenges of deploying AI automation at scale. The core innovation lies in its three-layered architecture: an \"Observe\" layer with desktop sensors to capture work patterns, an \"Intelligence Layer\" or \"Brain\" to detect employee intent, business value of tasks, and work divergence, and an \"Execution Layer\" or \"Agent Factory\" that automates the generation, deployment, and monitoring of AI agents for high-ROI opportunities. This system leverages existing foundation models, focusing on understanding the \"Work Graph\" to identify inefficiencies and opportunities for AI intervention. The venture aims to provide a continuous AI optimization cycle, ensuring that AI-first companies can effectively identify, quantify, and implement AI automation, thereby eliminating resource wastage and ensuring consistent AI-driven improvements in workflows. narma's positioning is to complement existing AI infrastructure by providing the observability, intelligence, and execution framework necessary to operationalize and scale AI automation within large enterprises, addressing their pain points around telemetry, ROI measurement, and drift. The founder's implicit goal is likely a growth startup, given the focus on enterprise AI automation at scale. The venture appears to be at the idea stage, with a clear concept and architectural outline but no mention of development or user acquisition.",
+    "traction_signals": [],
+    "product_requires_new_hardware": false,
+    "stated_vs_observed_stage": {
+      "mismatch_flag": false,
+      "claimed_stage": "idea",
+      "mismatch_reason": "",
+      "evidenced_stage": "idea"
+    },
+    "market_data": {
+      "alternatives": "Doing it manually or with partial solutions that don't offer end-to-end observability, intelligence, and automated agent deployment.",
+      "why_better": "narma offers a single system that observes work, decides AI actions, and auto-builds agents for continuous AI optimization, addressing telemetry, ROI, and drift issues.",
+      "buyer": "AI-first companies seeking to deploy AI automation at scale.",
+      "source": "inferred",
+      "trigger_now": "Enterprises struggle with lack of telemetry to pinpoint AI savings, unreliable ROI measurements, and constant drift in systems and human resources.",
+      "segment": "AI-first companies seeking to deploy AI automation at scale.",
+      "end_user": "AI-first companies seeking to deploy AI automation at scale."
+    },
+    "venture_name": "narma-baseline-r5",
+    "unit_economics": {
+      "price_tiers": "",
+      "source": "inferred"
+    },
+    "bottleneck": {
+      "type": "operational",
+      "why_it_blocks": "Without a developed product or initial testing, the core hypotheses of the 'Enterprise Agentic Brain' cannot be validated.",
+      "relaxed_by": "Building a functional prototype or MVP and conducting initial pilots with target customers.",
+      "current_blocker": "Lack of specific development progress or validation."
+    },
+    "evidence_of_stage": "The venture is described as a concept and architectural outline with no mention of development, users, or revenue.",
+    "what_makes_this_different": "narma's specific innovation is its comprehensive, three-layered \"Enterprise Agentic Brain\" that observes work patterns, understands intent and drift, and automatically generates and deploys AI agents. This differs from existing solutions by focusing on the entire lifecycle of AI automation deployment and continuous optimization, rather than just parts of it.",
+    "one_liner": "narma is an \"Enterprise Agentic Brain\" for AI-first companies to see, prove, and deploy AI automation at scale.",
+    "extraction_sources": [
+      {
+        "source": "system_inferred",
+        "field": "market_data.buyer",
+        "source_phrase": "AI-first companies seeking to see, prove, and deploy AI automation at scale."
+      },
+      {
+        "source_phrase": "AI-first companies seeking to see, prove, and deploy AI automation at scale.",
+        "field": "market_data.end_user",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.trigger_now",
+        "source": "founder_stated"
+      },
+      {
+        "field": "market_data.alternatives",
+        "source": "system_inferred",
+        "source_phrase": "Enterprises often struggle with a lack of telemetry to pinpoint AI savings, unreliable ROI measurements, and constant drift in systems and human resources."
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.why_better",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.anti_icp",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.price_tiers",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.pricing_model"
+      },
+      {
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.human_work_per_customer",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.revenue_assumption",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.cost_assumption",
+        "source": "missing"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "narma is an \"Enterprise Agentic Brain\" designed for AI-first companies to see, prove, and deploy AI automation at scale.",
+        "source": "system_inferred",
+        "field": "stage_assessment"
+      },
+      {
+        "source_phrase": "narma is an \"Enterprise Agentic Brain\" designed for AI-first companies to see, prove, and deploy AI automation at scale.",
+        "source": "system_inferred",
+        "field": "evidence_of_stage"
+      },
+      {
+        "field": "goal_horizon_target",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "delivery_mode",
+        "source": "system_inferred",
+        "source_phrase": "The architecture has three layers."
+      },
+      {
+        "source": "system_inferred",
+        "field": "product_requires_new_hardware",
+        "source_phrase": "lightweight desktop sensors capture work patterns including application usage, activity sequences, and time allocation."
+      },
+      {
+        "field": "product_behavior_change_level",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "system_inferred",
+        "field": "founder_resources.team_structure",
+        "source_phrase": "Not specified"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "founder_resources.relevant_skills"
+      },
+      {
+        "source_phrase": "Not specified",
+        "source": "system_inferred",
+        "field": "founder_resources.investment_status"
+      }
+    ],
+    "fields": [],
+    "contradictions": [],
+    "goal_frame": "growth",
+    "schema_version": "vr-3.1.1"
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "raw": {
+    "known_unknowns": {
+      "what_founder_seems_unsure_about": [
+        "Whether the lack of an existing hiking-specific activity-partner app signifies a real market gap or a lack of market viability."
+      ],
+      "what_founder_has_not_told_us": [
+        "Exact pricing tiers and costs for the freemium model",
+        "Specific target for user acquisition or revenue generation within a given timeframe",
+        "Detailed market size (TAM, SAM, SOM)",
+        "Financial resources available to the founder"
+      ]
+    },
+    "thesis_evolution": {
+      "detected": false
+    },
+    "product_description": "NorthPass is a consumer social app concept designed to connect solo hikers with compatible partners. It facilitates matching based on planned trail difficulty, pace, and available dates. The app will operate on a freemium model, offering a paid tier for enhanced features such as verified-identity matching and insurance-backed no-show guarantees.",
+    "stated_vs_observed_stage": {
+      "mismatch_flag": false,
+      "claimed_stage": "idea",
+      "mismatch_reason": "",
+      "evidenced_stage": "idea"
+    },
+    "team_members": [],
+    "gaps": [],
+    "stage_assessment": "idea",
+    "goal_frame": "growth",
+    "product_behavior_change_level": "medium",
+    "core_insight": {
+      "why_different": "",
+      "if_wrong": "",
+      "source_excerpt": "",
+      "what": ""
+    },
+    "things_that_must_work": [
+      "Problem validated with paying or committed users",
+      "Evidence that the matching experience is meaningfully better than existing alternatives",
+      "At least one distribution channel with demonstrated conversion"
+    ],
+    "unit_economics": {
+      "pricing_model": "hybrid",
+      "source": "inferred",
+      "price_tiers": ""
+    },
+    "what_makes_this_different": "NorthPass differentiates itself by focusing specifically on the nuanced matching needs of hikers, incorporating detailed parameters like trail difficulty, pace, and schedules. This specialized approach, coupled with trust-building features like verified identities and no-show guarantees, offers a more tailored and secure experience compared to general activity-partner platforms or route-finding apps.",
+    "bottleneck": {
+      "relaxed_by": "Conducting user interviews or running experiments to validate the problem, demonstrating a meaningfully better matching experience, and testing distribution channels to achieve conversion.",
+      "why_it_blocks": "The founder has not yet validated the core problem with target users, demonstrated a superior matching experience, or identified effective distribution channels, all of which are critical precursors to building and scaling.",
+      "type": "market",
+      "current_blocker": "Problem Validation, Product-Market Fit, and Distribution Channel Validation"
+    },
+    "extraction_sources": [
+      {
+        "field": "market_data.buyer",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "unit_economics.price_tiers"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "stage_assessment",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source": "founder_stated",
+        "source_phrase": "",
+        "field": "evidence_of_stage"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "goal_horizon_target"
+      },
+      {
+        "field": "market_data.end_user",
+        "source_phrase": "",
+        "source": "founder_stated"
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "No breakout app currently occupies the \"activity-partner matching\" space for hiking specifically; existing apps focus on route-finding (AllTrails) or general activity partners (Meetup) but not on the matching problem.",
+        "field": "market_data.trigger_now"
+      },
+      {
+        "field": "market_data.alternatives",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "field": "market_data.why_better",
+        "source": "system_inferred",
+        "source_phrase": "No breakout app currently occupies the \"activity-partner matching\" space for hiking specifically; existing apps focus on route-finding (AllTrails) or general activity partners (Meetup) but not on the matching problem."
+      },
+      {
+        "source": "founder_stated",
+        "source_phrase": "",
+        "field": "market_data.anti_icp"
+      },
+      {
+        "source": "founder_stated",
+        "source_phrase": "",
+        "field": "unit_economics.pricing_model"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.hardware_cost_per_customer"
+      },
+      {
+        "field": "unit_economics.human_work_per_customer",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "field": "unit_economics.revenue_assumption",
+        "source": "system_inferred",
+        "source_phrase": "Planned freemium conversion assumed at 3–5% based on category averages cited in blog posts."
+      },
+      {
+        "field": "unit_economics.cost_assumption",
+        "source": "system_inferred",
+        "source_phrase": "Infrastructure costs not estimated. Unit economics are a projection at the mid-single-digit-percent conversion level; nothing has been validated against real conversion data."
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "delivery_mode"
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "NorthPass is a consumer social app concept around \"hiking buddies\"",
+        "field": "product_requires_new_hardware"
+      },
+      {
+        "field": "product_behavior_change_level",
+        "source": "system_inferred",
+        "source_phrase": "pairing nearby users by matching planned trail difficulty, pace, and available dates."
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "founder_resources.team_structure"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "founder_resources.relevant_skills"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "founder_resources.investment_status"
+      }
+    ],
+    "market_data": {
+      "source": "inferred",
+      "alternatives": "AllTrails (route-finding), Meetup (general activity partners), doing it manually",
+      "end_user": "casual and intermediate solo hikers in North American metro areas with easy trail access, aged 24–38",
+      "anti_icp": "competitive trail runners, ultralight backpackers, families",
+      "segment": "consumer social app for hikers",
+      "trigger_now": "desire for hiking partners, need for safety and compatibility in outdoor activities"
+    },
+    "delivery_mode": "software",
+    "venture_name": "NorthPass",
+    "founder_resources": {
+      "relevant_skills": "UX designer at an unrelated SaaS company",
+      "investment_status": "open",
+      "time_available": "part-time (evenings and weekends)",
+      "money_available": "",
+      "team_structure": "solo"
+    },
+    "schema_version": "vr-3.1.1",
+    "fields": [],
+    "product_requires_new_hardware": false,
+    "one_liner": "NorthPass is a consumer social app that pairs solo hikers with compatible hiking buddies based on trail preferences and availability.",
+    "evidence_of_stage": "Landing page mocked in Figma but not deployed. No product in market. No waitlist collected. No user interviews conducted. Founder discussed the idea with three friends.",
+    "traction_signals": [],
+    "thesis": "NorthPass aims to address the unmet social needs of solo hikers by providing a specialized platform for finding compatible hiking partners. The core innovation lies in its focused matching algorithm, which goes beyond general activity-partner apps by considering specific parameters like trail difficulty, pace, and availability, and further enhances trust through verified identities and no-show guarantees in its paid tier. This venture targets casual and intermediate solo hikers aged 24-38 in North American metro areas with easy trail access. The problem is significant as hiking participation is growing, yet solo hikers lack a dedicated solution to safely and effectively find partners for their specific needs. The founder envisions NorthPass as a growth startup, aiming to capitalize on this growing market by offering a superior and safer alternative to existing generalized platforms or current manual methods of finding partners. The venture is currently at the idea stage, with a mocked-up landing page and initial concept discussions, but no product-market fit validation or user acquisition efforts have commenced. NorthPass positions itself as a specialized complement to existing hiking apps (like AllTrails for route-finding) and a more focused alternative to general activity apps (like Meetup) by directly addressing the niche problem of finding compatible hiking buddies.",
+    "delivery_model": "existing_devices_software",
+    "core_excitement": "The founder is excited by the opportunity to fill a clear gap in the market for a dedicated hiking companion app, leveraging growing outdoor participation trends and addressing the limitations of existing generalist platforms.",
+    "contradictions": []
+  }
+}

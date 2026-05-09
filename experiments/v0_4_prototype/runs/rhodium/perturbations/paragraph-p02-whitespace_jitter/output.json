@@ -1,0 +1,268 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "growth",
+  "raw": {
+    "stated_vs_observed_stage": {
+      "claimed_stage": "revenue",
+      "mismatch_reason": "",
+      "mismatch_flag": false,
+      "evidenced_stage": "revenue"
+    },
+    "delivery_mode": "software",
+    "traction_signals": [
+      {
+        "source": "form",
+        "signal": "Sponsor bank relationship and BIN live",
+        "evidence": "Rhodium's sponsor bank relationship was signed 14 months ago and the BIN is live.",
+        "confidence": "high"
+      },
+      {
+        "confidence": "high",
+        "signal": "Customer growth",
+        "evidence": "22 platform customers in production.",
+        "source": "form"
+      },
+      {
+        "signal": "Revenue growth",
+        "evidence": "$860K monthly recurring revenue, up from $340K twelve months ago. Annual revenue run-rate $10.3M.",
+        "source": "form",
+        "confidence": "high"
+      },
+      {
+        "source": "form",
+        "signal": "Funding rounds",
+        "evidence": "Series A closed eight months ago at a $90M post-money valuation; Series B process initiated with three term sheets received.",
+        "confidence": "high"
+      },
+      {
+        "evidence": "Regulatory exam passed with no material findings last quarter.",
+        "signal": "Regulatory compliance",
+        "source": "form",
+        "confidence": "high"
+      }
+    ],
+    "core_insight": {
+      "why_different": "Rhodium handles the full complexity of BIN sponsorship, KYC, settlement, and compliance, abstracting away the regulatory burden from SaaS platforms.",
+      "source_excerpt": "Rhodium is a fintech issuing embedded-finance debit cards and treasury accounts for vertical-SaaS platforms that want to offer a bank-like experience to their own customers without becoming a bank. Rhodium handles the BIN sponsorship, KYC orchestration, settlement, and compliance reporting; the platform customer brands and controls the UX.",
+      "if_wrong": "If vertical-SaaS platforms are not interested in offering embedded financial services, or if the regulatory/operational overhead is still too high even with Rhodium, then Rhodium's business model fails.",
+      "what": ""
+    },
+    "market_data": {
+      "tam": "$7B+",
+      "why_better": "Rhodium handles BIN sponsorship, KYC orchestration, settlement, and compliance reporting, offloading regulatory and operational burden from the SaaS platform.",
+      "segment": "embedded-finance for vertical-SaaS platforms",
+      "source": "form",
+      "buyer": "finance or product leadership of vertical-SaaS platforms",
+      "trigger_now": "Vertical-SaaS platforms wanting to offer a bank-like experience and increase revenue without becoming a bank.",
+      "competitors": [
+        "three funded competitors pursuing adjacent segments"
+      ],
+      "end_user": "end-customer businesses of vertical-SaaS platforms",
+      "alternatives": "vertical-SaaS platforms trying to build internal banking capabilities or not offering these services"
+    },
+    "schema_version": "vr-3.1.1",
+    "things_that_must_work": [
+      "Continued positive regulatory standing",
+      "Ability to form new sponsor-bank or direct-issuer relationships",
+      "Successful conversion of Series B term sheets",
+      "Sustainable CAC and LTV economics in the long term"
+    ],
+    "contradictions": [],
+    "fields": [],
+    "one_liner": "Rhodium provides embedded finance infrastructure to vertical SaaS platforms, enabling them to offer branded debit cards and treasury accounts to their business customers.",
+    "product_description": "Rhodium is a fintech that issues embedded-finance debit cards and treasury accounts for vertical-SaaS platforms. These platforms want to offer a bank-like experience to their customers without becoming banks themselves. Rhodium manages BIN sponsorship, KYC orchestration, settlement, and compliance reporting, while the platform brands and controls the UX.",
+    "goal_frame": "growth",
+    "gaps": [],
+    "what_makes_this_different": "Rhodium's core innovation is providing a complete, compliant, and branded embedded finance solution (debit cards and treasury accounts) that offloads the entire regulatory and operational burden from vertical SaaS platforms, allowing them to rapidly deploy bank-like services to their customers.",
+    "extraction_sources": [
+      {
+        "source": "founder_stated",
+        "field": "market_data.buyer",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "for vertical-SaaS platforms that want to offer a bank-like experience to their own customers",
+        "field": "market_data.end_user",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "market_data.trigger_now"
+      },
+      {
+        "source": "system_inferred",
+        "field": "market_data.alternatives",
+        "source_phrase": "for vertical-SaaS platforms that want to offer a bank-like experience to their own customers without becoming a bank"
+      },
+      {
+        "field": "market_data.why_better",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "market_data.anti_icp"
+      },
+      {
+        "source": "founder_stated",
+        "field": "unit_economics.price_tiers",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "Blended take rate 1.8% of card-spend GMV plus a $0.40 per-transaction fee",
+        "field": "unit_economics.pricing_model",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.human_work_per_customer",
+        "source": "missing"
+      },
+      {
+        "source": "system_inferred",
+        "field": "unit_economics.revenue_assumption",
+        "source_phrase": "Blended take rate 1.8% of card-spend GMV plus a $0.40 per-transaction fee. Average customer GMV $14M annualized. Customer gross margin 67% after sponsor-bank revenue share and network interchange splits."
+      },
+      {
+        "source_phrase": "Customer gross margin 67% after sponsor-bank revenue share and network interchange splits.",
+        "source": "system_inferred",
+        "field": "unit_economics.cost_assumption"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "stage_assessment",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "field": "evidence_of_stage",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "field": "goal_horizon_target",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "Rhodium is a fintech issuing embedded-finance debit cards and treasury accounts",
+        "source": "system_inferred",
+        "field": "delivery_mode"
+      },
+      {
+        "source_phrase": "Rhodium is a fintech issuing embedded-finance debit cards and treasury accounts",
+        "field": "product_requires_new_hardware",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "field": "product_behavior_change_level",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.team_structure",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.relevant_skills",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "Series B process initiated with three term sheets received.",
+        "field": "founder_resources.investment_status",
+        "source": "system_inferred"
+      }
+    ],
+    "delivery_model": "existing_devices_software",
+    "venture_name": "rhodium-paragraph-p02-whitespace_jitter",
+    "known_unknowns": {
+      "what_founder_has_not_told_us": [
+        "Specific long-term vision or success metrics (1-year/3-year goals).",
+        "Detailed market sizing for each specific vertical-SaaS segment they target.",
+        "Specific strategies for fending off competitors or expanding beyond current verticals.",
+        "Behavior change required from customers of their vertical-SaaS clients.",
+        "Detailed breakdown of team responsibilities beyond general areas.",
+        "Exact time available from founders for the venture."
+      ],
+      "what_founder_seems_unsure_about": []
+    },
+    "product_requires_new_hardware": false,
+    "thesis_evolution": {
+      "detected": false
+    },
+    "core_excitement": "The founder is excited by the opportunity to provide the underlying infrastructure for vertical SaaS platforms to embed bank-like financial services, solving their complex compliance and operational challenges.",
+    "team_members": [
+      {
+        "source": "form",
+        "name": "Co-founder 1",
+        "background": "Tier-1 issuing platform",
+        "role": "ex-Head of Risk",
+        "confidence": "high"
+      },
+      {
+        "confidence": "high",
+        "role": "ex-CTO",
+        "name": "Co-founder 2",
+        "background": "fintech that exited to a top-five card network",
+        "source": "form"
+      },
+      {
+        "source": "form",
+        "name": "Co-founder 3",
+        "background": "18 years in bank examinations",
+        "role": "Compliance Officer",
+        "confidence": "high"
+      },
+      {
+        "source": "form",
+        "name": "Co-founder 4",
+        "background": "built out the embedded-finance channel at a competitor",
+        "role": "Enterprise Sales Leader",
+        "confidence": "high"
+      },
+      {
+        "role": "Unspecified",
+        "confidence": "high",
+        "source": "form",
+        "background": "27 across engineering, compliance, and go-to-market",
+        "name": "Team"
+      }
+    ],
+    "stage_assessment": "growth",
+    "thesis": "Rhodium is redefining embedded finance by empowering vertical SaaS platforms to offer comprehensive banking services—debit cards and treasury accounts—directly to their end-customers. This innovation allows these platforms to deepen their value proposition and capture new revenue streams without the complexities and regulatory burdens of becoming a bank themselves. Rhodium acts as the crucial infrastructure layer, handling the intricate backend processes of BIN sponsorship, KYC, settlement, and compliance, while the SaaS platforms maintain complete control over branding and user experience. The venture is specifically targeting established vertical SaaS platforms that already manage money movement for their business customers in sectors like operational-tech, property management, healthcare, and restaurant operations. This approach leverages existing customer relationships and money flows, offering a significant value-add. The problem Rhodium solves is the massive operational and regulatory overhead traditionally associated with financial services, enabling SaaS platforms to quickly and efficiently embed financial products. The founder's goal is clearly growth-oriented, aiming to capture leadership in a contested but rapidly expanding market. The venture is currently in a growth stage, evidenced by significant recurring revenue, established customer base, and a proven distribution model. The venture is positioned to complement and enable vertical SaaS platforms, allowing them to expand their offerings without replacing core banking functions, but rather integrating them seamlessly into their existing ecosystem. This is a critical distinction, as it allows Rhodium to partner with, rather than compete directly against, traditional financial institutions, while empowering their SaaS clients to deliver a more holistic financial experience to their users.",
+    "bottleneck": {
+      "why_it_blocks": "Sustaining growth requires continuous refinement of distribution, product, and regulatory navigation.",
+      "type": "market",
+      "current_blocker": "Advancing to scale and continuing rapid growth in a contested market.",
+      "relaxed_by": "Proven distribution motion that does not depend on founder heroics, regulatory standing for new relationships, and a reproducible path from prospect to live customer."
+    },
+    "unit_economics": {
+      "source": "form",
+      "price_tiers": "1.8% of card-spend GMV plus $0.40 per-transaction fee",
+      "cost_assumption": "known",
+      "pricing_model": "hybrid",
+      "revenue_assumption": "known"
+    },
+    "founder_resources": {
+      "time_available": "Not specified",
+      "team_structure": "team",
+      "investment_status": "not_raising",
+      "relevant_skills": "Risk management, fintech CTO, compliance, enterprise sales",
+      "money_available": "$62M cash remaining"
+    },
+    "evidence_of_stage": "Annual revenue run-rate $10.3M, 22 platform customers in production, Series A closed, Series B initiated, regulatory exam passed."
+  }
+}

@@ -1,0 +1,211 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 553,
+  "vvs_score": 500,
+  "vvs_band": "Possible, but major gaps",
+  "vvs_dimensions": {
+    "P": 4,
+    "M": 3,
+    "C": 3,
+    "D": 2,
+    "L": 3,
+    "F": 3,
+    "E": 2
+  },
+  "raw": {
+    "gaps": [],
+    "core_excitement": "The founder seems excited by the potential to leverage existing IoT devices to create a proactive, intelligent system that genuinely improves the lives of seniors and simplifies caregiving for their adult children.",
+    "delivery_mode": "hybrid",
+    "stage_assessment": "idea",
+    "delivery_model": "existing_devices_software",
+    "founder_resources": {
+      "money_available": "Not specified",
+      "time_available": "Not specified"
+    },
+    "team_members": [],
+    "thesis_evolution": {
+      "detected": false
+    },
+    "core_insight": {
+      "what": "",
+      "if_wrong": "If seniors do not respond to or adopt proactive, context-aware reminders, or if the integration with existing smart home devices proves overly complex or unreliable, the platform will fail to deliver its promised benefits, and user engagement will be low.",
+      "source_excerpt": "This population frequently neglects essential daily tasks like taking medicine, exercising, or limiting TV time without proactive reminders.",
+      "why_different": "HiMom distinguishes itself by offering proactive, rule-based aid triggered by real-time data from connected devices, moving beyond simple reminders to contextually relevant suggestions and actions."
+    },
+    "product_description": "HiMom is a programmable platform and marketplace designed for seniors (75+) and their adult children. Adult children use a mobile app to define and deliver daily routines, such as medication and lunchtime alerts. The system integrates with existing smart home devices (e.g., Amazon Echo, smart watches, TVs) to trigger proactive actions based on real-time data, like prompting brain-training quizzes or suggesting walks based on activity levels. The platform is also a marketplace for integrating new actions, services, and third-party providers with ease.",
+    "things_that_must_work": [
+      "Seamless integration with diverse smart home devices (e.g., Amazon Echo, smart watches, smart TVs).",
+      "Development of a user-friendly mobile application for adult children to manage routines and services.",
+      "Successful onboarding of third-party service providers onto the marketplace.",
+      "Trust and adoption by both seniors (end-users) and their adult children (buyers/managers).",
+      "Data privacy and security protocols for sensitive health and behavior data."
+    ],
+    "traction_signals": [],
+    "thesis": "HiMom aims to enhance the quality of life for seniors (75+) and support their adult children in providing care. The venture plans to achieve this through a programmable platform and marketplace that integrates smart home devices (like Amazon Echo) with a mobile application. The core innovation lies in its proactive, rule-based aid delivery, triggered by real-time data from connected devices, which goes beyond simple reminders to suggest actions based on behavior. This positions HiMom as a complementary solution to existing smart home technologies, adding a layer of geriatric-specific intelligence and services. The venture targets adult children as the buyers and managers, who will use the mobile app to set up routines and integrate third-party services for their senior parents. The primary problem it addresses is the frequent neglect of essential daily tasks by seniors, leading to a decline in their well-being. The founder's goal appears to be a growth startup, given the emphasis on a \"programmable platform and marketplace\" with \"3-click simplicity\" for integrating new providers and services, suggesting a scalable model rather than a niche lifestyle business. Based on the description, the venture is currently at the idea stage, with the concept fully articulated but no evidence of a built product or user traction.",
+    "bottleneck": {
+      "type": "technical",
+      "current_blocker": "Building the core platform and marketplace for integrating devices and services.",
+      "why_it_blocks": "Without a functioning platform that can connect to various smart devices and allow third-party integration, the core value proposition of proactive aid and a service marketplace cannot be delivered.",
+      "relaxed_by": "Developing a robust, scalable technical backend that facilitates device integration and a user-friendly interface for adult children and third-party developers."
+    },
+    "unit_economics": {
+      "source": "form",
+      "pricing_model": "subscription",
+      "revenue_assumption": "unknown",
+      "price_tiers": "",
+      "cost_assumption": "unknown"
+    },
+    "market_data": {
+      "why_better": "Provides proactive, rule-based aid and social connectivity, leveraging smart home devices and a mobile app to improve quality of life and support caregiving, beyond simple reminders afforded by existing alternatives.",
+      "alternatives": "Doing it manually",
+      "source": "form",
+      "buyer": "Adult children of seniors aged 75 and older.",
+      "trigger_now": "Seniors frequently neglect essential daily tasks like taking medicine, exercising, or limiting TV time without proactive reminders.",
+      "end_user": "Aging population aged 75 and older.",
+      "segment": "Aging population (75+) and their adult children."
+    },
+    "venture_name": "himom-del-u09-r4",
+    "product_requires_new_hardware": false,
+    "stated_vs_observed_stage": {
+      "mismatch_reason": "",
+      "claimed_stage": "idea",
+      "evidenced_stage": "idea",
+      "mismatch_flag": false
+    },
+    "known_unknowns": {
+      "what_founder_seems_unsure_about": [],
+      "what_founder_has_not_told_us": [
+        "Specific details about the team and their relevant experience.",
+        "The current status of development (e.g., mocks, wireframes, prototype).",
+        "Any artifacts or signals of user interest or validation.",
+        "Their initial market strategy and target demographics beyond age.",
+        "A concrete vision for success in 1 and 3 years.",
+        "Financial resources available for the next three months.",
+        "What keeps them awake at night (key challenges or risks).",
+        "Perceived competitors and their market positioning.",
+        "Whether they are open to or actively seeking investors.",
+        "Their plan if they do not receive support from Envelop."
+      ]
+    },
+    "goal_frame": "growth",
+    "product_behavior_change_level": "medium",
+    "contradictions": [],
+    "fields": [],
+    "extraction_sources": [
+      {
+        "source_phrase": "",
+        "field": "market_data.buyer",
+        "source": "founder_stated"
+      },
+      {
+        "source": "founder_stated",
+        "field": "market_data.end_user",
+        "source_phrase": ""
+      },
+      {
+        "field": "market_data.trigger_now",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source": "system_inferred",
+        "field": "market_data.alternatives",
+        "source_phrase": "This population frequently neglects essential daily tasks like taking medicine, exercising, or limiting TV time without proactive reminders."
+      },
+      {
+        "source_phrase": "HiMom is a programmable platform and marketplace designed to provide proactive aid and social connectivity for the aging population (75+) through a combination of smart home devices (e.g., Amazon Echo) and a mobile application for their adult children.",
+        "field": "market_data.why_better",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.anti_icp",
+        "source": "missing"
+      },
+      {
+        "field": "unit_economics.price_tiers",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "HiMom is a programmable platform and marketplace designed to provide proactive aid and social connectivity for the aging population (75+) through a combination of smart home devices (e.g., Amazon Echo) and a mobile application for their adult children.",
+        "field": "unit_economics.pricing_model",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.hardware_cost_per_customer"
+      },
+      {
+        "field": "unit_economics.human_work_per_customer",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.revenue_assumption",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.cost_assumption",
+        "source": "missing"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "HiMom is a programmable platform and marketplace designed to provide proactive aid and social connectivity for the aging population (75+) through a combination of smart home devices (e.g., Amazon Echo) and a mobile application for their adult children.",
+        "source": "system_inferred",
+        "field": "stage_assessment"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "evidence_of_stage"
+      },
+      {
+        "source_phrase": "",
+        "field": "goal_horizon_target",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "delivery_mode"
+      },
+      {
+        "field": "product_requires_new_hardware",
+        "source": "system_inferred",
+        "source_phrase": "The system uses connected devices (watches, TVs) to trigger actions based on real-time data"
+      },
+      {
+        "field": "product_behavior_change_level",
+        "source": "system_inferred",
+        "source_phrase": "The system uses connected devices (watches, TVs) to trigger actions based on real-time data, such as prompting a brain-training quiz if the user has watched TV for over 120 minutes or suggesting a walk if daily steps are under 100."
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "founder_resources.team_structure"
+      },
+      {
+        "source": "missing",
+        "field": "founder_resources.relevant_skills",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "founder_resources.investment_status"
+      }
+    ],
+    "what_makes_this_different": "HiMom's innovation lies in its programmable platform that provides proactive, rule-based aid and social connectivity, triggered by real-time data from connected devices, going beyond simple scheduled reminders to offer context-aware interventions for seniors.",
+    "one_liner": "HiMom is a programmable platform and marketplace that provides proactive aid and social connectivity for seniors aged 75 and older, managed by their adult children via a mobile app.",
+    "schema_version": "vr-3.1.1"
+  }
+}

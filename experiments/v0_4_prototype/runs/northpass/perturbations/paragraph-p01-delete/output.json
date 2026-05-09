@@ -1,0 +1,198 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "raw": {
+    "delivery_model": "existing_devices_software",
+    "what_makes_this_different": "This venture focuses specifically on the \"activity-partner matching\" problem for casual and intermediate solo hikers, which is a gap not currently filled by existing generic activity-partner apps or hiking route-finding apps.",
+    "bottleneck": {
+      "relaxed_by": "Conducting user interviews, testing matching experience, and securing early adopters or commitments.",
+      "why_it_blocks": "Without validated demand and a distinctive value proposition, further development is speculative.",
+      "current_blocker": "Problem validation with paying or committed users and evidence of meaningfully better matching experience.",
+      "type": "market"
+    },
+    "thesis_evolution": {
+      "detected": false
+    },
+    "one_liner": "A platform to match casual and intermediate solo hikers for shared trail experiences in North American metro areas.",
+    "extraction_sources": [
+      {
+        "field": "market_data.buyer",
+        "source": "system_inferred",
+        "source_phrase": "Casual and intermediate solo hikers in North American metro areas with easy trail access"
+      },
+      {
+        "field": "market_data.end_user",
+        "source": "founder_stated",
+        "source_phrase": "Casual and intermediate solo hikers in North American metro areas with easy trail access"
+      },
+      {
+        "source_phrase": "No breakout app currently occupies the \"activity-partner matching\" space for hiking specifically; existing apps focus on route-finding (AllTrails) or general activity partners (Meetup) but not on the matching problem. Whether this is a real gap or a proven non-market is not yet clear from the current evidence.",
+        "field": "market_data.trigger_now",
+        "source": "system_inferred"
+      },
+      {
+        "field": "market_data.alternatives",
+        "source": "founder_stated",
+        "source_phrase": "existing apps focus on route-finding (AllTrails) or general activity partners (Meetup)"
+      },
+      {
+        "source": "system_inferred",
+        "field": "market_data.why_better",
+        "source_phrase": "No breakout app currently occupies the \"activity-partner matching\" space for hiking specifically; existing apps focus on route-finding (AllTrails) or general activity partners (Meetup) but not on the matching problem."
+      },
+      {
+        "field": "market_data.anti_icp",
+        "source": "founder_stated",
+        "source_phrase": "Anti-ICP: competitive trail runners (have clubs already), ultralight backpackers (solo by preference), families (existing family-trip channels)"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.price_tiers",
+        "source_phrase": ""
+      },
+      {
+        "source": "system_inferred",
+        "field": "unit_economics.pricing_model",
+        "source_phrase": "Planned freemium conversion assumed at 3–5% based on category averages cited in blog posts."
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.hardware_cost_per_customer"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.human_work_per_customer"
+      },
+      {
+        "field": "unit_economics.revenue_assumption",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.cost_assumption",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "No product in market. No waitlist collected. No user interviews conducted with the target persona. Landing page mocked in Figma but not deployed.",
+        "field": "stage_assessment",
+        "source": "system_inferred"
+      },
+      {
+        "field": "evidence_of_stage",
+        "source": "system_inferred",
+        "source_phrase": "Landing page mocked in Figma but not deployed."
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "goal_horizon_target"
+      },
+      {
+        "field": "delivery_mode",
+        "source": "founder_stated",
+        "source_phrase": "Venture Description: Casual and intermediate solo hikers in North American metro areas with easy trail access"
+      },
+      {
+        "source_phrase": "existing apps focus on route-finding (AllTrails) or general activity partners (Meetup)",
+        "field": "product_requires_new_hardware",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "No breakout app currently occupies the \"activity-partner matching\" space for hiking specifically",
+        "field": "product_behavior_change_level",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "Solo founder",
+        "source": "founder_stated",
+        "field": "founder_resources.team_structure"
+      },
+      {
+        "source_phrase": "Founder's day job is as a UX designer at an unrelated SaaS company.",
+        "source": "founder_stated",
+        "field": "founder_resources.relevant_skills"
+      },
+      {
+        "source_phrase": "No technical co-founder yet. No advisors signed on.",
+        "field": "founder_resources.investment_status",
+        "source": "founder_stated"
+      }
+    ],
+    "stated_vs_observed_stage": {
+      "mismatch_reason": "",
+      "evidenced_stage": "idea",
+      "claimed_stage": "idea",
+      "mismatch_flag": false
+    },
+    "product_requires_new_hardware": false,
+    "things_that_must_work": [
+      "The core matching algorithm must accurately and satisfactorily pair hikers.",
+      "Users must be willing to adopt a new platform for finding hiking partners.",
+      "Effective distribution channels must be identified and leveraged to reach the target audience."
+    ],
+    "core_insight": {
+      "source_excerpt": "No breakout app currently occupies the \"activity-partner matching\" space for hiking specifically; existing apps focus on route-finding (AllTrails) or general activity partners (Meetup) but not on the matching problem. Whether this is a real gap or a proven non-market is not yet clear from the current evidence.",
+      "why_different": "Existing solutions either focus on route-finding or general activity partners, lacking dedicated matching for the specific needs of solo hikers.",
+      "if_wrong": "If solo hikers do not perceive a significant need for a dedicated matching platform, or if their existing methods (general apps, informal networks) suffice, the venture will fail to gain traction.",
+      "what": ""
+    },
+    "stage_assessment": "idea",
+    "evidence_of_stage": "Landing page mocked in Figma but not deployed.",
+    "contradictions": [],
+    "known_unknowns": {
+      "what_founder_seems_unsure_about": [
+        "Whether the lack of a breakout activity-partner matching app for hiking is a 'real gap or a proven non-market'."
+      ],
+      "what_founder_has_not_told_us": [
+        "Exact financial resources available for the venture (money available, infrastructure costs, capital for operations).",
+        "Specific metrics for success (1-year and 3-year vision).",
+        "Detailed pricing strategy beyond freemium conversion assumption.",
+        "Go-to-market strategy or specific distribution channels.",
+        "Detailed competitive analysis beyond general categories of apps.",
+        "What keeps the founder awake at night."
+      ]
+    },
+    "fields": [],
+    "team_members": [],
+    "delivery_mode": "software",
+    "founder_resources": {
+      "money_available": "unknown",
+      "time_available": "part-time (evenings and weekends)",
+      "relevant_skills": "UX designer",
+      "investment_status": "not_raising",
+      "team_structure": "solo"
+    },
+    "thesis": "This venture aims to address the unmet need for a dedicated activity-partner matching platform specifically for casual and intermediate solo hikers in North American metropolitan areas with easy trail access. The innovation lies in providing a focused solution for a specific niche, moving beyond general activity partners or route-finding apps. The target user is a solo hiker, aged 24-38, who wants a companion for their outdoor pursuits. The problem it solves is the difficulty of finding suitable hiking partners, a problem that is likely to become more frequent and severe given the growth in hiking participation. The founder's goal appears to be a growth startup, given the intention to build a dedicated platform and the focus on unit economics projections, though at a very early stage. The venture is currently at the idea stage, with no product in the market, no waitlist, and no user interviews conducted. The founder is a UX designer, which is a relevant skill for developing the platform, but is currently working part-time on the venture. The venture aims to replace existing suboptimal methods of finding hiking partners (like general activity apps or word-of-mouth) with a specialized platform.",
+    "unit_economics": {
+      "pricing_model": "subscription",
+      "conversion_rate": "3-5%",
+      "source": "form",
+      "price_tiers": ""
+    },
+    "market_data": {
+      "segment": "Casual and intermediate solo hikers in North American metro areas with easy trail access",
+      "end_user": "Casual and intermediate solo hikers in North American metro areas with easy trail access",
+      "why_better": "Dedicated focus on activity-partner matching for solo hikers, addressing a specific unmet need.",
+      "source": "form",
+      "trigger_now": "The desire of solo hikers to find partners for their outdoor activities, driven by the growth in hiking participation.",
+      "anti_icp": "competitive trail runners, ultralight backpackers, families",
+      "buyer": "Casual and intermediate solo hikers in North American metro areas with easy trail access",
+      "alternatives": "AllTrails (route-finding), Meetup (general activity partners), doing it manually (nothing)"
+    },
+    "product_description": "A platform designed to connect casual and intermediate solo hikers in North American metropolitan areas, enabling them to find compatible partners for trail excursions. It differentiates itself from existing apps by focusing exclusively on the \"activity-partner matching\" problem for hiking, rather than route-finding or general activity partners.",
+    "goal_frame": "growth",
+    "product_behavior_change_level": "medium",
+    "traction_signals": [],
+    "venture_name": "northpass-paragraph-p01-delete",
+    "gaps": [],
+    "schema_version": "vr-3.1.1"
+  }
+}

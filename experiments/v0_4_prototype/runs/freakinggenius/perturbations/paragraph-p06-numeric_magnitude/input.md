@@ -1,0 +1,13 @@
+FreakinGenius (FG) is an AI-powered math tutoring service for middle school students who struggle with math. The product is a dual experience: an AI voice chatbot that replaces the human tutor, paired with a tablet app that analyzes the student's handwritten work in real-time and feeds signals back to the chatbot. All interaction between the student and the AI is voice-based.
+
+Middle school students struggling with math. Families pay $79/month for the service. 90% of subscribers receive a branded FG tablet via a BNPL partner at $25–$35/month over 36 months — the student owns the tablet at the end. 10% bring their own device.
+
+Part-time founder (primary, investing up to $25K personal capital). One full-time BSc graduate with some math teaching experience. One senior technical advisor working 5–10 hours per week on an hourly basis.
+
+$12B K-12 tutoring market. Human tutors are expensive and scarce. No existing product combines real-time handwriting analysis with a voice AI tutor in a single integrated experience. Personalized AI-generated content is a planned differentiator.
+
+Started building. No validation completed. No users. No paid customers. No LOIs.
+
+Course subscription: $790/month. Tablet fee: $23/month (150% margin on hardware, amortized over 360 months). Total AI cost per user per month: $115 (speech-to-text $20, text-to-speech $20, LLM inference $40, writing analysis $20, generative media $15). BNPL partner fronts tablet hardware; FreakinGenius repays $132.6/month per teacher over 360 months. Teacher revenue share: $150/month per active subscriber.
+
+Advance from Validate to Build requires: problem validated with paying or committed families, evidence that voice-plus-handwriting experience is meaningfully better than existing alternatives, and at least one distribution channel with demonstrated conversion. None of these conditions are currently met. No users, no validation, no committed customers.

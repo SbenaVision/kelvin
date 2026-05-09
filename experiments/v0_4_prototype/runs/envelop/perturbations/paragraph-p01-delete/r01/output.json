@@ -1,0 +1,223 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "pre-seed",
+  "raw": {
+    "founder_resources": {
+      "team_structure": "cofounder",
+      "investment_status": "not_raising",
+      "relevant_skills": "strategy, product, senior engineering",
+      "money_available": "$1M (founder committed capital)",
+      "time_available": "20 hours/week (total for two co-founders)"
+    },
+    "contradictions": [],
+    "team_members": [
+      {
+        "name": "SBA",
+        "source": "form",
+        "role": "Strategy and Product",
+        "background": "Not specified",
+        "confidence": "high"
+      },
+      {
+        "role": "Senior Engineer",
+        "background": "Not specified",
+        "confidence": "high",
+        "name": "Rotem",
+        "source": "form"
+      }
+    ],
+    "traction_signals": [
+      {
+        "signal": "Platform built and deployed",
+        "evidence": "Platform built and deployed.",
+        "confidence": "high",
+        "source": "form"
+      },
+      {
+        "confidence": "high",
+        "source": "form",
+        "signal": "Ventures onboarding",
+        "evidence": "Five ventures being onboarded (FreakingGenius, Inu, plus three more)."
+      },
+      {
+        "signal": "Waitlist of potential customers",
+        "evidence": "A waitlist of 500+ potential customers has been collected and validated.",
+        "confidence": "high",
+        "source": "form"
+      },
+      {
+        "confidence": "high",
+        "source": "form",
+        "signal": "Committed founder capital",
+        "evidence": "Founder has committed $1M to make it happen."
+      }
+    ],
+    "core_insight": {
+      "source_excerpt": "No existing product combines honest AI assessment with personalized execution and agent-driven task completion in one platform. ChatGPT gives generic advice. Consultants are slow and expensive. The gap is a product that does the work, not just the thinking.",
+      "if_wrong": "If domain experts primarily seek advice without execution support, or if they prefer a purely DIY approach, then Envelop will fail to attract and retain a sufficient user base.",
+      "why_different": "It directly fills the gap between generic AI advice and expensive human consultants by offering an integrated solution that provides both strategic guidance and practical execution support.",
+      "what": ""
+    },
+    "evidence_of_stage": "Platform built and deployed. Five ventures being onboarded. A waitlist of 500+ potential customers has been collected and validated.",
+    "unit_economics": {
+      "ltv": "$1,960",
+      "pricing_model": "subscription",
+      "price_tiers": "Starter $149/month, Launch $249/month, Momentum $449/month",
+      "breakeven": "month 6",
+      "revenue_assumption": "estimated",
+      "source": "form"
+    },
+    "thesis": "Harness is building Envelop, an AI-powered platform designed to transform domain experts with business ideas into successful entrepreneurs. The core innovation lies in combining honest AI assessment with personalized, agent-driven task completion, moving beyond generic advice to actually \"do the work.\" This targets a specific user: the domain expert who has identified a business opportunity but is paralyzed by a lack of conviction, a starting point, or a clear plan. The problem is severe and frequent, as millions of such experts globally fail to act on their ideas, turning to ineffective solutions like ChatGPT or expensive consultants. Envelop aims to replace these alternatives by offering a product that not only strategizes but also executes. The founder's goal is a growth startup, evidenced by projected profits of $7.6M in 3 years and a clear path to breakeven, indicating ambitions beyond a lifestyle business. The venture is currently at the \"launched\" stage, with a platform built and deployed, five ventures actively onboarding, and initial user activity beginning.",
+    "product_behavior_change_level": "medium",
+    "product_requires_new_hardware": false,
+    "stage_assessment": "pre-seed",
+    "thesis_evolution": {
+      "detected": false,
+      "document_thesis": "None",
+      "form_thesis": "Domain experts with a real business idea who lack conviction, a starting point, and a plan built for them. They currently turn to ChatGPT and get generic advice, or hire consultants and go nowhere.",
+      "key_shift": "None"
+    },
+    "schema_version": "vr-3.1.1",
+    "core_excitement": "The founder is excited by the opportunity to provide a solution that truly closes the gap for domain experts, moving beyond mere advice to actively facilitating the launch and growth of their ventures through agent-driven task completion.",
+    "delivery_model": "existing_devices_software",
+    "market_data": {
+      "end_user": "Domain experts",
+      "anti_icp": "idea shoppers, DIY builders, people with insufficient budget or no urgency",
+      "why_better": "Combines honest AI assessment with personalized execution and agent-driven task completion, actively doing the work rather than just providing advice.",
+      "source": "form",
+      "buyer": "Domain experts",
+      "segment": "Domain experts with business ideas who lack conviction and a plan.",
+      "alternatives": "ChatGPT (generic advice), consultants (slow, expensive)",
+      "trigger_now": "The inability to act on a business opportunity due to lack of conviction, a starting point, or a plan."
+    },
+    "fields": [],
+    "product_description": "Envelop is an AI-powered platform that addresses the bottleneck faced by domain experts with business ideas who lack conviction, a starting point, or a concrete plan. Unlike generic AI tools like ChatGPT or expensive consultants, Envelop aims to provide honest AI assessment combined with personalized execution and agent-driven task completion. The platform is designed to \"do the work\" for the founders, not just provide advice.",
+    "what_makes_this_different": "Envelop distinguishes itself by integrating AI-driven assessment with agent-driven task completion, offering a solution that actively 'does the work' for the founder, rather than just providing advice. This contrasts with ChatGPT's generic responses and consultants' high costs and slow pace.",
+    "goal_frame": "growth",
+    "delivery_mode": "software",
+    "one_liner": "Envelop is an AI-powered platform that transforms domain experts with business ideas into entrepreneurs by providing personalized assessment and agent-driven task completion.",
+    "extraction_sources": [
+      {
+        "source": "system_inferred",
+        "source_phrase": "Domain experts with a real business idea who lack conviction, a starting point, and a plan built for them.",
+        "field": "market_data.buyer"
+      },
+      {
+        "source_phrase": "Domain experts with a real business idea who lack conviction, a starting point, and a plan built for them.",
+        "field": "market_data.end_user",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.trigger_now",
+        "source": "founder_stated"
+      },
+      {
+        "source": "founder_stated",
+        "source_phrase": "",
+        "field": "market_data.alternatives"
+      },
+      {
+        "source": "founder_stated",
+        "source_phrase": "",
+        "field": "market_data.why_better"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.anti_icp",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.price_tiers",
+        "source": "founder_stated"
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "Subscription mix: Starter $149/month (25%), Launch $249/month (60%), Momentum $449/month (15%).",
+        "field": "unit_economics.pricing_model"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "unit_economics.hardware_cost_per_customer"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.human_work_per_customer",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "Blended ARPU: $326/month. Average tenure: 6 months. Estimated LTV: $1,960. Breakeven: month 6. Cash to breakeven: $7K. 3-year projected profit: $7.6M.",
+        "field": "unit_economics.revenue_assumption",
+        "source": "system_inferred"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "unit_economics.cost_assumption"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "Platform built and deployed. Five ventures being onboarded (FreakingGenius, Inu, plus three more). Operating Partner chat live on direct Anthropic API. Assessment pipeline running end-to-end. Viral share mechanic designed but not yet validated. No paid subscribers yet.",
+        "field": "stage_assessment"
+      },
+      {
+        "source_phrase": "Platform built and deployed. Five ventures being onboarded (FreakingGenius, Inu, plus three more). Operating Partner chat live on direct Anthropic API. Assessment pipeline running end-to-end. Viral share mechanic designed but not yet validated. No paid subscribers yet.",
+        "field": "evidence_of_stage",
+        "source": "system_inferred"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "goal_horizon_target"
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "Platform built and deployed.",
+        "field": "delivery_mode"
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "Platform built and deployed.",
+        "field": "product_requires_new_hardware"
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "Millions of domain experts globally spot business opportunities but never act. No existing product combines honest AI assessment with personalized execution and agent-driven task completion in one platform. ChatGPT gives generic advice. Consultants are slow and expensive. The gap is a product that does the work, not just the thinking.",
+        "field": "product_behavior_change_level"
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.team_structure",
+        "source": "founder_stated"
+      },
+      {
+        "source": "founder_stated",
+        "source_phrase": "",
+        "field": "founder_resources.relevant_skills"
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "No outside funding. Bootstrap-only.",
+        "field": "founder_resources.investment_status"
+      }
+    ],
+    "things_that_must_work": [
+      "Integration with Anthropic API"
+    ],
+    "venture_name": "envelop-paragraph-p01-delete-r1",
+    "gaps": [],
+    "stated_vs_observed_stage": {
+      "evidenced_stage": "prototype",
+      "mismatch_flag": true,
+      "claimed_stage": "revenue",
+      "mismatch_reason": "Founder claims advancement to build with all conditions met, including first ventures using the platform, but also states 'No paid subscribers yet,' indicating pre-revenue. The platform is built and deployed with onboarding users but no revenue yet."
+    }
+  }
+}

@@ -1,0 +1,231 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "pre-seed",
+  "raw": {
+    "thesis_evolution": {
+      "detected": false
+    },
+    "delivery_mode": "software",
+    "market_data": {
+      "alternatives": "Spreadsheets plus the quarterly manual review",
+      "anti_icp": "Credit unions under $200M (don't have the portfolio complexity), national banks over $50B (have in-house tooling already).",
+      "why_better": "Proactive collateral monitoring and early flagging of covenant-breach risk, integrated with loan-book data and external signals, providing a more tailored solution for mid-sized regional banks compared to generic spreadsheets or enterprise solutions.",
+      "end_user": "Loan operations teams",
+      "sam": "Roughly 900 target banks in the US. Each typically spends $150K–$400K/year on risk tooling.",
+      "buyer": "Chief Credit Officer or VP of Loan Operations",
+      "segment": "Regional commercial banks with $500M-$5B in commercial loans",
+      "trigger_now": "The pain of manual quarterly reviews and the risk of covenant breaches going unnoticed until too late.",
+      "source": "form",
+      "competitors": [
+        "Abrigo",
+        "Baker Hill"
+      ]
+    },
+    "gaps": [],
+    "team_members": [
+      {
+        "source": "form",
+        "name": "Ex-CCO",
+        "background": "Ex-CCO from a $2B regional bank",
+        "confidence": "high",
+        "role": "Not specified"
+      },
+      {
+        "name": "Data Engineer",
+        "source": "form",
+        "role": "Not specified",
+        "confidence": "high",
+        "background": "Data engineer from a fintech that integrated with the same cores"
+      },
+      {
+        "role": "Not specified",
+        "confidence": "high",
+        "background": "Product lead from a compliance-tech startup",
+        "name": "Product Lead",
+        "source": "form"
+      }
+    ],
+    "bottleneck": {
+      "type": "operational",
+      "relaxed_by": "Onboarding the first LOI partners onto the platform with live customer data and recognizing paid revenue.",
+      "why_it_blocks": "The product is in private beta with synthetic data, meaning it hasn't handled real-world customer data and potential integration complexities.",
+      "current_blocker": "Production customer traffic through the platform"
+    },
+    "stated_vs_observed_stage": {
+      "mismatch_flag": true,
+      "mismatch_reason": "The founder did not explicitly state a stage, but the existence of a private beta with synthetic data indicates a prototype stage beyond a mere concept.",
+      "evidenced_stage": "prototype",
+      "claimed_stage": "concept"
+    },
+    "one_liner": "Meridian is a B2B SaaS collateral-monitoring dashboard for regional commercial banks' loan operations teams that tracks property, equipment, and accounts-receivable pledges and flags covenant-breach risk.",
+    "things_that_must_work": [
+      "Seamless integration with diverse core banking systems (Fiserv, Jack Henry).",
+      "Accuracy and reliability of external data signals (property-tax delinquency, UCC filings, industry benchmarks).",
+      "Security questionnaires and compliance requirements of regional banks."
+    ],
+    "venture_name": "Meridian",
+    "stage_assessment": "pre-seed",
+    "core_insight": {
+      "if_wrong": "If regional banks do not perceive significant value in proactive collateral monitoring, or if their existing manual processes are deemed sufficient, Meridian's value proposition will fail.",
+      "what": "",
+      "source_excerpt": "Meridian is a B2B SaaS tool for regional commercial banks' loan operations teams — specifically, a collateral-monitoring dashboard that tracks property, equipment, and accounts-receivable pledges across a bank's portfolio and flags covenant-breach risk before it surfaces in the quarterly review.",
+      "why_different": "Meridian integrates loan-book data with external signals for proactive, continuous monitoring, unlike the current manual, reactive spreadsheet-based methods or incumbent solutions designed for larger banks."
+    },
+    "delivery_model": "existing_devices_software",
+    "founder_resources": {
+      "money_available": "Seed round is closed",
+      "time_available": "Full-time",
+      "investment_status": "not_raising",
+      "team_structure": "cofounder",
+      "relevant_skills": "ex-CCO from a $2B regional bank, data engineer from a fintech, product lead from a compliance-tech startup"
+    },
+    "product_behavior_change_level": "medium",
+    "unit_economics": {
+      "source": "form",
+      "pricing_model": "subscription",
+      "price_tiers": "$180K ACV"
+    },
+    "fields": [],
+    "traction_signals": [
+      {
+        "evidence": "Two signed design-partner Letters of Intent at target $180K ACV (12-month paid pilots starting next quarter).",
+        "source": "form",
+        "confidence": "high",
+        "signal": "Signed design-partner Letters of Intent"
+      },
+      {
+        "confidence": "high",
+        "signal": "Active discovery conversations with banks",
+        "source": "form",
+        "evidence": "Four additional banks in active discovery conversations, two of which have requested security questionnaires."
+      },
+      {
+        "confidence": "high",
+        "signal": "Private beta launched",
+        "source": "form",
+        "evidence": "Product is in private beta with one of the LOI partners running synthetic data."
+      }
+    ],
+    "thesis": "Meridian offers a B2B SaaS collateral-monitoring dashboard specifically designed for regional commercial banks with commercial loan portfolios ranging from $500M to $5B. This venture addresses a critical pain point in loan operations by proactively identifying covenant-breach risk, which traditionally surfaces only during manual quarterly reviews. The innovation lies in its ability to ingest existing loan-book data and enrich it with external signals (property-tax delinquency, UCC filings, industry benchmarks), providing an early warning system. This solution aims to replace the current reliance on spreadsheets and manual processes, positioning itself as a more sophisticated yet accessible alternative to incumbent solutions that are geared towards larger banks. The founders, with relevant experience in banking, fintech, and compliance tech, are targeting a growth startup trajectory. They are currently at the pre-seed stage, with design partners and a private beta indicating early market validation. The venture is positioned to fill a clear operational gap, offering a specialized and pro-active risk management tool for an underserved segment of the banking industry.",
+    "product_requires_new_hardware": false,
+    "product_description": "Meridian is a B2B SaaS tool for regional commercial banks' loan operations teams — specifically, a collateral-monitoring dashboard that tracks property, equipment, and accounts-receivable pledges across a bank's portfolio and flags covenant-breach risk before it surfaces in the quarterly review. The product ingests loan-book data from the bank's core (Fiserv, Jack Henry) and layers in external signals (property-tax delinquency, UCC filings, industry benchmarks).",
+    "goal_frame": "growth",
+    "what_makes_this_different": "Meridian's innovation lies in its ability to ingest existing loan-book data from core banking systems and layer in external signals (property-tax delinquency, UCC filings, industry benchmarks) to proactively flag covenant-breach risk, providing an early warning system that current manual processes or incumbent solutions lack for this market segment.",
+    "core_excitement": "The founders are excited by the opportunity to address an underserved operational gap in regional commercial banking by providing a proactive, data-driven solution for collateral monitoring that reduces significant risk and manual effort.",
+    "contradictions": [],
+    "evidence_of_stage": "Product is in private beta with one of the LOI partners running synthetic data. Two signed design-partner Letters of Intent at target $180K ACV (12-month paid pilots starting next quarter).",
+    "extraction_sources": [
+      {
+        "field": "market_data.buyer",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "regional commercial banks' loan operations teams",
+        "source": "system_inferred",
+        "field": "market_data.end_user"
+      },
+      {
+        "source_phrase": "flags covenant-breach risk before it surfaces in the quarterly review",
+        "source": "system_inferred",
+        "field": "market_data.trigger_now"
+      },
+      {
+        "field": "market_data.alternatives",
+        "source_phrase": "",
+        "source": "founder_stated"
+      },
+      {
+        "field": "market_data.why_better",
+        "source": "system_inferred",
+        "source_phrase": "flags covenant-breach risk before it surfaces in the quarterly review"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "market_data.anti_icp"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "unit_economics.price_tiers"
+      },
+      {
+        "field": "unit_economics.pricing_model",
+        "source_phrase": "ACV (12-month paid pilots)",
+        "source": "system_inferred"
+      },
+      {
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.human_work_per_customer",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "field": "unit_economics.revenue_assumption",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "unit_economics.cost_assumption"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "stage_assessment",
+        "source_phrase": "Product is in private beta with one of the LOI partners running synthetic data. No paid revenue yet.",
+        "source": "system_inferred"
+      },
+      {
+        "source": "founder_stated",
+        "source_phrase": "",
+        "field": "evidence_of_stage"
+      },
+      {
+        "field": "goal_horizon_target",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "B2B SaaS",
+        "source": "system_inferred",
+        "field": "delivery_mode"
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "B2B SaaS tool",
+        "field": "product_requires_new_hardware"
+      },
+      {
+        "field": "product_behavior_change_level",
+        "source": "system_inferred",
+        "source_phrase": "flags covenant-breach risk before it surfaces in the quarterly review"
+      },
+      {
+        "source": "founder_stated",
+        "source_phrase": "",
+        "field": "founder_resources.team_structure"
+      },
+      {
+        "field": "founder_resources.relevant_skills",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "founder_resources.investment_status"
+      }
+    ],
+    "schema_version": "vr-3.1.1"
+  }
+}

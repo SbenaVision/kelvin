@@ -1,0 +1,208 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 500,
+  "vvs_score": 350,
+  "vvs_band": "Non-viable",
+  "vvs_dimensions": {
+    "P": 3,
+    "M": 3,
+    "C": 3,
+    "D": 2,
+    "L": 2,
+    "F": 2,
+    "E": 3
+  },
+  "raw": {
+    "delivery_mode": "software",
+    "venture_name": "stagehand-del-p01-r4",
+    "what_makes_this_different": "Stagehand's innovation lies in its focus on specialized interaction paradigms for professional hands-free or rapid navigation in complex digital environments, specifically for React developers.",
+    "unit_economics": {
+      "source": "inferred",
+      "price_tiers": ""
+    },
+    "things_that_must_work": [
+      "React developer community adopting an open-source solution for specialized navigation.",
+      "Successful integration of Stagehand into existing complex professional applications."
+    ],
+    "product_description": "Stagehand is a software solution designed for professional environments requiring hands-free operation or rapid navigation of digital interfaces. It targets React developers, enabling them to build applications for use cases such as medical dashboards, financial trading terminals, industrial monitoring, and accessibility tools.",
+    "founder_resources": {
+      "investment_status": "not_raising",
+      "money_available": "",
+      "relevant_skills": "",
+      "time_available": "",
+      "open_for_investors": false,
+      "team_structure": "solo"
+    },
+    "known_unknowns": {
+      "what_founder_seems_unsure_about": [],
+      "what_founder_has_not_told_us": [
+        "Specific features or technical implementation details of Stagehand.",
+        "Go-to-market strategy for reaching React developers.",
+        "Specific pain points and severity in the identified professional environments.",
+        "Existence of any competitors or similar solutions.",
+        "Revenue generation model or pricing strategy.",
+        "Founder's background or relevant skills for building this venture.",
+        "Financial resources available to the founder (money available).",
+        "Time commitment the founder can dedicate to the venture (time available)."
+      ]
+    },
+    "core_insight": {
+      "what": "",
+      "source_excerpt": "",
+      "if_wrong": "",
+      "why_different": ""
+    },
+    "thesis_evolution": {
+      "detected": false
+    },
+    "market_data": {
+      "trigger_now": "The need for enhanced efficiency and user experience in demanding professional digital environments.",
+      "source": "inferred",
+      "end_user": "Professionals in medical, financial trading, or industrial monitoring roles requiring hands-free or rapid navigation",
+      "alternatives": "Current manual input methods (mouse, keyboard), less optimized navigation techniques.",
+      "buyer": "Organizations employing React developers for specialized applications",
+      "segment": "Developer Tools",
+      "why_better": "Stagehand aims to provide superior control mechanisms for faster, more efficient, and potentially hands-free interaction with professional software.",
+      "anti_icp": ""
+    },
+    "thesis": "This venture, Stagehand, is a software solution aimed at enhancing productivity in professional environments where hands-free operation or rapid navigation of digital interfaces is crucial. The core innovation lies in providing tools for developers to create applications that can be controlled without physical contact or through highly efficient navigation methods. It targets React developers, who will integrate Stagehand into their applications. This addresses the problem of inefficient or cumbersome interaction with complex dashboards and terminals in settings like medical environments, financial trading, and industrial monitoring, where speed and attentiveness are paramount. The founder appears to envision a growth startup, given the focus on development tools and open-source adoption, which typically aims for widespread usage and market penetration. The venture is currently at the idea stage, as evidenced by the lack of mentioned artifacts, users, or revenue.\n\nStagehand positions itself as a foundational layer, complementing existing React development workflows and potentially replacing less efficient interaction methods. It doesn't aim to replace entire systems but rather to augment them by providing a superior control mechanism. Its success hinges on its ability to be easily adopted by React developers and to deliver tangible improvements in operational efficiency for end-users, differentiating itself through specialized interaction paradigms tailored for demanding professional contexts.",
+    "gaps": [],
+    "goal_frame": "growth",
+    "one_liner": "Stagehand provides tools for React developers to build applications that enable hands-free operation or rapid navigation in professional environments.",
+    "stated_vs_observed_stage": {
+      "evidenced_stage": "idea",
+      "mismatch_reason": "",
+      "claimed_stage": "idea",
+      "mismatch_flag": false
+    },
+    "product_requires_new_hardware": false,
+    "contradictions": [],
+    "product_behavior_change_level": "medium",
+    "bottleneck": {
+      "type": "technical",
+      "current_blocker": "Lack of a developed product or prototype.",
+      "why_it_blocks": "Without a product, there's nothing for developers to adopt or for end-users to experience.",
+      "relaxed_by": "Building a functional prototype or MVP."
+    },
+    "fields": [],
+    "extraction_sources": [
+      {
+        "source_phrase": "Professional environments where hands-free operation or rapid navigation is critical, including medical dashboards, financial trading terminals, industrial monitoring, and accessibility tools. Distribution is aimed at React developers via open-source adoption.",
+        "field": "market_data.buyer",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "Professional environments where hands-free operation or rapid navigation is critical, including medical dashboards, financial trading terminals, industrial monitoring, and accessibility tools.",
+        "field": "market_data.end_user",
+        "source": "system_inferred"
+      },
+      {
+        "source": "system_inferred",
+        "field": "market_data.trigger_now",
+        "source_phrase": "Professional environments where hands-free operation or rapid navigation is critical"
+      },
+      {
+        "source_phrase": "rapid navigation is critical",
+        "field": "market_data.alternatives",
+        "source": "system_inferred"
+      },
+      {
+        "source": "system_inferred",
+        "field": "market_data.why_better",
+        "source_phrase": "hands-free operation or rapid navigation is critical"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.anti_icp",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.price_tiers",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.pricing_model",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "unit_economics.human_work_per_customer"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.revenue_assumption",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.cost_assumption",
+        "source": "missing"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "No artifacts/signals mentioned",
+        "field": "stage_assessment",
+        "source": "system_inferred"
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "No artifacts/signals mentioned",
+        "field": "evidence_of_stage"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "goal_horizon_target"
+      },
+      {
+        "field": "delivery_mode",
+        "source_phrase": "Distribution is aimed at React developers via open-source adoption.",
+        "source": "system_inferred"
+      },
+      {
+        "source": "system_inferred",
+        "field": "product_requires_new_hardware",
+        "source_phrase": "Professional environments where hands-free operation or rapid navigation is critical"
+      },
+      {
+        "field": "product_behavior_change_level",
+        "source_phrase": "hands-free operation or rapid navigation is critical",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "Team: Not specified",
+        "field": "founder_resources.team_structure",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.relevant_skills",
+        "source": "missing"
+      },
+      {
+        "source": "system_inferred",
+        "field": "founder_resources.investment_status",
+        "source_phrase": "open for investors: Not specified"
+      }
+    ],
+    "evidence_of_stage": "No artifacts, users, or revenue are mentioned, indicating the concept is in its initial ideation phase.",
+    "team_members": [],
+    "traction_signals": [],
+    "stage_assessment": "idea",
+    "delivery_model": "existing_devices_software",
+    "schema_version": "vr-3.1.1"
+  }
+}

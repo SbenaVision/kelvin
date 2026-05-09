@@ -1,0 +1,173 @@
+{
+  "delivery_model": "hybrid",
+  "stage_assessment": "idea",
+  "opportunity_score": 515,
+  "vvs_score": 350,
+  "vvs_band": "Non-viable",
+  "vvs_dimensions": {
+    "P": 4,
+    "M": 3,
+    "C": 2,
+    "D": 2,
+    "L": 3,
+    "F": 3,
+    "E": 2
+  },
+  "raw": {
+    "extraction_sources": [
+      {
+        "source_phrase": "",
+        "field": "market_data.buyer",
+        "source": "founder_stated"
+      },
+      {
+        "source": "founder_stated",
+        "source_phrase": "",
+        "field": "market_data.end_user"
+      },
+      {
+        "source": "founder_stated",
+        "field": "market_data.trigger_now",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "market_data.alternatives"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.why_better",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.anti_icp",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.price_tiers",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.pricing_model",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "unit_economics.hardware_cost_per_customer"
+      },
+      {
+        "field": "unit_economics.human_work_per_customer",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "field": "unit_economics.revenue_assumption",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.cost_assumption",
+        "source": "missing"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "## s02 Children use the mobile app to define and deliver daily routines such as medication reminders at 9:00 AM, lunchtime alerts at 12:00 PM, and air conditioning shut-off warnings at 9:00 PM.",
+        "field": "stage_assessment"
+      },
+      {
+        "field": "evidence_of_stage",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "field": "goal_horizon_target",
+        "source": "missing"
+      },
+      {
+        "field": "delivery_mode",
+        "source_phrase": "Children use the mobile app to define and deliver daily routines such as medication reminders at 9:00 AM, lunchtime alerts at 12:00 PM, and air conditioning shut-off warnings at 9:00 PM.\n\n## s03\n\nThe system uses connected devices (watches, TVs) to trigger actions based on real-time data, such as prompting a brain-training quiz if the user has watched TV for over 120 minutes or suggesting a walk if daily steps are under 100.",
+        "source": "system_inferred"
+      },
+      {
+        "field": "product_requires_new_hardware",
+        "source_phrase": "The system uses connected devices (watches, TVs) to trigger actions based on real-time data",
+        "source": "system_inferred"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "product_behavior_change_level"
+      },
+      {
+        "source": "missing",
+        "field": "founder_resources.team_structure",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "field": "founder_resources.relevant_skills",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "founder_resources.investment_status"
+      }
+    ],
+    "team_members": [],
+    "contradictions": [],
+    "fields": [],
+    "product_description": "Himom-del-u01-r3 is a platform designed to help seniors with daily routines and proactive care. Children use a mobile app to define routines like medication reminders and air conditioning shut-off warnings. The system integrates with connected devices such as watches and TVs to trigger actions based on real-time data, for instance, prompting a brain-training quiz after extended TV viewing or suggesting a walk if daily steps are low. The platform aims to be a marketplace for easy integration of new actions, services, and third-party providers with \"3-click\" simplicity.",
+    "core_insight": {
+      "why_different": "",
+      "if_wrong": "",
+      "what": "",
+      "source_excerpt": ""
+    },
+    "delivery_model": "hybrid",
+    "stage_assessment": "idea",
+    "founder_resources": {
+      "time_available": "",
+      "money_available": "",
+      "investment_status": "not_raising"
+    },
+    "traction_signals": [],
+    "goal_frame": "growth",
+    "gaps": [],
+    "core_excitement": "The founder is excited about improving the quality of life for seniors and empowering adult children to provide better care through a simple, extensible interface leveraging IoT.",
+    "thesis_evolution": {
+      "detected": false
+    },
+    "thesis": "This venture, Himom-del-u01-r3, addresses the critical need for improved daily routine management and proactive care for the aging population (75+), specifically focusing on those who frequently neglect essential tasks. The core innovation lies in its comprehensive system that combines a mobile application for adult children (buyers/managers) to define and manage routines with a connected device ecosystem (watches, TVs) that triggers actions based on real-time data. This allows for personalized, adaptive care, moving beyond simple reminders to intelligent interventions (e.g., prompting brain-training or suggesting walks). The platform envisions a marketplace for easy integration of third-party services and IoT capabilities, creating an extensible solution for senior care.\n\nThe target user is clearly the aging population (75+), while the specific target buyer/manager is their adult child. The problem is severe and frequent: seniors neglecting essential daily tasks, leading to decreased quality of life. The founder's stated vision to \"improve quality of life for seniors and help children provide better care\" suggests a growth startup, aiming for broad impact and leveraging an extensible platform rather than a lifestyle or moonshot business. Currently, the venture appears to be at the idea stage, with the founder articulating a clear vision and product concept but no mention of development or user acquisition.",
+    "market_data": {
+      "segment": "Senior care",
+      "trigger_now": "Aging population frequently neglects essential daily tasks like taking medicine, exercising, or limiting TV time without proactive reminders.",
+      "tam": "An estimated 467 million people are aged 75 or older, projected to reach 700 million by 2030.",
+      "source": "inferred",
+      "end_user": "Aging population aged 75 and older",
+      "buyer": "Adult child of the senior"
+    },
+    "unit_economics": {
+      "source": "inferred",
+      "price_tiers": ""
+    },
+    "product_requires_new_hardware": true,
+    "one_liner": "A mobile app and connected device platform for adult children to manage and improve daily routines and proactive care for seniors aged 75 and older.",
+    "delivery_mode": "hybrid",
+    "venture_name": "Himom-del-u01-r3",
+    "what_makes_this_different": "This venture distinguishes itself by combining a mobile app for adult child caregivers with an IoT-enabled system that provides adaptive, real-time interventions, moving beyond static reminders to proactive behavioral nudges and third-party service integration.",
+    "schema_version": "vr-3.1.1"
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 463,
+  "vvs_score": 350,
+  "vvs_band": "Non-viable",
+  "vvs_dimensions": {
+    "P": 3,
+    "M": 3,
+    "C": 2,
+    "D": 2,
+    "L": 2,
+    "F": 3,
+    "E": 2
+  },
+  "raw": {
+    "stage_assessment": "idea",
+    "goal_frame": "growth",
+    "venture_name": "narma-del-u01-r1",
+    "contradictions": [],
+    "what_makes_this_different": "The specific innovation is a self-optimizing AI ecosystem within enterprises. It uses a three-layered architecture to observe work patterns, detect employee intent and \"drift,\" and then automatically generate and deploy AI agents for high-ROI opportunities. It leverages existing foundation models, focusing instead on a \"Work Graph\" to pinpoint where AI can intercept and assist within workflows, ensuring continuous AI optimization rather than one-off implementations.",
+    "extraction_sources": [
+      {
+        "field": "market_data.buyer",
+        "source": "system_inferred",
+        "source_phrase": "AI-first companies seeking to see, prove, and deploy AI automation at scale."
+      },
+      {
+        "field": "market_data.end_user",
+        "source": "system_inferred",
+        "source_phrase": "AI-first companies seeking to see, prove, and deploy AI automation at scale."
+      },
+      {
+        "source": "founder_stated",
+        "field": "market_data.trigger_now",
+        "source_phrase": ""
+      },
+      {
+        "field": "market_data.alternatives",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "market_data.why_better"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "market_data.anti_icp"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.price_tiers",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.pricing_model",
+        "source": "system_inferred"
+      },
+      {
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.human_work_per_customer"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.revenue_assumption",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.cost_assumption"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "stage_assessment",
+        "source": "system_inferred",
+        "source_phrase": ""
+      },
+      {
+        "source": "system_inferred",
+        "field": "evidence_of_stage",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "goal_horizon_target",
+        "source": "missing"
+      },
+      {
+        "field": "delivery_mode",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "product_requires_new_hardware"
+      },
+      {
+        "source_phrase": "",
+        "field": "product_behavior_change_level",
+        "source": "system_inferred"
+      },
+      {
+        "field": "founder_resources.team_structure",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "field": "founder_resources.relevant_skills",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.investment_status",
+        "source": "system_inferred"
+      }
+    ],
+    "thesis_evolution": {
+      "detected": false
+    },
+    "delivery_model": "existing_devices_software",
+    "delivery_mode": "software",
+    "thesis": "\nNarma-del-u01-r1 presents an innovative approach to AI integration within enterprises, moving beyond mere augmentation to a continuous, self-optimizing AI ecosystem. The core innovation lies in its three-layered architecture: an observation layer capturing detailed work patterns, an intelligence layer detecting intent and ",
+    "traction_signals": [],
+    "founder_resources": {
+      "open_for_investors": false,
+      "time_available": "unknown",
+      "money_available": "unknown",
+      "investment_status": "not_raising"
+    },
+    "team_members": [],
+    "one_liner": "Narma-del-u01-r1 is a three-layered AI system for enterprises that observes work patterns, identifies high-ROI AI opportunities, and automatically deploys AI agents to optimize workflows.",
+    "fields": [],
+    "gaps": [],
+    "schema_version": "vr-3.1.1",
+    "market_data": {
+      "end_user": "AI-first companies/enterprises",
+      "source": "inferred",
+      "segment": "AI-first companies/enterprises",
+      "trigger_now": "Enterprises often struggle with a lack of telemetry to pinpoint AI savings, unreliable ROI measurements, and constant drift in systems and human resources."
+    },
+    "product_behavior_change_level": "high",
+    "core_insight": {
+      "if_wrong": "If the system cannot accurately observe work patterns, detect intent, or identify high-ROI opportunities, the automated deployment of AI agents will not yield the desired 'Continuous AI lift' or optimize enterprise workflows, leading to wasted resources and failed AI implementations.",
+      "what": "",
+      "why_different": "The venture focuses on a 'Work Graph' model to reveal where resources are burned and where AI can intercept work mid-flow, rather than building its own foundational models. It emphasizes continuous, automated deployment of AI agents for validated high-ROI opportunities, with built-in approval gates.",
+      "source_excerpt": "Vision: a single system that observes how work happens, decides what AI should do next, and auto-builds agents continuously to ensure a \"Continuous AI lift.\" AI-first companies seeking to see, prove, and deploy AI automation at scale."
+    },
+    "product_description": "Narma-del-u01-r1 is a three-layered architecture. Layer 1 (Observe) uses lightweight desktop sensors to capture work patterns, application usage, activity sequences, and time allocation. Layer 2 (Intelligence) acts as a \"Brain\" to detect employee intent, business value of tasks, and work \"drift.\" Layer 3 (Execution) is an \"Agent Factory\" that generates, deploys, and monitors AI agents for validated high-ROI opportunities with built-in approval gates. The system leverages existing foundation models and focuses on a \"Work Graph\" to identify areas for AI intervention and assistance.",
+    "product_requires_new_hardware": false,
+    "evidence_of_stage": "The venture is described as an architectural concept without any mention of development, users, or revenue.",
+    "unit_economics": {
+      "source": "inferred",
+      "price_tiers": "",
+      "pricing_model": "subscription"
+    }
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 402,
+  "vvs_score": 350,
+  "vvs_band": "Non-viable",
+  "vvs_dimensions": {
+    "P": 3,
+    "M": 2,
+    "C": 2,
+    "D": 2,
+    "L": 2,
+    "F": 3,
+    "E": 2
+  },
+  "raw": {
+    "thesis": "Stagehand-del-u01-r4 presents a novel approach to human-computer interaction in high-cognitive-load environments. The core innovation lies in its \"orchestration approach\" to natural language commands for complex dashboards. Instead of generating UI dynamically, Stagehand leverages pre-defined, registered components, ensuring predictable and low-latency performance. This caters to users, such as those in medical, financial trading, and industrial monitoring, where rapid, hands-free navigation is critical. The founder's goal is to augment traditional input methods with a hands-free command layer, ultimately reducing cognitive load. The venture is currently at the idea stage, with a clear vision for developer adoption through open-source distribution, targeting React developers. The founder envisions a growth startup, aiming for widespread integration of their framework into existing applications. The venture is positioned to complement existing software solutions by adding a new interaction layer, rather than replacing them. This means it integrates with current tools, enhancing their usability.",
+    "what_makes_this_different": "Stagehand's core innovation is its \"orchestration approach\" to natural language UI control, which reuses and interacts with pre-defined components for predictable, low-latency performance, contrasting with AI tools that generate UI on-the-fly. This is coupled with a two-tier processing model (local matcher + LLM fallback) and optimistic UI updates for rapid response.",
+    "thesis_evolution": {
+      "detected": false
+    },
+    "delivery_mode": "software",
+    "market_data": {
+      "source": "inferred",
+      "tam": "",
+      "buyer": "React developers",
+      "trigger_now": "",
+      "end_user": "Users in high-cognitive-load environments (medical, financial trading, industrial monitoring, accessibility tools)",
+      "segment": "Professional environments requiring hands-free or rapid navigation of complex dashboards (medical, financial trading, industrial monitoring, accessibility tools). Distribution is aimed at React developers.",
+      "alternatives": "Traditional input methods (mouse/keyboard)",
+      "sam": "",
+      "anti_icp": "",
+      "why_better": "Augments traditional input methods with a hands-free command layer, reducing cognitive load.",
+      "competitors": []
+    },
+    "contradictions": [],
+    "team_members": [],
+    "stated_vs_observed_stage": {
+      "claimed_stage": "idea",
+      "mismatch_reason": "",
+      "evidenced_stage": "idea",
+      "mismatch_flag": false
+    },
+    "one_liner": "Stagehand enables users in high-cognitive-load environments to manage complex dashboards through natural language commands.",
+    "gaps": [],
+    "venture_name": "stagehand-del-u01-r4",
+    "things_that_must_work": [
+      "React developer adoption",
+      "Effective natural language processing and understanding",
+      "Low-latency performance for critical environments"
+    ],
+    "goal_frame": "growth",
+    "stage_assessment": "idea",
+    "core_excitement": "The founder is excited about solving the cognitive load problem in complex environments by augmenting traditional input methods with a hands-free, natural language command layer.",
+    "unit_economics": {
+      "price_tiers": "",
+      "source": "inferred"
+    },
+    "product_requires_new_hardware": false,
+    "delivery_model": "existing_devices_software",
+    "evidence_of_stage": "",
+    "fields": [],
+    "product_description": "Stagehand allows users to control complex dashboards using natural language. It works by orchestrating pre-defined components rather than generating new UI, ensuring consistent, predictable, and low-latency performance. It features a two-tier processing model with a fast local matcher for common commands and an LLM fallback for complex intent. It also uses optimistic UI updates for sub-200ms perceived response time. The framework is designed for viral developer adoption, with existing React components easily integrated using a simple hook.",
+    "traction_signals": [],
+    "founder_resources": {
+      "time_available": "",
+      "investment_status": "not_raising",
+      "relevant_skills": "",
+      "money_available": "",
+      "team_structure": "solo"
+    },
+    "extraction_sources": [
+      {
+        "field": "market_data.buyer",
+        "source": "system_inferred",
+        "source_phrase": "Distribution is aimed at React developers via open-source adoption."
+      },
+      {
+        "source_phrase": "Professional environments where hands-free operation or rapid navigation is critical, including medical dashboards, financial trading terminals, industrial monitoring, and accessibility tools.",
+        "field": "market_data.end_user",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.trigger_now",
+        "source": "missing"
+      },
+      {
+        "source": "system_inferred",
+        "field": "market_data.alternatives",
+        "source_phrase": "augment traditional input methods (mouse/keyboard)"
+      },
+      {
+        "source_phrase": "augment traditional input methods (mouse/keyboard) with a hands-free command layer, reducing the cognitive load of navigating complex data streams.",
+        "field": "market_data.why_better",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.anti_icp",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.price_tiers",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.pricing_model",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.hardware_cost_per_customer"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.human_work_per_customer",
+        "source": "missing"
+      },
+      {
+        "field": "unit_economics.revenue_assumption",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.cost_assumption"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "## s02; ## s03; ## s04; ## s05",
+        "field": "stage_assessment",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "field": "evidence_of_stage",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "field": "goal_horizon_target",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "existing React components are wrapped in a simple hook",
+        "source": "system_inferred",
+        "field": "delivery_mode"
+      },
+      {
+        "source_phrase": "existing React components are wrapped in a simple hook",
+        "source": "system_inferred",
+        "field": "product_requires_new_hardware"
+      },
+      {
+        "field": "product_behavior_change_level",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "founder_resources.team_structure",
+        "source": "system_inferred",
+        "source_phrase": "Team: Not specified"
+      },
+      {
+        "field": "founder_resources.relevant_skills",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "Open for investors: Not specified",
+        "field": "founder_resources.investment_status",
+        "source": "system_inferred"
+      }
+    ],
+    "core_insight": {
+      "why_different": "Stagehand orchestrates pre-defined, registered components for consistent, predictable, and low-latency performance, unlike AI tools that generate UI dynamically.",
+      "if_wrong": "If existing components cannot be easily integrated, or if developers do not adopt the framework, the venture will fail to achieve viral adoption and widespread use.",
+      "what": "",
+      "source_excerpt": "The framework is designed for viral developer adoption with a 'zero rebuild' requirement: existing React components are wrapped in a simple hook to enable voice control."
+    },
+    "schema_version": "vr-3.1.1"
+  }
+}

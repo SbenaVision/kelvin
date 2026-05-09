@@ -1,0 +1,222 @@
+{
+  "delivery_model": "hybrid",
+  "stage_assessment": "pre-seed",
+  "raw": {
+    "core_excitement": "The founder is excited by the prospect of combining real-time handwriting analysis with a voice AI tutor to create a unique and highly personalized math tutoring experience, addressing the limitations of traditional human tutoring.",
+    "market_data": {
+      "trigger_now": "Struggling with math; expensive and scarce human tutors",
+      "why_better": "Combines real-time handwriting analysis with a voice AI tutor in a single integrated experience; personalized AI-generated content; more accessible and potentially more effective than human tutors.",
+      "buyer": "Families",
+      "source": "form",
+      "alternatives": "Human tutors",
+      "segment": "$12B K-12 tutoring market",
+      "end_user": "Middle school students struggling with math"
+    },
+    "venture_name": "FreakinGenius",
+    "what_makes_this_different": "The unique integration of real-time handwriting analysis with a voice AI tutor, delivered through a dedicated device, distinguishes FreakinGenius from existing tutoring solutions. This multi-modal approach aims to offer a more personalized and effective learning experience.",
+    "founder_resources": {
+      "time_available": "Part-time",
+      "money_available": "Up to $25K personal capital",
+      "team_structure": "team",
+      "relevant_skills": "Math teaching experience (for BSc graduate); technical expertise (for senior technical advisor)",
+      "investment_status": "open"
+    },
+    "things_that_must_work": [
+      "BNPL partner providing financing for tablets and managing repayment for FreakinGenius.",
+      "AI technology (speech-to-text, text-to-speech, LLM inference, writing analysis, generative media) performing at a high level to enable effective tutoring.",
+      "Families adopting a new learning method involving AI and a dedicated tablet.",
+      "Successful distribution channels for customer acquisition."
+    ],
+    "product_description": "FreakinGenius offers a math tutoring service for middle school students struggling with math. The service charges $79/month, and 90% of subscribers receive a branded tablet via a BNPL partner. The system integrates real-time handwriting analysis with a voice AI tutor, providing a personalized learning experience. AI-generated content is also a planned differentiator.",
+    "thesis": "This venture, \"FreakinGenius,\" aims to revolutionize middle school math tutoring by offering an integrated AI-powered solution. The core innovation lies in combining real-time handwriting analysis with a voice AI tutor, delivered through a dedicated tablet (though a BYOD option exists). This personalized approach seeks to address the pain points of expensive and scarce human tutors in the $12B K-12 tutoring market. The venture is positioned to replace traditional tutoring methods by offering a more accessible and potentially more effective alternative. The founder envisions this as a growth startup, aiming for significant market penetration. Given the current stage, the primary focus is on proving the problem exists and that the proposed solution offers a meaningfully better experience. The venture is currently at the \"building\" stage, with no external validation or users yet. The venture is trying to carve out a new category, delivering a deeply personalized, multi-modal learning experience that is not currently offered by existing tutoring services or educational software.",
+    "core_insight": {
+      "what": "",
+      "if_wrong": "If the integrated voice-plus-handwriting experience does not provide a significantly better learning outcome or user experience, then the core value proposition of FreakinGenius is undermined, making market adoption and retention difficult.",
+      "why_different": "It uniquely combines real-time handwriting analysis with a voice AI tutor in a single integrated experience, offering a personalized and potentially more effective learning method compared to traditional human tutors or existing educational software.",
+      "source_excerpt": "No existing product combines real-time handwriting analysis with a voice AI tutor in a single integrated experience. Personalized AI-generated content is a planned differentiator."
+    },
+    "delivery_mode": "hybrid",
+    "schema_version": "vr-3.1.1",
+    "unit_economics": {
+      "source": "form",
+      "human_work_per_customer": "$15/month per active subscriber (teacher revenue share)",
+      "cost_assumption": "estimated",
+      "price_tiers": "$79/month (course subscription) + $2.30/month (tablet fee)",
+      "pricing_model": "hybrid",
+      "hardware_cost_per_customer": "$13.26/month over 36 months (repayment to BNPL partner)"
+    },
+    "known_unknowns": {
+      "what_founder_seems_unsure_about": [],
+      "what_founder_has_not_told_us": [
+        "Exact time and money available from the founder in the next 3 months.",
+        "The specific '3 Unique Things' about the venture.",
+        "The Initial Market definition beyond 'middle school students struggling with math'.",
+        "The founder's Vision for Success in 1-year and 3-years.",
+        "What keeps the founder awake at night.",
+        "Details on where Envelop adds value or the plan without Envelop.",
+        "Specific competitors beyond 'human tutors'.",
+        "The detailed market position."
+      ]
+    },
+    "evidence_of_stage": "The founder has \"Started building.\" No validation completed. No users. No paid customers. No LOIs.",
+    "one_liner": "FreakinGenius provides AI-powered math tutoring for middle school students through a voice AI tutor and real-time handwriting analysis.",
+    "extraction_sources": [
+      {
+        "source_phrase": "",
+        "field": "market_data.buyer",
+        "source": "founder_stated"
+      },
+      {
+        "source": "founder_stated",
+        "field": "market_data.end_user",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "Middle school students struggling with math. Human tutors are expensive and scarce.",
+        "field": "market_data.trigger_now",
+        "source": "system_inferred"
+      },
+      {
+        "field": "market_data.alternatives",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "No existing product combines real-time handwriting analysis with a voice AI tutor in a single integrated experience. Personalized AI-generated content is a planned differentiator.",
+        "source": "system_inferred",
+        "field": "market_data.why_better"
+      },
+      {
+        "source": "missing",
+        "field": "market_data.anti_icp",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "unit_economics.price_tiers"
+      },
+      {
+        "source": "system_inferred",
+        "field": "unit_economics.pricing_model",
+        "source_phrase": "Families pay $79/month for the service. ... BNPL partner ... $25–$35/month over 36 months"
+      },
+      {
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "unit_economics.human_work_per_customer"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.revenue_assumption",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "Total AI cost per user per month: $11.50 (speech-to-text $2, text-to-speech $2, LLM inference $4, writing analysis $2, generative media $1.50). BNPL partner fronts tablet hardware; FreakinGenius repays $13.26/month per teacher over 36 months.",
+        "field": "unit_economics.cost_assumption",
+        "source": "system_inferred"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "Started building. No validation completed. No users. No paid customers. No LOIs.",
+        "field": "stage_assessment",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "evidence_of_stage"
+      },
+      {
+        "source_phrase": "",
+        "field": "goal_horizon_target",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "Families pay $79/month for the service. ... receive a branded FG tablet ... 10% bring their own device.",
+        "field": "delivery_mode",
+        "source": "system_inferred"
+      },
+      {
+        "field": "product_requires_new_hardware",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "field": "product_behavior_change_level",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "Part-time founder ... One full-time BSc graduate ... One senior technical advisor",
+        "field": "founder_resources.team_structure",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "founder_resources.relevant_skills"
+      },
+      {
+        "source_phrase": "Advance from Validate to Build requires: problem validated with paying or committed families, evidence that voice-plus-handwriting experience is meaningfully better than existing alternatives, and at least one distribution channel with demonstrated conversion. None of these conditions are currently met. No users, no validation, no committed customers.",
+        "source": "system_inferred",
+        "field": "founder_resources.investment_status"
+      }
+    ],
+    "stated_vs_observed_stage": {
+      "mismatch_reason": "",
+      "mismatch_flag": false,
+      "claimed_stage": "prototype",
+      "evidenced_stage": "prototype"
+    },
+    "traction_signals": [],
+    "stage_assessment": "pre-seed",
+    "contradictions": [],
+    "gaps": [],
+    "product_requires_new_hardware": true,
+    "goal_frame": "growth",
+    "team_members": [
+      {
+        "background": "Primary, investing up to $25K personal capital.",
+        "role": "Not specified",
+        "confidence": "high",
+        "source": "form",
+        "name": "Part-time founder"
+      },
+      {
+        "source": "form",
+        "name": "BSc graduate",
+        "background": "Some math teaching experience.",
+        "confidence": "high",
+        "role": "Full-time"
+      },
+      {
+        "background": "Working 5–10 hours per week on an hourly basis.",
+        "role": "Advisor",
+        "confidence": "high",
+        "source": "form",
+        "name": "Senior technical advisor"
+      }
+    ],
+    "thesis_evolution": {
+      "detected": false
+    },
+    "fields": [],
+    "bottleneck": {
+      "relaxed_by": "Demonstrated interest and commitment from target families (paying or committed), empirical evidence of superior learning outcomes/user experience with the unique technology, and a proven channel for acquiring customers.",
+      "current_blocker": "Validating problem with paying or committed families, proving the voice-plus-handwriting experience is meaningfully better than alternatives, and establishing at least one distribution channel with demonstrated conversion.",
+      "type": "market",
+      "why_it_blocks": "Without these validations, the venture cannot move from the 'Validate' to 'Build' stage; there are no users, no validation, and no committed customers to prove market fit or demand."
+    },
+    "delivery_model": "hybrid"
+  }
+}

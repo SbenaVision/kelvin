@@ -1,0 +1,255 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "growth",
+  "raw": {
+    "evidence_of_stage": "Product in market for 14 months with 212 paying subscribers and $145K annual revenue run-rate.",
+    "schema_version": "vr-3.1.1",
+    "unit_economics": {
+      "pricing_model": "subscription",
+      "source": "form",
+      "human_work_per_customer": "$3.40/month support cost",
+      "ltv": "$574",
+      "cost_assumption": "known",
+      "cac_target": "$68",
+      "revenue_assumption": "known",
+      "infra_cost": "$1.80/month per user",
+      "price_tiers": "$29/month Starter or $59/month Pro"
+    },
+    "venture_name": "artisanflow-sentence-s01-delete",
+    "market_data": {
+      "trigger_now": "High opportunity cost of maintenance from current duct-tape stacks; desire to avoid scaling issues.",
+      "end_user": "Solo makers and 2-3 person craft businesses",
+      "segment": "Solo makers and 2-3 person craft businesses shipping 200-1,500 orders per month across two or more channels.",
+      "anti_icp": "sellers on a single channel (don't need reconciliation), dropshippers (don't handle inventory), enterprise fulfillment centers (need ERP-grade systems).",
+      "why_better": "Focuses specifically on the multi-channel solo maker, unlike current generalist alternatives.",
+      "alternatives": "Zapier, Airtable, and Google Sheets",
+      "source": "form",
+      "buyer": "Solo makers and 2-3 person craft businesses"
+    },
+    "product_requires_new_hardware": false,
+    "stated_vs_observed_stage": {
+      "mismatch_flag": false,
+      "claimed_stage": "revenue",
+      "evidenced_stage": "revenue",
+      "mismatch_reason": ""
+    },
+    "contradictions": [],
+    "goal_frame": "growth",
+    "product_behavior_change_level": "medium",
+    "fields": [],
+    "what_makes_this_different": "Artisanflow specifically targets and caters to the multi-channel solo maker and small craft business, offering a tailored solution for order fulfillment that replaces generic and inefficient existing alternatives like Zapier, Airtable, and Google Sheets. Its niche focus and integrated solution for normalizing SKUs and providing pick-pack-ship instructions are what set it apart.",
+    "one_liner": "Artisanflow simplifies multi-channel order fulfillment for solo makers and small craft businesses by centralizing order data and generating pick-pack-ship instructions.",
+    "extraction_sources": [
+      {
+        "field": "market_data.buyer",
+        "source": "system_inferred",
+        "source_phrase": "Solo makers and 2–3 person craft businesses shipping 200–1,500 orders per month across two or more channels."
+      },
+      {
+        "field": "market_data.end_user",
+        "source": "system_inferred",
+        "source_phrase": "Solo makers and 2–3 person craft businesses shipping 200–1,500 orders per month across two or more channels."
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.trigger_now",
+        "source": "founder_stated"
+      },
+      {
+        "field": "market_data.alternatives",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.why_better",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.anti_icp",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "unit_economics.price_tiers"
+      },
+      {
+        "field": "unit_economics.pricing_model",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "unit_economics.human_work_per_customer"
+      },
+      {
+        "source": "founder_stated",
+        "field": "unit_economics.revenue_assumption",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "unit_economics.cost_assumption"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "stage_assessment",
+        "source": "founder_stated"
+      },
+      {
+        "source": "founder_stated",
+        "field": "evidence_of_stage",
+        "source_phrase": ""
+      },
+      {
+        "field": "goal_horizon_target",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "delivery_mode",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "product_requires_new_hardware"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "product_behavior_change_level"
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.team_structure",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.relevant_skills",
+        "source": "founder_stated"
+      },
+      {
+        "field": "founder_resources.investment_status",
+        "source": "founder_stated",
+        "source_phrase": ""
+      }
+    ],
+    "core_excitement": "The founder is excited about solving the specific, unmet need for multi-channel solo makers who are currently struggling with inefficient \"duct-tape\" solutions for order fulfillment.",
+    "gaps": [],
+    "delivery_mode": "software",
+    "stage_assessment": "growth",
+    "delivery_model": "existing_devices_software",
+    "founder_resources": {
+      "investment_status": "open",
+      "team_structure": "cofounder",
+      "money_available": "$60K personal capital committed by founder.",
+      "time_available": "Full-time for both co-founders.",
+      "relevant_skills": "Experience running a multi-channel craft business; backend engineering and previous Shopify app development in the same segment.",
+      "open_for_investors": true,
+      "technical_or_business": "Both"
+    },
+    "team_members": [
+      {
+        "source": "form",
+        "document_excerpt": "Two co-founders: a solo-operator with five years running her own craft business on three channels,",
+        "background": "Five years running her own craft business on three channels.",
+        "role": "Solo-operator / Craft business owner",
+        "name": "Co-founder 1",
+        "confidence": "high"
+      },
+      {
+        "confidence": "high",
+        "document_excerpt": "and a backend engineer who previously shipped a Shopify app in the same segment.",
+        "background": "Shipped a Shopify app in the same segment previously.",
+        "role": "Backend Engineer",
+        "name": "Co-founder 2",
+        "source": "form"
+      },
+      {
+        "source": "form",
+        "confidence": "high",
+        "background": "Handles support tickets.",
+        "role": "Support",
+        "document_excerpt": "One part-time contractor handles support tickets.",
+        "name": "Contractor"
+      }
+    ],
+    "thesis_evolution": {
+      "detected": false
+    },
+    "core_insight": {
+      "if_wrong": "If solo makers don't perceive the value or the switching costs are higher than anticipated, they will stick with their current manual methods or generic tools, hindering adoption and growth.",
+      "what": "",
+      "source_excerpt": "No current vendor focuses specifically on the multi-channel solo maker.",
+      "why_different": "Artisanflow focuses specifically on the multi-channel solo maker, an underserved niche neglected by generalist automation tools (like Zapier) and enterprise solutions."
+    },
+    "product_description": "Artisanflow ingests order data via OAuth from various e-commerce platforms, normalizes SKUs, and provides phone-optimized pick-pack-ship instructions.",
+    "things_that_must_work": [
+      "OAuth integration with various e-commerce platforms",
+      "Accurate SKU normalization across platforms",
+      "Efficient, phone-optimized queuing for pick-pack-ship instructions"
+    ],
+    "traction_signals": [
+      {
+        "evidence": "212 paying subscribers",
+        "confidence": "high",
+        "source": "form",
+        "signal": "Paying Subscribers"
+      },
+      {
+        "source": "form",
+        "confidence": "high",
+        "evidence": "$145K annual revenue run-rate",
+        "signal": "Annual Revenue Run-Rate"
+      },
+      {
+        "confidence": "high",
+        "source": "form",
+        "evidence": "Net churn negative for the last two quarters (expansion revenue from Starter → Pro upgrades exceeds cancellations).",
+        "signal": "Net Churn"
+      },
+      {
+        "evidence": "NPS 48",
+        "source": "form",
+        "confidence": "high",
+        "signal": "NPS"
+      },
+      {
+        "evidence": "Featured in two independent newsletters for the segment.",
+        "confidence": "high",
+        "source": "form",
+        "signal": "Media Coverage"
+      },
+      {
+        "evidence": "LTV $574",
+        "confidence": "high",
+        "source": "form",
+        "signal": "Customer Lifetime Value (LTV)"
+      },
+      {
+        "signal": "LTV/CAC Ratio",
+        "evidence": "LTV/CAC 8.4",
+        "source": "form",
+        "confidence": "high"
+      }
+    ],
+    "thesis": "Artisanflow addresses a critical operational bottleneck for multi-channel solo makers and small craft businesses by streamlining their order fulfillment process. By ingesting, normalizing, and queuing order data from various e-commerce platforms, it replaces the current inefficient \"duct-tape stack\" of Zapier, Airtable, and Google Sheets. This venture is genuinely new because it specifically targets the underserved niche of solo makers operating across multiple sales channels, a segment neglected by existing broader fulfillment solutions and enterprise ERP systems. The target users are solo makers and 2-3 person craft businesses who ship 200-1,500 orders per month and sell on two or more platforms. The problem is severe and frequent: current manual processes lead to high opportunity costs due to maintenance and potential errors in fulfilling orders across disparate systems. The founder's goal is a growth startup, evidenced by the current revenue, net-negative churn, and ambition to scale beyond self-sustainability with committed capital. The venture is currently in the growth stage, having a product in the market with paying subscribers and demonstrated product-market fit. Artisanflow sits in a \"preceding\" position relative to existing solutions; it aims to prevent the scaling issues that force businesses into cumbersome, expensive enterprise solutions or manual, error-prone processes. It complements existing e-commerce platforms by improving their post-purchase operational efficiency, effectively acting as an integration layer and workflow automation tool tailored for a specific, underserved merchant segment."
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 515,
+  "vvs_score": 350,
+  "vvs_band": "Non-viable",
+  "vvs_dimensions": {
+    "P": 4,
+    "M": 3,
+    "C": 2,
+    "D": 2,
+    "L": 3,
+    "F": 4,
+    "E": 2
+  },
+  "raw": {
+    "goal_horizon_target": {
+      "target_value": "develop the physics engine, validate the inverse solver on synthetic data, and conduct clinical validation on real patient pairs (n≥50) before a prospective pilot.",
+      "target_type": "milestone",
+      "horizon": "12_months"
+    },
+    "founder_resources": {
+      "money_available": "Not specified",
+      "time_available": "Not specified"
+    },
+    "delivery_model": "existing_devices_software",
+    "stage_assessment": "idea",
+    "delivery_mode": "software",
+    "gaps": [],
+    "extraction_sources": [
+      {
+        "source_phrase": "Clinicians working in high-acuity cardiac environments such as the Cardiac Intensive Care Unit (CICU), assessing patients with multi-valve heart disease.",
+        "source": "system_inferred",
+        "field": "market_data.buyer"
+      },
+      {
+        "field": "market_data.end_user",
+        "source": "system_inferred",
+        "source_phrase": "Clinicians working in high-acuity cardiac environments such as the Cardiac Intensive Care Unit (CICU), assessing patients with multi-valve heart disease."
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.trigger_now",
+        "source": "founder_stated"
+      },
+      {
+        "source": "missing",
+        "field": "market_data.alternatives",
+        "source_phrase": ""
+      },
+      {
+        "field": "market_data.why_better",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.anti_icp",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.price_tiers",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.pricing_model",
+        "source": "missing"
+      },
+      {
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.human_work_per_customer",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.revenue_assumption",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.cost_assumption"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "system_inferred",
+        "field": "stage_assessment",
+        "source_phrase": "A 12-month roadmap to develop the physics engine"
+      },
+      {
+        "source": "system_inferred",
+        "field": "evidence_of_stage",
+        "source_phrase": "A 12-month roadmap to develop the physics engine"
+      },
+      {
+        "field": "goal_horizon_target",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "system_inferred",
+        "field": "delivery_mode"
+      },
+      {
+        "field": "product_requires_new_hardware",
+        "source": "system_inferred",
+        "source_phrase": ""
+      },
+      {
+        "field": "product_behavior_change_level",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.team_structure",
+        "source": "missing"
+      },
+      {
+        "field": "founder_resources.relevant_skills",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.investment_status",
+        "source": "missing"
+      }
+    ],
+    "what_makes_this_different": "ReadyRounds differentiates itself by offering a physics-constrained inference engine that synthesizes disparate cardiac data to resolve true hemodynamic states, providing unique capabilities like primary driver ranking and counterfactual simulation for multi-valve heart disease, which are currently unavailable to clinicians.",
+    "one_liner": "ReadyRounds is a physics-constrained computational platform that integrates multi-source cardiac data to provide clinicians with precise hemodynamic insights for complex multi-valve heart disease in high-acuity environments.",
+    "thesis": "ReadyRounds proposes a novel \"computational layer for hemodynamic reasoning\" to address the complex challenge of diagnosing and managing multi-valve heart disease in high-acuity settings like the Cardiac Intensive Care Unit (CICU). What is genuinely new is its physics-constrained inference engine that synthesizes data from various diagnostic sources (echo, cath, CMR) to deduce the true underlying flows and pressures within the heart. This innovation moves beyond current clinical limitations where interdependent measurements in multi-valve disease often lead to diagnostic ambiguity and fragmented decision-making. The venture targets clinicians in CICUs who struggle with systematically disentangling these interdependencies. The problem is severe, as misdiagnosis or delayed decisions in these critical environments can have significant patient outcomes. The founder aims for a growth startup, given the ambitious technical roadmap and the potential impact within a specialized medical field. The venture is currently at the idea stage, with a clear 12-month roadmap focusing on core technology development and initial validation. ReadyRounds is positioned to complement existing diagnostic tools by providing a crucial analytical layer that enhances, rather than replaces, current clinical practice, offering deeper insights and predictive capabilities that are currently unavailable.",
+    "fields": [],
+    "traction_signals": [],
+    "contradictions": [],
+    "goal_frame": "growth",
+    "stated_vs_observed_stage": {
+      "mismatch_flag": false,
+      "mismatch_reason": "",
+      "claimed_stage": "idea",
+      "evidenced_stage": "idea"
+    },
+    "product_requires_new_hardware": false,
+    "venture_name": "ReadyRounds",
+    "core_insight": {
+      "why_different": "",
+      "source_excerpt": "",
+      "if_wrong": "",
+      "what": ""
+    },
+    "product_description": "ReadyRounds is a \"computational layer for hemodynamic reasoning\" that targets the assessment of multi-valve heart disease in Cardiac Intensive Care Units (CICUs). It features a physics-constrained inference engine that processes data from echo, cath, and CMR to determine latent hemodynamic states (true flows and pressures). Key outputs include ranking primary drivers of disease, a counterfactual simulator for treatment impact, a consistency report for measurement validation, and next-best-test guidance to reduce diagnostic uncertainty.",
+    "market_data": {
+      "source": "form",
+      "buyer": "Clinicians working in high-acuity cardiac environments such as the Cardiac Intensive Care Unit (CICU), assessing patients with multi-valve heart disease.",
+      "trigger_now": "In multi-valve disease, standard measurements are often coupled and unreliable — the severity of one valve depends on another — and clinicians currently lack a systematic method to decompose these interdependencies, leading to fragmented and slow decision-making.",
+      "segment": "Clinicians working in high-acuity cardiac environments such as the Cardiac Intensive Care Unit (CICU), assessing patients with multi-valve heart disease.",
+      "end_user": "Clinicians working in high-acuity cardiac environments such as the Cardiac Intensive Care Unit (CICU), assessing patients with multi-valve heart disease."
+    },
+    "thesis_evolution": {
+      "detected": false
+    },
+    "unit_economics": {
+      "price_tiers": "",
+      "source": "inferred"
+    },
+    "team_members": [],
+    "schema_version": "vr-3.1.1"
+  }
+}

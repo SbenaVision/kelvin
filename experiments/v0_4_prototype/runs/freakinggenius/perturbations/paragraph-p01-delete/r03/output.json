@@ -1,0 +1,218 @@
+{
+  "delivery_model": "hybrid",
+  "stage_assessment": "pre-seed",
+  "raw": {
+    "core_excitement": "The founder is excited by the opportunity to combine real-time handwriting analysis with a voice AI tutor to create a significantly better and more accessible math learning experience for middle school students.",
+    "thesis_evolution": {
+      "detected": false
+    },
+    "unit_economics": {
+      "cost_assumption": "estimated",
+      "price_tiers": "$79/month for course subscription.",
+      "pricing_model": "subscription",
+      "source": "form",
+      "human_work_per_customer": "$15/month per active subscriber (teacher revenue share).",
+      "revenue_assumption": "estimated",
+      "hardware_cost_per_customer": "$13.26/month per teacher over 36 months (repaid by FreakinGenius to BNPL partner). Tablet fee (to customer): $2.30/month (15% margin on hardware, amortized over 36 months)."
+    },
+    "bottleneck": {
+      "current_blocker": "Lack of market validation and distribution",
+      "type": "market",
+      "relaxed_by": "Problem validated with paying or committed families, evidence that voice-plus-handwriting experience is meaningfully better than existing alternatives, and at least one distribution channel with demonstrated conversion.",
+      "why_it_blocks": "The venture has no validated problem, no users, no paid customers, and no established distribution channels despite having started building."
+    },
+    "thesis": "This venture, \"FreakinGenius,\" aims to revolutionize middle school math tutoring through an integrated AI-powered system that combines real-time handwriting analysis with voice AI. The core innovation lies in this unique combination, setting it apart from traditional human tutors and existing educational tech products. The target user is middle school students struggling with math, whose families are willing to pay for a specialized, personalized learning experience. The problem it addresses is the high cost and scarcity of human tutors, making personalized math help inaccessible to many. The venture positions itself as a more accessible and potentially more effective alternative. The founder envisions a growth startup, given the stated ambition to build a product that addresses a significant market need. The venture is currently at the \"building\" stage, with development underway but no market validation or users yet. Its unique positioning in the value chain is to replace expensive human tutors with an AI-driven one while also complementing existing educational approaches by offering a highly personalized and interactive experience. FreakinGenius is seeking to disrupt the K-12 tutoring market by offering a technology-first solution that reduces the human resource bottleneck.",
+    "delivery_model": "hybrid",
+    "what_makes_this_different": "The venture's key innovation is the integration of real-time handwriting analysis with a voice AI tutor, providing a personalized and interactive learning experience that aims to be more effective and accessible than traditional human tutoring.",
+    "market_data": {
+      "competitors": [],
+      "trigger_now": "Middle school students struggling with math",
+      "tam": "$12B K-12 tutoring market",
+      "buyer": "Families (of middle school students)",
+      "alternatives": "Human tutors",
+      "segment": "K-12 tutoring market",
+      "why_better": "Addresses the high cost and scarcity of human tutors by providing an AI-driven, personalized, and integrated voice and handwriting analysis experience. Also offers personalized AI-generated content.",
+      "sam": "Not specified",
+      "end_user": "Middle school students struggling with math",
+      "source": "form"
+    },
+    "fields": [],
+    "one_liner": "An AI-powered math tutoring service for middle school students that combines real-time handwriting analysis with a voice AI tutor.",
+    "core_insight": {
+      "source_excerpt": "No existing product combines real-time handwriting analysis with a voice AI tutor in a single integrated experience. Personalized AI-generated content is a planned differentiator.",
+      "if_wrong": "If the integrated handwriting analysis and voice AI tutor experience doesn't prove to be meaningfully better or more effective than existing alternatives, or if the personalized AI content fails to engage students, adoption will be low despite the lower cost.",
+      "what": "",
+      "why_different": "The unique combination of real-time handwriting analysis and a voice AI tutor in a single integrated experience, along with personalized AI-generated content, differentiates it from existing alternatives like human tutors or other educational tools."
+    },
+    "extraction_sources": [
+      {
+        "source_phrase": "",
+        "field": "market_data.buyer",
+        "source": "founder_stated"
+      },
+      {
+        "source": "system_inferred",
+        "field": "market_data.end_user",
+        "source_phrase": "Middle school students struggling with math."
+      },
+      {
+        "source_phrase": "Middle school students struggling with math.",
+        "source": "system_inferred",
+        "field": "market_data.trigger_now"
+      },
+      {
+        "source": "founder_stated",
+        "field": "market_data.alternatives",
+        "source_phrase": ""
+      },
+      {
+        "field": "market_data.why_better",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "field": "market_data.anti_icp",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "unit_economics.price_tiers"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.pricing_model",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source": "founder_stated"
+      },
+      {
+        "source": "founder_stated",
+        "field": "unit_economics.human_work_per_customer",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.revenue_assumption",
+        "source": "system_inferred"
+      },
+      {
+        "source": "system_inferred",
+        "field": "unit_economics.cost_assumption",
+        "source_phrase": ""
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "stage_assessment"
+      },
+      {
+        "field": "evidence_of_stage",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "field": "goal_horizon_target",
+        "source_phrase": ""
+      },
+      {
+        "source": "system_inferred",
+        "field": "delivery_mode",
+        "source_phrase": "90% of subscribers receive a branded FG tablet via a BNPL partner... 10% bring their own device."
+      },
+      {
+        "source": "founder_stated",
+        "field": "product_requires_new_hardware",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "product_behavior_change_level",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "founder_resources.team_structure"
+      },
+      {
+        "source": "founder_stated",
+        "field": "founder_resources.relevant_skills",
+        "source_phrase": ""
+      },
+      {
+        "field": "founder_resources.investment_status",
+        "source": "missing",
+        "source_phrase": ""
+      }
+    ],
+    "traction_signals": [],
+    "product_requires_new_hardware": true,
+    "stated_vs_observed_stage": {
+      "mismatch_flag": false,
+      "evidenced_stage": "prototype",
+      "claimed_stage": "prototype",
+      "mismatch_reason": ""
+    },
+    "team_members": [
+      {
+        "role": "Part-time founder",
+        "confidence": "high",
+        "source": "form",
+        "name": "Founder",
+        "background": "Primary, investing up to $25K personal capital"
+      },
+      {
+        "name": "BSc graduate",
+        "source": "form",
+        "confidence": "high",
+        "role": "Full-time",
+        "background": "Some math teaching experience"
+      },
+      {
+        "background": "Working 5–10 hours per week on an hourly basis.",
+        "role": "Advisor",
+        "name": "Senior technical advisor",
+        "confidence": "high",
+        "source": "form"
+      }
+    ],
+    "things_that_must_work": [
+      "BNPL partner reliably fronts tablet hardware",
+      "Voice AI tutor recognizes diverse speech patterns and accents consistently",
+      "Handwriting analysis accurately interprets various handwriting styles",
+      "AI-generated content is consistently high quality and engaging",
+      "Families adopt a new method of math tutoring over traditional methods",
+      "Demonstrated conversion in at least one distribution channel"
+    ],
+    "product_behavior_change_level": "medium",
+    "gaps": [],
+    "stage_assessment": "pre-seed",
+    "goal_frame": "growth",
+    "founder_resources": {
+      "team_structure": "team",
+      "relevant_skills": "Math teaching experience (BSc graduate), technical advisory (senior technical advisor)",
+      "money_available": "Up to $25K personal capital (founder)",
+      "open_for_investors": false,
+      "investment_status": "not_raising",
+      "technical_or_business": "hybrid",
+      "time_available": "Part-time (founder)"
+    },
+    "contradictions": [],
+    "delivery_mode": "hybrid",
+    "evidence_of_stage": "Started building. No validation completed. No users. No paid customers. No LOIs.",
+    "venture_name": "FreakinGenius - paragraph-p01-delete-r3",
+    "product_description": "FreakinGenius offers an AI-powered math tutoring service for middle school students struggling with math. The service integrates real-time handwriting analysis with a voice AI tutor. The majority of subscribers receive a branded FreakinGenius tablet via a BNPL partner, while a smaller percentage use their own devices. The platform plans to offer personalized AI-generated content as a key differentiator.",
+    "schema_version": "vr-3.1.1"
+  }
+}

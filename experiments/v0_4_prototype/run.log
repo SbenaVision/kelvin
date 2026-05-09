@@ -1,0 +1,63 @@
+======================================================================
+Cases: 10  Unitizers: ['paragraph', 'sentence']  Replays: 5
+Estimated calls: 724 (50 baselines + 674 perturbations)
+Budget @ ~30s/call sequential: ~362 min; with 3 workers: ~121 min
+======================================================================
+
+=== Phase 1: baselines + 5 replays per case ===
+  artisanflow: ['growth', 'growth', 'growth', 'growth', 'seed']
+  envelop: ['seed', 'seed', 'pre-seed', 'seed', 'seed']
+  freakinggenius: ['idea', 'idea', 'idea', 'pre-seed', 'pre-seed']
+  himom: ['idea', 'idea', 'idea', 'idea', 'idea']
+  meridian: ['pre-seed', 'pre-seed', 'seed', 'pre-seed', 'seed']
+  narma: ['idea', 'idea', 'idea', 'idea', 'idea']
+  northpass: ['idea', 'idea', 'idea', 'idea', 'idea']
+  readyrounds: ['idea', 'idea', 'idea', 'idea', 'idea']
+  rhodium: ['growth', 'growth', 'growth', 'growth', 'growth']
+  stagehand: ['idea', 'idea', 'idea', 'idea', 'idea']
+  Phase 1 elapsed: 5.1 min
+
+  σ_c per case:
+    artisanflow         σ_c=0.4  baseline=growth
+    envelop             σ_c=0.4  baseline=seed
+    freakinggenius      σ_c=0.6  baseline=idea
+    himom               σ_c=0.0  baseline=idea
+    meridian            σ_c=0.6  baseline=pre-seed
+    narma               σ_c=0.0  baseline=idea
+    northpass           σ_c=0.0  baseline=idea
+    readyrounds         σ_c=0.0  baseline=idea
+    rhodium             σ_c=0.0  baseline=growth
+    stagehand           σ_c=0.0  baseline=idea
+
+=== Phase 2: perturbations (674 variants) ===
+    [25/674] 2.3 min elapsed
+    [50/674] 4.3 min elapsed
+    [75/674] 6.0 min elapsed
+    [100/674] 8.0 min elapsed
+    [125/674] 9.6 min elapsed
+    [150/674] 11.4 min elapsed
+    [175/674] 13.8 min elapsed
+    [200/674] 15.7 min elapsed
+    [225/674] 18.0 min elapsed
+    [250/674] 20.7 min elapsed
+    [275/674] 20.7 min elapsed
+    [300/674] 20.7 min elapsed
+    [325/674] 20.7 min elapsed
+    [350/674] 20.7 min elapsed
+    [375/674] 20.7 min elapsed
+    [400/674] 20.7 min elapsed
+    [425/674] 20.7 min elapsed
+    [450/674] 20.8 min elapsed
+    [475/674] 20.8 min elapsed
+    [500/674] 20.8 min elapsed
+    [525/674] 20.8 min elapsed
+    [550/674] 20.8 min elapsed
+    [575/674] 20.8 min elapsed
+    [600/674] 20.8 min elapsed
+    [625/674] 20.8 min elapsed
+    [650/674] 20.8 min elapsed
+  Phase 2 elapsed: 20.9 min
+
+=== Aggregating per-unit sensitivity ===
+
+✓ Artifacts in /Users/sb/MyDev/Kelvin/.claude/worktrees/compassionate-kare-20cec7/experiments/v0_4_prototype/

@@ -1,0 +1,193 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 500,
+  "vvs_score": 477,
+  "vvs_band": "Weak path to revenue",
+  "vvs_dimensions": {
+    "P": 3,
+    "M": 3,
+    "C": 3,
+    "D": 3,
+    "L": 3,
+    "F": 3,
+    "E": 2
+  },
+  "raw": {
+    "unit_economics": {
+      "price_tiers": "",
+      "source": "inferred"
+    },
+    "delivery_mode": "software",
+    "core_insight": {
+      "what": "",
+      "if_wrong": "",
+      "why_different": "",
+      "source_excerpt": ""
+    },
+    "thesis": "Stagehand introduces a novel hands-free command layer for complex dashboards, targeting users in high-cognitive-load environments. The innovation lies in its \"orchestration approach\" that leverages existing, pre-defined UI components through natural language, rather than generating new UI. This ensures predictable, low-latency performance essential for critical applications like medical dashboards and financial trading terminals. The founder envisions augmenting traditional input methods, aiming for viral developer adoption by making integration seamless for React developers. This positions Stagehand as a complementary layer to existing UI frameworks, enhancing usability and reducing cognitive load without requiring a re-architecture of current systems. The venture appears to be in its early \"idea\" stage, with a focus on defining the technical architecture and market positioning for developer adoption.",
+    "product_description": "Stagehand allows users to control complex dashboards using natural language. It works by orchestrating pre-defined, registered components, rather than generating new UI, to ensure consistent and predictable performance. Key technical differentiators include a two-tier processing model with a fast local matcher and an LLM fallback, and optimistic UI updates for sub-200ms perceived response times. The framework is designed for viral developer adoption with \"zero rebuild\" for existing React components.",
+    "things_that_must_work": [
+      "Successful integration with existing React applications without requiring a rebuild.",
+      "The accuracy and latency of the natural language processing in diverse and complex professional contexts.",
+      "Developer community adoption and contribution to the open-source framework."
+    ],
+    "founder_resources": {
+      "money_available": "",
+      "time_available": "",
+      "open_for_investors": true,
+      "investment_status": "open"
+    },
+    "what_makes_this_different": "Stagehand distinguishes itself by orchestrating existing UI components with natural language commands, rather than dynamically generating UI. This approach prioritizes consistency, predictability, and low-latency performance, which are critical in professional high-cognitive-load environments. Its two-tier processing model (local matcher + LLM fallback) and \"zero rebuild\" integration for React components further differentiate its technical implementation and developer adoption strategy from traditional AI UI generation tools.",
+    "venture_name": "stagehand-del-u01-r2",
+    "market_data": {
+      "trigger_now": "The need for hands-free operation or rapid navigation in complex data streams.",
+      "why_better": "Augments traditional input methods with hands-free control, reducing cognitive load and enabling rapid navigation without rebuilding existing UI.",
+      "source": "form",
+      "alternatives": "Traditional input methods (mouse/keyboard)",
+      "segment": "Professional environments with complex dashboards",
+      "end_user": "Users in high-cognitive-load environments (e.g., medical, financial trading, industrial monitoring)"
+    },
+    "core_excitement": "The founder is excited by the unique approach of augmenting traditional input methods with a hands-free command layer that orchestrates existing UI components, ensuring consistent and predictable performance in critical high-cognitive-load environments.",
+    "bottleneck": {
+      "current_blocker": "Developer adoption strategy and initial open-source community building",
+      "relaxed_by": "Successful initial developer engagement, demonstration of the 'zero rebuild' claim, and clear value proposition for React developers.",
+      "type": "market",
+      "why_it_blocks": "The venture relies on viral developer adoption through its open-source framework, which is currently unproven. Without a foundational developer community, the core distribution strategy cannot gain traction."
+    },
+    "delivery_model": "existing_devices_software",
+    "fields": [],
+    "thesis_evolution": {
+      "detected": false
+    },
+    "goal_frame": "growth",
+    "team_members": [],
+    "product_requires_new_hardware": false,
+    "product_behavior_change_level": "medium",
+    "gaps": [],
+    "contradictions": [],
+    "stage_assessment": "idea",
+    "traction_signals": [],
+    "stated_vs_observed_stage": {
+      "mismatch_flag": false,
+      "claimed_stage": "idea",
+      "evidenced_stage": "idea",
+      "mismatch_reason": ""
+    },
+    "extraction_sources": [
+      {
+        "source": "missing",
+        "field": "market_data.buyer",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "Professional environments where hands-free operation or rapid navigation is critical, including medical dashboards, financial trading terminals, industrial monitoring, and accessibility tools.",
+        "source": "system_inferred",
+        "field": "market_data.end_user"
+      },
+      {
+        "source_phrase": "Professional environments where hands-free operation or rapid navigation is critical",
+        "field": "market_data.trigger_now",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "augment traditional input methods (mouse/keyboard)",
+        "source": "system_inferred",
+        "field": "market_data.alternatives"
+      },
+      {
+        "source": "system_inferred",
+        "field": "market_data.why_better",
+        "source_phrase": "augment traditional input methods (mouse/keyboard) with a hands-free command layer, reducing the cognitive load of navigating complex data streams."
+      },
+      {
+        "source": "missing",
+        "field": "market_data.anti_icp",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.price_tiers",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.pricing_model",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.hardware_cost_per_customer"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.human_work_per_customer"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.revenue_assumption",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.cost_assumption",
+        "source_phrase": ""
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "It enables users in high-cognitive-load environments to manage complex dashboards through natural language commands.",
+        "source": "system_inferred",
+        "field": "stage_assessment"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "evidence_of_stage"
+      },
+      {
+        "source": "missing",
+        "field": "goal_horizon_target",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "delivery_mode",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "field": "product_requires_new_hardware",
+        "source": "founder_stated"
+      },
+      {
+        "field": "product_behavior_change_level",
+        "source": "system_inferred",
+        "source_phrase": "augment traditional input methods (mouse/keyboard) with a hands-free command layer"
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.team_structure",
+        "source": "missing"
+      },
+      {
+        "field": "founder_resources.relevant_skills",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "Not specified in source material.",
+        "source": "system_inferred",
+        "field": "founder_resources.investment_status"
+      }
+    ],
+    "one_liner": "Stagehand enables users in high-cognitive-load environments to manage complex dashboards through natural language commands.",
+    "evidence_of_stage": "The venture is described as an initial concept with a defined technical approach and market vision, but no mention of a built product, users, or revenue.",
+    "schema_version": "vr-3.1.1"
+  }
+}

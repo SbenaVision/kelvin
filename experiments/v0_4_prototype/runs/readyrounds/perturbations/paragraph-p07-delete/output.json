@@ -1,0 +1,187 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "raw": {
+    "gaps": [],
+    "goal_frame": "moonshot",
+    "thesis_evolution": {
+      "detected": false
+    },
+    "core_excitement": "The founder is excited about enabling a new level of ",
+    "market_data": {
+      "segment": "High-acuity cardiac care",
+      "end_user": "Clinicians working in high-acuity cardiac environments such as the Cardiac Intensive Care Unit (CICU), assessing patients with multi-valve heart disease.",
+      "source": "form",
+      "trigger_now": "In multi-valve disease, standard measurements are often coupled and unreliable — the severity of one valve depends on another — and clinicians currently lack a systematic method to decompose these interdependencies, leading to fragmented and slow decision-making."
+    },
+    "thesis": "\nReadyRounds introduces a novel ",
+    "product_requires_new_hardware": false,
+    "stated_vs_observed_stage": {
+      "mismatch_flag": false,
+      "mismatch_reason": "",
+      "claimed_stage": "idea",
+      "evidenced_stage": "idea"
+    },
+    "one_liner": "ReadyRounds is a computational layer ",
+    "extraction_sources": [
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "market_data.buyer"
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "Clinicians working in high-acuity cardiac environments such as the Cardiac Intensive Care Unit (CICU), assessing patients with multi-valve heart disease.",
+        "field": "market_data.end_user"
+      },
+      {
+        "source_phrase": "In multi-valve disease, standard measurements are often coupled and unreliable — the severity of one valve depends on another — and clinicians currently lack a systematic method to decompose these interdependencies, leading to fragmented and slow decision-making.",
+        "field": "market_data.trigger_now",
+        "source": "system_inferred"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "market_data.alternatives"
+      },
+      {
+        "source": "missing",
+        "field": "market_data.why_better",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "market_data.anti_icp"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.price_tiers",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.pricing_model",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "unit_economics.human_work_per_customer"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.revenue_assumption",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "unit_economics.cost_assumption"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "system_inferred",
+        "field": "stage_assessment",
+        "source_phrase": "a \"computational layer for hemodynamic reasoning\" specifically targeting the complex assessment of multi-valve heart disease in high-acuity environments"
+      },
+      {
+        "source_phrase": "The product is described at a conceptual level with no mention of development, testing, or user feedback.",
+        "field": "evidence_of_stage",
+        "source": "system_inferred"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "goal_horizon_target"
+      },
+      {
+        "source": "system_inferred",
+        "field": "delivery_mode",
+        "source_phrase": "computational layer"
+      },
+      {
+        "field": "product_requires_new_hardware",
+        "source_phrase": "ingests data from multiple sources (echo, cath, CMR)",
+        "source": "system_inferred"
+      },
+      {
+        "field": "product_behavior_change_level",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.team_structure",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "field": "founder_resources.relevant_skills",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "founder_resources.investment_status"
+      }
+    ],
+    "evidence_of_stage": "The product is described at a conceptual level with no mention of development ",
+    "team_members": [],
+    "contradictions": [],
+    "bottleneck": {
+      "type": "technical",
+      "why_it_blocks": "The core of the venture relies on a novel computational approach that needs to be developed and rigorously tested.",
+      "current_blocker": "Building the physics-constrained inference engine and validating its accuracy and utility in a clinical setting.",
+      "relaxed_by": "Successful development, internal validation, and initial clinical trials of the inference engine."
+    },
+    "fields": [],
+    "stage_assessment": "idea",
+    "delivery_model": "existing_devices_software",
+    "traction_signals": [],
+    "unit_economics": {
+      "price_tiers": "",
+      "source": "form"
+    },
+    "delivery_mode": "software",
+    "venture_name": "ReadyRounds",
+    "what_makes_this_different": "ReadyRounds uses a physics-constrained inference ",
+    "schema_version": "vr-3.1.1",
+    "product_description": "ReadyRounds is a ",
+    "things_that_must_work": [
+      "Integration with existing hospital data systems (echo, cath, CMR)",
+      "Clinical validation of the inference engine and its outputs",
+      "Regulatory approval for medical device software as well as clinical adoption"
+    ],
+    "known_unknowns": {
+      "what_founder_has_not_told_us": [
+        "Specifics on team members and their relevant expertise.",
+        "Details on the go-to-market strategy, sales, or distribution channels.",
+        "Cost and revenue assumptions, including potential pricing models for the solution.",
+        "Any existing market validation or customer feedback.",
+        "Specific success metrics or milestones for the next 1-3 years.",
+        "Founder's available time and money for the venture."
+      ],
+      "what_founder_seems_unsure_about": []
+    },
+    "core_insight": {
+      "why_different": "It moves beyond current, often unreliable, standard measurements by applying a physics-constrained AI to solve for true hemodynamic states.",
+      "if_wrong": "Clinicians will continue to face fragmented and slow decision-making due to coupled and unreliable measurements, and ReadyRounds will fail to offer a significant improvement over existing diagnostic methods.",
+      "source_excerpt": "solving for the latent hemodynamic state — true flows and pressures — while respecting the laws of physics. Key deliverables include primary driver ranking (identifying which lesion most explains the clinical picture), a counterfactual simulator (predicting how fixing one valve will affect the severity of others), a consistency report (flagging measurements that contradict physical principles), and next-best-test guidance (identifying the specific measurement that would most reduce diagnostic uncertainty).",
+      "what": ""
+    },
+    "founder_resources": {
+      "money_available": "",
+      "time_available": ""
+    }
+  }
+}

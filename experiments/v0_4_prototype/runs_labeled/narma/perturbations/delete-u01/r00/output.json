@@ -1,0 +1,188 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 500,
+  "vvs_score": 465,
+  "vvs_band": "Weak path to revenue",
+  "vvs_dimensions": {
+    "P": 3,
+    "M": 3,
+    "C": 3,
+    "D": 2,
+    "L": 3,
+    "F": 3,
+    "E": 2
+  },
+  "raw": {
+    "stated_vs_observed_stage": {
+      "claimed_stage": "idea",
+      "mismatch_reason": "",
+      "mismatch_flag": false,
+      "evidenced_stage": "idea"
+    },
+    "one_liner": "A three-layered system that observes enterprise work patterns, identifies high-ROI AI opportunities, and automatically deploys AI agents to create continuous AI lift for AI-first companies.",
+    "things_that_must_work": [
+      "Accurate and non-intrusive desktop sensors for work pattern capture.",
+      "Robust \"Brain\" for detecting employee intent, business value, and workflow drift.",
+      "\"Agent Factory\" for reliable, automated generation and deployment of AI agents.",
+      "Seamless integration with existing enterprise foundation models and IT environments.",
+      "Clear and transparent approval mechanisms for AI agent deployment to ensure trust and compliance."
+    ],
+    "venture_name": "narma-del-u01-r0",
+    "gaps": [],
+    "team_members": [],
+    "market_data": {
+      "end_user": "Enterprises struggling with AI telemetry, ROI measurement, and workflow drift.",
+      "segment": "AI-first companies seeking to deploy AI automation at scale",
+      "source": "form"
+    },
+    "contradictions": [],
+    "bottleneck": {
+      "why_it_blocks": "The entire system is conceptual and requires significant engineering effort to translate the architectural vision into a functional product that can capture work patterns, detect intent and drift, and automatically generate/deploy AI agents.",
+      "type": "technical",
+      "relaxed_by": "Successful development and integration of the three architectural layers and initial testing of the Work Graph concept.",
+      "current_blocker": "Building the core technology (Observe, Intelligence, and Execution Layers)"
+    },
+    "thesis": "This venture, \"narma-del-u01-r0,\" proposes a novel approach to AI-driven workflow optimization within enterprises. The core innovation lies in its three-layered architecture: an \"Observe\" layer that captures granular work patterns via lightweight desktop sensors, an \"Intelligence Layer\" (the \"Brain\") that interprets employee intent and task value to detect workflow \"drift,\" and an \"Execution Layer\" (the \"Agent Factory\") that automatically generates and deploys AI agents for high-ROI opportunities with built-in approval gates. This system explicitly leverages existing foundation models, focusing its proprietary efforts on understanding the \"Work Graph\"—visualizing resource expenditure and identifying precise points for AI intervention. The specific innovation is not about creating new AI models, but about creating a closed loop system that detects opportunities for AI, builds agents, and deploys them to create \"Continuous AI lift.\"\n\nThis system is designed for \"AI-first companies seeking to see, prove, and deploy AI automation at scale.\" This implies a target user who is already strategically committed to AI adoption but struggles with the practicalities of implementation, measurement, and scaling. The primary pain point it addresses is the enterprise-wide struggle with a lack of telemetry to identify AI savings, unreliable ROI measurement for AI initiatives, and the inevitable \"drift\" in both systems and human processes.\n\nThe founder's goal appears to be a growth-oriented startup, given the ambition to provide \"Continuous AI lift\" and solve scaling problems for \"AI-first companies.\" The venture is currently at the idea stage, with the founder articulating a clear architectural vision and problem statement, but no evidence of a built product or user traction. The venture aims to be a foundational component for enterprises, complementing existing AI initiatives by providing the intelligence and execution layer needed to operationalize and scale AI benefits, rather than replacing core business applications or foundational AI models. It addresses the crucial gap between AI ambition and demonstrable, continuous impact.",
+    "delivery_mode": "hybrid",
+    "thesis_evolution": {
+      "detected": false
+    },
+    "what_makes_this_different": "The venture's unique innovation is its three-layered, closed-loop system that observes work patterns, intelligently identifies AI opportunities, and autonomously deploys AI agents, all while leveraging existing foundation models and focusing on the \"Work Graph\" to achieve \"Continuous AI lift.\"",
+    "founder_resources": {
+      "money_available": "",
+      "time_available": ""
+    },
+    "traction_signals": [],
+    "extraction_sources": [
+      {
+        "source": "system_inferred",
+        "field": "market_data.buyer",
+        "source_phrase": "AI-first companies seeking to see, prove, and deploy AI automation at scale."
+      },
+      {
+        "field": "market_data.end_user",
+        "source": "system_inferred",
+        "source_phrase": "Enterprises often struggle with a lack of telemetry to pinpoint AI savings, unreliable ROI measurements, and constant drift in systems and human resources."
+      },
+      {
+        "source_phrase": "Enterprises often struggle with a lack of telemetry to pinpoint AI savings, unreliable ROI measurements, and constant drift in systems and human resources.",
+        "source": "system_inferred",
+        "field": "market_data.trigger_now"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.alternatives",
+        "source": "missing"
+      },
+      {
+        "field": "market_data.why_better",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "market_data.anti_icp"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.price_tiers",
+        "source": "missing"
+      },
+      {
+        "field": "unit_economics.pricing_model",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source": "missing"
+      },
+      {
+        "field": "unit_economics.human_work_per_customer",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.revenue_assumption",
+        "source": "missing"
+      },
+      {
+        "field": "unit_economics.cost_assumption",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "stage_assessment",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "field": "evidence_of_stage",
+        "source": "missing"
+      },
+      {
+        "field": "goal_horizon_target",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "system_inferred",
+        "field": "delivery_mode",
+        "source_phrase": "lightweight desktop sensors"
+      },
+      {
+        "source_phrase": "lightweight desktop sensors capture work patterns",
+        "source": "system_inferred",
+        "field": "product_requires_new_hardware"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "product_behavior_change_level"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "founder_resources.team_structure"
+      },
+      {
+        "source": "missing",
+        "field": "founder_resources.relevant_skills",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.investment_status",
+        "source": "missing"
+      }
+    ],
+    "core_insight": {
+      "source_excerpt": "",
+      "what": "",
+      "why_different": "",
+      "if_wrong": ""
+    },
+    "delivery_model": "existing_devices_software",
+    "product_description": "This venture, \"narma-del-u01-r0,\" proposes a three-layered architecture for AI-driven workflow optimization. The \"Observe\" layer uses lightweight desktop sensors to capture work patterns like application usage, activity sequences, and time allocation. The \"Intelligence Layer\" acts as a \"Brain\" to detect employee intent, assess the business value of tasks, and identify \"drift\" from intended workflows. The \"Execution Layer\" functions as an \"Agent Factory,\" automating the generation, deployment, and monitoring of AI agents for validated high-ROI opportunities, complete with approval gates. The system integrates existing foundation models and focuses on mapping the \"Work Graph\" to reveal resource allocation and prime spots for AI intervention, aiming for continuous AI lift.",
+    "fields": [],
+    "product_requires_new_hardware": false,
+    "core_excitement": "The founder is excited by the prospect of building a system that can continuously observe, decide, and deploy AI automation within enterprises, ensuring a \"Continuous AI lift\" by addressing the gaps in telemetry, ROI measurement, and workflow drift.",
+    "unit_economics": {
+      "price_tiers": "",
+      "source": "inferred"
+    },
+    "stage_assessment": "idea",
+    "goal_frame": "growth",
+    "schema_version": "vr-3.1.1"
+  }
+}

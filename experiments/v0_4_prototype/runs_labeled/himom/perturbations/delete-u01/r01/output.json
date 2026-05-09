@@ -1,0 +1,206 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 515,
+  "vvs_score": 350,
+  "vvs_band": "Non-viable",
+  "vvs_dimensions": {
+    "P": 4,
+    "M": 3,
+    "C": 2,
+    "D": 2,
+    "L": 2,
+    "F": 3,
+    "E": 2
+  },
+  "raw": {
+    "delivery_mode": "software",
+    "extraction_sources": [
+      {
+        "source": "founder_stated",
+        "source_phrase": "",
+        "field": "market_data.buyer"
+      },
+      {
+        "source": "founder_stated",
+        "source_phrase": "",
+        "field": "market_data.end_user"
+      },
+      {
+        "field": "market_data.trigger_now",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "field": "market_data.alternatives",
+        "source_phrase": "This population frequently neglects essential daily tasks like taking medicine, exercising, or limiting TV time without proactive reminders.",
+        "source": "system_inferred"
+      },
+      {
+        "field": "market_data.why_better",
+        "source": "system_inferred",
+        "source_phrase": "The system uses connected devices (watches, TVs) to trigger actions based on real-time data, such as prompting a brain-training quiz if the user has watched TV for over 120 minutes or suggesting a walk if daily steps are under 100."
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "market_data.anti_icp"
+      },
+      {
+        "field": "unit_economics.price_tiers",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.pricing_model",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.hardware_cost_per_customer"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "unit_economics.human_work_per_customer"
+      },
+      {
+        "field": "unit_economics.revenue_assumption",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "field": "unit_economics.cost_assumption",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "stage_assessment",
+        "source": "system_inferred",
+        "source_phrase": "No artifacts/signals mentioned."
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "evidence_of_stage"
+      },
+      {
+        "field": "goal_horizon_target",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "delivery_mode",
+        "source_phrase": "",
+        "source": "founder_stated"
+      },
+      {
+        "field": "product_requires_new_hardware",
+        "source_phrase": "",
+        "source": "founder_stated"
+      },
+      {
+        "field": "product_behavior_change_level",
+        "source_phrase": "The system uses connected devices (watches, TVs) to trigger actions based on real-time data, such as prompting a brain-training quiz if the user has watched TV for over 120 minutes or suggesting a walk if daily steps are under 100.",
+        "source": "system_inferred"
+      },
+      {
+        "field": "founder_resources.team_structure",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "founder_resources.relevant_skills",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "Open for investors: Not specified",
+        "field": "founder_resources.investment_status"
+      }
+    ],
+    "market_data": {
+      "why_better": "Provides proactive, context-aware reminders and engagements leveraging IoT devices, offering a more adaptive and integrated solution compared to manual care or simple static reminders.",
+      "source": "form",
+      "tam": "An estimated 467 million people aged 75 or older, projected to reach 700 million by 2030.",
+      "alternatives": "Doing it manually or nothing (neglecting tasks).",
+      "end_user": "Aging population aged 75 and older.",
+      "segment": "Seniors aged 75 and older who frequently neglect essential daily tasks, and their adult children who act as caregivers.",
+      "trigger_now": "The frequent neglect of essential daily tasks by seniors (e.g., taking medicine, exercising, limiting TV time) and the challenges faced by adult children in providing proactive care.",
+      "buyer": "Adult children of seniors aged 75 and older."
+    },
+    "unit_economics": {
+      "source": "form",
+      "price_tiers": ""
+    },
+    "what_makes_this_different": "Himom differentiates itself by using real-time data from connected IoT devices to trigger context-aware, proactive prompts and actions for seniors, moving beyond simple scheduled reminders to adaptive behavioral nudges.",
+    "bottleneck": {
+      "current_blocker": "Building the initial product functionality and securing integrations with IoT devices.",
+      "type": "technical",
+      "why_it_blocks": "Without a functional product that leverages IoT integrations, the core value proposition of proactive, context-aware routines cannot be delivered.",
+      "relaxed_by": "Successful development of the core mobile app and initial IoT device integrations."
+    },
+    "core_insight": {
+      "why_different": "",
+      "if_wrong": "",
+      "what": "",
+      "source_excerpt": ""
+    },
+    "product_behavior_change_level": "high",
+    "things_that_must_work": [
+      "Integration with various IoT devices (watches, TVs) for data exchange and action triggering.",
+      "Seamless integration of new actions, services, and third-party providers into the marketplace.",
+      "User adoption by seniors and consistent management by adult children."
+    ],
+    "stage_assessment": "idea",
+    "goal_frame": "growth",
+    "team_members": [],
+    "gaps": [],
+    "known_unknowns": {
+      "what_founder_seems_unsure_about": [],
+      "what_founder_has_not_told_us": [
+        "Specific pricing model and tiers.",
+        "Detailed unit economics (CAC, LTV, conversion rates, cost assumptions).",
+        "Go-to-market strategy.",
+        "Founder's background and relevant skills.",
+        "Team structure.",
+        "Concrete short-term and long-term goals with measurable targets."
+      ]
+    },
+    "thesis_evolution": {
+      "detected": false
+    },
+    "product_description": "Himom is a mobile application for adult children to define and manage daily routines for their senior parents, aged 75 and older. The system uses connected devices (watches, TVs) to trigger actions based on real-time data, such as medication reminders, lunchtime alerts, brain-training quizzes after extended TV watching, or suggestions for walking based on daily step count. The platform is designed as a marketplace for integrating new actions, services, and third-party providers with simple, \"3-click\" integration for the end-user.",
+    "stated_vs_observed_stage": {
+      "mismatch_reason": "",
+      "mismatch_flag": false,
+      "claimed_stage": "idea",
+      "evidenced_stage": "idea"
+    },
+    "delivery_model": "existing_devices_software",
+    "core_excitement": "The founder is excited by the potential to improve seniors' quality of life and empower adult children caregivers through a simple, extensible interface that proactively leverages IoT capabilities.",
+    "contradictions": [],
+    "thesis": "\nThis venture, Himom, aims to enhance the quality of life for seniors (aged 75+) and support their adult children in providing care. The core innovation lies in its flexible, extensible platform that leverages IoT devices to deliver personalized daily routines and prompts. Unlike simple reminder apps, Himom integrates connected devices like smartwatches and TVs to trigger actions based on real-time behavior (e.g., prompting a brain-training quiz after extended TV watching, or suggesting a walk if daily steps are low).\n\nThe venture is specifically for seniors aged 75 and older, who often neglect essential daily tasks. Their adult children are the primary buyers and managers, defining routines and integrating services via a mobile app. The problem is severe and frequent: seniors frequently miss medication, lack sufficient exercise, or spend excessive time on passive activities. Himom addresses this by providing proactive, context-aware reminders and engagements.\n\nThe founder's goal appears to be a growth startup, given the emphasis on an extensible platform and marketplace for third-party integrations, hinting at significant scaling potential rather than a niche lifestyle business or a moonshot requiring fundamental scientific breakthroughs. The venture is currently at the idea stage, as evidenced by the lack of artifacts or signals described in the intake form. Everything presented is conceptual.\n\nHimom is positioned as a complementary solution within the value chain, enhancing existing caregiving efforts rather than replacing them entirely. It adds a layer of intelligent automation and proactive support to the care provided by adult children, and integrates with existing IoT devices rather than requiring proprietary hardware. It precedes potential health interventions by focusing on preventive and proactive wellness maintenance.\n",
+    "evidence_of_stage": "",
+    "traction_signals": [],
+    "product_requires_new_hardware": false,
+    "one_liner": "A mobile app and IoT platform that helps adult children define and deliver personalized daily routines and proactive prompts to seniors aged 75 and older.",
+    "fields": [],
+    "founder_resources": {
+      "money_available": "?",
+      "investment_status": "not_raising",
+      "time_available": "?",
+      "open_for_investors": false
+    },
+    "venture_name": "himom-del-u01-r1",
+    "schema_version": "vr-3.1.1"
+  }
+}

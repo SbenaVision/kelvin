@@ -1,0 +1,188 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 463,
+  "vvs_score": 350,
+  "vvs_band": "Non-viable",
+  "vvs_dimensions": {
+    "P": 3,
+    "M": 3,
+    "C": 2,
+    "D": 2,
+    "L": 2,
+    "F": 3,
+    "E": 2
+  },
+  "raw": {
+    "unit_economics": {
+      "price_tiers": "",
+      "source": "inferred"
+    },
+    "bottleneck": {
+      "relaxed_by": "Building a working prototype or MVP of the 'Observe' and 'Intelligence' layers, even if basic, to demonstrate proof-of-concept for detecting work patterns and inefficiencies.",
+      "current_blocker": "Lack of a tangible product or prototype to demonstrate core functionality and validate assumptions.",
+      "why_it_blocks": "Without a demonstrable product, it is difficult to attract early adopters, gather feedback, and prove the feasibility of the three-layered architecture and the 'Work Graph' concept.",
+      "type": "technical"
+    },
+    "product_description": "The system monitors work patterns via lightweight desktop sensors (application usage, activity sequences, time allocation). An \"Intelligence Layer\" detects employee intent, task value, and work drift. An \"Agent Factory\" then auto-generates, deploys, and monitors AI agents for high-ROI opportunities, leveraging existing foundation models and focusing on a \"Work Graph\" to optimize resource allocation and enable \"Continuous AI lift.\"",
+    "founder_resources": {
+      "investment_status": "not_raising",
+      "team_structure": "solo",
+      "time_available": "",
+      "money_available": "",
+      "relevant_skills": "Not specified"
+    },
+    "product_behavior_change_level": "high",
+    "goal_frame": "growth",
+    "what_makes_this_different": "This venture differentiates itself by focusing on a comprehensive, three-layered approach (Observe, Intelligence, Execution) and building a 'Work Graph' to identify and automatically leverage AI opportunities within existing enterprise workstreams, rather than focusing on building new foundational AI models.",
+    "gaps": [],
+    "extraction_sources": [
+      {
+        "source": "system_inferred",
+        "field": "market_data.buyer",
+        "source_phrase": "AI-first companies seeking to see, prove, and deploy AI automation at scale."
+      },
+      {
+        "source": "system_inferred",
+        "field": "market_data.end_user",
+        "source_phrase": "AI-first companies seeking to see, prove, and deploy AI automation at scale."
+      },
+      {
+        "source": "founder_stated",
+        "field": "market_data.trigger_now",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "market_data.alternatives"
+      },
+      {
+        "source_phrase": "a single system that observes how work happens, decides what AI should do next, and auto-builds agents continuously to ensure a 'Continuous AI lift.'",
+        "source": "system_inferred",
+        "field": "market_data.why_better"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "market_data.anti_icp"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.price_tiers",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.pricing_model",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.human_work_per_customer"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.revenue_assumption",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.cost_assumption"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "The architecture has three layers.",
+        "source": "system_inferred",
+        "field": "stage_assessment"
+      },
+      {
+        "source": "system_inferred",
+        "field": "evidence_of_stage",
+        "source_phrase": "The architecture has three layers."
+      },
+      {
+        "source_phrase": "",
+        "field": "goal_horizon_target",
+        "source": "missing"
+      },
+      {
+        "field": "delivery_mode",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "field": "product_requires_new_hardware",
+        "source": "system_inferred",
+        "source_phrase": "lightweight desktop sensors"
+      },
+      {
+        "source_phrase": "continuously to ensure a 'Continuous AI lift.'",
+        "source": "system_inferred",
+        "field": "product_behavior_change_level"
+      },
+      {
+        "source": "system_inferred",
+        "field": "founder_resources.team_structure",
+        "source_phrase": "Team: Not specified"
+      },
+      {
+        "field": "founder_resources.relevant_skills",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "system_inferred",
+        "field": "founder_resources.investment_status",
+        "source_phrase": "Open for investors: Not specified"
+      }
+    ],
+    "market_data": {
+      "source": "inferred",
+      "trigger_now": "Enterprises struggle with a lack of telemetry to pinpoint AI savings, unreliable ROI measurements, and constant drift in systems and human resources.",
+      "segment": "AI-first companies seeking to see, prove, and deploy AI automation at scale.",
+      "end_user": "AI-first companies seeking to see, prove, and deploy AI automation at scale.",
+      "alternatives": "Enterprises currently struggle with manual methods, lacking telemetry to pinpoint AI savings and unreliable ROI measurements.",
+      "buyer": "AI-first companies seeking to see, prove, and deploy AI automation at scale.",
+      "why_better": "The system provides a single, continuous, and automated solution to observe work, decide AI actions, and auto-build agents, addressing common enterprise struggles with AI adoption and ROI measurement."
+    },
+    "core_insight": {
+      "why_different": "The venture focuses on a 'Work Graph' and a three-layered approach (Observe, Intelligence, Execution) to continuously identify and automate high-ROI opportunities using existing foundation models, rather than building new LLMs.",
+      "source_excerpt": "a single system that observes how work happens, decides what AI should do next, and auto-builds agents continuously to ensure a 'Continuous AI lift.'",
+      "if_wrong": "If the system cannot accurately detect intent or business value, or if automated agent deployment fails to deliver continuous ROI, then the core premise of 'Continuous AI lift' is invalidated.",
+      "what": ""
+    },
+    "venture_name": "narma-del-u01-r2",
+    "stated_vs_observed_stage": {
+      "claimed_stage": "idea",
+      "mismatch_reason": "",
+      "mismatch_flag": false,
+      "evidenced_stage": "idea"
+    },
+    "delivery_mode": "software",
+    "traction_signals": [],
+    "delivery_model": "existing_devices_software",
+    "thesis_evolution": {
+      "detected": false
+    },
+    "fields": [],
+    "product_requires_new_hardware": false,
+    "contradictions": [],
+    "team_members": [],
+    "one_liner": "A three-layered AI system for enterprises to observe work patterns, detect inefficiencies, and automatically deploy AI agents for continuous automation and ROI.",
+    "thesis": "This venture proposes a three-layered architecture to revolutionize how enterprises integrate and leverage AI. The \"Observe\" layer uses lightweight desktop sensors to capture work patterns, including application usage, activity sequences, and time allocation. The \"Intelligence Layer\" (Brain) then analyzes this data to detect employee intent, assess the business value of tasks, and identify \"drift\" where work deviates from intended flows. The \"Execution Layer\" (Agent Factory) automatically generates, deploys, and monitors AI agents for high-ROI opportunities. Instead of building proprietary LLMs, the system focuses on creating a \"Work Graph\" to identify inefficiencies and pinpoint where AI can intervene. This venture aims to provide a single system that observes work, decides on AI actions, and continuously builds agents for \"Continuous AI lift.\" It is specifically targeting \"AI-first companies seeking to see, prove, and deploy AI automation at scale.\" This venture seeks to address the common enterprise struggles of lacking telemetry for AI savings, unreliable ROI measurement, and constant drift in systems and human resources. The founder's goal appears to be a growth startup, given the focus on scaling AI automation within enterprises. The venture is currently at the idea stage, with a detailed architectural concept but no clear evidence of implementation or users. This venture seeks to replace current, often manual, approaches to AI integration and process optimization within enterprises, offering a comprehensive, automated solution.",
+    "stage_assessment": "idea",
+    "schema_version": "vr-3.1.1"
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 515,
+  "vvs_score": 350,
+  "vvs_band": "Non-viable",
+  "vvs_dimensions": {
+    "P": 4,
+    "M": 3,
+    "C": 2,
+    "D": 2,
+    "L": 3,
+    "F": 3,
+    "E": 2
+  },
+  "raw": {
+    "gaps": [],
+    "thesis": "ReadyRounds introduces a novel computational layer designed to address the intricate challenges of assessing multi-valve heart disease within high-acuity environments, specifically the Cardiac Intensive Care Unit (CICU). Its core innovation lies in a physics-constrained inference engine that processes diverse patient data (echo, cath, CMR) to derive the true hemodynamic state—flows and pressures—by adhering to fundamental physical laws. This venture is poised to transform clinical decision-making for clinicians in CICUs who are grappling with the complex interdependencies of multi-valve disease. The current lack of systematic tools to disentangle these intertwined pathologies leads to diagnostic fragmentation and delays, which ReadyRounds aims to resolve. The founder’s ambition for this venture appears to be a growth startup, given the emphasis on a sophisticated technical solution addressing a critical unmet medical need. The venture is currently at the idea stage, with the concept fully articulated but no mention of development or deployment yet. The venture aims to replace current fragmented and often unreliable assessment methods in multi-valve heart disease with a systematic, physics-based approach.",
+    "product_requires_new_hardware": false,
+    "core_insight": {
+      "if_wrong": "If the physics-constrained inference engine cannot accurately model the complex hemodynamics, or if clinicians are unwilling to adopt a computational approach, the solution will fail to improve patient assessment and decision-making.",
+      "source_excerpt": "clinicians currently lack a systematic method to decompose these interdependencies, leading to fragmented and slow decision-making.",
+      "why_different": "It provides a systematic, physics-based approach to decompose complex interdependencies in multi-valve heart disease, unlike current fragmented methods.",
+      "what": ""
+    },
+    "goal_frame": "growth",
+    "team_members": [],
+    "thesis_evolution": {
+      "detected": false
+    },
+    "fields": [],
+    "unit_economics": {
+      "price_tiers": "",
+      "source": "inferred"
+    },
+    "delivery_model": "existing_devices_software",
+    "one_liner": "ReadyRounds is a computational layer that uses a physics-constrained inference engine to assess multi-valve heart disease in high-acuity environments for CICU clinicians.",
+    "extraction_sources": [
+      {
+        "source": "system_inferred",
+        "field": "market_data.buyer",
+        "source_phrase": "Clinicians working in high-acuity cardiac environments such as the Cardiac Intensive Care Unit (CICU)"
+      },
+      {
+        "source": "founder_stated",
+        "field": "market_data.end_user",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.trigger_now",
+        "source": "founder_stated"
+      },
+      {
+        "field": "market_data.alternatives",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "market_data.why_better"
+      },
+      {
+        "source": "missing",
+        "field": "market_data.anti_icp",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.price_tiers"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.pricing_model",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.hardware_cost_per_customer"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.human_work_per_customer",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.revenue_assumption",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.cost_assumption"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "system_inferred",
+        "field": "stage_assessment"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "evidence_of_stage"
+      },
+      {
+        "source_phrase": "",
+        "field": "goal_horizon_target",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "field": "delivery_mode",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "product_requires_new_hardware"
+      },
+      {
+        "source_phrase": "",
+        "field": "product_behavior_change_level",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.team_structure",
+        "source": "missing"
+      },
+      {
+        "field": "founder_resources.relevant_skills",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "field": "founder_resources.investment_status",
+        "source_phrase": ""
+      }
+    ],
+    "market_data": {
+      "trigger_now": "The complexity and unreliability of standard measurements in multi-valve disease, where the severity of one valve depends on another, creates an urgent need for a systematic decomposition method.",
+      "buyer": "Hospitals or healthcare systems managing Cardiac Intensive Care Units (CICUs)",
+      "source": "inferred",
+      "alternatives": "Fragmented and slow decision-making due to lack of systematic methods to decompose valve interdependencies",
+      "segment": "Cardiac Intensive Care Unit (CICU) clinicians assessing multi-valve heart disease",
+      "end_user": "Clinicians working in high-acuity cardiac environments such as the Cardiac Intensive Care Unit (CICU), assessing patients with multi-valve heart disease."
+    },
+    "stated_vs_observed_stage": {
+      "claimed_stage": "idea",
+      "evidenced_stage": "idea",
+      "mismatch_flag": false,
+      "mismatch_reason": ""
+    },
+    "venture_name": "readyrounds-del-p07-r4 — ReadyRounds",
+    "founder_resources": {
+      "money_available": "Unknown",
+      "time_available": "Unknown"
+    },
+    "what_makes_this_different": "ReadyRounds differentiates itself by providing a physics-constrained inference engine that can systematically decompose the complex interdependencies of multi-valve heart disease, offering capabilities like primary driver ranking, counterfactual simulation, consistency reporting, and next-best-test guidance that are not available in current fragmented approaches.",
+    "traction_signals": [],
+    "stage_assessment": "idea",
+    "contradictions": [],
+    "product_description": "ReadyRounds is a \"computational layer for hemodynamic reasoning\" specifically targeting the complex assessment of multi-valve heart disease in high-acuity environments like the Cardiac Intensive Care Unit (CICU). The solution is a physics-constrained inference engine that ingests data from multiple sources (echo, cath, CMR) and solves for the latent hemodynamic state — true flows and pressures — while respecting the laws of physics. Key deliverables include primary driver ranking (identifying which lesion most explains the clinical picture), a counterfactual simulator (predicting how fixing one valve will affect the severity of others), a consistency report (flagging measurements that contradict physical principles), and next-best-test guidance (identifying the specific measurement that would most reduce diagnostic uncertainty).",
+    "schema_version": "vr-3.1.1"
+  }
+}

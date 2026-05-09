@@ -1,0 +1,228 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "seed",
+  "raw": {
+    "one_liner": "Envelop provides domain experts with an AI operating partner that guides them from business idea to first revenue through personalized plans and automated execution.",
+    "evidence_of_stage": "Platform built and deployed. Five ventures being onboarded (FreakingGenius, Inu, plus three more). Operating Partner chat live on direct Anthropic API. Assessment pipeline running end-to-end.",
+    "extraction_sources": [
+      {
+        "source_phrase": "domain experts — consultants, recruiters, ex-executives, niche operators",
+        "source": "system_inferred",
+        "field": "market_data.buyer"
+      },
+      {
+        "source_phrase": "domain experts — consultants, recruiters, ex-executives, niche operators",
+        "field": "market_data.end_user",
+        "source": "system_inferred"
+      },
+      {
+        "source": "system_inferred",
+        "field": "market_data.trigger_now",
+        "source_phrase": "Millions of domain experts globally spot business opportunities but never act. No existing product combines honest AI assessment with personalized execution and agent-driven task completion in one platform. ChatGPT gives generic advice. Consultants are slow and expensive. The gap is a product that does the work, not just the thinking."
+      },
+      {
+        "source": "founder_stated",
+        "field": "market_data.alternatives",
+        "source_phrase": ""
+      },
+      {
+        "field": "market_data.why_better",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "field": "market_data.anti_icp",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "unit_economics.price_tiers"
+      },
+      {
+        "source": "founder_stated",
+        "field": "unit_economics.pricing_model",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.hardware_cost_per_customer"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.human_work_per_customer",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "unit_economics.revenue_assumption"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.cost_assumption",
+        "source_phrase": ""
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "Platform built and deployed. Five ventures being onboarded (FreakingGenius, Inu, plus three more).",
+        "field": "stage_assessment",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "field": "evidence_of_stage",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "field": "goal_horizon_target",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "delivery_mode"
+      },
+      {
+        "source_phrase": "",
+        "field": "product_requires_new_hardware",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "takes domain experts... from business idea to honest verdict to personalized game plan to first revenue, in weeks not months.",
+        "source": "system_inferred",
+        "field": "product_behavior_change_level"
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.team_structure",
+        "source": "founder_stated"
+      },
+      {
+        "source": "missing",
+        "field": "founder_resources.relevant_skills",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.investment_status",
+        "source": "founder_stated"
+      }
+    ],
+    "stated_vs_observed_stage": {
+      "mismatch_reason": "The founder implies a pre-build/validation stage, but the evidence shows a deployed platform with live users and core functionality.",
+      "mismatch_flag": true,
+      "evidenced_stage": "mvp",
+      "claimed_stage": "prototype"
+    },
+    "stage_assessment": "seed",
+    "traction_signals": [
+      {
+        "source": "form",
+        "signal": "Platform Built and Deployed",
+        "confidence": "high",
+        "evidence": "Platform built and deployed."
+      },
+      {
+        "signal": "Initial User Onboarding",
+        "source": "form",
+        "evidence": "Five ventures being onboarded (FreakingGenius, Inu, plus three more).",
+        "confidence": "high"
+      },
+      {
+        "confidence": "high",
+        "evidence": "Operating Partner chat live on direct Anthropic API. Assessment pipeline running end-to-end.",
+        "source": "form",
+        "signal": "Core AI Functionality Live"
+      },
+      {
+        "signal": "Customer Interest / Waitlist",
+        "source": "form",
+        "evidence": "A waitlist of 500+ potential customers has been collected and validated.",
+        "confidence": "high"
+      },
+      {
+        "source": "form",
+        "signal": "Founder Capital Commitment",
+        "confidence": "high",
+        "evidence": "Founder has committed $1M to make it happen."
+      }
+    ],
+    "contradictions": [
+      {
+        "document_value": "The founder states that 'Advance from Validate to Build requires: founder committed capital, evidence of demand, and first ventures actively using the platform. All conditions are met.' implying they are preparing to build/validate. However, they also state 'Platform built and deployed. Five ventures being onboarded (FreakingGenius, Inu, plus three more). Operating Partner chat live on direct Anthropic API. Assessment pipeline running end-to-end.' indicating a launched/mvp stage.",
+        "resolution": "The venture is clearly in the 'launched' or 'MVP' stage, based on the concrete evidence of a built platform, live AI, and existing users. The statement about 'conditions met' is an artifact of a prior stage, but the current operational status takes precedence.",
+        "field": "stated_vs_observed_stage",
+        "form_value": "The founder claims they are waiting for conditions to be met for 'advance from Validate to Build', suggesting a pre-launch or validation stage."
+      }
+    ],
+    "gaps": [],
+    "product_requires_new_hardware": false,
+    "product_behavior_change_level": "medium",
+    "fields": [],
+    "team_members": [
+      {
+        "background": "part-time",
+        "role": "Strategy and Product",
+        "confidence": "high",
+        "source": "form",
+        "name": "SBA"
+      },
+      {
+        "background": "full-time equivalent",
+        "role": "Senior Engineer",
+        "confidence": "high",
+        "source": "form",
+        "name": "Rotem"
+      }
+    ],
+    "goal_frame": "growth",
+    "thesis_evolution": {
+      "detected": false
+    },
+    "delivery_model": "existing_devices_software",
+    "what_makes_this_different": "Envelop differentiates itself by combining honest AI-driven assessment with a personalized, agent-driven execution platform that automates a significant portion of tasks, moving beyond mere advice to actively facilitate first revenue generation for domain experts.",
+    "founder_resources": {
+      "time_available": "10 hours/week each (for co-founders)",
+      "money_available": "Committed $1M (founder capital)",
+      "investment_status": "not_raising",
+      "team_structure": "cofounder"
+    },
+    "market_data": {
+      "trigger_now": "The need for domain experts to act on business opportunities and achieve first revenue efficiently, without the high cost and slowness of traditional consulting or the generality of existing AI tools.",
+      "why_better": "Envelop automates ~90% of execution tasks, provides personalized guidance to first revenue in weeks, and fills the gap between generic AI advice and expensive human consultants by doing the work, not just the thinking.",
+      "buyer": "Domain experts (consultants, recruiters, ex-executives, niche operators)",
+      "source": "inferred",
+      "alternatives": "ChatGPT (generic advice), Consultants (slow and expensive), Doing nothing (untapped business opportunities)",
+      "segment": "Domain experts (consultants, recruiters, ex-executives, niche operators) seeking to launch businesses.",
+      "end_user": "Domain experts (consultants, recruiters, ex-executives, niche operators)"
+    },
+    "venture_name": "Envelop",
+    "things_that_must_work": [],
+    "product_description": "Envelop is an AI operating partner that takes domain experts — consultants, recruiters, ex-executives, niche operators — from business idea to honest verdict to personalized game plan to first revenue, in weeks not months. The core product is a simplified Gantt-style workspace showing the entrepreneur one path and one Next Best Action (NBA) at all times. AI agents handle ~90% of execution tasks. The funnel is: free assessment → $49 report unlock (10% convert) → $149–$449/month subscription (10% convert) → $12 extra actions (~6/subscriber/month).",
+    "core_insight": {
+      "what": "",
+      "why_different": "Envelop uniquely combines honest AI assessment with personalized execution and agent-driven task completion on a single platform, effectively doing the work rather than just offering advice.",
+      "source_excerpt": "No existing product combines honest AI assessment with personalized execution and agent-driven task completion in one platform. ChatGPT gives generic advice. Consultants are slow and expensive. The gap is a product that does the work, not just the thinking.",
+      "if_wrong": "If the AI cannot effectively automate ~90% of execution tasks or provide truly personalized, actionable guidance, then domain experts will revert to existing, less efficient alternatives (generic AI, expensive consultants), failing to achieve timely revenue, and the venture will not achieve its projected growth."
+    },
+    "thesis": "\nEnvelop is genuinely new as an AI operating partner that not only assesses business ideas for domain experts but also guides them to first revenue through personalized, agent-driven execution. Unlike generic AI advice or expensive consultants, Envelop aims to automate ~90% of execution tasks, providing a simplified, Gantt-style workspace that directs the entrepreneur to the Next Best Action. It targets millions of domain experts globally who identify business opportunities but lack the tools and guidance to act on them. The severity of the problem lies in the high rate of untapped potential and stalled ventures due to a lack of actionable, affordable support. Envelop aims to convert these overlooked opportunities into viable businesses by offering a comprehensive, hands-on solution.\n\nThe founder's goal appears to be a growth startup, indicated by the detailed financial projections (3-year projected profit: $7.6M) and the focus on scaling from initial conversion funnels. The venture is currently at the 'launched' stage, with the platform built and deployed, initial ventures being onboarded, and the core AI functionalities live. This directly contradicts the founder's statement that they are waiting for *conditions to be met*. The strongest version of the venture is that it is already operational and onboarding initial customers, not that it is awaiting further capital or validation. The business positions itself as a complement to existing knowledge (domain experts) and a replacement for both generic AI tools and traditional, slow, and expensive consulting services, effectively sitting in a new category that bridges ideation with automated execution.",
+    "delivery_mode": "software",
+    "unit_economics": {
+      "source": "form",
+      "revenue_assumption": "known",
+      "breakeven": "month 6",
+      "ltv": "$1,960",
+      "pricing_model": "hybrid",
+      "price_tiers": "Starter $149/month, Launch $249/month, Momentum $449/month; $49 report; $12 extra actions"
+    },
+    "schema_version": "vr-3.1.1"
+  }
+}

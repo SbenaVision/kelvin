@@ -1,0 +1,192 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 515,
+  "vvs_score": 350,
+  "vvs_band": "Non-viable",
+  "vvs_dimensions": {
+    "P": 4,
+    "M": 3,
+    "C": 2,
+    "D": 2,
+    "L": 2,
+    "F": 3,
+    "E": 2
+  },
+  "raw": {
+    "thesis": "\nreadyrounds-del-p01-r3 aims to address the critical challenge faced by clinicians in high-acuity cardiac environments, specifically the Cardiac Intensive Care Unit (CICU), when assessing patients with multi-valve heart disease. The core innovation lies in providing a systematic method to decompose the interdependencies of standard measurements, which are currently unreliable due to the complex relationship between the severity of one valve and another. This venture is for cardiac clinicians inundated with coupled and unreliable information in critical care settings. The problem it solves is the fragmented and slow decision-making that results from the inability to accurately assess multi-valve heart disease. The founder's goal, inferred from the detailed 12-month roadmap, appears to be a growth startup, given the explicit focus on developing a physics engine, validating an inverse solver, and conducting clinical validation with a significant patient cohort. The venture is currently at the idea stage, with a clear roadmap for building and validating a solution.\n\nreadyrounds-del-p01-r3 aims to replace the current unreliable and unsystematic methods of assessing multi-valve heart disease with a novel, systematic approach. This positions it as a direct replacement for existing, inadequate diagnostic processes in high-acuity cardiac care.",
+    "stage_assessment": "idea",
+    "team_members": [],
+    "core_excitement": "The founder is excited by the prospect of bringing clarity and systematic analysis to a currently fragmented and unreliable diagnostic process in critical cardiac care.",
+    "thesis_evolution": {
+      "detected": false
+    },
+    "product_requires_new_hardware": false,
+    "venture_name": "readyrounds-del-p01-r3",
+    "delivery_model": "existing_devices_software",
+    "evidence_of_stage": "The venture has a detailed 12-month roadmap outlining the development of a physics engine, validation of an inverse solver, and clinical validation on real patient pairs.",
+    "founder_resources": {
+      "time_available": "",
+      "team_structure": "solo",
+      "money_available": "",
+      "investment_status": "not_raising"
+    },
+    "product_behavior_change_level": "medium",
+    "unit_economics": {
+      "price_tiers": "",
+      "source": "form"
+    },
+    "bottleneck": {
+      "why_it_blocks": "These are foundational technical components that must be built and proven before clinical validation or a prospective pilot can begin.",
+      "type": "technical",
+      "relaxed_by": "Successful development of the physics engine and validation of the inverse solver.",
+      "current_blocker": "Development of the physics engine and validation of the inverse solver on synthetic data."
+    },
+    "one_liner": "A systematic method for clinicians to decompose interdependencies in multi-valve heart disease assessments in high-acuity cardiac environments.",
+    "fields": [],
+    "contradictions": [],
+    "things_that_must_work": [
+      "Successful development of the physics engine.",
+      "Successful validation of the inverse solver on synthetic data.",
+      "Successful clinical validation on at least 50 real patient pairs."
+    ],
+    "core_insight": {
+      "source_excerpt": "standard measurements are often coupled and unreliable — the severity of one valve depends on another — and clinicians currently lack a systematic method to decompose these interdependencies",
+      "if_wrong": "Clinicians will continue to face challenges in accurately assessing multi-valve heart disease, leading to suboptimal patient care and outcomes.",
+      "why_different": "It provides a systematic decomposition of interdependent measurements, which is currently lacking, leading to unreliable assessments and fragmented decision-making.",
+      "what": ""
+    },
+    "market_data": {
+      "trigger_now": "The inherent unreliability and coupled nature of standard measurements in multi-valve heart disease, leading to fragmented and slow decision-making.",
+      "alternatives": "Existing standard measurements which are coupled and unreliable, and manual, unsystematic methods of assessment.",
+      "segment": "Cardiac clinicians in high-acuity environments, specifically the Cardiac Intensive Care Unit (CICU), dealing with multi-valve heart disease.",
+      "end_user": "Clinicians working in high-acuity cardiac environments such as the Cardiac Intensive Care Unit (CICU), assessing patients with multi-valve heart disease.",
+      "why_better": "Provides a systematic method to decompose interdependencies in measurements, leading to more reliable and faster decision-making.",
+      "source": "form"
+    },
+    "stated_vs_observed_stage": {
+      "claimed_stage": "idea",
+      "mismatch_reason": "",
+      "mismatch_flag": false,
+      "evidenced_stage": "idea"
+    },
+    "traction_signals": [],
+    "gaps": [],
+    "what_makes_this_different": "This venture offers a specific innovation in decomposing interdependent cardiac measurements using a physics engine and inverse solver, which is currently not systematically done, leading to more reliable and timely clinical decisions.",
+    "extraction_sources": [
+      {
+        "source": "missing",
+        "field": "market_data.buyer",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "Clinicians working in high-acuity cardiac environments such as the Cardiac Intensive Care Unit (CICU), assessing patients with multi-valve heart disease.",
+        "source": "system_inferred",
+        "field": "market_data.end_user"
+      },
+      {
+        "source": "system_inferred",
+        "field": "market_data.trigger_now",
+        "source_phrase": "In multi-valve disease, standard measurements are often coupled and unreliable — the severity of one valve depends on another — and clinicians currently lack a systematic method to decompose these interdependencies, leading to fragmented and slow decision-making."
+      },
+      {
+        "source_phrase": "In multi-valve disease, standard measurements are often coupled and unreliable — the severity of one valve depends on another — and clinicians currently lack a systematic method to decompose these interdependencies",
+        "source": "system_inferred",
+        "field": "market_data.alternatives"
+      },
+      {
+        "field": "market_data.why_better",
+        "source": "system_inferred",
+        "source_phrase": "clinicians currently lack a systematic method to decompose these interdependencies"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.anti_icp",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.price_tiers",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.pricing_model"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.hardware_cost_per_customer"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.human_work_per_customer",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.revenue_assumption",
+        "source": "missing"
+      },
+      {
+        "field": "unit_economics.cost_assumption",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "A 12-month roadmap to develop the physics engine, validate the inverse solver on synthetic data, and conduct clinical validation on real patient pairs (n≥50) before a prospective pilot.",
+        "field": "stage_assessment",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "A 12-month roadmap to develop the physics engine, validate the inverse solver on synthetic data, and conduct clinical validation on real patient pairs (n≥50) before a prospective pilot.",
+        "source": "system_inferred",
+        "field": "evidence_of_stage"
+      },
+      {
+        "source_phrase": "",
+        "field": "goal_horizon_target",
+        "source": "missing"
+      },
+      {
+        "field": "delivery_mode",
+        "source": "system_inferred",
+        "source_phrase": "A 12-month roadmap to develop the physics engine, validate the inverse solver on synthetic data, and conduct clinical validation on real patient pairs (n≥50) before a prospective pilot."
+      },
+      {
+        "source_phrase": "A 12-month roadmap to develop the physics engine, validate the inverse solver on synthetic data, and conduct clinical validation on real patient pairs (n≥50) before a prospective pilot.",
+        "field": "product_requires_new_hardware",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "In multi-valve disease, standard measurements are often coupled and unreliable — the severity of one valve depends on another — and clinicians currently lack a systematic method to decompose these interdependencies, leading to fragmented and slow decision-making.",
+        "source": "system_inferred",
+        "field": "product_behavior_change_level"
+      },
+      {
+        "field": "founder_resources.team_structure",
+        "source": "system_inferred",
+        "source_phrase": "Team: Not specified"
+      },
+      {
+        "source": "missing",
+        "field": "founder_resources.relevant_skills",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "Open for investors: Not specified",
+        "source": "system_inferred",
+        "field": "founder_resources.investment_status"
+      }
+    ],
+    "goal_frame": "growth",
+    "product_description": "The venture focuses on creating a systematic method for clinicians to analyze and understand the complex interdependencies of measurements in multi-valve heart disease, particularly in high-acuity cardiac environments like the CICU. This involves developing a physics engine and an inverse solver to provide reliable and decomposed data to aid in decision-making.",
+    "schema_version": "vr-3.1.1"
+  }
+}

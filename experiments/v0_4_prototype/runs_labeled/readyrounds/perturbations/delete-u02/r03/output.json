@@ -1,0 +1,207 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 515,
+  "vvs_score": 350,
+  "vvs_band": "Non-viable",
+  "vvs_dimensions": {
+    "P": 4,
+    "M": 3,
+    "C": 2,
+    "D": 2,
+    "L": 3,
+    "F": 3,
+    "E": 2
+  },
+  "raw": {
+    "one_liner": "ReadyRounds provides a computational layer for hemodynamic reasoning to assist clinicians in assessing multi-valve heart disease in high-acuity cardiac environments.",
+    "stated_vs_observed_stage": {
+      "mismatch_reason": "",
+      "claimed_stage": "idea",
+      "mismatch_flag": false,
+      "evidenced_stage": "idea"
+    },
+    "things_that_must_work": [
+      "Successful development and validation of the physics engine.",
+      "Successful development and validation of the inverse solver on synthetic data.",
+      "Successful clinical validation on at least 50 real patient pairs to advance to prospective pilot."
+    ],
+    "gaps": [],
+    "venture_name": "readyrounds-del-u02-r3 — ## s01",
+    "team_members": [],
+    "market_data": {
+      "source": "form",
+      "why_better": "ReadyRounds provides a systematic method to decompose interdependencies in multi-valve heart disease, overcoming the unreliability and coupling of standard measurements and improving decision-making.",
+      "trigger_now": "In multi-valve disease, standard measurements are often coupled and unreliable — the severity of one valve depends on another — and clinicians currently lack a systematic method to decompose these interdependencies, leading to fragmented and slow decision-making.",
+      "end_user": "Clinicians working in high-acuity cardiac environments such as the Cardiac Intensive Care Unit (CICU), assessing patients with multi-valve heart disease.",
+      "alternatives": "Current standard measurements and existing clinical methods for multi-valve heart disease assessment, which are described as fragmented and slow.",
+      "segment": "Cardiac Intensive Care Unit (CICU)"
+    },
+    "bottleneck": {
+      "type": "technical",
+      "current_blocker": "Development of the physics engine and inverse solver, and initial clinical validation.",
+      "relaxed_by": "Successful completion of the 12-month roadmap for physics engine development, inverse solver validation on synthetic data, and clinical validation on at least 50 real patient pairs.",
+      "why_it_blocks": "These are foundational components that must be built and validated before the product can advance to a prospective pilot or market."
+    },
+    "contradictions": [],
+    "delivery_mode": "software",
+    "thesis_evolution": {
+      "detected": false
+    },
+    "what_makes_this_different": "ReadyRounds offers a computational layer that systematically analyzes and decomposes the complex interdependencies of multi-valve heart disease measurements, providing clinicians with tools for primary driver ranking, counterfactual simulation, consistency reporting, and next-best-test guidance.",
+    "thesis": "\nReadyRounds is developing a computational layer to assist clinicians in the Cardiac Intensive Care Unit (CICU) with the complex assessment of multi-valve heart disease. The core innovation lies in providing a systematic method to decompose the interdependencies between standard measurements, which are often coupled and unreliable in multi-valve disease. This directly addresses the critical problem of fragmented and slow decision-making by offering tools like primary driver ranking, a counterfactual simulator, and next-best-test guidance. The venture aims to equip clinicians with a deeper understanding of cardiac hemodynamics, enabling more precise and efficient diagnoses and treatment plans.\n\nReadyRounds is specifically for clinicians working in high-acuity cardiac environments, particularly those assessing patients with multi-valve heart disease in the CICU. The problem it addresses is acute and frequent: standard diagnostic methods fall short when multiple valves are involved, leading to significant diagnostic uncertainty and suboptimal care. The venture's goal appears to be a growth startup, given the stated 12-month roadmap for significant technical development and clinical validation, aiming towards a prospective pilot. Currently, the venture is at the idea/concept stage, with a clear roadmap for technical development and validation but no existing prototype or users.\n\nReadyRounds positions itself as a complement to existing diagnostic tools and clinical expertise, enhancing the clinician's ability to interpret complex hemodynamic data. It does not seek to replace current measurements but rather to provide a layer of computational intelligence that makes sense of them in a multi-valvular context thereby augmenting, not supplanting, human expertise.",
+    "known_unknowns": {
+      "what_founder_has_not_told_us": [
+        "TAM for the identified market segment (CICU clinicians dealing with multi-valve heart disease).",
+        "Specific pricing model and expected price tiers.",
+        "Go-to-market strategy.",
+        "Team members and their relevant skills/experience.",
+        "Investment status and funding needs.",
+        "Detailed competitive landscape.",
+        "Any initial artifacts or signals of interest/traction.",
+        "Specific metrics for success vision beyond the 12-month roadmap.",
+        "Available time and money resources of the founder.",
+        "The founder's 'what keeps them awake' or the biggest risks they perceive.",
+        "How Envelop adds value or the plan without Envelop.",
+        "Whether the founder is open for investors."
+      ],
+      "what_founder_seems_unsure_about": []
+    },
+    "founder_resources": {
+      "time_available": "",
+      "money_available": ""
+    },
+    "traction_signals": [],
+    "core_insight": {
+      "source_excerpt": "clinicians currently lack a systematic method to decompose these interdependencies, leading to fragmented and slow decision-making.",
+      "what": "",
+      "if_wrong": "Clinicians will continue to face fragmented and slow decision-making due to unreliable and coupled measurements.",
+      "why_different": "It provides a systematic method to decompose interdependencies in multi-valve heart disease measurements, which is currently lacking."
+    },
+    "extraction_sources": [
+      {
+        "source": "missing",
+        "field": "market_data.buyer",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.price_tiers",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "system_inferred",
+        "field": "stage_assessment",
+        "source_phrase": "A 12-month roadmap to develop the physics engine, validate the inverse solver on synthetic data, and conduct clinical validation on real patient pairs (n≥50) before a prospective pilot."
+      },
+      {
+        "source": "system_inferred",
+        "field": "evidence_of_stage",
+        "source_phrase": "A 12-month roadmap to develop the physics engine, validate the inverse solver on synthetic data, and conduct clinical validation on real patient pairs (n≥50) before a prospective pilot."
+      },
+      {
+        "source_phrase": "",
+        "field": "goal_horizon_target",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.end_user",
+        "source": "founder_stated"
+      },
+      {
+        "field": "market_data.trigger_now",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "standard measurements are often coupled and unreliable — the severity of one valve depends on another — and clinicians currently lack a systematic method to decompose these interdependencies, leading to fragmented and slow decision-making.",
+        "source": "system_inferred",
+        "field": "market_data.alternatives"
+      },
+      {
+        "source": "system_inferred",
+        "field": "market_data.why_better",
+        "source_phrase": "clinicians currently lack a systematic method to decompose these interdependencies, leading to fragmented and slow decision-making."
+      },
+      {
+        "source": "missing",
+        "field": "market_data.anti_icp",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.pricing_model",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.human_work_per_customer",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.revenue_assumption",
+        "source": "missing"
+      },
+      {
+        "field": "unit_economics.cost_assumption",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "delivery_mode",
+        "source": "system_inferred",
+        "source_phrase": ""
+      },
+      {
+        "field": "product_requires_new_hardware",
+        "source": "system_inferred",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "product_behavior_change_level",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.team_structure",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "founder_resources.relevant_skills"
+      },
+      {
+        "field": "founder_resources.investment_status",
+        "source": "missing",
+        "source_phrase": ""
+      }
+    ],
+    "evidence_of_stage": "The venture has a 12-month roadmap to develop a physics engine and inverse solver, and to conduct clinical validation, with no mention of a current prototype or users.",
+    "delivery_model": "existing_devices_software",
+    "product_description": "ReadyRounds is a \"computational layer for hemodynamic reasoning\" specifically targeting the complex assessment of multi-valve heart disease in high-acuity environments like the Cardiac Intensive Care Unit (CICU).\n\nKey deliverables include primary driver ranking (identifying which lesion most explains the clinical picture), a counterfactual simulator (predicting how fixing one valve will affect the severity of others), a consistency report (flagging measurements that contradict physical principles), and next-best-test guidance (identifying the specific measurement that would most reduce diagnostic uncertainty).",
+    "fields": [],
+    "product_requires_new_hardware": false,
+    "unit_economics": {
+      "source": "form",
+      "price_tiers": ""
+    },
+    "core_excitement": "The founder is excited about solving the critical problem of unreliable and coupled measurements in multi-valve heart disease by providing a computational layer that systematically decomposes these interdependencies and improves clinical decision-making.",
+    "stage_assessment": "idea",
+    "goal_frame": "growth",
+    "schema_version": "vr-3.1.1"
+  }
+}

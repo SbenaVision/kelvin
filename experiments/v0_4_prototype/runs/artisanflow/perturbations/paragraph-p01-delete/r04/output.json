@@ -1,0 +1,249 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "seed",
+  "raw": {
+    "market_data": {
+      "why_better": "Specialized focus on multi-channel solo makers and small craft businesses, offering an integrated solution that eliminates the need for a fragmented 'duct-tape stack'.",
+      "sam": "180,000 Etsy sellers gross over $50K/year, with top quartile (45,000) running on 2+ channels",
+      "alternatives": "Zapier, Airtable, Google Sheets (duct-tape stack)",
+      "trigger_now": "High opportunity cost of maintaining a 'duct-tape stack' across multiple sales channels and the unique pain points of this niche not addressed by current vendors.",
+      "end_user": "Solo makers and 2-3 person craft businesses",
+      "anti_icp": "Sellers on a single channel, dropshippers, enterprise fulfillment centers",
+      "buyer": "Solo makers and 2-3 person craft businesses",
+      "competitors": [],
+      "segment": "Solo makers and 2-3 person craft businesses shipping 200-1,500 orders per month across two or more channels",
+      "source": "form"
+    },
+    "product_behavior_change_level": "low",
+    "stated_vs_observed_stage": {
+      "evidenced_stage": "revenue",
+      "claimed_stage": "revenue",
+      "mismatch_reason": "",
+      "mismatch_flag": false
+    },
+    "thesis_evolution": {
+      "detected": false
+    },
+    "goal_frame": "growth",
+    "founder_resources": {
+      "team_structure": "cofounder",
+      "time_available": "Full-time effort from two co-founders",
+      "technical_or_business": "Both",
+      "relevant_skills": "Craft business operations (multi-channel), backend engineering (Shopify app experience)",
+      "money_available": "$60K personal capital committed by founder",
+      "open_for_investors": false,
+      "investment_status": "not_raising"
+    },
+    "product_description": "Artisanflow is a software solution designed for solo makers and 2-3 person craft businesses that ship between 200 and 1,500 orders per month across two or more sales channels. It aims to replace the current \"duct-tape stack\" of tools like Zapier, Airtable, and Google Sheets by offering integrated inventory and order reconciliation.",
+    "delivery_model": "existing_devices_software",
+    "delivery_mode": "software",
+    "team_members": [
+      {
+        "background": "Five years running her own craft business on three channels",
+        "role": "Solo-operator",
+        "name": "Co-founder 1",
+        "confidence": "high",
+        "source": "form"
+      },
+      {
+        "name": "Co-founder 2",
+        "background": "Previously shipped a Shopify app in the same segment",
+        "role": "Backend engineer",
+        "confidence": "high",
+        "source": "form"
+      },
+      {
+        "background": "Not specified",
+        "role": "Support tickets",
+        "name": "Part-time contractor",
+        "confidence": "high",
+        "source": "form"
+      }
+    ],
+    "product_requires_new_hardware": false,
+    "one_liner": "Artisanflow provides multi-channel order and inventory management for solo makers and small craft businesses shipping 200–1,500 orders per month.",
+    "unit_economics": {
+      "revenue_assumption": "known",
+      "conversion_rate": "Not specified",
+      "pricing_model": "subscription",
+      "human_work_per_customer": "$3.40/month (support cost)",
+      "hardware_cost_per_customer": "Not applicable",
+      "ltv": "$574",
+      "cac_target": "$68",
+      "cost_assumption": "known",
+      "source": "form",
+      "price_tiers": "$29/month Starter or $59/month Pro"
+    },
+    "evidence_of_stage": "212 paying subscribers actively using the product today with annual revenue run-rate of $145K. Product in market for 14 months.",
+    "venture_name": "artisanflow",
+    "extraction_sources": [
+      {
+        "field": "market_data.buyer",
+        "source_phrase": "Solo makers and 2\\u20133 person craft businesses shipping 200\\u20131,500 orders per month",
+        "source": "system_inferred"
+      },
+      {
+        "field": "market_data.end_user",
+        "source_phrase": "Solo makers and 2\\u20133 person craft businesses shipping 200\\u20131,500 orders per month",
+        "source": "system_inferred"
+      },
+      {
+        "field": "market_data.trigger_now",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "field": "market_data.alternatives",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "field": "market_data.why_better",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "field": "market_data.anti_icp",
+        "source_phrase": "",
+        "source": "founder_stated"
+      },
+      {
+        "source": "founder_stated",
+        "source_phrase": "",
+        "field": "unit_economics.price_tiers"
+      },
+      {
+        "source_phrase": "212 paying subscribers at $29/month Starter or $59/month Pro.",
+        "source": "system_inferred",
+        "field": "unit_economics.pricing_model"
+      },
+      {
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source": "system_inferred",
+        "source_phrase": "Not applicable"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "unit_economics.human_work_per_customer"
+      },
+      {
+        "field": "unit_economics.revenue_assumption",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.cost_assumption",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "Product in market for 14 months. 212 paying subscribers at $29/month Starter or $59/month Pro. Annual revenue run-rate $145K.",
+        "source": "system_inferred",
+        "field": "stage_assessment"
+      },
+      {
+        "source": "founder_stated",
+        "source_phrase": "",
+        "field": "evidence_of_stage"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "goal_horizon_target"
+      },
+      {
+        "field": "delivery_mode",
+        "source": "system_inferred",
+        "source_phrase": "Artisanflow is a software solution"
+      },
+      {
+        "field": "product_requires_new_hardware",
+        "source_phrase": "",
+        "source": "system_inferred"
+      },
+      {
+        "field": "product_behavior_change_level",
+        "source_phrase": "switching costs from them are low but opportunity cost of maintenance is high.",
+        "source": "system_inferred"
+      },
+      {
+        "field": "founder_resources.team_structure",
+        "source_phrase": "",
+        "source": "founder_stated"
+      },
+      {
+        "field": "founder_resources.relevant_skills",
+        "source_phrase": "",
+        "source": "founder_stated"
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "the product has reached a self-sustaining cash-flow profile for the founding team.",
+        "field": "founder_resources.investment_status"
+      }
+    ],
+    "schema_version": "vr-3.1.1",
+    "contradictions": [],
+    "gaps": [],
+    "things_that_must_work": [
+      "Continued growth of the multi-channel solo maker segment",
+      "High opportunity cost of maintaining 'duct-tape stack'",
+      "Effectiveness of newsletter sponsorships and SEO content for customer acquisition"
+    ],
+    "what_makes_this_different": "Artisanflow offers a specialized, integrated solution tailored for multi-channel solo makers and small craft businesses, directly addressing the pain points of managing fragmented workflows with generic tools like Zapier, Airtable, and Google Sheets.",
+    "fields": [],
+    "thesis": "Artisanflow addresses the complex operational challenges faced by solo makers and small craft businesses operating across multiple sales channels. Unlike generic inventory or order management systems, Artisanflow is specifically designed for the unique workflow of artisans, offering a tailored solution that replaces the \"duct-tape stack\" of disparate tools. The venture aims to be a growth startup, evidenced by its existing paying subscriber base, positive unit economics, and stated goal of scaling a self-sustaining business. They are currently in the \"growing\" stage, with a launched product, significant revenue, and clear signals of product-market fit. Artisanflow positions itself as a specialized replacement for a fragmented set of general-purpose tools, delivering a streamlined, integrated experience precisely for their niche.",
+    "core_excitement": "The founder is excited by the opportunity to serve a highly specific niche of multi-channel craft businesses with a tailored solution, replacing their current fragmented and inefficient workflows.",
+    "stage_assessment": "seed",
+    "core_insight": {
+      "why_different": "Artisanflow focuses specifically on the multi-channel solo maker and small craft business, abstracting away the complexity of managing inventory and orders across different platforms.",
+      "source_excerpt": "No current vendor focuses specifically on the multi-channel solo maker.",
+      "if_wrong": "If craft businesses prefer the flexibility or perceived lower cost of their current 'duct-tape stack' (Zapier, Airtable, Google Sheets), or if switching costs are higher than anticipated, Artisanflow will fail to gain significant traction. Similarly, if the market segment is too small or does not have sufficient pain points to justify a dedicated solution, the venture may not achieve its growth goals.",
+      "what": ""
+    },
+    "traction_signals": [
+      {
+        "signal": "Paying subscribers",
+        "evidence": "212 paying subscribers",
+        "confidence": "high",
+        "source": "form"
+      },
+      {
+        "signal": "Annual revenue run-rate",
+        "evidence": "$145K",
+        "confidence": "high",
+        "source": "form"
+      },
+      {
+        "confidence": "high",
+        "source": "form",
+        "evidence": "Negative for the last two quarters (expansion revenue from Starter \\u2192 Pro upgrades exceeds cancellations)",
+        "signal": "Net churn"
+      },
+      {
+        "evidence": "48",
+        "signal": "NPS",
+        "confidence": "high",
+        "source": "form"
+      },
+      {
+        "source": "form",
+        "confidence": "high",
+        "evidence": "Featured in two independent newsletters for the segment",
+        "signal": "Media mentions"
+      },
+      {
+        "confidence": "high",
+        "source": "form",
+        "evidence": "LTV/CAC 8.4",
+        "signal": "Unit economics (LTV/CAC)"
+      }
+    ]
+  }
+}

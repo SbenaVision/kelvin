@@ -1,0 +1,81 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 500,
+  "vvs_score": 465,
+  "vvs_band": "Weak path to revenue",
+  "vvs_dimensions": {
+    "P": 3,
+    "M": 3,
+    "C": 3,
+    "D": 2,
+    "L": 3,
+    "F": 3,
+    "E": 2
+  },
+  "raw": {
+    "contradictions": [],
+    "venture_name": "ReadyRounds",
+    "goal_frame": "growth",
+    "stage_assessment": "idea",
+    "what_makes_this_different": "ReadyRounds differentiates itself by applying a physics-constrained inference engine to ingests multi-source data, enabling it to solve for latent hemodynamic states and systematically decompose the complex interdependencies in multi-valve heart disease. This capability is currently absent in clinical practice, which relies on coupled and unreliable standard measurements.",
+    "thesis_evolution": {
+      "detected": false
+    },
+    "delivery_model": "existing_devices_software",
+    "thesis": "ReadyRounds is a deep tech venture aiming to revolutionize the diagnosis and treatment planning for multi-valve heart disease in high-acuity settings like the Cardiac Intensive Care Unit (CICU). Its core innovation lies in a physics-constrained inference engine that processes diverse patient data (echo, cath, CMR) to determine the true hemodynamic state of the heart. This innovation allows for several key deliverables: ranking primary drivers of disease, simulating counterfactual interventions to predict outcomes, flagging inconsistent measurements, and guiding clinicians to the next best diagnostic test. The venture targets clinicians in CICUs who currently struggle with the complex interdependencies of multi-valve disease, leading to fragmented and slow decision-making. The founder envisions this as a growth startup, given the ambitious 12-month roadmap that includes developing and validating the physics engine, followed by clinical validation, and ultimately a prospective pilot. The venture is currently at the idea stage, with a clear roadmap for validation and development. This venture replaces the current fragmented and slow diagnostic process by providing a systematic, physics-based approach to decompose interdependencies in multi-valve heart disease assessment.",
+    "team_members": [],
+    "founder_resources": {
+      "money_available": "",
+      "investment_status": "not_raising",
+      "open_for_investors": false,
+      "time_available": ""
+    },
+    "traction_signals": [],
+    "one_liner": "ReadyRounds provides a computational layer for hemodynamic reasoning to assist clinicians in high-acacuity cardiac environments with the complex assessment of multi-valve heart disease.",
+    "fields": [],
+    "gaps": [],
+    "goal_horizon_target": {
+      "horizon": "12_months",
+      "target_value": "physics engine developed, inverse solver validated on synthetic data, and clinical validation completed on at least 50 real patient pairs.",
+      "target_type": "milestone"
+    },
+    "product_description": "ReadyRounds is a computational layer for hemodynamic reasoning that specifically addresses the complex assessment of multi-valve heart disease in high-acuity environments such as the Cardiac Intensive Care Unit (CICU). It employs a physics-constrained inference engine that integrates data from various sources (echo, cath, CMR) to deduce the latent hemodynamic state—true flows and pressures—while adhering to physical laws. Key features include ranking the primary drivers of clinical issues, a counterfactual simulator to predict the impact of interventions, a consistency report to identify physically contradictory measurements, and guidance for next-best-test to reduce diagnostic uncertainty.",
+    "things_that_must_work": [
+      "Development of the physics engine",
+      "Validation of the inverse solver on synthetic data",
+      "Clinical validation on real patient pairs (n≥50)",
+      "Regulatory approval for medical device software"
+    ],
+    "core_insight": {
+      "what": "",
+      "why_different": "It provides a systematic, physics-based method to decompose the interdependencies in multi-valve heart disease that current clinical methods lack, leading to fragmented and slow decision-making.",
+      "if_wrong": "If the physics-constrained inference engine cannot accurately determine the latent hemodynamic state or decompose interdependencies, then the core premise of ReadyRounds fails, and it cannot deliver its proposed benefits, leaving clinicians with their current fragmented decision-making process.",
+      "source_excerpt": "ReadyRounds is a 'computational layer for hemodynamic reasoning' specifically targeting the complex assessment of multi-valve heart disease in high-acuity environments like the Cardiac Intensive Care Unit (CICU). ... The solution is a physics-constrained inference engine that ingests data from multiple sources (echo, cath, CMR) and solves for the latent hemodynamic state — true flows and pressures — while respecting the laws of physics. ... In multi-valve disease, standard measurements are often coupled and unreliable — the severity of one valve depends on another — and clinicians currently lack a systematic method to decompose these interdependencies, leading to fragmented and slow decision-making."
+    },
+    "market_data": {
+      "source": "form",
+      "end_user": "Clinicians working in high-acuity cardiac environments such as the Cardiac Intensive Care Unit (CICU), assessing patients with multi-valve heart disease.",
+      "buyer": "Clinicians working in high-acuity cardiac environments such as the Cardiac Intensive Care Unit (CICU).",
+      "alternatives": "Current standard measurements and clinical assessments which are often coupled and unreliable in multi-valve disease.",
+      "segment": "Clinicians in high-acuity cardiac environments, specifically the Cardiac Intensive Care Unit (CICU), assessing patients with multi-valve heart disease.",
+      "trigger_now": "The inability of current methods to systematically decompose interdependencies in multi-valve heart disease, leading to fragmented and slow decision-making in complex high-acuity environments.",
+      "anti_icp": "",
+      "why_better": "ReadyRounds offers a systematic method to decompose interdependencies and provide clearer insights into multi-valve heart disease, overcoming the current issues of coupled and unreliable measurements and fragmented decision-making."
+    },
+    "product_behavior_change_level": "high",
+    "evidence_of_stage": "The venture has a 12-month roadmap defined to develop and validate the physics engine and conduct clinical validation.",
+    "unit_economics": {
+      "source": "inferred",
+      "price_tiers": ""
+    },
+    "schema_version": "vr-3.1.1",
+    "extraction_sources": [
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      }
+    ]
+  }
+}

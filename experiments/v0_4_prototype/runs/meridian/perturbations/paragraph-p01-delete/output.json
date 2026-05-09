@@ -1,0 +1,254 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "pre-seed",
+  "raw": {
+    "delivery_model": "existing_devices_software",
+    "bottleneck": {
+      "why_it_blocks": "The product is in private beta with synthetic data only; no live customer data has passed through the platform yet.",
+      "current_blocker": "Processing production customer data through the platform.",
+      "type": "operational",
+      "relaxed_by": "Successfully onboarding a design partner with live customer data and processing it through the platform."
+    },
+    "what_makes_this_different": "Meridian specifically targets and prices for mid-sized commercial banks, offering a product that addresses their specific need for covenant monitoring, unlike the incumbents who focus on larger banks or the manual methods currently in use.",
+    "thesis_evolution": {
+      "detected": false
+    },
+    "one_liner": "Meridian provides tailored risk tooling for covenant monitoring to mid-sized commercial banks with loan portfolios between $500M and $5B.",
+    "core_excitement": "The founder is excited by the significant underserved market for specialized risk tooling in mid-sized commercial banks, a segment currently reliant on inefficient manual processes or ill-fitting incumbent solutions.",
+    "extraction_sources": [
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "market_data.buyer"
+      },
+      {
+        "source": "system_inferred",
+        "field": "market_data.end_user",
+        "source_phrase": "Target buyer is the Chief Credit Officer or VP of Loan Operations."
+      },
+      {
+        "source_phrase": "Two industry analyst reports identify covenant monitoring as an under-served operational gap in this segment.",
+        "field": "market_data.trigger_now",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "market_data.alternatives"
+      },
+      {
+        "field": "market_data.why_better",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source": "founder_stated",
+        "field": "market_data.anti_icp",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.price_tiers",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "Two signed design-partner Letters of Intent at target $180K ACV (12-month paid pilots starting next quarter).",
+        "source": "system_inferred",
+        "field": "unit_economics.pricing_model"
+      },
+      {
+        "source": "system_inferred",
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.human_work_per_customer",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.revenue_assumption",
+        "source": "system_inferred",
+        "source_phrase": "Target ACV $180K per customer at blended margin 78%"
+      },
+      {
+        "source": "system_inferred",
+        "field": "unit_economics.cost_assumption",
+        "source_phrase": "CAC projected $55K per logo (outbound sales plus conference presence)"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "system_inferred",
+        "field": "stage_assessment",
+        "source_phrase": "Product is in private beta with one of the LOI partners running synthetic data. No paid revenue yet."
+      },
+      {
+        "source_phrase": "",
+        "field": "evidence_of_stage",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "field": "goal_horizon_target",
+        "source": "missing"
+      },
+      {
+        "source": "system_inferred",
+        "field": "delivery_mode",
+        "source_phrase": ""
+      },
+      {
+        "source": "system_inferred",
+        "field": "product_requires_new_hardware",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "smaller regionals use spreadsheets plus the quarterly manual review.",
+        "source": "system_inferred",
+        "field": "product_behavior_change_level"
+      },
+      {
+        "field": "founder_resources.team_structure",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.relevant_skills",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "Current burn $85K/month on a $1.1M seed round closed three months ago.",
+        "field": "founder_resources.investment_status",
+        "source": "system_inferred"
+      }
+    ],
+    "stated_vs_observed_stage": {
+      "evidenced_stage": "prototype",
+      "mismatch_reason": "Founder did not state their stage, but evidence shows a private beta and LOIs which is beyond the concept stage.",
+      "mismatch_flag": true,
+      "claimed_stage": "concept"
+    },
+    "product_requires_new_hardware": false,
+    "schema_version": "vr-3.1.1",
+    "things_that_must_work": [
+      "Conversion of LOIs to paid contracts",
+      "Successful processing of production customer data",
+      "Achieving projected CAC and LTV"
+    ],
+    "core_insight": {
+      "why_different": "Existing solutions are either too expensive/complex (incumbents for larger banks) or inadequate (spreadsheets) for the target market.",
+      "source_excerpt": "The dominant incumbents (Abrigo, Baker Hill) are priced and architected for larger banks; smaller regionals use spreadsheets plus the quarterly manual review. Two industry analyst reports identify covenant monitoring as an under-served operational gap in this segment.",
+      "if_wrong": "Mid-sized banks are content with current manual processes or existing solutions, or the cost of switching is too high, leading to low adoption and failure to achieve projected CAC/LTV.",
+      "what": ""
+    },
+    "stage_assessment": "pre-seed",
+    "evidence_of_stage": "Product is in private beta with one of the LOI partners running synthetic data. Two signed design-partner Letters of Intent at target $180K ACV. Funded by a $1.1M seed round.",
+    "contradictions": [],
+    "fields": [],
+    "team_members": [
+      {
+        "name": "ex-CCO",
+        "background": "from a $2B regional bank",
+        "source": "form",
+        "confidence": "high",
+        "role": "Founder"
+      },
+      {
+        "name": "data engineer",
+        "background": "from a fintech that integrated with the same cores",
+        "source": "form",
+        "confidence": "high",
+        "role": "Founder"
+      },
+      {
+        "confidence": "high",
+        "role": "Founder",
+        "source": "form",
+        "name": "product lead",
+        "background": "from a compliance-tech startup"
+      },
+      {
+        "background": "from a regional banking industry group",
+        "name": "advisor",
+        "role": "Advisor",
+        "confidence": "high",
+        "source": "form"
+      }
+    ],
+    "delivery_mode": "software",
+    "founder_resources": {
+      "investment_status": "open",
+      "team_structure": "cofounder",
+      "open_for_investors": true,
+      "time_available": "Full-time",
+      "money_available": "$1.1M seed round closed three months ago, current burn $85K/month.",
+      "technical_or_business": "Both technical and business expertise are present within the founding team.",
+      "relevant_skills": "Commercial banking (ex-CCO), data engineering (fintech experience with core integrations), product leadership (compliance-tech startup)."
+    },
+    "thesis": "This venture, Meridian, aims to address a significant unmet need in the commercial loan market for mid-sized banks. These banks, with commercial loan portfolios ranging from $500M to $5B, are currently underserved by existing risk tooling providers, which are typically designed and priced for much larger institutions. Consequently, these mid-sized banks resort to inefficient manual processes, primarily using spreadsheets for covenant monitoring, leading to operational gaps identified by industry analysts. Meridian plans to offer a specialized solution that is appropriately priced and architected for this segment, replacing manual spreadsheet-based covenant monitoring and providing robust risk tooling. The value proposition is a more efficient and accurate way to manage commercial loan portfolios, addressing pain points experienced by Chief Credit Officers and VPs of Loan Operations. The venture exhibits a clear growth startup ambition, as evidenced by a recent seed round, aggressive CAC/LTV projections, and a focus on significant ACV contracts. They are currently in the pre-seed stage, having secured design partners and initiated a private beta, but are yet to generate revenue or process live customer data. The positioning is to replace existing, inadequate solutions (spreadsheets and oversized incumbent tools) with a tailored offering for a specific segment of the banking market.",
+    "unit_economics": {
+      "pricing_model": "subscription",
+      "human_work_per_customer": "Not specified",
+      "conversion_rate": "Not specified",
+      "cost_assumption": "estimated",
+      "ltv": "$2.3M per logo over a 7-year tenure assumption.",
+      "cac_target": "$55K per logo",
+      "revenue_assumption": "estimated",
+      "hardware_cost_per_customer": "Not applicable",
+      "price_tiers": "$180K/year ACV",
+      "source": "form"
+    },
+    "market_data": {
+      "competitors": [
+        "Abrigo",
+        "Baker Hill"
+      ],
+      "sam": "Roughly 900 target banks in the US. Total addressable spend approx. $135M - $360M annually (900 banks * $150K-$400K/year).",
+      "anti_icp": "Credit unions under $200M (don't have the portfolio complexity), national banks over $50B (have in-house tooling already).",
+      "source": "form",
+      "trigger_now": "The inability of existing solutions (spreadsheets or oversized incumbents) to adequately address covenant monitoring needs for mid-sized banks, leading to operational gaps and inefficiency.",
+      "end_user": "Chief Credit Officer or VP of Loan Operations and their teams.",
+      "why_better": "Tailored pricing and architecture for mid-sized banks, addressing an underserved operational gap in covenant monitoring.",
+      "segment": "Mid-sized commercial banks with portfolios of $500M–$5B in commercial loans within the US.",
+      "buyer": "Chief Credit Officer or VP of Loan Operations",
+      "alternatives": "Spreadsheets, manual quarterly reviews, or incumbent solutions (Abrigo, Baker Hill) designed for larger banks.",
+      "tam": "Roughly 900 target banks in the US. Each typically spends $150K–$400K/year on risk tooling."
+    },
+    "product_description": "Meridian offers specialized risk tooling for mid-sized commercial banks to monitor loan covenants, replacing manual processes and incumbent solutions that are ill-suited for this segment.",
+    "goal_frame": "growth",
+    "product_behavior_change_level": "medium",
+    "traction_signals": [
+      {
+        "source": "form",
+        "evidence": "Two signed design-partner Letters of Intent at target $180K ACV (12-month paid pilots starting next quarter).",
+        "confidence": "high",
+        "signal": "Design Partner LOIs"
+      },
+      {
+        "evidence": "Four additional banks in active discovery conversations, two of which have requested security questionnaires.",
+        "confidence": "high",
+        "signal": "Active Discovery Conversations",
+        "source": "form"
+      },
+      {
+        "evidence": "Product is in private beta with one of the LOI partners running synthetic data.",
+        "confidence": "high",
+        "signal": "Private Beta",
+        "source": "form"
+      },
+      {
+        "source": "form",
+        "evidence": "$1.1M seed round closed three months ago.",
+        "confidence": "high",
+        "signal": "Seed Round Closed"
+      }
+    ],
+    "venture_name": "meridian-paragraph-p01-delete",
+    "gaps": []
+  }
+}

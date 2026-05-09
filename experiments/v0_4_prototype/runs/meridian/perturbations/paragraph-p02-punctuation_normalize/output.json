@@ -1,0 +1,237 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "seed",
+  "raw": {
+    "traction_signals": [
+      {
+        "signal": "Signed design-partner Letters of Intent (LOIs)",
+        "evidence": "Two signed design-partner Letters of Intent at target $180K ACV (12-month paid pilots starting next quarter).",
+        "confidence": "high",
+        "source": "form"
+      },
+      {
+        "signal": "Active discovery conversations",
+        "evidence": "Four additional banks in active discovery conversations, two of which have requested security questionnaires.",
+        "source": "form",
+        "confidence": "high"
+      },
+      {
+        "confidence": "high",
+        "source": "form",
+        "evidence": "Product is in private beta with one of the LOI partners running synthetic data.",
+        "signal": "Private beta"
+      }
+    ],
+    "thesis": "Meridian offers a B2B SaaS solution to regional commercial banks, specifically targeting their loan operations teams with a collateral-monitoring dashboard. The innovation lies in its ability to proactively track property, equipment, and accounts-receivable pledges across a bank's loan portfolio, flagging covenant-breach risks before they are identified in quarterly reviews. This is achieved by ingesting loan-book data from existing core banking systems (Fiserv, Jack Henry) and enriching it with external signals like property-tax delinquency, UCC filings, and industry benchmarks. The specific target users are Chief Credit Officers or VPs of Loan Operations at mid-sized commercial banks with loan portfolios ranging from $500M to $5B. These banks currently rely on manual spreadsheets and quarterly reviews for covenant monitoring, making them underserved by existing solutions from larger incumbents (Abrigo, Baker Hill) which are priced and architected for bigger institutions. The problem Meridian addresses is the significant operational gap and risk exposure stemming from reactive covenant monitoring, which results in delayed risk identification and potential losses. The founders' goal appears to be building a growth startup, given their significant seed round, full-time commitment, and ambitious revenue and LTV projections. The venture is currently at the pre-seed/seed stage, having secured letters of intent for paid pilots and conducting a private beta. Meridian complements existing core banking systems by layering on enhanced risk monitoring, preceding the traditional, reactive quarterly review process. It helps existing providers (banks) improve their operations rather than bypassing them, allowing them to proactively manage risk where current solutions are insufficient or too costly.",
+    "evidence_of_stage": "Two signed design-partner Letters of Intent at target $180K ACV and product in private beta with one of the LOI partners running synthetic data.",
+    "venture_name": "Meridian",
+    "product_description": "Meridian is a B2B SaaS tool for regional commercial banks' loan operations teams—specifically, a collateral-monitoring dashboard that tracks property, equipment, and accounts-receivable pledges across a bank's portfolio and flags covenant-breach risk before it surfaces in the quarterly review. The product ingests loan-book data from the bank's core (Fiserv, Jack Henry) and layers in external signals (property-tax delinquency, UCC filings, industry benchmarks).",
+    "goal_frame": "growth",
+    "unit_economics": {
+      "source": "form",
+      "human_work_per_customer": "CAC projected $55K per logo (outbound sales plus conference presence).",
+      "cost_assumption": "estimated",
+      "price_tiers": "$180K ACV (target)",
+      "pricing_model": "subscription",
+      "revenue_assumption": "estimated"
+    },
+    "delivery_mode": "software",
+    "core_excitement": "The founders are excited by the opportunity to address a critical, underserved operational gap in covenant monitoring for mid-sized regional banks, leveraging their combined expertise in banking, data engineering, and compliance tech.",
+    "schema_version": "vr-3.1.1",
+    "product_behavior_change_level": "medium",
+    "stage_assessment": "seed",
+    "product_requires_new_hardware": false,
+    "team_members": [
+      {
+        "role": "ex-Chief Credit Officer",
+        "source": "form",
+        "name": "Founder 1",
+        "confidence": "high",
+        "background": "from a $2B regional bank"
+      },
+      {
+        "background": "from a fintech that integrated with the same cores",
+        "name": "Founder 2",
+        "confidence": "high",
+        "role": "Data Engineer",
+        "source": "form"
+      },
+      {
+        "name": "Founder 3",
+        "confidence": "high",
+        "background": "from a compliance-tech startup",
+        "source": "form",
+        "role": "Product Lead"
+      },
+      {
+        "source": "form",
+        "role": "Advisor",
+        "background": "from a regional banking industry group",
+        "name": "Advisor",
+        "confidence": "high"
+      }
+    ],
+    "known_unknowns": {
+      "what_founder_seems_unsure_about": [
+        "ACV for 12-month paid pilots starting next quarter, but no paid contracts countersigned and no revenue recognized. Synthetic data in beta, not production customer traffic."
+      ],
+      "what_founder_has_not_told_us": []
+    },
+    "extraction_sources": [
+      {
+        "source_phrase": "",
+        "field": "market_data.buyer",
+        "source": "founder_stated"
+      },
+      {
+        "source": "system_inferred",
+        "field": "market_data.end_user",
+        "source_phrase": "loan operations teams"
+      },
+      {
+        "source": "founder_stated",
+        "field": "market_data.trigger_now",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.alternatives",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.why_better",
+        "source": "founder_stated"
+      },
+      {
+        "field": "market_data.anti_icp",
+        "source_phrase": "",
+        "source": "founder_stated"
+      },
+      {
+        "source": "founder_stated",
+        "field": "unit_economics.price_tiers",
+        "source_phrase": ""
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "ACV (12-month paid pilots",
+        "field": "unit_economics.pricing_model"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source_phrase": ""
+      },
+      {
+        "source": "founder_stated",
+        "field": "unit_economics.human_work_per_customer",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "blended margin 78%",
+        "field": "unit_economics.revenue_assumption",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "CAC projected $55K per logo",
+        "field": "unit_economics.cost_assumption",
+        "source": "system_inferred"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "Product is in private beta with one of the LOI partners running synthetic data. No paid revenue yet.",
+        "field": "stage_assessment",
+        "source": "system_inferred"
+      },
+      {
+        "source": "founder_stated",
+        "field": "evidence_of_stage",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "field": "goal_horizon_target",
+        "source_phrase": ""
+      },
+      {
+        "source": "system_inferred",
+        "field": "delivery_mode",
+        "source_phrase": "B2B SaaS tool"
+      },
+      {
+        "field": "product_requires_new_hardware",
+        "source_phrase": "runs on existing devices",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "Meridian will automate tasks currently done manually, requiring adoption of a new workflow but reducing cognitive load.",
+        "field": "product_behavior_change_level",
+        "source": "system_inferred"
+      },
+      {
+        "source": "founder_stated",
+        "source_phrase": "",
+        "field": "founder_resources.team_structure"
+      },
+      {
+        "source": "founder_stated",
+        "source_phrase": "",
+        "field": "founder_resources.relevant_skills"
+      },
+      {
+        "source": "founder_stated",
+        "source_phrase": "",
+        "field": "founder_resources.investment_status"
+      }
+    ],
+    "one_liner": "Meridian is a B2B SaaS collateral-monitoring dashboard for regional commercial banks' loan operations teams, flagging covenant-breach risks proactively.",
+    "thesis_evolution": {
+      "detected": false
+    },
+    "things_that_must_work": [
+      "Successful integration with core banking systems (Fiserv, Jack Henry) and external data providers",
+      "Conversion of LOIs into fully executed paid contracts",
+      "Compliance with banking security and regulatory standards from customer security questionnaires"
+    ],
+    "gaps": [],
+    "what_makes_this_different": "Meridian's specific innovation is its proactive, integrated approach to covenant monitoring for mid-sized regional banks, combining core banking data with external risk signals to flag issues before quarterly reviews. This directly addresses a gap left by larger incumbents focused on bigger banks and replaces inefficient manual processes.",
+    "fields": [],
+    "founder_resources": {
+      "open_for_investors": true,
+      "team_structure": "cofounder",
+      "relevant_skills": "ex-CCO from regional bank, data engineer with fintech core integration experience, product lead from compliance-tech",
+      "time_available": "Full-time commitment from three founders",
+      "investment_status": "not_raising",
+      "money_available": "$1.1M seed round closed three months ago, current burn $85K/month"
+    },
+    "core_insight": {
+      "why_different": "Meridian targets an underserved niche (mid-sized regional banks) with a proactive covenant-monitoring solution that integrates existing core banking data with external risk signals, unlike incumbent solutions built for larger banks or manual spreadsheet-based methods.",
+      "what": "",
+      "if_wrong": "If regional banks do not perceive covenant monitoring as a significant enough pain point to invest in a specialized B2B SaaS tool, or if their existing manual processes are deemed sufficient, Meridian will fail to gain adoption. Additionally, if incumbents adapt their offerings to this segment more effectively, Meridian's competitive advantage will be diminished. If the integration with core banking systems proves too complex or if external data signals are not reliably actionable, the product's value proposition will be undermined.",
+      "source_excerpt": "Meridian is a B2B SaaS tool for regional commercial banks' loan operations teams — specifically, a collateral-monitoring dashboard that tracks property, equipment, and accounts-receivable pledges across a bank's portfolio and flags covenant-breach risk before it surfaces in the quarterly review. The product ingests loan-book data from the bank's core (Fiserv, Jack Henry) and layers in external signals (property-tax delinquency, UCC filings, industry benchmarks). Mid-sized commercial banks with portfolios of $500M–$5B in commercial loans... The dominant incumbents (Abrigo, Baker Hill) are priced and architected for larger banks; smaller regionals use spreadsheets plus the quarterly manual review. Two industry analyst reports identify covenant monitoring as an under-served operational gap in this segment."
+    },
+    "market_data": {
+      "segment": "B2B SaaS for regional commercial banks' loan operations teams",
+      "source": "form",
+      "trigger_now": "Covenant monitoring identified as an under-served operational gap; current manual processes are inefficient and reactive.",
+      "anti_icp": "credit unions under $200M; national banks over $50B",
+      "buyer": "Chief Credit Officer or VP of Loan Operations",
+      "why_better": "Proactive covenant monitoring, integration with core banking systems and external signals, priced and architected for mid-sized regional banks who are currently underserved.",
+      "alternatives": "spreadsheets plus quarterly manual review; incumbent solutions (Abrigo, Baker Hill) designed for larger banks",
+      "end_user": "loan operations teams"
+    },
+    "stated_vs_observed_stage": {
+      "claimed_stage": "concept",
+      "evidenced_stage": "prototype",
+      "mismatch_flag": true,
+      "mismatch_reason": "While the founder describes signed LOIs and active conversations (concept/pre-seed indicators), the existence of a private beta with synthetic data indicates a working, albeit not fully deployed, prototype."
+    },
+    "delivery_model": "existing_devices_software",
+    "contradictions": []
+  }
+}

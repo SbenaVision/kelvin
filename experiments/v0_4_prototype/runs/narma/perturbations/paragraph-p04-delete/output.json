@@ -1,0 +1,169 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "raw": {
+    "delivery_mode": "hybrid",
+    "market_data": {
+      "end_user": "employees within AI-first companies",
+      "anti_icp": "",
+      "segment": "AI-first companies looking for AI automation at scale",
+      "buyer": "AI-first companies",
+      "trigger_now": "The need to systematically identify, prove, and deploy high-ROI AI automation to achieve continuous AI lift.",
+      "why_better": "Narma provides an integrated system to observe, intelligently analyze, and then automatically deploy and monitor AI agents, leading to continuous AI lift and optimized resource allocation, addressing the full lifecycle of AI automation.",
+      "source": "form",
+      "alternatives": "Doing it manually, or using less integrated/intelligent automation tools."
+    },
+    "extraction_sources": [
+      {
+        "field": "market_data.buyer",
+        "source_phrase": "AI-first companies seeking to see, prove, and deploy AI automation at scale.",
+        "source": "system_inferred"
+      },
+      {
+        "field": "market_data.end_user",
+        "source_phrase": "designed for AI-first companies to see, p",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "AI-first companies seeking to see, prove, and deploy AI automation at scale.",
+        "source": "system_inferred",
+        "field": "market_data.trigger_now"
+      },
+      {
+        "field": "market_data.alternatives",
+        "source_phrase": "The system uses existing foundation models rather than building its own LLMs, focusing instead on the ",
+        "source": "system_inferred"
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "Vision: a single system that observes how work happens, decides what AI should do next, and auto-builds agents continuously to ensure a ",
+        "field": "market_data.why_better"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "market_data.anti_icp"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "unit_economics.price_tiers"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.pricing_model"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "unit_economics.hardware_cost_per_customer"
+      },
+      {
+        "field": "unit_economics.human_work_per_customer",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.revenue_assumption",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "unit_economics.cost_assumption"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "narma is an ",
+        "source": "system_inferred",
+        "field": "stage_assessment"
+      },
+      {
+        "field": "evidence_of_stage",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "field": "goal_horizon_target",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "desktop sensors capture work patterns including application usage",
+        "field": "delivery_mode"
+      },
+      {
+        "field": "product_requires_new_hardware",
+        "source_phrase": "lightweight desktop sensors capture work patterns",
+        "source": "system_inferred"
+      },
+      {
+        "field": "product_behavior_change_level",
+        "source_phrase": "detects employee intent, the business value of tasks, and ",
+        "source": "system_inferred"
+      },
+      {
+        "field": "founder_resources.team_structure",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "founder_resources.relevant_skills"
+      },
+      {
+        "field": "founder_resources.investment_status",
+        "source_phrase": "",
+        "source": "missing"
+      }
+    ],
+    "contradictions": [],
+    "unit_economics": {
+      "source": "inferred",
+      "price_tiers": ""
+    },
+    "what_makes_this_different": "Narma's multi-layered architecture, specifically its \"Work Graph\" focus combined with the \"Agent Factory\" for continuous, automated AI agent deployment leveraging existing foundation models, distinguishes it from general AI platforms or single-purpose automation tools. It aims for \"Continuous AI lift\" by optimizing AI integration into enterprise workflows.",
+    "delivery_model": "existing_devices_software",
+    "thesis": "Narma proposes an \"Enterprise Agentic Brain\" for AI-first companies to systematically identify, validate, and deploy AI automation. The core innovation lies in its three-layered architecture: observing work patterns (Layer 1), intelligent analysis of employee intent and business value to detect deviations and opportunities (Layer 2), and automated generation and deployment of AI agents (Layer 3). This venture aims to serve AI-first companies by providing a singular, continuous feedback loop for AI improvement, moving beyond static deployments to dynamically integrate AI where it can provide the most value. Narma is for AI-first companies that are looking to scale their AI automation efforts and achieve \"Continuous AI lift\" by continuously optimizing where and how AI assists in workflows. The problem Narma addresses is the current difficulty in precisely identifying high-ROI automation opportunities within complex enterprise workflows, and then efficiently deploying and monitoring AI agents to capitalize on those opportunities. This is a critical problem for AI-first companies that need to maximize the impact of their AI investments and avoid \"AI drift.\" The founder's goal, while not explicitly stated, appears to be a growth startup, given the ambition to provide an \"Enterprise Agentic Brain\" and achieve \"Continuous AI lift\" at scale. The venture is currently at the idea stage, with the intake form describing the concept and architecture without evidence of a built product or user adoption. Narma positions itself as a complement to existing foundation models, focusing on orchestrating and applying them effectively within enterprise workflows rather than competing at the model level. It precedes the actual deployment of AI agents by first identifying the optimal points for intervention and then automating their creation, acting as an enabler for broader AI adoption within the enterprise.",
+    "traction_signals": [],
+    "evidence_of_stage": "",
+    "core_insight": {
+      "why_different": "",
+      "if_wrong": "",
+      "source_excerpt": "",
+      "what": ""
+    },
+    "product_behavior_change_level": "medium",
+    "goal_frame": "growth",
+    "one_liner": "Narma is an \"Enterprise Agentic Brain\" for AI-first companies to scale AI automation by observing work, identifying high-ROI opportunities, and automatically deploying AI agents.",
+    "product_requires_new_hardware": false,
+    "stage_assessment": "idea",
+    "gaps": [],
+    "team_members": [],
+    "fields": [],
+    "stated_vs_observed_stage": {
+      "claimed_stage": "idea",
+      "mismatch_reason": "",
+      "mismatch_flag": false,
+      "evidenced_stage": "idea"
+    },
+    "thesis_evolution": {
+      "detected": false
+    },
+    "product_description": "Narma is an \"Enterprise Agentic Brain\" designed for AI-first companies to see, prove, and deploy AI automation at scale. It consists of three layers: Observe (Layer 1) uses desktop sensors to capture work patterns; Intelligence Layer (Layer 2) detects employee intent, business value, and \"drift\"; and Execution Layer (Layer 3) is an \"Agent Factory\" that generates, deploys, and monitors AI agents for validated high-ROI opportunities with built-in approval gates. It focuses on the \"Work Graph\" and uses existing foundation models.",
+    "founder_resources": {
+      "money_available": "",
+      "time_available": ""
+    },
+    "venture_name": "narma",
+    "schema_version": "vr-3.1.1"
+  }
+}

@@ -1,0 +1,210 @@
+{
+  "delivery_model": "hybrid",
+  "stage_assessment": "pre-seed",
+  "raw": {
+    "delivery_model": "hybrid",
+    "evidence_of_stage": "Founder has \"started building\". No validation completed. No users. No paid customers. No LOIs.",
+    "product_behavior_change_level": "medium",
+    "unit_economics": {
+      "human_work_per_customer": "Teacher revenue share: $15/month per active subscriber.",
+      "hardware_cost_per_customer": "FreakinGenius repays $13.26/month per teacher over 36 months to BNPL partner; total AI cost per user per month: $11.50 (speech-to-text $2, text-to-speech $2, LLM inference $4, writing analysis $2, generative media $1.50).",
+      "revenue_assumption": "known",
+      "cost_assumption": "known",
+      "pricing_model": "subscription",
+      "source": "form",
+      "price_tiers": "$79/month for service; tablet BNPL $25-$35/month over 36 months, or $2.30/month for 15% margin on hardware."
+    },
+    "extraction_sources": [
+      {
+        "source_phrase": "Families pay $79/month for the service.",
+        "source": "system_inferred",
+        "field": "market_data.buyer"
+      },
+      {
+        "field": "market_data.end_user",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "field": "market_data.trigger_now",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "field": "market_data.alternatives",
+        "source_phrase": "",
+        "source": "founder_stated"
+      },
+      {
+        "source": "founder_stated",
+        "source_phrase": "",
+        "field": "market_data.why_better"
+      },
+      {
+        "field": "market_data.anti_icp",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "founder_stated",
+        "source_phrase": "",
+        "field": "unit_economics.price_tiers"
+      },
+      {
+        "source": "founder_stated",
+        "source_phrase": "",
+        "field": "unit_economics.pricing_model"
+      },
+      {
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source_phrase": "",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "unit_economics.human_work_per_customer"
+      },
+      {
+        "field": "unit_economics.revenue_assumption",
+        "source_phrase": "",
+        "source": "founder_stated"
+      },
+      {
+        "field": "unit_economics.cost_assumption",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "stage_assessment",
+        "source_phrase": "Started building. No validation completed. No users. No paid customers. No LOIs.",
+        "source": "system_inferred"
+      },
+      {
+        "field": "evidence_of_stage",
+        "source_phrase": "Started building. No validation completed. No users. No paid customers. No LOIs.",
+        "source": "system_inferred"
+      },
+      {
+        "field": "goal_horizon_target",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "delivery_mode",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "field": "product_requires_new_hardware",
+        "source_phrase": "",
+        "source": "founder_stated"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "product_behavior_change_level"
+      },
+      {
+        "source": "founder_stated",
+        "source_phrase": "",
+        "field": "founder_resources.team_structure"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "founder_resources.relevant_skills"
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "Investing up to $25K personal capital.",
+        "field": "founder_resources.investment_status"
+      }
+    ],
+    "bottleneck": {
+      "relaxed_by": "Obtaining evidence that the voice-plus-handwriting experience is meaningfully better than existing alternatives and demonstrating conversion through a distribution channel.",
+      "current_blocker": "Problem validation with paying or committed families, evidence of superior experience, and demonstrated conversion in at least one distribution channel.",
+      "why_it_blocks": "No validation completed, no users, no paid customers, no LOIs. None of the conditions for advancing from 'Validate' to 'Build' are met.",
+      "type": "market"
+    },
+    "stated_vs_observed_stage": {
+      "mismatch_reason": "",
+      "claimed_stage": "prototype",
+      "evidenced_stage": "prototype",
+      "mismatch_flag": false
+    },
+    "fields": [],
+    "team_members": [
+      {
+        "role": "Founder",
+        "name": "harness",
+        "confidence": "high",
+        "background": "Not specified",
+        "source": "form"
+      },
+      {
+        "confidence": "high",
+        "background": "BSc graduate with some math teaching experience",
+        "source": "form",
+        "role": "Teacher / Math teaching experience",
+        "name": "One full-time BSc graduate"
+      },
+      {
+        "confidence": "high",
+        "source": "form",
+        "background": "Senior technical advisor",
+        "role": "Technical Advisor",
+        "name": "One senior technical advisor"
+      }
+    ],
+    "market_data": {
+      "source": "form",
+      "buyer": "Families of middle school students",
+      "why_better": "No existing product combines real-time handwriting analysis with a voice AI tutor in a single integrated experience. Personalized AI-generated content is a planned differentiator.",
+      "segment": "K-12 tutoring market",
+      "tam": "$12B K-12 tutoring market",
+      "end_user": "Middle school students struggling with math",
+      "trigger_now": "Middle school students struggling with math; human tutors are expensive and scarce.",
+      "alternatives": "Human tutors"
+    },
+    "one_liner": "FreakinGenius provides AI-powered math tutoring for middle school students struggling with math, combining a voice chatbot with real-time handwriting analysis on a tablet.",
+    "goal_frame": "growth",
+    "what_makes_this_different": "The specific innovation is the integration of an AI voice chatbot with real-time handwritten math work analysis via a tablet app, creating a unified and interactive tutoring experience.",
+    "venture_name": "FreakinGenius",
+    "product_requires_new_hardware": true,
+    "things_that_must_work": [
+      "BNPL partner for tablet financing",
+      "Effective AI for voice interaction, speech-to-text, text-to-speech, LLM inference, writing analysis, and generative media"
+    ],
+    "founder_resources": {
+      "money_available": "up to $25K personal capital",
+      "technical_or_business": "Not specified",
+      "open_for_investors": true,
+      "team_structure": "team",
+      "relevant_skills": "Not specified",
+      "time_available": "part-time",
+      "investment_status": "open"
+    },
+    "thesis": "\nFreakinGenius (FG) offers an innovative solution to the pervasive challenge of middle school math struggles. The core innovation lies in its unique dual-modality approach: an AI voice chatbot seamlessly integrated with real-time handwritten work analysis via a tablet app. This combination aims to replicate and enhance the personalized interaction of a human tutor, addressing the scarcity and high cost of traditional tutoring.\n\nThe venture targets middle school students who are actively struggling with math, providing a personalized and accessible learning experience. The problem it addresses is significant and widespread: many middle schoolers fall behind in math, which can have long-term educational and career repercussions. Traditional solutions are often out of reach for many families due to cost or availability.\n\nBased on the stated involvement of a part-time founder investing personal capital and the current stage of development, the founder's goal appears to be a growth startup. They are building a scalable, technology-driven solution to a large market problem, with clear intentions for revenue generation and market penetration, rather than a lifestyle business or a purely speculative moonshot.\n\nThe venture is currently at the 'building' stage, having started development but lacking any validation, users, or revenue. The artifacts and signals indicate an early-stage venture focused on product development before market engagement.\n\nFG's position in the value chain is to replace human tutors, offering a more affordable and accessible alternative. It aims to deliver a superior, personalized tutoring experience by leveraging AI and eliminating the traditional constraints of human-led instruction. This positions it as a disruptive alternative to existing tutoring services.",
+    "gaps": [],
+    "traction_signals": [],
+    "product_description": "FreakinGenius is an AI-powered math tutoring service for middle school students who struggle with math. The product features an AI voice chatbot that replaces a human tutor and a tablet app that analyzes students' handwritten work in real-time, feeding signals back to the chatbot. All student-AI interaction is voice-based.",
+    "core_insight": {
+      "what": "",
+      "why_different": "The unique combination of an AI voice chatbot and real-time handwritten work analysis in a single, integrated experience is proposed as genuinely new.",
+      "source_excerpt": "No existing product combines real-time handwriting analysis with a voice AI tutor in a single integrated experience.",
+      "if_wrong": "If the AI cannot effectively combine these two modalities or if the integrated experience is not meaningfully better than existing alternatives, the venture's core premise for differentiation and value proposition would be undermined."
+    },
+    "thesis_evolution": {
+      "detected": false
+    },
+    "contradictions": [],
+    "stage_assessment": "pre-seed",
+    "schema_version": "vr-3.1.1"
+  }
+}

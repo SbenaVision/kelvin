@@ -1,0 +1,185 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 463,
+  "vvs_score": 350,
+  "vvs_band": "Non-viable",
+  "vvs_dimensions": {
+    "P": 3,
+    "M": 3,
+    "C": 2,
+    "D": 2,
+    "L": 2,
+    "F": 2,
+    "E": 2
+  },
+  "raw": {
+    "product_requires_new_hardware": false,
+    "one_liner": "HiMom is a programmable platform and marketplace that uses smart home devices and a mobile app for adult children to provide proactive aid and social connectivity for the aging population (75+).",
+    "evidence_of_stage": "The venture is described as a concept without any mention of development, users, or revenue.",
+    "traction_signals": [],
+    "venture_name": "himom-del-p03-r1 — HiMom",
+    "founder_resources": {
+      "money_available": "?",
+      "time_available": "?"
+    },
+    "fields": [],
+    "thesis": "HiMom is building a programmable platform and marketplace to deliver proactive aid and foster social connectivity for the elderly (75+), managed by their adult children. The innovation lies in leveraging existing smart home devices (like Amazon Echo) and integrating them with a mobile application that allows adult children to define and automate daily routines and triggers for their aging parents. This addresses the critical need for consistent, proactive care for seniors who often neglect essential tasks, providing peace of mind for their caregivers. The founder's goal is to create a growth startup, given the explicit mention of a platform and marketplace for third-party integrations, indicating a desire to scale beyond individual users. It is currently at the idea stage, with the concept fully articulated but no evidence of a built product or user traction. HiMom aims to complement existing care solutions by providing an extensible digital layer that automates and customizes day-to-day assistance and engagement, rather than replacing human care entirely. This positions it as an enabling technology for family caregivers, improving the quality and consistency of care delivered through smart home integration.",
+    "delivery_model": "existing_devices_software",
+    "contradictions": [],
+    "core_excitement": "The founder is excited by the prospect of improving the quality of life for seniors and empowering adult children to provide better care through a simple, extensible IoT-leveraging interface and marketplace.",
+    "stage_assessment": "idea",
+    "goal_frame": "growth",
+    "core_insight": {
+      "why_different": "The extensibility as a marketplace for third-party integrations and its focus on proactive, programmable routines for seniors managed by adult children.",
+      "if_wrong": "Seniors will continue to neglect essential tasks, and adult children will remain overwhelmed by caregiving responsibilities.",
+      "what": "",
+      "source_excerpt": "HiMom is a programmable platform and marketplace designed to provide proactive aid and social connectivity for the aging population (75+) through a combination of smart home devices (e.g., Amazon Echo) and a mobile application for their adult children. ... The platform is designed as a marketplace where new actions, services, and third-party providers can be integrated with \"3-click\" simplicity for the end user."
+    },
+    "things_that_must_work": [
+      "Integration with various smart home device APIs (e.g., Amazon Echo)",
+      "Seamless integration of third-party services and providers into the marketplace",
+      "User adoption by adult children for setting up and managing routines for seniors",
+      "Seniors' willingness and ability to interact with smart home devices for proactive aid."
+    ],
+    "stated_vs_observed_stage": {
+      "evidenced_stage": "idea",
+      "mismatch_flag": false,
+      "mismatch_reason": "",
+      "claimed_stage": "idea"
+    },
+    "thesis_evolution": {
+      "detected": false
+    },
+    "product_description": "HiMom is a programmable platform and marketplace designed to provide proactive aid and social connectivity for the aging population (75+) through a combination of smart home devices (e.g., Amazon Echo) and a mobile application for their adult children. Children use the mobile app to define and deliver daily routines such as medication reminders at 9:00 AM, lunchtime alerts at 12:00 PM, and air conditioning shut-off warnings at 9:00 PM. The system uses connected devices (watches, TVs) to trigger actions based on real-time data, such as prompting a brain-training quiz if the user has watched TV for over 120 minutes or suggesting a walk if daily steps are under 100. The platform is designed as a marketplace where new actions, services, and third-party providers can be integrated with \"3-click\" simplicity for the end user. Vision: to improve quality of life for seniors and help children provide better care through a simple, extensible interface that leverages IoT capabilities.",
+    "team_members": [],
+    "gaps": [],
+    "extraction_sources": [
+      {
+        "field": "market_data.buyer",
+        "source_phrase": "",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "market_data.end_user"
+      },
+      {
+        "field": "market_data.trigger_now",
+        "source_phrase": "",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "market_data.alternatives"
+      },
+      {
+        "field": "market_data.why_better",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "field": "market_data.anti_icp",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "field": "unit_economics.price_tiers",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "field": "unit_economics.pricing_model",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.hardware_cost_per_customer"
+      },
+      {
+        "field": "unit_economics.human_work_per_customer",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.revenue_assumption"
+      },
+      {
+        "field": "unit_economics.cost_assumption",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "The venture is described as a concept without any mention of development, users, or revenue.",
+        "source": "system_inferred",
+        "field": "stage_assessment"
+      },
+      {
+        "field": "evidence_of_stage",
+        "source_phrase": "The venture is described as a concept without any mention of development, users, or revenue.",
+        "source": "system_inferred"
+      },
+      {
+        "field": "goal_horizon_target",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "a combination of smart home devices (e.g., Amazon Echo) and a mobile application",
+        "source": "system_inferred",
+        "field": "delivery_mode"
+      },
+      {
+        "field": "product_requires_new_hardware",
+        "source_phrase": "a combination of smart home devices (e.g., Amazon Echo)",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "product_behavior_change_level"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "founder_resources.team_structure"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "founder_resources.relevant_skills"
+      },
+      {
+        "field": "founder_resources.investment_status",
+        "source_phrase": "",
+        "source": "missing"
+      }
+    ],
+    "market_data": {
+      "end_user": "Aged 75 and older",
+      "segment": "Aging population (75+) and their adult children",
+      "trigger_now": "Seniors frequently neglect essential daily tasks like taking medicine, exercising, or limiting TV time without proactive reminders.",
+      "buyer": "Adult children of the senior",
+      "source": "form",
+      "tam": "467 million people aged 75 or older, projected to reach 700 million by 2030"
+    },
+    "delivery_mode": "hybrid",
+    "what_makes_this_different": "The specific innovation lies in creating a programmable marketplace that integrates existing smart home devices (IoT) with a mobile application for adult children to manage and automate highly customizable, proactive daily routines and social connectivity features for seniors.",
+    "unit_economics": {
+      "source": "inferred",
+      "price_tiers": ""
+    },
+    "schema_version": "vr-3.1.1"
+  }
+}

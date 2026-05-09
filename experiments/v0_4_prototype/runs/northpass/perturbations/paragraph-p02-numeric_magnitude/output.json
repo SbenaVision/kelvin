@@ -1,0 +1,197 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "raw": {
+    "stage_assessment": "idea",
+    "goal_frame": "growth",
+    "founder_resources": {
+      "team_structure": "solo",
+      "relevant_skills": "UX designer",
+      "money_available": "?",
+      "time_available": "part-time in evenings and weekends",
+      "investment_status": "not_raising"
+    },
+    "gaps": [],
+    "contradictions": [],
+    "delivery_mode": "software",
+    "venture_name": "NorthPass",
+    "evidence_of_stage": "Landing page mocked in Figma but not deployed. No product in market. No waitlist collected. No user interviews conducted with the target persona.",
+    "product_description": "NorthPass is a consumer social app concept around \"hiking buddies\" — pairing nearby users by matching planned trail difficulty, pace, and available dates. The planned model is freemium with a paid tier for verified-identity matching and insurance-backed no-show guarantees.",
+    "product_requires_new_hardware": false,
+    "things_that_must_work": [
+      "Ability to attract target users (casual and intermediate solo hikers)",
+      "Effectiveness of the matching algorithm in generating compatible pairings",
+      "Conversion rate of freemium users to paid tier",
+      "User adoption and retention beyond initial curiosity"
+    ],
+    "stated_vs_observed_stage": {
+      "mismatch_reason": "",
+      "claimed_stage": "idea",
+      "evidenced_stage": "idea",
+      "mismatch_flag": false
+    },
+    "team_members": [],
+    "fields": [],
+    "extraction_sources": [
+      {
+        "field": "market_data.buyer",
+        "source": "system_inferred",
+        "source_phrase": "Casual and intermediate solo hikers in North American metro areas with easy trail access — Denver, Seattle, Boulder, Portland, Salt Lake."
+      },
+      {
+        "source": "system_inferred",
+        "field": "market_data.end_user",
+        "source_phrase": "Casual and intermediate solo hikers in North American metro areas with easy trail access — Denver, Seattle, Boulder, Portland, Salt Lake."
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "market_data.trigger_now"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "market_data.alternatives"
+      },
+      {
+        "source_phrase": "No breakout app currently occupies the \"activity-partner matching\" space for hiking specifically; existing apps focus on route-finding (AllTrails) or general activity partners (Meetup) but not on the matching problem.",
+        "field": "market_data.why_better",
+        "source": "system_inferred"
+      },
+      {
+        "source": "founder_stated",
+        "field": "market_data.anti_icp",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.price_tiers",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "unit_economics.pricing_model"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source": "missing"
+      },
+      {
+        "field": "unit_economics.human_work_per_customer",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.revenue_assumption",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.cost_assumption",
+        "source": "missing"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "founder_stated",
+        "field": "stage_assessment",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "evidence_of_stage"
+      },
+      {
+        "source": "missing",
+        "field": "goal_horizon_target",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "delivery_mode",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "NorthPass is a consumer social app concept",
+        "field": "product_requires_new_hardware",
+        "source": "system_inferred"
+      },
+      {
+        "source": "missing",
+        "field": "product_behavior_change_level",
+        "source_phrase": ""
+      },
+      {
+        "source": "founder_stated",
+        "field": "founder_resources.team_structure",
+        "source_phrase": ""
+      },
+      {
+        "source": "founder_stated",
+        "field": "founder_resources.relevant_skills",
+        "source_phrase": ""
+      },
+      {
+        "source": "system_inferred",
+        "field": "founder_resources.investment_status",
+        "source_phrase": "No technical co-founder yet. No advisors signed on."
+      }
+    ],
+    "core_insight": {
+      "source_excerpt": "",
+      "what": "",
+      "if_wrong": "",
+      "why_different": ""
+    },
+    "one_liner": "NorthPass is a consumer social app that pairs nearby solo hikers by matching planned trail difficulty, pace, and available dates.",
+    "traction_signals": [],
+    "thesis_evolution": {
+      "detected": false
+    },
+    "known_unknowns": {
+      "what_founder_seems_unsure_about": [
+        "Whether the lack of a dedicated hiking activity-partner matching app indicates a real market gap or a proven non-market",
+        "Effectiveness of freemium conversion rate assumption (3-5%)"
+      ],
+      "what_founder_has_not_told_us": [
+        "Exact pricing tiers",
+        "Cost estimations for infrastructure",
+        "Detailed unit economics",
+        "Specific distribution channels",
+        "What keeps the founder awake"
+      ]
+    },
+    "core_excitement": "The founder is excited by the opportunity to fill a clear gap in the market for a dedicated hiking companion matching app, leveraging the growing popularity of hiking and the shortcomings of existing generic solutions.",
+    "bottleneck": {
+      "type": "market",
+      "current_blocker": "problem validation with paying or committed users",
+      "relaxed_by": "Conducting user interviews and securing commitments (paying or otherwise) from target users.",
+      "why_it_blocks": "Without validated demand and willingness to pay, building the product is a high-risk endeavor."
+    },
+    "unit_economics": {
+      "pricing_model": "hybrid",
+      "price_tiers": "",
+      "source": "inferred"
+    },
+    "delivery_model": "existing_devices_software",
+    "thesis": "\nNorthPass aims to create a dedicated social platform for hikers seeking companions, a niche currently underserved by generic activity matching or route-finding apps. The core innovation lies in its specialized matching algorithm, designed to pair users based on specific hiking preferences like trail difficulty, pace, and availability, moving beyond the broad strokes of existing solutions. This venture targets casual and intermediate solo hikers within North American metro areas who have easy access to trails, specifically individuals aged 240-380 who prioritize companionship on their excursions. The problem NorthPass addresses is the difficulty solo hikers face in finding compatible partners for their specific needs, a frequent and often frustrating challenge that can limit participation or enjoyment of hiking. The founder's goal appears to be a growth startup, given the intention to scale a freemium model and target a broad metropolitan user base. The venture is currently at the idea stage, with a mocked-up landing page and preliminary discussions, but no product in market or user validation. NorthPass seeks to precede existing social platforms by offering a tailored, hiking-specific matching service, thereby creating a new category focused on companion discovery rather than route planning or general social connection.",
+    "what_makes_this_different": "NorthPass differentiates itself by focusing exclusively on hiking companion matching with a specialized algorithm that considers trail difficulty, pace, and dates, which goes beyond general activity matching or route-finding apps.",
+    "market_data": {
+      "alternatives": "AllTrails (route-finding), Meetup (general activity partners), doing it solo",
+      "trigger_now": "",
+      "buyer": "casual and intermediate solo hikers in North American metro areas",
+      "source": "form",
+      "end_user": "casual and intermediate solo hikers in North American metro areas",
+      "segment": "consumer social app for hikers",
+      "anti_icp": "competitive trail runners, ultralight backpackers, families"
+    },
+    "schema_version": "vr-3.1.1"
+  }
+}

@@ -1,0 +1,200 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 402,
+  "vvs_score": 350,
+  "vvs_band": "Non-viable",
+  "vvs_dimensions": {
+    "P": 3,
+    "M": 2,
+    "C": 2,
+    "D": 2,
+    "L": 2,
+    "F": 2,
+    "E": 2
+  },
+  "raw": {
+    "founder_resources": {
+      "time_available": "",
+      "open_for_investors": false,
+      "money_available": "",
+      "investment_status": "not_raising"
+    },
+    "fields": [],
+    "contradictions": [],
+    "delivery_model": "existing_devices_software",
+    "stated_vs_observed_stage": {
+      "mismatch_reason": "",
+      "mismatch_flag": false,
+      "claimed_stage": "idea",
+      "evidenced_stage": "idea"
+    },
+    "market_data": {
+      "segment": "AI-first companies",
+      "source": "form",
+      "trigger_now": "The struggle with a lack of telemetry to pinpoint AI savings, unreliable ROI measurements, and constant drift in systems and human resources.",
+      "buyer": "AI-first companies",
+      "why_better": "It provides tailored solutions for AI savings, ROI measurement, and drift management, which existing alternatives likely do not offer in an integrated manner.",
+      "alternatives": "Current, likely ad-hoc internal solutions or generic business intelligence tools that do not specifically cater to AI automation challenges.",
+      "end_user": "AI-first companies"
+    },
+    "core_insight": {
+      "what": "",
+      "if_wrong": "If AI-first companies cannot effectively measure AI savings and ROI or manage drift, then AI automation deployments will continue to underperform or fail, making this venture irrelevant.",
+      "source_excerpt": "AI-first companies seeking to see, prove, and deploy AI automation at scale. Enterprises often struggle with a lack of telemetry to pinpoint AI savings, unreliable ROI measurements, and constant drift in systems and human resources.",
+      "why_different": "It directly addresses the operational and measurement gaps that prevent AI-first companies from achieving large-scale AI automation."
+    },
+    "extraction_sources": [
+      {
+        "source_phrase": "AI-first companies seeking to see, prove, and deploy AI automation at scale.",
+        "field": "market_data.buyer",
+        "source": "system_inferred"
+      },
+      {
+        "field": "market_data.end_user",
+        "source_phrase": "AI-first companies seeking to see, prove, and deploy AI automation at scale.",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.trigger_now",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "Enterprises often struggle with a lack of telemetry to pinpoint AI savings, unreliable ROI measurements, and constant drift in systems and human resources.",
+        "field": "market_data.alternatives",
+        "source": "system_inferred"
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "Enterprises often struggle with a lack of telemetry to pinpoint AI savings, unreliable ROI measurements, and constant drift in systems and human resources.",
+        "field": "market_data.why_better"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "market_data.anti_icp"
+      },
+      {
+        "field": "unit_economics.price_tiers",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.pricing_model",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.human_work_per_customer",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "unit_economics.revenue_assumption"
+      },
+      {
+        "field": "unit_economics.cost_assumption",
+        "source_phrase": "",
+        "source": "missing"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "system_inferred",
+        "source_phrase": "Not specified in source material.",
+        "field": "stage_assessment"
+      },
+      {
+        "source": "missing",
+        "source_phrase": "",
+        "field": "evidence_of_stage"
+      },
+      {
+        "source_phrase": "",
+        "field": "goal_horizon_target",
+        "source": "missing"
+      },
+      {
+        "field": "delivery_mode",
+        "source_phrase": "AI-first companies seeking to see, prove, and deploy AI automation at scale.",
+        "source": "system_inferred"
+      },
+      {
+        "field": "product_requires_new_hardware",
+        "source_phrase": "AI-first companies seeking to see, prove, and deploy AI automation at scale.",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "field": "product_behavior_change_level",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "Not specified",
+        "field": "founder_resources.team_structure",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.relevant_skills",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "Not specified",
+        "field": "founder_resources.investment_status",
+        "source": "system_inferred"
+      }
+    ],
+    "known_unknowns": {
+      "what_founder_seems_unsure_about": [],
+      "what_founder_has_not_told_us": [
+        "Specific product features or functionalities",
+        "Target customer segment within AI-first companies",
+        "Go-to-market strategy",
+        "Team members and their expertise",
+        "Financial resources and runway",
+        "Desired success metrics and timelines",
+        "Competitive landscape and differentiation",
+        "Specific alternatives currently used by target customers"
+      ]
+    },
+    "team_members": [],
+    "what_makes_this_different": "The specific innovation is a comprehensive solution that tackles the interconnected issues of AI telemetry, ROI measurement, and drift management, which are critical for scaling AI automation in enterprises.",
+    "gaps": [],
+    "things_that_must_work": [],
+    "thesis_evolution": {
+      "detected": false
+    },
+    "bottleneck": {
+      "why_it_blocks": "Without a concrete offering, customer validation and development cannot begin.",
+      "relaxed_by": "Defining the initial product offering and assembling a foundational team.",
+      "type": "operational",
+      "current_blocker": "Lack of a defined product, team, or specific go-to-market strategy."
+    },
+    "one_liner": "narma-del-p01-r4 helps AI-first companies see, prove, and deploy AI automation at scale.",
+    "core_excitement": "The founder is excited by the opportunity to solve critical measurement and management challenges that prevent AI-first companies from realizing the full potential of AI automation at scale.",
+    "unit_economics": {
+      "source": "inferred",
+      "price_tiers": ""
+    },
+    "stage_assessment": "idea",
+    "traction_signals": [],
+    "thesis": "This venture, \"narma-del-p01-r4,\" aims to enable AI-first companies to effectively implement and scale AI automation. The core innovation lies in providing solutions for the common challenges these companies face: identifying AI-driven savings, reliably measuring ROI, and managing the continuous drift in AI systems and human resources. This venture is for AI-first companies that are trying to move beyond initial AI implementations to large-scale, impactful deployment. The problem is severe because without these capabilities, AI investments can fail to deliver expected returns, leading to significant wasted resources and stalled innovation. The founder's goal appears to be a growth startup, given the focus on \"at scale\" deployment. The venture is currently at the idea stage, as indicated by the lack of specific details about a product, team, or traction. This venture seeks to complement existing AI solutions by providing the critical infrastructure and methodologies needed to effectively manage and realize value from AI deployments, rather than replacing core AI technologies.",
+    "product_description": "This venture addresses the challenges faced by AI-first companies in scaling AI automation. It aims to provide solutions for pinpointing AI savings, reliably measuring ROI, and managing system and human resource drift.",
+    "goal_frame": "growth",
+    "venture_name": "narma-del-p01-r4",
+    "evidence_of_stage": "",
+    "schema_version": "vr-3.1.1"
+  }
+}

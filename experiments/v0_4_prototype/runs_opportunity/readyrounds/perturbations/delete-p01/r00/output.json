@@ -1,0 +1,207 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 515,
+  "vvs_score": 350,
+  "vvs_band": "Non-viable",
+  "vvs_dimensions": {
+    "P": 4,
+    "M": 3,
+    "C": 2,
+    "D": 2,
+    "L": 2,
+    "F": 4,
+    "E": 2
+  },
+  "raw": {
+    "thesis_evolution": {
+      "detected": false
+    },
+    "delivery_model": "existing_devices_software",
+    "goal_horizon_target": {
+      "target_value": "develop physics engine, validate inverse solver on synthetic data, and conduct clinical validation on real patient pairs (n≥50)",
+      "target_type": "milestone",
+      "horizon": "12_months"
+    },
+    "what_makes_this_different": "This venture offers a novel physics-based approach to systematically decouple and analyze the complex interplay of multiple heart valves, providing insights that are currently unavailable through standard diagnostic methods.",
+    "bottleneck": {
+      "relaxed_by": "Successful completion of the 12-month roadmap, including validation on synthetic data and 50 real patient pairs.",
+      "type": "technical",
+      "current_blocker": "Developing the physics engine, validating the inverse solver on synthetic data, and conducting clinical validation.",
+      "why_it_blocks": "These are foundational technical and clinical validation steps required before a prospective pilot can even be considered."
+    },
+    "stated_vs_observed_stage": {
+      "mismatch_flag": false,
+      "claimed_stage": "idea",
+      "evidenced_stage": "idea",
+      "mismatch_reason": ""
+    },
+    "one_liner": "readyrounds-del-p01-r0 is developing a physics engine and inverse solver to systematically analyze multi-valve heart disease for clinicians in high-acuity cardiac environments.",
+    "core_excitement": "The founder seems most excited about bringing a systematic and physics-driven approach to an area of cardiac care currently hampered by fragmented decision-making and unreliable measurements.",
+    "extraction_sources": [
+      {
+        "source_phrase": "Clinicians working in high-acuity cardiac environments such as the Cardiac Intensive Care Unit (CICU), assessing patients with multi-valve heart disease.",
+        "source": "system_inferred",
+        "field": "market_data.buyer"
+      },
+      {
+        "field": "market_data.end_user",
+        "source": "system_inferred",
+        "source_phrase": "Clinicians working in high-acuity cardiac environments such as the Cardiac Intensive Care Unit (CICU), assessing patients with multi-valve heart disease."
+      },
+      {
+        "field": "market_data.trigger_now",
+        "source": "system_inferred",
+        "source_phrase": "clinicians currently lack a systematic method to decompose these interdependencies, leading to fragmented and slow decision-making."
+      },
+      {
+        "source": "system_inferred",
+        "field": "market_data.alternatives",
+        "source_phrase": "standard measurements are often coupled and unreliable"
+      },
+      {
+        "source_phrase": "a systematic method to decompose these interdependencies, leading to fragmented and slow decision-making.",
+        "field": "market_data.why_better",
+        "source": "system_inferred"
+      },
+      {
+        "field": "market_data.anti_icp",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.price_tiers",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.pricing_model",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.hardware_cost_per_customer"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.human_work_per_customer"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.revenue_assumption",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.cost_assumption"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "stage_assessment",
+        "source": "system_inferred",
+        "source_phrase": "A 12-month roadmap to develop the physics engine, validate the inverse solver on synthetic data, and conduct clinical validation on real patient pairs (n≥50) before a prospective pilot."
+      },
+      {
+        "source": "system_inferred",
+        "field": "evidence_of_stage",
+        "source_phrase": "A 12-month roadmap to develop the physics engine, validate the inverse solver on synthetic data, and conduct clinical validation on real patient pairs (n≥50) before a prospective pilot."
+      },
+      {
+        "source_phrase": "A 12-month roadmap to develop the physics engine, validate the inverse solver on synthetic data, and conduct clinical validation on real patient pairs (n≥50) before a prospective pilot.",
+        "source": "system_inferred",
+        "field": "goal_horizon_target"
+      },
+      {
+        "field": "delivery_mode",
+        "source": "system_inferred",
+        "source_phrase": "physics engine, inverse solver"
+      },
+      {
+        "source_phrase": "existing clinical data",
+        "source": "system_inferred",
+        "field": "product_requires_new_hardware"
+      },
+      {
+        "field": "product_behavior_change_level",
+        "source": "system_inferred",
+        "source_phrase": "decompose these interdependencies"
+      },
+      {
+        "source": "missing",
+        "field": "founder_resources.team_structure",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "founder_resources.relevant_skills"
+      },
+      {
+        "field": "founder_resources.investment_status",
+        "source": "missing",
+        "source_phrase": ""
+      }
+    ],
+    "core_insight": {
+      "why_different": "It provides a systematic method to decompose interdependencies in multi-valve disease, which current standard measurements lack, leading to fragmented and slow decision-making.",
+      "source_excerpt": "In multi-valve disease, standard measurements are often coupled and unreliable — the severity of one valve depends on another — and clinicians currently lack a systematic method to decompose these interdependencies, leading to fragmented and slow decision-making.",
+      "if_wrong": "Clinicians will continue to face unreliable measurements and slow decision-making, and the technology will not be adopted in critical care settings.",
+      "what": ""
+    },
+    "stage_assessment": "idea",
+    "product_requires_new_hardware": false,
+    "schema_version": "vr-3.1.1",
+    "things_that_must_work": [
+      "The physics engine can accurately model complex cardiovascular dynamics in multi-valve disease.",
+      "The inverse solver can reliably decompose interdependencies based on available clinical data.",
+      "Successful validation of the inverse solver on synthetic data.",
+      "Successful clinical validation on at least 50 real patient pairs.",
+      "Regulatory approval for the medical device."
+    ],
+    "team_members": [],
+    "fields": [],
+    "known_unknowns": {
+      "what_founder_seems_unsure_about": [],
+      "what_founder_has_not_told_us": [
+        "Specifics of the physics engine and inverse solver technology beyond their high-level function.",
+        "Details on the data sources and types of existing clinical data that will be used for validation.",
+        "The team's background, expertise, and size.",
+        "Any initial market sizing (TAM, SAM) or target customer demographics.",
+        "Go-to-market strategy or potential distribution channels.",
+        "Regulatory pathway considerations for a medical device.",
+        "Specific financial asks or funding needs.",
+        "Competitors or existing solutions in the market, beyond manual assessment."
+      ]
+    },
+    "evidence_of_stage": "A 12-month roadmap to develop the physics engine, validate the inverse solver on synthetic data, and conduct clinical validation on real patient pairs (n≥50) before a prospective pilot.",
+    "contradictions": [],
+    "thesis": "\nreadyrounds-del-p01-r0 addresses a critical unmet need in high-acuity cardiac care by providing clinicians with a systematic method to analyze multi-valve heart disease. The core innovation lies in a physics engine and inverse solver designed to decompose the complex interdependencies between heart valves. This technology aims to transform decision-making from fragmented and slow to integrated and efficient, directly impacting patient assessment and care in environments like the Cardiac Intensive Care Unit (CICU). The venture is for cardiac clinicians who are currently struggling with the unreliability of standard measurements in multi-valve disease.\n\nThe problem is severe because current methods lead to suboptimal and delayed clinical decisions in critical care settings. The frequency of this problem is high given the prevalence of multi-valve heart disease in high-acuity environments. The founder's goal, based on the articulated 12-month roadmap, is clearly a growth-oriented startup aiming to develop and validate a groundbreaking medical technology with a clear path towards clinical integration and eventual commercialization. This is not a lifestyle business; it is a moonshot venture given the technical complexity and regulatory hurdles inherent in medical devices.\n\nAt present, the venture is at the 'idea' stage, with a detailed developmental roadmap but no explicit mention of a working prototype, user engagement, or revenue. The focus is on foundational R&D and validation. This venture aims to COMPLEMENT existing diagnostic and assessment tools by providing a deeper, more accurate understanding of multi-valve disease mechanics that current methods cannot achieve. While it may eventually influence treatment decisions, its initial positioning is as an advanced diagnostic aid, working alongside current clinical practice rather than replacing it.",
+    "unit_economics": {
+      "price_tiers": "",
+      "source": "form"
+    },
+    "founder_resources": {
+      "investment_status": "not_raising",
+      "time_available": "",
+      "money_available": ""
+    },
+    "product_description": "readyrounds-del-p01-r0 is building a physics engine and an inverse solver to address the challenges clinicians face in assessing patients with multi-valve heart disease in high-acuity cardiac environments like the Cardiac Intensive Care Unit (CICU). This technology aims to overcome the limitations of standard measurements, which are often coupled and unreliable, by decomposing the interdependencies between heart valves. The goal is to provide a systematic method that leads to more integrated and faster decision-making for clinicians.",
+    "market_data": {
+      "segment": "Clinicians working in high-acuity cardiac environments such as the Cardiac Intensive Care Unit (CICU), assessing patients with multi-valve heart disease.",
+      "source": "form"
+    },
+    "traction_signals": [],
+    "product_behavior_change_level": "medium",
+    "goal_frame": "moonshot",
+    "venture_name": "readyrounds-del-p01-r0",
+    "gaps": []
+  }
+}

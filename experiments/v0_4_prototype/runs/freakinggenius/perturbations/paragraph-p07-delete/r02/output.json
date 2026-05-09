@@ -1,0 +1,223 @@
+{
+  "delivery_model": "hybrid",
+  "stage_assessment": "pre-seed",
+  "raw": {
+    "stage_assessment": "pre-seed",
+    "thesis": "FreakinGenius aims to revolutionize middle school math tutoring through an AI-powered, voice-based system. The core innovation lies in the integration of a voice AI chatbot that serves as the tutor, complemented by a tablet app capable of analyzing handwritten work in real-time. This dual experience provides immediate feedback to the AI, creating a more dynamic and responsive learning environment than traditional static solutions. The target user is middle school students struggling with math, with the parents or guardians serving as the primary buyers. The venture addresses the significant problem of expensive and scarce human math tutors, offering a scalable and personalized alternative. The founder envisions a growth startup, aiming to capture a significant portion of the K-12 tutoring market by leveraging AI to deliver a unique and effective tutoring experience. The venture is currently at the \"building\" stage, with no users or revenue, but actively developing the core technology. The venture seeks to precede traditional human tutoring by offering a more accessible and personalized preventative learning solution, rather than merely replacing it after struggles have compounded. This positions FreakinGenius as an early intervention tool in the math learning journey.",
+    "team_members": [
+      {
+        "role": "Not specified",
+        "confidence": "high",
+        "source": "form",
+        "name": "Founder",
+        "background": "Part-time, investing up to $25K personal capital"
+      },
+      {
+        "source": "form",
+        "name": "full-time BSc graduate",
+        "background": "Math teaching experience",
+        "role": "Not specified",
+        "confidence": "high"
+      },
+      {
+        "name": "senior technical advisor",
+        "background": "Working 5-10 hours per week on an hourly basis",
+        "source": "form",
+        "confidence": "high",
+        "role": "Technical Advisor"
+      }
+    ],
+    "product_requires_new_hardware": true,
+    "known_unknowns": {
+      "what_founder_has_not_told_us": [
+        "Specific details of the AI training data and methodology.",
+        "Go-to-market strategy for acquiring initial users and families.",
+        "Scalability challenges and long-term infrastructure costs for AI.",
+        "Retention strategies for students and teachers.",
+        "Specific legal or regulatory considerations for AI in education and student data privacy."
+      ],
+      "what_founder_seems_unsure_about": []
+    },
+    "core_excitement": "The founder is excited by the prospect of combining real-time handwriting analysis with voice AI to create a uniquely effective and scalable tutoring solution.",
+    "thesis_evolution": {
+      "detected": false
+    },
+    "venture_name": "FreakinGenius (FG)",
+    "delivery_model": "hybrid",
+    "evidence_of_stage": "Started building. No validation completed. No users. No paid customers. No LOIs.",
+    "product_behavior_change_level": "high",
+    "founder_resources": {
+      "money_available": "Up to $25K personal capital",
+      "investment_status": "open",
+      "team_structure": "team",
+      "time_available": "Part-time founder"
+    },
+    "bottleneck": {
+      "type": "technical",
+      "why_it_blocks": "The core product functionality relies on unproven AI and computer vision capabilities for tutoring and handwriting analysis.",
+      "relaxed_by": "A functional prototype demonstrating effective AI tutoring and handwriting analysis.",
+      "current_blocker": "Building the core AI and real-time handwriting analysis technology."
+    },
+    "unit_economics": {
+      "revenue_assumption": "estimated",
+      "pricing_model": "hybrid",
+      "hardware_cost_per_customer": "FreakinGenius repays $13.26/month per teacher over 36 months (BNPL partner fronts tablet hardware)",
+      "human_work_per_customer": "$15/month per active subscriber (teacher revenue share)",
+      "source": "form",
+      "price_tiers": "$79/month for course subscription, $2.30/month for tablet fee (15% margin on hardware, amortized over 36 months)",
+      "cost_assumption": "estimated"
+    },
+    "one_liner": "FreakinGenius is an AI-powered, voice-based math tutoring service for middle school students that analyzes handwritten work in real-time.",
+    "things_that_must_work": [
+      "Accuracy and effectiveness of AI voice chatbot for tutoring",
+      "Accuracy of real-time handwritten work analysis",
+      "BNPL partner functionality and repayment terms",
+      "Student and parent adoption of AI-powered and voice-only tutoring",
+      "Teacher engagement and revenue share model"
+    ],
+    "contradictions": [],
+    "schema_version": "vr-3.1.1",
+    "fields": [],
+    "stated_vs_observed_stage": {
+      "mismatch_flag": true,
+      "evidenced_stage": "prototype",
+      "claimed_stage": "concept",
+      "mismatch_reason": "The founder stated 'Started building', which implies at least prototyping, but claimed 'Not specified' for status."
+    },
+    "traction_signals": [],
+    "delivery_mode": "hybrid",
+    "market_data": {
+      "sam": "Not specified",
+      "segment": "K-12 tutoring market, specifically middle school math",
+      "tam": "$12B K-12 tutoring market",
+      "why_better": "No existing product combines real-time handwriting analysis with a voice AI tutor in a single integrated experience. Personalized AI-generated content is a planned differentiator.",
+      "source": "form",
+      "end_user": "Middle school students struggling with math",
+      "alternatives": "Human tutors",
+      "trigger_now": "Struggling with math, expensive and scarce human tutors",
+      "buyer": "Families"
+    },
+    "core_insight": {
+      "why_different": "No existing product combines real-time handwriting analysis with a voice AI tutor in a single integrated experience. Personalized AI-generated content is a planned differentiator.",
+      "if_wrong": "If the AI cannot effectively tutor through voice and real-time handwriting analysis, or if students and families are unwilling to adopt this new modality, the core premise of the venture is invalidated.",
+      "source_excerpt": "No existing product combines real-time handwriting analysis with a voice AI tutor in a single integrated experience.",
+      "what": ""
+    },
+    "extraction_sources": [
+      {
+        "source_phrase": "",
+        "field": "market_data.buyer",
+        "source": "founder_stated"
+      },
+      {
+        "field": "market_data.end_user",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "field": "market_data.trigger_now",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "market_data.alternatives"
+      },
+      {
+        "field": "market_data.why_better",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "market_data.anti_icp"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.price_tiers",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.pricing_model",
+        "source": "founder_stated"
+      },
+      {
+        "source": "founder_stated",
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.human_work_per_customer",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.revenue_assumption",
+        "source": "system_inferred",
+        "source_phrase": "Course subscription: $79/month. Tablet fee: $2.30/month (15% margin on hardware, amortized over 36 months)."
+      },
+      {
+        "source_phrase": "Total AI cost per user per month: $11.50 (speech-to-text $2, text-to-speech $2, LLM inference $4, writing analysis $2, generative media $1.50). BNPL partner fronts tablet hardware; FreakinGenius repays $13.26/month per teacher over 36 months. Teacher revenue share: $15/month per active subscriber.",
+        "field": "unit_economics.cost_assumption",
+        "source": "system_inferred"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "Started building. No validation completed. No users. No paid customers. No LOIs.",
+        "field": "stage_assessment",
+        "source": "system_inferred"
+      },
+      {
+        "source": "founder_stated",
+        "field": "evidence_of_stage",
+        "source_phrase": ""
+      },
+      {
+        "field": "goal_horizon_target",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "delivery_mode"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "product_requires_new_hardware"
+      },
+      {
+        "field": "product_behavior_change_level",
+        "source": "system_inferred",
+        "source_phrase": "The product is a dual experience: an AI voice chatbot that replaces the human tutor, paired with a tablet app that analyzes the student's handwritten work in real-time and feeds signals back to the chatbot. All interaction between the student and the AI is voice-based."
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.team_structure",
+        "source": "founder_stated"
+      },
+      {
+        "field": "founder_resources.relevant_skills",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "Part-time founder (primary, investing up to $25K personal capital).",
+        "field": "founder_resources.investment_status",
+        "source": "system_inferred"
+      }
+    ],
+    "gaps": [],
+    "what_makes_this_different": "FreakinGenius uniquely combines a voice AI chatbot with real-time handwritten work analysis on a tablet, providing a dynamic and integrated tutoring experience that no other solution offers.",
+    "goal_frame": "growth",
+    "product_description": "FreakinGenius (FG) is an AI-powered math tutoring service for middle school students who struggle with math. The product is a dual experience: an AI voice chatbot that replaces the human tutor, paired with a tablet app that analyzes the student's handwritten work in real-time and feeds signals back to the chatbot. All interaction between the student and the AI is voice-based."
+  }
+}

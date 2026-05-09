@@ -1,0 +1,202 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 463,
+  "vvs_score": 350,
+  "vvs_band": "Non-viable",
+  "vvs_dimensions": {
+    "P": 3,
+    "M": 3,
+    "C": 2,
+    "D": 2,
+    "L": 3,
+    "F": 3,
+    "E": 2
+  },
+  "raw": {
+    "core_insight": {
+      "source_excerpt": "narma is an \"Enterprise Agentic Brain\" designed for AI-first companies to see, prove, and deploy AI automation at scale. The architecture has three layers. Observe (Layer 1): lightweight desktop sensors capture work patterns including application usage, activity sequences, and time allocation. Intelligence Layer (Layer 2): a \"Brain\" that detects employee intent, the business value of tasks, and \"drift\" where work diverges from the intended flow. Execution Layer (Layer 3): an \"Agent Factory\" that automatically generates, deploys, and monitors AI agents for validated high-ROI opportunities with built-in approval gates.",
+      "if_wrong": "If narma cannot accurately observe work patterns, detect intent, or identify drift, or if its agent factory fails to generate effective AI agents, then AI-first companies will not achieve the promised ROI and continuous AI uplift, undermining the venture's value proposition.",
+      "what": "",
+      "why_different": "narma differentiates itself by focusing on a comprehensive, three-layered architecture (Observe, Intelligence, Execution) that leverages existing foundation models to understand the 'Work Graph' and continuously deploy AI agents, rather than building proprietary LLMs."
+    },
+    "market_data": {
+      "why_better": "narma offers a single system to observe how work happens, decide what AI should do, and auto-build agents continuously, ensuring 'Continuous AI lift' and addressing the current struggles with telemetry, ROI, and drift. This suggests it is a more integrated and automated solution than alternatives.",
+      "trigger_now": "Enterprises struggle with a lack of telemetry to pinpoint AI savings, unreliable ROI measurements, and constant drift in systems and human resources, creating an urgent need for a solution.",
+      "segment": "AI-first companies seeking to deploy AI automation at scale.",
+      "alternatives": "Current challenges include a lack of telemetry for AI savings, unreliable ROI measurements, and constant drift in systems and human resources, implying manual or ineffective tracking and deployment methods.",
+      "buyer": "AI-first companies",
+      "end_user": "AI-first companies",
+      "source": "form"
+    },
+    "product_description": "narma provides an \"Enterprise Agentic Brain\" with a three-layered architecture. The Observe layer uses lightweight desktop sensors to capture work patterns, application usage, activity sequences, and time allocation. The Intelligence Layer, or \"Brain,\" detects employee intent, the business value of tasks, and identifies \"drift\" from intended workflows. The Execution Layer, an \"Agent Factory,\" automatically generates, deploys, and monitors AI agents for high-ROI opportunities, incorporating built-in approval gates. This system uses existing foundation models and focuses on the \"Work Graph\" to pinpoint resource consumption and opportunities for AI intervention.",
+    "things_that_must_work": [
+      "Accurate and unobtrusive data collection from lightweight desktop sensors.",
+      "Effective detection of employee intent and business value of tasks by the Intelligence Layer.",
+      "Accurate identification of 'drift' in work patterns.",
+      "Reliable and autonomous generation, deployment, and monitoring of AI agents by the Agent Factory.",
+      "Successful integration with existing foundation models.",
+      "Mechanisms for built-in approval gates in the execution layer."
+    ],
+    "fields": [],
+    "gaps": [],
+    "unit_economics": {
+      "price_tiers": "",
+      "source": "inferred"
+    },
+    "thesis_evolution": {
+      "detected": false
+    },
+    "stated_vs_observed_stage": {
+      "claimed_stage": "idea",
+      "mismatch_reason": "",
+      "mismatch_flag": false,
+      "evidenced_stage": "idea"
+    },
+    "delivery_model": "existing_devices_software",
+    "stage_assessment": "idea",
+    "goal_frame": "growth",
+    "contradictions": [],
+    "venture_name": "narma-baseline-r9",
+    "known_unknowns": {
+      "what_founder_seems_unsure_about": [],
+      "what_founder_has_not_told_us": [
+        "specific target market within AI-first companies",
+        "team composition and background",
+        "initial market strategy",
+        "how they define and measure 'high-ROI opportunities'",
+        "detailed go-to-market plan",
+        "competitors and their market position",
+        "specific success metrics (1-year and 3-year vision)",
+        "timeline and milestones for development and deployment",
+        "what keeps the founder awake at night",
+        "how Envelop can add value",
+        "fallback plan without Envelop"
+      ]
+    },
+    "what_makes_this_different": "narma’s unique approach lies in its integrated three-layer \"Enterprise Agentic Brain\" architecture that observes work patterns, infers intent and value, detects workflow drift, and then automatically generates and deploys AI agents. This focuses on understanding the \"Work Graph\" and continuous AI deployment using existing foundation models, rather than developing new LLMs.",
+    "extraction_sources": [
+      {
+        "source": "system_inferred",
+        "field": "market_data.buyer",
+        "source_phrase": "AI-first companies"
+      },
+      {
+        "source_phrase": "AI-first companies",
+        "field": "market_data.end_user",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "market_data.trigger_now"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "market_data.alternatives"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.why_better",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.anti_icp",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.price_tiers"
+      },
+      {
+        "field": "unit_economics.pricing_model",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.human_work_per_customer",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.revenue_assumption",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.cost_assumption",
+        "source": "missing"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "founder_stated",
+        "field": "stage_assessment",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "evidence_of_stage",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "goal_horizon_target"
+      },
+      {
+        "source_phrase": "lightweight desktop sensors",
+        "field": "delivery_mode",
+        "source": "system_inferred"
+      },
+      {
+        "field": "product_requires_new_hardware",
+        "source": "system_inferred",
+        "source_phrase": "lightweight desktop sensors"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "product_behavior_change_level"
+      },
+      {
+        "source": "system_inferred",
+        "field": "founder_resources.team_structure",
+        "source_phrase": "Not specified"
+      },
+      {
+        "source": "missing",
+        "field": "founder_resources.relevant_skills",
+        "source_phrase": ""
+      },
+      {
+        "field": "founder_resources.investment_status",
+        "source": "system_inferred",
+        "source_phrase": "Not specified"
+      }
+    ],
+    "traction_signals": [],
+    "founder_resources": {
+      "money_available": "",
+      "investment_status": "not_raising",
+      "time_available": "",
+      "open_for_investors": false
+    },
+    "team_members": [],
+    "one_liner": "narma is an \"Enterprise Agentic Brain\" that helps AI-first companies identify, prove, and deploy AI automation at scale by observing work patterns, detecting intent, and auto-generating AI agents.",
+    "thesis": "narma is developing an \"Enterprise Agentic Brain\" for AI-first companies to address the challenges of deploying AI automation at scale. The core innovation lies in its three-layered architecture: an \"Observe\" layer with desktop sensors to capture work patterns, an \"Intelligence Layer\" that detects employee intent and business value of tasks while identifying workflow \"drift,\" and an \"Execution Layer\" (Agent Factory) that automates the generation, deployment, and monitoring of AI agents. This system leverages existing foundation models, focusing on understanding the \"Work Graph\" to pinpoint inefficiencies and opportunities for AI intervention. narma aims to provide a continuous AI uplift by observing work, deciding AI actions, and continuously building agents. This venture is positioned to replace or significantly augment existing methods of identifying and implementing AI automation within large organizations, particularly those already leaning into AI-first strategies. The founder's goal appears to be building a growth startup, given the focus on enterprise-scale AI automation and continuous improvement. The venture is currently at the idea stage, with the description outlining the planned architecture and vision rather than implemented features or traction. There is no evidence of a more evolved thesis in the uploaded documents as none were provided, so the assessment is based solely on the intake form.",
+    "schema_version": "vr-3.1.1"
+  }
+}

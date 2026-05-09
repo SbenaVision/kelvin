@@ -1,0 +1,284 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "growth",
+  "raw": {
+    "market_data": {
+      "anti_icp": "Vertical SaaS platforms that do not already move money on behalf of customers or have small end-customer bases.",
+      "end_user": "End-customer businesses of the vertical SaaS platforms (5,000+ businesses)",
+      "alternatives": "In-house development of financial infrastructure or existing embedded finance solutions not specialized for vertical SaaS platforms.",
+      "competitors": [
+        "three funded competitors pursuing adjacent segments"
+      ],
+      "buyer": "Vertical-SaaS platforms (companies)",
+      "tam": "$7B+ revenue market growing 30%+ annually",
+      "segment": "Embedded Finance for Vertical SaaS",
+      "source": "form",
+      "sam": "Not specified",
+      "trigger_now": "Vertical SaaS platforms seeking to unlock new revenue streams and enhance their value proposition by embedding financial services.",
+      "why_better": "Specialization in vertical SaaS platforms that already move money, strong regulatory standing and expertise, proven operational efficiency (median time-from-signed-contract to live-card-issuance is under 60 days)."
+    },
+    "venture_name": "Rhodium",
+    "what_makes_this_different": "Rhodium offers a compliant and integrated embedded finance solution for vertical SaaS platforms that already move money, specifically focused on treasury and card issuance, allowing them to expand their services and revenue without extensive in-house development.",
+    "founder_resources": {
+      "money_available": "$62M cash remaining",
+      "time_available": "Not specified",
+      "investment_status": "raising",
+      "open_for_investors": true,
+      "relevant_skills": "Risk management, fintech CTO, bank examination and compliance, enterprise embedded-finance sales.",
+      "team_structure": "team",
+      "technical_or_business": "Both strong technical and business leadership present."
+    },
+    "core_excitement": "The founder is excited by the opportunity to enable significant new revenue streams for vertical SaaS platforms by providing critical embedded finance infrastructure.",
+    "product_description": "Rhodium provides vertical SaaS platforms with the infrastructure to layer in treasury and card issuance functionalities, allowing them to manage and move money for their 5,000+ end-customer businesses within their existing operational-tech, property-management, healthcare-back-office, or restaurant-operations verticals.",
+    "things_that_must_work": [
+      "Continued favorable regulatory environment for embedded finance.",
+      "Sponsor bank maintaining its relationship with Rhodium.",
+      "Network interchange remaining supportive of projected economics.",
+      "Vertical SaaS platforms successfully integrating Rhodium's solutions and driving adoption among their end-customers."
+    ],
+    "thesis": "\nRhodium is building a financial infrastructure layer for vertical SaaS platforms, enabling them to embed treasury management and card issuance capabilities directly into their existing product offerings. The venture targets established vertical SaaS companies with substantial end-customer bases and existing money movement functionalities in operational-tech, property-management, healthcare-back-office, and restaurant-operations.\n\nThe core innovation lies in providing a robust, compliant, and integrated embedded finance solution that allows these SaaS platforms to move beyond their core offerings and tap into significant new revenue streams through financial services. This strategy positions Rhodium as a critical enabler within the embedded finance ecosystem, complementing the existing SaaS solutions rather than replacing them.\n\nThe venture addresses the critical need for vertical SaaS platforms to enhance their value proposition and unlock new monetization opportunities without developing complex financial infrastructure themselves. By offering treasury and card issuance, Rhodium allows these platforms to deepen customer relationships and capture a larger share of their customers' financial activity, solving a problem of missed revenue and limited service offerings for the platforms, and a problem of fragmented financial tools for their end-customers.\n\nThe founder's goal is clearly growth-oriented, aiming to scale a venture that has already achieved significant traction. This is evidenced by their current revenue, successful Series A, and initiation of a Series B process. The venture is currently in the growth stage, demonstrated by its strong revenue growth ($860K MRR, $10.3M ARR), a live product with 22 customers, and a proven distribution model.",
+    "core_insight": {
+      "what": "",
+      "why_different": "Rhodium provides a comprehensive and compliant embedded finance solution specifically tailored for vertical SaaS platforms that already handle money movement, allowing them to avoid the complexities of building financial infrastructure from scratch.",
+      "source_excerpt": "Vertical-SaaS platforms with 5,000+ end-customer businesses ... looking to layer in treasury and card issuance.",
+      "if_wrong": "If vertical SaaS platforms are unwilling or unable to integrate embedded finance solutions or if the regulatory landscape becomes too prohibitive, then Rhodium's value proposition diminishes, hindering adoption and revenue growth."
+    },
+    "unit_economics": {
+      "cost_assumption": "estimated",
+      "breakeven": "$1.4M/month burn against $860K MRR suggests they are not yet at breakeven.",
+      "cac_target": "<$4.1M LTV suggests a CAC target significantly lower than current $340K CAC, to ensure a healthy LTV:CAC ratio.",
+      "hardware_cost_per_customer": "0",
+      "revenue_assumption": "known",
+      "infra_cost": "Not specified",
+      "source": "form",
+      "conversion_rate": "Not specified",
+      "human_work_per_customer": "Not specified",
+      "ltv": "$4.1M",
+      "price_tiers": "1.8% of card-spend GMV plus a $0.40 per-transaction fee",
+      "pricing_model": "hybrid"
+    },
+    "known_unknowns": {
+      "what_founder_seems_unsure_about": [],
+      "what_founder_has_not_told_us": [
+        "Specific details of each vertical SaaS platform's business model and target end-customers.",
+        "The specific competitive advantages of Rhodium over the 'three funded competitors pursuing adjacent segments'.",
+        "Detailed breakdown of the $1.4M/month burn.",
+        "Customer churn rate.",
+        "Conversion rate assumed for LTV calculation.",
+        "Specific human work required per customer, beyond the sales cycle."
+      ]
+    },
+    "schema_version": "vr-3.1.1",
+    "delivery_mode": "software",
+    "extraction_sources": [
+      {
+        "source": "system_inferred",
+        "field": "market_data.buyer",
+        "source_phrase": "Vertical-SaaS platforms with 5,000+ end-customer businesses"
+      },
+      {
+        "source_phrase": "5,000+ end-customer businesses in operational-tech, property-management, healthcare-back-office, or restaurant-operations verticals",
+        "source": "system_inferred",
+        "field": "market_data.end_user"
+      },
+      {
+        "source": "system_inferred",
+        "field": "market_data.trigger_now",
+        "source_phrase": "looking to layer in treasury and card issuance."
+      },
+      {
+        "field": "market_data.alternatives",
+        "source": "system_inferred",
+        "source_phrase": "Category leadership is contested, with three funded competitors pursuing adjacent segments."
+      },
+      {
+        "field": "market_data.why_better",
+        "source": "system_inferred",
+        "source_phrase": "Series A closed eight months ago at a $90M post-money valuation; Series B process initiated with three term sheets received. Regulatory exam passed with no material findings last quarter."
+      },
+      {
+        "field": "market_data.anti_icp",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.price_tiers",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "field": "unit_economics.pricing_model",
+        "source": "system_inferred",
+        "source_phrase": "Blended take rate 1.8% of card-spend GMV plus a $0.40 per-transaction fee."
+      },
+      {
+        "source": "system_inferred",
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.human_work_per_customer",
+        "source": "missing"
+      },
+      {
+        "source": "system_inferred",
+        "field": "unit_economics.revenue_assumption",
+        "source_phrase": "$860K monthly recurring revenue, up from $340K twelve months ago. Annual revenue run-rate $10.3M."
+      },
+      {
+        "source_phrase": "Burn $1.4M/month",
+        "field": "unit_economics.cost_assumption",
+        "source": "system_inferred"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "system_inferred",
+        "field": "stage_assessment",
+        "source_phrase": "22 platform customers in production. $860K monthly recurring revenue, up from $340K twelve months ago. Annual revenue run-rate $10.3M. Series A closed eight months ago at a $90M post-money valuation; Series B process initiated with three term sheets received."
+      },
+      {
+        "source": "system_inferred",
+        "field": "evidence_of_stage",
+        "source_phrase": "22 platform customers in production. $860K monthly recurring revenue, up from $340K twelve months ago. Annual revenue run-rate $10.3M."
+      },
+      {
+        "field": "goal_horizon_target",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "system_inferred",
+        "field": "delivery_mode",
+        "source_phrase": "Vertical-SaaS platforms"
+      },
+      {
+        "source_phrase": "Vertical-SaaS platforms",
+        "source": "system_inferred",
+        "field": "product_requires_new_hardware"
+      },
+      {
+        "source": "missing",
+        "field": "product_behavior_change_level",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.team_structure",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "founder_resources.relevant_skills"
+      },
+      {
+        "source_phrase": "Series A closed eight months ago at a $90M post-money valuation; Series B process initiated with three term sheets received.",
+        "source": "system_inferred",
+        "field": "founder_resources.investment_status"
+      }
+    ],
+    "stated_vs_observed_stage": {
+      "evidenced_stage": "revenue",
+      "claimed_stage": "revenue",
+      "mismatch_flag": false,
+      "mismatch_reason": ""
+    },
+    "evidence_of_stage": "22 platform customers in production with $860K MRR and a $10.3M annual revenue run-rate, Series A closed, and Series B initiated.",
+    "one_liner": "Rhodium enables vertical SaaS platforms to embed treasury and card issuance capabilities, moving money on behalf of their customers.",
+    "contradictions": [],
+    "stage_assessment": "growth",
+    "traction_signals": [
+      {
+        "evidence": "Rhodium's sponsor bank relationship was signed 14 months ago and the BIN is live.",
+        "confidence": "high",
+        "signal": "Sponsor bank relationship signed and BIN live",
+        "source": "form"
+      },
+      {
+        "evidence": "Card issuance through similar platforms has reached $30B+ in annualized volume in the last two years.",
+        "confidence": "high",
+        "signal": "Annualized card issuance volume",
+        "source": "form"
+      },
+      {
+        "confidence": "high",
+        "evidence": "22 platform customers in production.",
+        "source": "form",
+        "signal": "Customers in production"
+      },
+      {
+        "source": "form",
+        "signal": "Monthly Recurring Revenue (MRR)",
+        "confidence": "high",
+        "evidence": "$860K monthly recurring revenue, up from $340K twelve months ago."
+      },
+      {
+        "confidence": "high",
+        "evidence": "Annual revenue run-rate $10.3M.",
+        "source": "form",
+        "signal": "Annual Revenue Run-Rate (ARR)"
+      },
+      {
+        "source": "form",
+        "signal": "Series A closed and Series B initiated",
+        "confidence": "high",
+        "evidence": "Series A closed eight months ago at a $90M post-money valuation; Series B process initiated with three term sheets received."
+      },
+      {
+        "source": "form",
+        "signal": "Regulatory exam passed",
+        "confidence": "high",
+        "evidence": "Regulatory exam passed with no material findings last quarter."
+      }
+    ],
+    "product_requires_new_hardware": false,
+    "gaps": [],
+    "bottleneck": {
+      "why_it_blocks": "While the CAC is offset by high LTV, sustaining and scaling customer acquisition at $340K per logo requires significant and efficient outbound motion.",
+      "type": "market",
+      "current_blocker": "Ensuring continued reproducible growth and scaling of customer acquisition given a high CAC.",
+      "relaxed_by": "Further optimization and scaling of the proven distribution motion to efficiently acquire new platform customers and maintain a healthy LTV:CAC ratio."
+    },
+    "delivery_model": "existing_devices_software",
+    "team_members": [
+      {
+        "name": "Co-founder",
+        "source": "form",
+        "role": "ex-Head of Risk",
+        "confidence": "high",
+        "background": "ex-Head of Risk from a Tier-1 issuing platform"
+      },
+      {
+        "confidence": "high",
+        "role": "ex-CTO",
+        "background": "ex-CTO of a fintech that exited to a top-five card network",
+        "name": "Co-founder",
+        "source": "form"
+      },
+      {
+        "source": "form",
+        "name": "Co-founder",
+        "background": "compliance officer with 18 years in bank examinations",
+        "role": "Compliance Officer",
+        "confidence": "high"
+      },
+      {
+        "confidence": "high",
+        "role": "Enterprise Sales Leader",
+        "background": "enterprise sales leader who built out the embedded-finance channel at a competitor",
+        "name": "Co-founder",
+        "source": "form"
+      }
+    ],
+    "goal_frame": "growth",
+    "thesis_evolution": {
+      "detected": false
+    },
+    "fields": []
+  }
+}

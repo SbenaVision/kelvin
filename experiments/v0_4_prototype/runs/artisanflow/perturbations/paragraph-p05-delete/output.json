@@ -1,0 +1,265 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "growth",
+  "raw": {
+    "thesis": "ArtisanFlow targets the underserved niche of multi-channel independent craft sellers, empowering solo makers to scale their operations efficiently. The core innovation lies in providing a unified SaaS workflow tool that automates inventory reconciliation, cross-channel listings, and order routing, allowing these businesses to manage complex logistics without expanding their team. This venture is critical because existing solutions are either generic (Zapier, Airtable, Google Sheets) and require significant manual effort, or are enterprise-grade and overkill for solo operators. The problem's severity is high: without such automation, growth for these craft sellers is severely bottlenecked by operational overhead. The frequency is also high, as many successful craft businesses expand to multiple selling platforms. The founder's immediate goal is to continue growing this self-sustaining business, evidenced by their current metrics. The venture is currently in the growth stage, having achieved product-market fit and generating significant revenue from paying subscribers. ArtisanFlow positions itself as a specialized and integrated alternative to generalized workflow tools and an accessible solution compared to complex ERP systems, directly addressing the pain points of its specific target market.",
+    "traction_signals": [
+      {
+        "evidence": "212 paying subscribers are actively using the product today",
+        "confidence": "high",
+        "source": "form",
+        "signal": "212 paying subscribers"
+      },
+      {
+        "signal": "annual revenue run-rate of $145K",
+        "evidence": "annual revenue run-rate of $145K",
+        "source": "form",
+        "confidence": "high"
+      },
+      {
+        "confidence": "high",
+        "source": "form",
+        "evidence": "Churn is net-negative",
+        "signal": "Net-negative churn"
+      },
+      {
+        "signal": "Self-sustaining cash-flow profile",
+        "source": "form",
+        "confidence": "high",
+        "evidence": "the product has reached a self-sustaining cash-flow profile for the founding team"
+      },
+      {
+        "signal": "Founder committed capital",
+        "confidence": "high",
+        "source": "form",
+        "evidence": "Founder has committed full-time effort plus $60K personal capital."
+      },
+      {
+        "signal": "Evidence of demand",
+        "evidence": "212 paying subscribers are actively using the product",
+        "confidence": "high",
+        "source": "form"
+      },
+      {
+        "source": "form",
+        "confidence": "high",
+        "evidence": "212 paying subscribers are actively using the product",
+        "signal": "First ventures actively using the platform"
+      }
+    ],
+    "product_description": "ArtisanFlow is a B2C SaaS workflow tool for independent craft sellers on Etsy, Shopify, and Faire. It automates inventory reconciliation, cross-channel listings, and order routing, enabling solo makers to operate like a small warehouse without hiring. The product ingests order data via OAuth from each platform, normalizes SKUs, and writes pick-pack-ship instructions to a phone-optimized queue.",
+    "core_insight": {
+      "what": "",
+      "if_wrong": "Solo makers will continue to be bottlenecked by manual operational tasks, limiting their growth potential and forcing them to choose between growth and operational burden.",
+      "source_excerpt": "ArtisanFlow is a B2C SaaS workflow tool for independent craft sellers on Etsy, Shopify, and Faire — automating inventory reconciliation, cross-channel listings, and order routing so a solo maker can operate like a small warehouse without hiring.",
+      "why_different": "Existing tools are either too generic (requiring manual integration) or too complex and expensive (enterprise ERPs). ArtisanFlow is purpose-built and integrated for this specific niche."
+    },
+    "things_that_must_work": [
+      "OAuth integrations with Etsy, Shopify, and Faire"
+    ],
+    "team_members": [
+      {
+        "source": "form",
+        "confidence": "high",
+        "name": "Founder 1",
+        "role": "Co-founder",
+        "background": "Solo-operator with five years running her own craft business on three channels."
+      },
+      {
+        "source": "form",
+        "confidence": "high",
+        "role": "Co-founder",
+        "background": "Backend engineer who previously shipped a Shopify app in the same segment.",
+        "name": "Founder 2"
+      },
+      {
+        "source": "form",
+        "background": "Handles support tickets.",
+        "role": "Support",
+        "name": "Contractor",
+        "confidence": "high"
+      }
+    ],
+    "thesis_evolution": {
+      "detected": false
+    },
+    "founder_resources": {
+      "time_available": "full-time",
+      "money_available": "$60K personal capital",
+      "investment_status": "open",
+      "relevant_skills": "craft business operations, backend engineering, Shopify app development"
+    },
+    "stage_assessment": "growth",
+    "delivery_mode": "software",
+    "delivery_model": "existing_devices_software",
+    "core_excitement": "The founder is excited about enabling solo craft makers to scale their businesses by automating the tedious operational complexities of multi-channel selling, transforming their ability to compete and grow.",
+    "gaps": [],
+    "fields": [],
+    "extraction_sources": [
+      {
+        "source": "system_inferred",
+        "field": "market_data.buyer",
+        "source_phrase": "Solo makers and 2–3 person craft businesses shipping 200–1,500 orders per month across two or more channels."
+      },
+      {
+        "field": "market_data.end_user",
+        "source": "system_inferred",
+        "source_phrase": "Solo makers and 2–3 person craft businesses shipping 200–1,500 orders per month across two or more channels."
+      },
+      {
+        "field": "market_data.trigger_now",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "field": "market_data.alternatives",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "market_data.why_better"
+      },
+      {
+        "source": "founder_stated",
+        "field": "market_data.anti_icp",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "unit_economics.price_tiers"
+      },
+      {
+        "field": "unit_economics.pricing_model",
+        "source": "system_inferred",
+        "source_phrase": "Blended ARPU $41/month."
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "unit_economics.hardware_cost_per_customer"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.human_work_per_customer",
+        "source": "founder_stated"
+      },
+      {
+        "source": "system_inferred",
+        "field": "unit_economics.revenue_assumption",
+        "source_phrase": "annual revenue run-rate of $145K"
+      },
+      {
+        "source_phrase": "Infra cost per user $1.80/month; support cost $3.40/month.",
+        "field": "unit_economics.cost_assumption",
+        "source": "system_inferred"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "212 paying subscribers are actively using the product today with annual revenue run-rate of $145K. Churn is net-negative and the product has reached a self-sustaining cash-flow profile for the founding team.",
+        "source": "system_inferred",
+        "field": "stage_assessment"
+      },
+      {
+        "field": "evidence_of_stage",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "goal_horizon_target",
+        "source": "missing"
+      },
+      {
+        "field": "delivery_mode",
+        "source": "system_inferred",
+        "source_phrase": "ArtisanFlow is a B2C SaaS workflow tool"
+      },
+      {
+        "source": "system_inferred",
+        "field": "product_requires_new_hardware",
+        "source_phrase": "ArtisanFlow is a B2C SaaS workflow tool for independent craft sellers on Etsy, Shopify, and Faire"
+      },
+      {
+        "field": "product_behavior_change_level",
+        "source": "system_inferred",
+        "source_phrase": "switching costs from them are low but opportunity cost of maintenance is high."
+      },
+      {
+        "field": "founder_resources.team_structure",
+        "source": "founder_stated",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "founder_resources.relevant_skills"
+      },
+      {
+        "field": "founder_resources.investment_status",
+        "source": "system_inferred",
+        "source_phrase": "Advance from Validate to Build requires: founder committed capital, evidence of demand, and first ventures actively using the platform. All conditions are met. Founder has committed full-time effort plus $60K personal capital. 212 paying subscribers are actively using the product today with annual revenue run-rate of $145K. Churn is net-negative and the product has reached a self-sustaining cash-flow profile for the founding team."
+      }
+    ],
+    "one_liner": "ArtisanFlow is a B2C SaaS workflow tool for independent craft sellers on Etsy, Shopify, and Faire, automating inventory, listings, and order routing.",
+    "what_makes_this_different": "ArtisanFlow specifically automates multi-channel inventory reconciliation, cross-channel listings, and order routing, tasks that currently require significant manual effort or a complex, disjointed stack for independent craft sellers.",
+    "contradictions": [],
+    "goal_frame": "growth",
+    "product_behavior_change_level": "medium",
+    "venture_name": "ArtisanFlow",
+    "market_data": {
+      "source": "form",
+      "end_user": "Independent craft sellers (solo makers and 2-3 person businesses)",
+      "sam": "Roughly 180,000 Etsy sellers gross over $50K/year and the top quartile run on 2+ channels.",
+      "anti_icp": "sellers on a single channel, dropshippers, enterprise fulfillment centers",
+      "buyer": "Independent craft sellers (solo makers and 2-3 person businesses)",
+      "tam": "Roughly 180,000 Etsy sellers gross over $50K/year and the top quartile run on 2+ channels.",
+      "why_better": "No current vendor focuses specifically on the multi-channel solo maker, offering integrated automation that existing general tools lack.",
+      "alternatives": "Zapier, Airtable, and Google Sheets",
+      "segment": "B2C SaaS workflow tool for independent craft sellers",
+      "trigger_now": "Opportunity cost of maintaining a duct-tape stack is high as business scales across multiple channels."
+    },
+    "known_unknowns": {
+      "what_founder_seems_unsure_about": [],
+      "what_founder_has_not_told_us": [
+        "specific growth targets or milestones beyond current revenue run-rate",
+        "detailed churn analysis beyond 'net-negative'",
+        "marketing strategies beyond newsletter sponsorships and SEO content",
+        "customer acquisition cost (CAC) breakdown"
+      ]
+    },
+    "stated_vs_observed_stage": {
+      "evidenced_stage": "revenue",
+      "mismatch_reason": "Founder implies 'Advance from Validate to Build' which typically suggests a pre-product stage, but also states having 212 paying subscribers and $145K ARR, indicating a revenue-generating, growth-stage product.",
+      "claimed_stage": "concept",
+      "mismatch_flag": true
+    },
+    "product_requires_new_hardware": false,
+    "evidence_of_stage": "212 paying subscribers are actively using the product today with annual revenue run-rate of $145K. Churn is net-negative and the product has reached a self-sustaining cash-flow profile for the founding team.",
+    "unit_economics": {
+      "revenue_assumption": "known",
+      "infra_cost": "$1.80/month",
+      "price_tiers": "$41/month (blended ARPU)",
+      "ltv": "$574",
+      "human_work_per_customer": "$3.40/month (support cost)",
+      "breakeven": "Self-sustaining cash-flow profile",
+      "pricing_model": "subscription",
+      "source": "form",
+      "cost_assumption": "known",
+      "cac_target": "$68"
+    },
+    "bottleneck": {
+      "relaxed_by": "Further growth and scalability initiatives beyond initial build.",
+      "why_it_blocks": "If there is a bottleneck, it is not explicitly stated after reaching self-sustaining cashflow.",
+      "type": "operational",
+      "current_blocker": "Unclear, as founder states all conditions for 'Advance from Validate to Build' are met and the business is self-sustaining."
+    },
+    "schema_version": "vr-3.1.1"
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "delivery_model": "existing_devices_software",
+  "stage_assessment": "idea",
+  "opportunity_score": 463,
+  "vvs_score": 350,
+  "vvs_band": "Non-viable",
+  "vvs_dimensions": {
+    "P": 3,
+    "M": 3,
+    "C": 2,
+    "D": 2,
+    "L": 2,
+    "F": 3,
+    "E": 2
+  },
+  "raw": {
+    "fields": [],
+    "gaps": [],
+    "market_data": {
+      "end_user": "Aging population aged 75 and older",
+      "source": "form",
+      "tam": "467 million people aged 75 or older, projected to reach 700 million by 2030.",
+      "buyer": "Adult children of seniors",
+      "segment": "Aged population (75+)",
+      "trigger_now": "Neglect of essential daily tasks by seniors (e.g., medication, exercise, limiting screen time) requiring proactive reminders."
+    },
+    "stage_assessment": "idea",
+    "goal_frame": "growth",
+    "venture_name": "himom-del-u01-r4",
+    "contradictions": [],
+    "extraction_sources": [
+      {
+        "source_phrase": "",
+        "field": "market_data.buyer",
+        "source": "founder_stated"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "market_data.end_user"
+      },
+      {
+        "source_phrase": "",
+        "source": "founder_stated",
+        "field": "market_data.trigger_now"
+      },
+      {
+        "source_phrase": "",
+        "field": "market_data.alternatives",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "market_data.why_better"
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "market_data.anti_icp"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.price_tiers",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "The platform is designed as a marketplace where new actions, services, and third-party providers can be integrated with '3-click' simplicity for the end user.",
+        "field": "unit_economics.pricing_model",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.hardware_cost_per_customer",
+        "source": "missing"
+      },
+      {
+        "field": "unit_economics.human_work_per_customer",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source": "missing",
+        "field": "unit_economics.revenue_assumption",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "unit_economics.cost_assumption",
+        "source": "missing"
+      },
+      {
+        "field": "core_insight.what",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "Children use the mobile app to define and deliver daily routines... The system uses connected devices... The platform is designed as a marketplace...",
+        "field": "stage_assessment",
+        "source": "system_inferred"
+      },
+      {
+        "field": "evidence_of_stage",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "field": "goal_horizon_target",
+        "source": "missing"
+      },
+      {
+        "source_phrase": "Children use the mobile app to define and deliver daily routines... The system uses connected devices (watches, TVs)...",
+        "field": "delivery_mode",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "The system uses connected devices (watches, TVs) to trigger actions.",
+        "field": "product_requires_new_hardware",
+        "source": "system_inferred"
+      },
+      {
+        "source_phrase": "This population frequently neglects essential daily tasks like taking medicine, exercising, or limiting TV time without proactive reminders.",
+        "source": "system_inferred",
+        "field": "product_behavior_change_level"
+      },
+      {
+        "field": "founder_resources.team_structure",
+        "source": "missing",
+        "source_phrase": ""
+      },
+      {
+        "source_phrase": "",
+        "source": "missing",
+        "field": "founder_resources.relevant_skills"
+      },
+      {
+        "source_phrase": "",
+        "field": "founder_resources.investment_status",
+        "source": "missing"
+      }
+    ],
+    "stated_vs_observed_stage": {
+      "claimed_stage": "idea",
+      "mismatch_reason": "",
+      "mismatch_flag": false,
+      "evidenced_stage": "idea"
+    },
+    "thesis_evolution": {
+      "detected": false
+    },
+    "delivery_model": "existing_devices_software",
+    "delivery_mode": "hybrid",
+    "founder_resources": {
+      "money_available": "?",
+      "time_available": "?"
+    },
+    "one_liner": "A mobile app and connected device system that helps adult children define and deliver daily routines and trigger actions for seniors based on real-time data.",
+    "core_excitement": "The founder is excited by the prospect of improving the quality of life for seniors and empowering adult children through a simple, extensible IoT-enabled platform for care.",
+    "product_behavior_change_level": "medium",
+    "core_insight": {
+      "if_wrong": "If seniors or their caregivers do not adopt or benefit from automated routines and real-time prompts, or if the marketplace fails to attract integrations, the system will not improve quality of life or reduce caregiver burden.",
+      "why_different": "The combination of defining daily routines, real-time data-triggered actions, and a '3-click' marketplace for integrations provides a simple yet powerful and extensible solution for senior care.",
+      "what": "",
+      "source_excerpt": "Vision: to improve quality of life for seniors and help children provide better care through a simple, extensible interface that leverages IoT capabilities. The platform is designed as a marketplace where new actions, services, and third-party providers can be integrated with '3-click' simplicity for the end user."
+    },
+    "things_that_must_work": [],
+    "product_description": "The system enables children to use a mobile app to define and deliver daily routines for seniors, such as medication reminders and lifestyle prompts. It integrates with connected devices (watches, TVs) to trigger actions based on real-time data, like suggesting brain-training quizzes or walks. The platform is designed as a marketplace for easily integrating new actions, services, and third-party providers.",
+    "product_requires_new_hardware": true,
+    "unit_economics": {
+      "price_tiers": "",
+      "pricing_model": "subscription",
+      "source": "form"
+    },
+    "what_makes_this_different": "The specific innovation lies in its combination of a user-friendly mobile app for routine definition, integration with connected devices for real-time data-driven actions, and a marketplace for seamless third-party service integration, all aimed at improving senior quality of life and supporting caregivers.",
+    "thesis": "\nThis venture, 'himom-del-u01-r4', aims to address the critical and frequent problem of elderly individuals neglecting essential daily tasks. The innovation lies in providing a simple, extensible interface that leverages IoT capabilities to define and deliver daily routines and trigger actions based on real-time data.\n\nThe venture is primarily for seniors aged 75 and older (end-users), with their adult children acting as the buyers and managers of the system. This directly tackles the severity of the problem, as this demographic often struggles with proactive reminders for medication, exercise, or healthy habits, which can significantly impact their quality of life.\n\nThe founder's vision, as stated, is to improve the quality of life for seniors and empower adult children to provide better care. This suggests a goal aligned with a growth-oriented startup rather than a lifestyle business or a moonshot, given the ambition to create a marketplace for integrations and a large target market.\n\nBased on the intake form, the venture is at the idea stage. The description outlines the problem, the proposed solution, the target users, and a vision for a platform and a marketplace, but there is no mention of any built product, users, or revenue. The venture's positioning in the value chain is complementary and preventative, using technology to support existing caregivers (adult children) and proactively managing seniors' health and well-being before more serious interventions are needed. It's not replacing primary care but rather augmenting it with smart, automated assistance.",
+    "traction_signals": [],
+    "team_members": [],
+    "schema_version": "vr-3.1.1"
+  }
+}
